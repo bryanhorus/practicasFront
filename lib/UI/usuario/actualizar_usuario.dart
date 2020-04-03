@@ -21,7 +21,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
     apellido: "",
     correo: "",
     password: "",
-    telefono: "",
+    telfono: "",
   );
 
   @override
@@ -145,7 +145,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             maxLength: 12,
                             validator: validateMobile,
                             onSaved: (String value) {
-                              _tecnico.telefono = value;
+                              _tecnico.telfono = value;
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
@@ -156,7 +156,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             keyboardType: TextInputType.number,
                             maxLength: 1,
                             onSaved: (String value) {
-                              _tecnico.telefono = value;
+                              _tecnico.telfono = value;
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),

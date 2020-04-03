@@ -6,13 +6,13 @@ class TipoUsuario {
 
   factory TipoUsuario.fromJson(Map<String, dynamic> parsedJson) {
     return TipoUsuario(
-      idTipo: parsedJson['id_tipo_usuario'],
+      idTipo: parsedJson['idTipo'],
       descripcion: parsedJson['descripcion'],
     );
   }
 
   Map<String, dynamic> toJson() => {
-        'id_tipo_usuario':idTipo,
-        'descripcion': descripcion,
+        'idTipo':idTipo,
+        'descripcion': descripcion
       };
 }

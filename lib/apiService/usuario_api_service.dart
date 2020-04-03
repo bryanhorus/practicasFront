@@ -31,7 +31,7 @@ class UsuarioApiService {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var body2 = json.encode(usuario.toJson());
     Uri uri =
-        Uri.http(Constants.urlAuthority, Constants.pathServiceUsuarioUpdate);
+    Uri.http(Constants.urlAuthority, Constants.pathServiceUsuarioUpdate);
     var res = await http.put(uri,
         headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader},
         body: body2);
@@ -70,3 +70,4 @@ class UsuarioApiService {
     return apiResponse;
   }
 }
+

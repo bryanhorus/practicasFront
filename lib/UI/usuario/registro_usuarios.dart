@@ -15,15 +15,15 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+
   UsuarioBloc userBloc;
   Usuario _tecnico = Usuario(
       nombre: '',
       apellido: '',
       correo: '',
       password: '',
-      telefono: '',
-      tipoUsuario: TipoUsuario(idTipo: 2) 
-      );
+      telfono: '',
+      typeUser: TipoUsuario(idTipo: 0));
 
   @override
   void initState() {
@@ -144,29 +144,28 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                             maxLength: 12,
                             validator: validateMobile,
                             onSaved: (String value) {
-                              _tecnico.telefono = value;
+                              _tecnico.telfono = value;
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
-                          /*
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.tipoUsuario,
                             ),
                             keyboardType: TextInputType.number,
                             maxLength: 1,
-                            onSaved: (String value ) {
-                              _tecnico.tipoUsuario = int.parse(value);
+                            onSaved: (String tipoU) {
+                              _tecnico.typeUser.idTipo = int.parse(tipoU);
                             },
                             style: TextStyle(fontSize: 18.0),
-                          ),*/
+                          ),
                           Padding(
                             padding: const EdgeInsets.only(top: 60.0),
                           ),
                           MaterialButton(
                             shape: RoundedRectangleBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
+                              BorderRadius.all(Radius.circular(20.0)),
                             ),
                             height: 50.0,
                             minWidth: 150.0,

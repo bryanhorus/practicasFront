@@ -5,34 +5,34 @@ class Usuario {
   String apellido;
   String correo;
   String password;
-  String telefono;
-  TipoUsuario tipoUsuario;
+  String telfono;
+  TipoUsuario typeUser;
 
   Usuario(
       {this.nombre,
-      this.apellido,
-      this.correo,
-      this.password,
-      this.telefono,
-      this.tipoUsuario});
+        this.apellido,
+        this.correo,
+        this.password,
+        this.telfono,
+        this.typeUser});
 
   factory Usuario.fromJson(Map<String, dynamic> parsedJson) {
     return Usuario(
-      nombre: parsedJson['nombre'],
-      apellido: parsedJson['apellido'],
-      correo: parsedJson['correo'],
-      password: parsedJson['password'],
-      telefono: parsedJson['telefono'],
-      tipoUsuario: TipoUsuario.fromJson(parsedJson['tipoUsuario']),
+        nombre: parsedJson['nombre'],
+        apellido: parsedJson['apellido'],
+        correo: parsedJson['correo'],
+        password: parsedJson['password'],
+        telfono: parsedJson['telfono'],
+        typeUser: TipoUsuario.fromJson(parsedJson['typeUser'])
     );
   }
 
   Map<String, dynamic> toJson() => {
-        'nombre': nombre,
-        'apellido': apellido,
-        'correo': correo,
-        'password': password,
-        'telefono': telefono,
-        'tipoUsuario': tipoUsuario.toJson(),
-      };
+    'nombre': nombre,
+    'apellido': apellido,
+    'correo': correo,
+    'password': password,
+    'telfono': telfono,
+    'typeUser': typeUser.toJson()
+  };
 }
