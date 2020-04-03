@@ -1,5 +1,5 @@
 class Departamento {
-  String idDpto;
+  int idDpto;
   String nombre;
 
   Departamento({this.nombre, this.idDpto});

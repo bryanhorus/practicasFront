@@ -16,7 +16,7 @@ class ActualizarDepartamentoState extends State<ActualizarDepartamento>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   DptoBloc departamentoBloc;
-  Departamento _departamento = Departamento(nombre: '', idDpto: "");
+  Departamento _departamento = Departamento(nombre: '', idDpto: 0);
 
   @override
   void initState() {
@@ -95,7 +95,7 @@ class ActualizarDepartamentoState extends State<ActualizarDepartamento>
                             //validator: validateName,
                             keyboardType: TextInputType.number,
                             onSaved: (String value) {
-                              _departamento.idDpto = value;
+                              _departamento.idDpto = int.parse(value);
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
