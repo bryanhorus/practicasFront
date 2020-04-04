@@ -48,7 +48,7 @@ class UsuarioApiService {
 
   Future<ApiResponse> listarUsuario() async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
-    Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceUsuario);
+    Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceListUsuario);
     var res = await http.get(
       uri,
       headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader},
@@ -64,7 +64,6 @@ class UsuarioApiService {
         return i;
       });
 
-      print(apiResponse.listUsuario[5].apellido);
       return apiResponse;
     }
     return apiResponse;

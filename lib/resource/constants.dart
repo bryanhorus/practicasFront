@@ -7,6 +7,7 @@ class Constants{
   static const String contenTypeHeader = "application/json";
 //servicio
   static const String pathServiceUsuario ="/api/tecni/user/insert";
+  static const String pathServiceListUsuario ="/api/tecni/user/get/all";
   static const String pathServiceinsertDpto ="/api/tecni/departament/insert";
   static const String pathServiceMinicipiosLista ="/api/tecni/municipio/get/all";
   static const String pathServiceUsuarioUpdate ="/user/update";
