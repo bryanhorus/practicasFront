@@ -42,7 +42,7 @@ class Constants{
   static const String btnIngresar = "Ingresar";
   static const String btnRegistar = "Registrar ";
   static const String btnSiguiente = "Siguiente ";
-  static const String btnModificar = "Modificar ";
+  static const String btnModificar = "Editar ";
   static const String btnLista = "Lista ";
   static const String btnEliminar = "Eliminar ";
   static const String btnAsignar = "Asignar ";
