@@ -10,7 +10,7 @@ class Constants{
   static const String pathServiceListUsuario ="/api/tecni/user/get/all";
   static const String pathServiceinsertDpto ="/api/tecni/departament/insert";
   static const String pathServiceMinicipiosLista ="/api/tecni/municipio/get/all";
-  static const String pathServiceUsuarioUpdate ="/user/update";
+  static const String pathServiceUsuarioUpdate ="/api/tecni/user/update";
   static const String pathServiceDepartamentoUpdate ="/api/tecni/departament/update";
   static const String pathServiceDepartamentoDelete ="/api/tecni/departament/delete/id";
   static const String pathServiceDepartamento = "/api/tecni/departament/get/all";
@@ -45,6 +45,8 @@ class Constants{
   static const String btnSiguiente = "Siguiente ";
   static const String btnModificar = "Modificar ";
   static const String btnLista = "Lista ";
+  static const String btnListaU = "Lista Usuarios";
+  static const String btnRegistarU = "Registrar Usuarios";
   static const String btnEliminar = "Eliminar ";
   static const String btnAsignar = "Asignar ";
   static const String btnPerfil = "Perfil";
