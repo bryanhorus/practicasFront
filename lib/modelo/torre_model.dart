@@ -1,5 +1,8 @@
 import 'dart:core';
 
+import 'municipio_model.dart';
+//import 'municipio_model.dart';
+
 class Torre {
   String nombreTorre;
   String identificacionTorre;
@@ -7,13 +10,16 @@ class Torre {
   String coordenadas;
   String altura;
   String tecnologia;
+  Municipio m;
+
   Torre(
       {this.nombreTorre,
       this.identificacionTorre,
       this.direccionTorre,
       this.coordenadas,
       this.altura,
-      this.tecnologia});
+      this.tecnologia,
+      this.m});
 
   factory Torre.fromJson(Map<String, dynamic> parsedJson) {
     return Torre(
@@ -23,6 +29,7 @@ class Torre {
       coordenadas: parsedJson['coordenadas'],
       altura: parsedJson['altura Torre'],
       tecnologia: parsedJson['tecnologia Torre'],
+      m: Municipio.fromJson(parsedJson['m'])
     );
   }
 
@@ -33,5 +40,6 @@ class Torre {
         'coordenadas': coordenadas,
         'altura Torre': altura,
         'tecnologia Torre': tecnologia,
+        'm': m.toJson()
       };
 }
