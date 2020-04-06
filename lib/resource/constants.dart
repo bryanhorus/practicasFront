@@ -129,6 +129,14 @@ class Constants{
   static const String labelTorre ="Torre";
   static const String labelNombreAntena ="Nombre de la Antena";
 
+  static const String labelNombreTorre ="Nombre de la Torre";
+  static const String labelStringid_torre ="String id_torre";
+  static const String labelDirTorre ="Dirección de la Torre";
+  static const String labelCoorTorre ="Coordenadas de la Torre";
+  static const String labelAlturaTorre ="Altura de la Torre";
+  static const String labelTechTorre ="Tecnología de la Torre";
+  //static const String labelNombreTorre ="Nombre de la Torre";
+
   //mensajes
   static const String agradecimiento = "¡Gracias por ser parte de esta gran familia,nos sentimos orgullosos de que cada día ponga todo su esfuerzo y dedicación para lograr el éxito que deseamos!";
   static const String mensajePerfil = "Mensaje del dia";

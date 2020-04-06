@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/antena_bloc.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
+import 'package:tenic_api/modelo/estado_model.dart';
+import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class RegistrarAntena extends StatefulWidget {
@@ -19,7 +21,9 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
     altura:"",
     orientacion:"",
     inclinacion:"",
-    //torre:'TORRE_',
+    torre: Torre(id: 0),
+    estado: Estado(id: 0)
+
   );
 
 
@@ -90,6 +94,7 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                           Padding(
                             padding: const EdgeInsets.only(top: 40.0),
                           ),
+
                           const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
@@ -152,7 +157,8 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
-                          TextFormField(
+
+                          /*TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelTorre,
                             ),
@@ -163,7 +169,32 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                               //_antena.torre = value;
                             },
                             style: TextStyle(fontSize: 18.0),
+                          ),*/
+
+                          TextFormField(
+                            decoration: new InputDecoration(
+                              //labelText: Constants.tipoUsuario,
+                            ),
+                            keyboardType: TextInputType.number,
+                            maxLength: 1,
+                            onSaved: (String tow) {
+                              _antena.torre.id = int.parse(tow);
+                            },
+                            style: TextStyle(fontSize: 18.0),
                           ),
+
+                          TextFormField(
+                            decoration: new InputDecoration(
+                              //labelText: Constants.tipoUsuario,
+                            ),
+                            keyboardType: TextInputType.number,
+                            maxLength: 1,
+                            onSaved: (String sta) {
+                              _antena.estado.id = int.parse(sta);
+                            },
+                            style: TextStyle(fontSize: 18.0),
+                          ),
+                          
                           Padding(
                             padding: const EdgeInsets.only(top: 60.0),
                           ),

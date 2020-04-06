@@ -4,6 +4,7 @@ import 'municipio_model.dart';
 //import 'municipio_model.dart';
 
 class Torre {
+  int id;
   String nombreTorre;
   String identificacionTorre;
   String direccionTorre;
@@ -19,7 +20,7 @@ class Torre {
       this.coordenadas,
       this.altura,
       this.tecnologia,
-      this.municipio});
+      this.municipio, this.id});
 
   factory Torre.fromJson(Map<String, dynamic> parsedJson) {
     return Torre(
