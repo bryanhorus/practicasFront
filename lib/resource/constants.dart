@@ -8,9 +8,11 @@ class Constants{
 //servicio
   static const String pathServiceUsuario ="/api/tecni/user/insert";
   static const String pathServiceListUsuario ="/api/tecni/user/get/all";
+  static const String pathServiceListAntena ="";
   static const String pathServiceinsertDpto ="/api/tecni/departament/insert";
   static const String pathServiceMinicipiosLista ="/api/tecni/municipio/get/all";
   static const String pathServiceUsuarioUpdate ="/api/tecni/user/update";
+  static const String pathServiceAntenaUpdate ="";
   static const String pathServiceDepartamentoUpdate ="/api/tecni/departament/update";
   static const String pathServiceTorreUpdate = "/api/tecni/torre/update";
   static const String pathServiceinsertTorre = "/api/tecni/torre/insert";
@@ -18,8 +20,9 @@ class Constants{
   static const String pathServiceTorre = "/api/tecni/torre/get/all";
   static const String pathServiceDepartamentoDelete ="/api/tecni/departament/delete/id";
   static const String pathServiceDepartamento = "/api/tecni/departament/get/all";
-  static const String pathServiceAntena ="/antenna";
+  static const String pathServiceAntena ="";
   static const String pathServiceDeleteU="/api/tecni/user/delete/id";
+  static const String pathServiceDeleteAntena="";
   static const String pathServiceLogin ="/usuarios/login";
 
   static const String createMessage = "Creación exitosa";

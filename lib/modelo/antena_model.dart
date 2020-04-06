@@ -1,3 +1,4 @@
+import 'package:tenic_api/modelo/estado_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
 
 class Antena {
@@ -7,6 +8,7 @@ class Antena {
   String orientacion;
   String inclinacion;
   Torre torre;
+  Estado estado;
 
   Antena(
       {this.nombre,
@@ -14,7 +16,8 @@ class Antena {
       this.altura,
       this.orientacion,
       this.inclinacion,
-      this.torre, String torrea});
+      this.torre, 
+      this.estado});
 
   factory Antena.fromJson(Map<String, dynamic> parsedJson) {
     return Antena(
@@ -23,7 +26,9 @@ class Antena {
       altura: parsedJson['altura'],
       orientacion: parsedJson['orientacion'],
       inclinacion: parsedJson['inclinacion'],
-      torre: parsedJson['torre'],
+      torre: Torre.fromJson(parsedJson['torre']),
+      estado: Estado.fromJson(parsedJson['estado'])
+
     );
   }
 
@@ -33,6 +38,7 @@ class Antena {
         'altura': altura,
         'orientacion': orientacion,
         'inclinacion': inclinacion,
-        'torre': torre,
+        'torre': torre.toJson(),
+        'estado': estado.toJson()
       };
 }

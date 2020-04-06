@@ -6,11 +6,7 @@ import 'package:tenic_api/resource/constants.dart';
 
 class ActualizarDepartamento extends StatefulWidget {
   final Departamento departamento;
-<<<<<<< HEAD
-  const ActualizarDepartamento({Key key, this.departamento}) : super(key: key);
-=======
   const ActualizarDepartamento({this.departamento,Key key}) : super(key: key);
->>>>>>> be897ebccb679bedbd22b1ea422f435a0b9182a7
 
   @override
   ActualizarDepartamentoState createState() => ActualizarDepartamentoState();
@@ -91,6 +87,18 @@ class ActualizarDepartamentoState extends State<ActualizarDepartamento>
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(top: 40.0),
+                          ),
+                          const SizedBox(height: 12.0),
+                          TextFormField(
+                            decoration: new InputDecoration(
+                              labelText: "Posicion",
+                            ),
+                            //validator: validateName,
+                            keyboardType: TextInputType.number,
+                            onSaved: (String value) {
+                              _departamento.idDpto = int.parse(value);
+                            },
+                            style: TextStyle(fontSize: 18.0),
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(

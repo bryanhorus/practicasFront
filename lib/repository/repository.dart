@@ -28,8 +28,14 @@ class Repository {
   Future<ApiResponse> listaUsuario() => usuarioApiService.listarUsuario();
   Future<ApiResponse>eliminarUsuario(Usuario usuario)=> usuarioApiService.deleteUsuario(usuario);
 
+  //
   Future<ApiResponse> registrarAntena(Antena antena) => antenaApiService.insertAntena(antena);
+  Future<ApiResponse> actualizarAntena(Antena antena) => antenaApiService.updateAntena(antena);
+  Future<ApiResponse> listaAntena() => antenaApiService.listarAntena();
+  //Future<ApiResponse> eliminarAntena(Antena antena) => antenaApiService.deleteAntena(antena);
   
+
+
   Future<ApiResponse> listaMunicipio() => municipioApiService.listarMunicipio();
 
   Future<ApiResponse> listaDepartamento() => departamentoApiService.listarDepartamento();

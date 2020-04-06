@@ -1,3 +1,4 @@
+import 'package:tenic_api/modelo/antena_model.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/municipio_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
@@ -13,6 +14,7 @@ class ApiResponse {
   List<Municipio> listMunicipio = List();
   List<Departamento> listDepartamento = List();
   List<Torre> listTorre = List();
+  List<Antena> listAntena = List();
   
   ApiResponse({this.statusResponse, this.object, this.message});
 
