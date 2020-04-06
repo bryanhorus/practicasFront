@@ -10,7 +10,7 @@ class Torre {
   String coordenadas;
   String altura;
   String tecnologia;
-  Municipio m;
+  Municipio municipio;
 
   Torre(
       {this.nombreTorre,
@@ -19,7 +19,7 @@ class Torre {
       this.coordenadas,
       this.altura,
       this.tecnologia,
-      this.m});
+      this.municipio});
 
   factory Torre.fromJson(Map<String, dynamic> parsedJson) {
     return Torre(
@@ -29,7 +29,7 @@ class Torre {
       coordenadas: parsedJson['coordenadas'],
       altura: parsedJson['altura Torre'],
       tecnologia: parsedJson['tecnologia Torre'],
-      m: Municipio.fromJson(parsedJson['m'])
+      municipio: Municipio.fromJson(parsedJson['municipio'])
     );
   }
 
@@ -40,6 +40,6 @@ class Torre {
         'coordenadas': coordenadas,
         'altura Torre': altura,
         'tecnologia Torre': tecnologia,
-        'm': m.toJson()
+        'municipio': municipio.toJson()
       };
 }
