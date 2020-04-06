@@ -15,6 +15,7 @@ class Constants{
   static const String pathServiceDepartamentoDelete ="/api/tecni/departament/delete/id";
   static const String pathServiceDepartamento = "/api/tecni/departament/get/all";
   static const String pathServiceAntena ="/antenna";
+  static const String pathServiceDeleteU="/api/tecni/user/delete/id";
   static const String pathServiceLogin ="/usuarios/login";
 
   static const String createMessage = "Creación exitosa";
@@ -83,6 +84,7 @@ class Constants{
   static const String homeCoordinadorRoute = "/home_coordinador";
   static const String perfilCoordinadorRoute = "/perfil_coordinador";
   static const String registroRoute = "/registro_usuarios";
+  static const String userRoute = "/usuario";
   static const String asignarTorresRoute = "/torre";
   static const String registrarTorreRoute = "/registrar_torre";
   static const String registrarantenaRoute = "/registrar_antena";

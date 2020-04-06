@@ -27,6 +27,10 @@ class MyStatelessUsuario extends StatelessWidget {
             onPressed: () {
               TecniNavigator.goToRegistrarUsuario(context);
             },
+            shape: RoundedRectangleBorder(
+              borderRadius:
+              BorderRadius.all(Radius.circular(20.0)),
+            ),
             textColor: Colors.white,
             padding: const EdgeInsets.all(0.0),
             child: Container(

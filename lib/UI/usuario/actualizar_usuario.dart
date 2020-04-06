@@ -4,6 +4,7 @@ import 'package:tenic_api/bloc/usuario_bloc.dart';
 import 'package:tenic_api/modelo/tipo_usuario_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
 import 'package:tenic_api/resource/constants.dart';
+import 'package:tenic_api/navigator.dart';
 
 class ActualizarUsuario extends StatefulWidget {
 
@@ -54,6 +55,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
       form.save();
       userBloc.updateUsuario(usuario);
     }
+    TecniNavigator.goTocord(context);
   }
 
   @override
@@ -119,7 +121,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             onSaved: (String value) {
                               usuario.nombre = value;
                             },
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
@@ -131,7 +133,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             onSaved: (String value) {
                               usuario.apellido = value;
                             },
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                           ),
                           TextFormField(
                             decoration: new InputDecoration(
@@ -144,7 +146,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             onSaved: (String value) {
                               usuario.correo = value;
                             },
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                           ),
                           TextFormField(
                             obscureText: true,
@@ -158,7 +160,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             onSaved: (String value) {
                               usuario.password = value;
                             },
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                           ),
                           TextFormField(
                             decoration: new InputDecoration(
@@ -171,7 +173,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             onSaved: (String value) {
                               usuario.telfono = value;
                             },
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 60.0),

@@ -10,11 +10,17 @@ class TecniNavigator {
   static void goToRegistrarUsuario(BuildContext context) {
     Navigator.pushNamed(context, Constants.registroRoute);
   }
+  static void goToUsuario(BuildContext context) {
+    Navigator.pushNamed(context, Constants.userRoute);
+  }
     static void goToActualizarUsuario(BuildContext context) {
     Navigator.pushNamed(context, Constants.actualizarUsuarioRoute);
   }
   static void goToListaUsuarios(BuildContext context) {
     Navigator.pushNamed(context, Constants.listaUsuariosRoute);
+  }
+  static void goTocord(BuildContext context) {
+    Navigator.pushNamed(context, Constants.homeCoordinadorRoute);
   }
   //Departamentos
   static void goToRegistrarDepartamento(BuildContext context) {

@@ -24,6 +24,7 @@ class Repository {
   Future<ApiResponse> registrarUsuario(Usuario usuario) => usuarioApiService.insertUsuario(usuario);
   Future<ApiResponse> actualizarUsuario(Usuario usuario) => usuarioApiService.updateUsuario(usuario);
   Future<ApiResponse> listaUsuario() => usuarioApiService.listarUsuario();
+  Future<ApiResponse>eliminarUsuario(Usuario usuario)=> usuarioApiService.deleteUsuario(usuario);
 
   Future<ApiResponse> registrarAntena(Antena antena) => antenaApiService.insertAntena(antena);
   

@@ -4,7 +4,7 @@ import 'package:tenic_api/bloc/usuario_bloc.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
 import 'package:tenic_api/resource/constants.dart';
-
+import 'package:tenic_api/navigator.dart';
 import 'actualizar_usuario.dart';
 
 class ListaUsuarios extends StatefulWidget {
@@ -39,6 +39,11 @@ class ListaUsuariosState extends State<ListaUsuarios>
     });
   }
 
+  void _delete(Usuario usuario) {
+    userBloc.deleteUsuario(usuario);
+    TecniNavigator.goTocord(context);
+  }
+
   @override
   void initState() {
     super.initState();
@@ -65,7 +70,7 @@ class ListaUsuariosState extends State<ListaUsuarios>
         itemBuilder: (BuildContext context, int indice) {
           return Card(
             //le damos un color de la lista de primarios
-            color: Colors.primaries[indice],
+            color: Colors.accents[indice],
             //agregamos un contenedor de 100 de alto
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -74,8 +79,8 @@ class ListaUsuariosState extends State<ListaUsuarios>
                   title: Text(
                     listUsuario[indice].nombre,
                     //le damos estilo a cada texto
-                    style: TextStyle(fontSize: 20, color: Colors.white)),
-                  onTap: (){
+                    style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold)),
+                  /*onTap: (){
                     print(listUsuario[indice].nombre);
                     usuario = listUsuario[indice];
 
@@ -84,8 +89,37 @@ class ListaUsuariosState extends State<ListaUsuarios>
                         MaterialPageRoute(
                             builder: (BuildContext context) =>
                                 ActualizarUsuario( usuario:usuario)));
-                  },
-                )
+                  },*/
+                ),
+                // ignore: deprecated_member_use
+                ButtonTheme.bar(
+                  // make buttons use the appropriate styles for cards
+                  child: ButtonBar(
+                    children: <Widget>[
+                      FlatButton(
+                        child: const Text('Editar', style: TextStyle(fontSize: 15, color: Colors.white)),
+                        onPressed: () {
+                          print(listUsuario[indice].nombre);
+                          usuario = listUsuario[indice];
+
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      ActualizarUsuario( usuario:usuario)));
+                        },
+                      ),
+                      FlatButton(
+                        child: const Text('Eliminar', style: TextStyle(fontSize: 15, color: Colors.white)),
+                        onPressed: () {
+                          print(listUsuario[indice].nombre);
+                          usuario = listUsuario[indice];
+                          _delete(usuario);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
               ],
             )
           );
@@ -98,37 +132,3 @@ class ListaUsuariosState extends State<ListaUsuarios>
   }
 }
 
-class EditScreen extends StatefulWidget{
-
-  @override
-  _EditScreenState createState() => _EditScreenState();
-}
-
-class _EditScreenState extends State<EditScreen>{
-  TextEditingController _controller;
-
-  @override
-  void initState() {
-    _controller = TextEditingController();
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('editar'),
-      ),
-      body: Center(child: Column(children: <Widget>[
-        TextField(controller: _controller),
-          RaisedButton(
-            child: Text('guardar'),
-            onPressed: () {},
-          )
-      ],
-      ),
-      ),
-    );
-  }
-}

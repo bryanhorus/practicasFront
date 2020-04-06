@@ -68,5 +68,23 @@ class UsuarioApiService {
     }
     return apiResponse;
   }
+
+  Future<ApiResponse> deleteUsuario(Usuario usuario) async {
+    var queryParameters = {
+      'id': usuario.idUsuario.toString(),//query del id que permite identificr en el servicion el acceso
+    };
+    ApiResponse apiResponse = ApiResponse(statusResponse: 0);
+    Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceDeleteU,
+        queryParameters);
+    var res = await http.delete(uri,
+        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader});
+    apiResponse.statusResponse = res.statusCode;
+
+    if (apiResponse.statusResponse == 200) {
+
+    }
+    return apiResponse;
+
+  }
 }
 
