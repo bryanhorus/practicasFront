@@ -1,20 +1,24 @@
 import 'package:tenic_api/modelo/departamento_model.dart';
 
 class Municipio {
+  int idMunicipio;
   String nombre;
-  Departamento dept;
+  Departamento departament;
+  
 
-  Municipio({this.nombre, this.dept});
+  Municipio({this.idMunicipio,this.nombre, this.departament});
 
   factory Municipio.fromJson(Map<String, dynamic> parsedJson) {
     return Municipio(
+      idMunicipio: parsedJson['idMunicipio'],
       nombre: parsedJson['nombre'],
-      dept: parsedJson['dept'],
+      departament: Departamento.fromJson(parsedJson['departament'])
     );
   }
 
   Map<String, dynamic> toJson() => {
+        'idMunicipio': idMunicipio,
         'nombre': nombre,
-        'dept': dept,
+        'departament': departament.toJson(),
       };
 }
