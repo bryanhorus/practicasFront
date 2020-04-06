@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/antena_bloc.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
+import 'package:tenic_api/modelo/estado_model.dart';
+import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class RegistrarAntena extends StatefulWidget {
@@ -14,12 +16,13 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
 
   AntenaBloc antenaBloc;
   Antena _antena = Antena(
-    nombre:"",
-    referencia:"",
-    altura:"",
-    orientacion:"",
-    inclinacion:"",
-    //torre:'TORRE_',
+    nombre:'',
+    referencia:'',
+    altura:'',
+    orientacion:'',
+    inclinacion:'',
+    state: Estado(idEstado: 0),
+    torre: Torre(idTorre: 0)
   );
 
 
@@ -127,8 +130,6 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                             style: TextStyle(fontSize: 18.0),
                           ),
                           TextFormField(
-                            obscureText: true,
-                            autocorrect: false,
                             decoration: new InputDecoration(
                               labelText: Constants.labelOrientacion,
                             ),
@@ -156,11 +157,22 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                             decoration: new InputDecoration(
                               labelText: Constants.labelTorre,
                             ),
-                            keyboardType: TextInputType.text,
+                            keyboardType: TextInputType.number,
                             maxLength: 12,
-                            validator: validateName,
+                            //validator: validateName,
                             onSaved: (String value) {
-                              //_antena.torre = value;
+                              _antena.torre.idTorre = int.parse(value);
+                            },
+                            style: TextStyle(fontSize: 18.0),
+                          ),
+                          TextFormField(
+                            decoration: new InputDecoration(
+                              labelText: ('estado'),
+                            ),
+                            keyboardType: TextInputType.number,
+                            maxLength: 12,
+                            onSaved: (String value) {
+                              _antena.state.idEstado = int.parse(value);
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
@@ -177,7 +189,7 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                             color: Color(0xFFE1F5FE),
                             splashColor: Colors.blueAccent,
                             textColor: Colors.black,
-                            child: Text(Constants.btnModificar),
+                            child: Text(Constants.btnRegistar),
                             onPressed: _handleSubmitted,
                           ),
                         ],

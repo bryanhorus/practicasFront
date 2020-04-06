@@ -11,5 +11,7 @@ class Departamento {
     );
   }
 
-  Map<String, dynamic> toJson() => {'nombre': nombre, 'idDpto': idDpto};
+  Map<String, dynamic> toJson() => {
+    'idDpto': idDpto,
+    'nombre': nombre};
 }

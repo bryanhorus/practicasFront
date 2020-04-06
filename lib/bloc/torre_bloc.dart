@@ -1,21 +1,19 @@
-
-
 import 'package:flutter/cupertino.dart';
-import 'package:tenic_api/modelo/antena_model.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
+import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/repository/repository.dart';
 import 'package:tenic_api/resource/constants.dart';
 
-class AntenaBloc {
+class TorreBloc {
   final Repository _repository = Repository();
   var _apiResponse = ApiResponse();
 
   ApiResponse get apiResponse => _apiResponse;
 
-  AntenaBloc(BuildContext context);
-  Future<ApiResponse> createAntena(Antena antena) async {
+  TorreBloc(BuildContext context);
+  Future<ApiResponse> createTorre(Torre torre) async {
     ApiResponse apiResponse =
-        await _repository.registrarAntena(antena);
+        await _repository.registrarTorre(torre);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
@@ -28,9 +26,9 @@ class AntenaBloc {
     return apiResponse;
   }
 
-  Future<ApiResponse> updateAntena(Antena antena) async {
+  Future<ApiResponse> updateTorre(Torre torre) async {
     ApiResponse apiResponse =
-        await _repository.actualizarAntena(antena);
+        await _repository.actualizarTorre(torre);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
@@ -43,9 +41,9 @@ class AntenaBloc {
     return apiResponse;
   }
 
-  Future<ApiResponse> deleteAntena(Antena antena) async {
+  Future<ApiResponse> deleteTorre(Torre torre) async {
     ApiResponse apiResponse =
-        await _repository.eliminarAntena(antena);
+        await _repository.eliminarTorre(torre);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
@@ -58,8 +56,8 @@ class AntenaBloc {
     return apiResponse;
   }
 
-  Future<ApiResponse> listarAntena() async {
-    ApiResponse apiResponse = await _repository.listaAntena();
+  Future<ApiResponse> listarTorre() async {
+    ApiResponse apiResponse = await _repository.listaTorre();
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
