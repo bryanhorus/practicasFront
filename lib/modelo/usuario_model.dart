@@ -1,6 +1,7 @@
 import 'package:tenic_api/modelo/tipo_usuario_model.dart';
 
 class Usuario {
+  int idUsuario;
   String nombre;
   String apellido;
   String correo;
@@ -9,7 +10,8 @@ class Usuario {
   TipoUsuario typeUser;
 
   Usuario(
-      {this.nombre,
+      {this.idUsuario,
+        this.nombre,
         this.apellido,
         this.correo,
         this.password,
@@ -18,6 +20,7 @@ class Usuario {
 
   factory Usuario.fromJson(Map<String, dynamic> parsedJson) {
     return Usuario(
+        idUsuario: parsedJson['idUsuario'],
         nombre: parsedJson['nombre'],
         apellido: parsedJson['apellido'],
         correo: parsedJson['correo'],
@@ -28,6 +31,7 @@ class Usuario {
   }
 
   Map<String, dynamic> toJson() => {
+    'idUsuario' : idUsuario,
     'nombre': nombre,
     'apellido': apellido,
     'correo': correo,

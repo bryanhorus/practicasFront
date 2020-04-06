@@ -7,9 +7,10 @@ class Constants{
   static const String contenTypeHeader = "application/json";
 //servicio
   static const String pathServiceUsuario ="/api/tecni/user/insert";
+  static const String pathServiceListUsuario ="/api/tecni/user/get/all";
   static const String pathServiceinsertDpto ="/api/tecni/departament/insert";
   static const String pathServiceMinicipiosLista ="/api/tecni/municipio/get/all";
-  static const String pathServiceUsuarioUpdate ="/user/update";
+  static const String pathServiceUsuarioUpdate ="/api/tecni/user/update";
   static const String pathServiceDepartamentoUpdate ="/api/tecni/departament/update";
   static const String pathServiceTorreUpdate = "/api/tecni/torre/update";
   static const String pathServiceinsertTorre = "/api/tecni/torre/insert";
@@ -18,6 +19,7 @@ class Constants{
   static const String pathServiceDepartamentoDelete ="/api/tecni/departament/delete/id";
   static const String pathServiceDepartamento = "/api/tecni/departament/get/all";
   static const String pathServiceAntena ="/antenna";
+  static const String pathServiceDeleteU="/api/tecni/user/delete/id";
   static const String pathServiceLogin ="/usuarios/login";
 
   static const String createMessage = "Creación exitosa";
@@ -48,6 +50,8 @@ class Constants{
   static const String btnSiguiente = "Siguiente ";
   static const String btnModificar = "Editar ";
   static const String btnLista = "Lista ";
+  static const String btnListaU = "Lista Usuarios";
+  static const String btnRegistarU = "Registrar Usuarios";
   static const String btnEliminar = "Eliminar ";
   static const String btnAsignar = "Asignar ";
   static const String btnPerfil = "Perfil";
@@ -84,6 +88,7 @@ class Constants{
   static const String homeCoordinadorRoute = "/home_coordinador";
   static const String perfilCoordinadorRoute = "/perfil_coordinador";
   static const String registroRoute = "/registro_usuarios";
+  static const String userRoute = "/usuario";
   static const String asignarTorresRoute = "/torre";
   static const String registrarTorreRoute = "/registrar_torre";
   static const String registrarantenaRoute = "/registrar_antena";
