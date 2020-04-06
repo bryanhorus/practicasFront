@@ -9,6 +9,8 @@ import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
 
+import '../modelo/torre_model.dart';
+
 class Repository {
 
   final usuarioApiService = UsuarioApiService();
@@ -33,4 +35,10 @@ class Repository {
   Future<ApiResponse> registrarDepartamento(Departamento departamento) => departamentoApiService.insertDepartamento(departamento);
   Future<ApiResponse> actualizarDepartamento(Departamento departamento) => departamentoApiService.updateDepartamento(departamento);
   Future<ApiResponse> eliminarDepartamento(Departamento departamento) => departamentoApiService.deleteDepartamento(departamento);
+
+//
+  Future<ApiResponse> listaTorre() => torreApiService.listarTorre();
+  Future<ApiResponse> registrarTorre(Torre torre) => torreApiService.insertTorres(torre);
+  Future<ApiResponse> actualizarTorre(Torre torre) => torreApiService.updateTorre(torre);
+  Future<ApiResponse> eliminarTorre(Torre torre) => torreApiService.deleteTorre(torre);
 }

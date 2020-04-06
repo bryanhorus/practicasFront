@@ -11,6 +11,10 @@ class Constants{
   static const String pathServiceMinicipiosLista ="/api/tecni/municipio/get/all";
   static const String pathServiceUsuarioUpdate ="/user/update";
   static const String pathServiceDepartamentoUpdate ="/api/tecni/departament/update";
+  static const String pathServiceTorreUpdate = "";
+  static const String pathServiceinsertTorre = "";
+  static const String pathServiceDeleteTorre = "";
+  static const String pathServiceTorre = "";
   static const String pathServiceDepartamentoDelete ="/api/tecni/departament/delete/id";
   static const String pathServiceDepartamento = "/api/tecni/departament/get/all";
   static const String pathServiceAntena ="/antenna";
