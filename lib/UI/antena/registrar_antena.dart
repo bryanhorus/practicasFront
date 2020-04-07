@@ -163,7 +163,7 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                             maxLength: 12,
                             //validator: validateName,
                             onSaved: (String value) {
-                              //_antena.torre.idTorre = int.parse(value);
+                              _antena.torre.idTorre = int.parse(value);
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
