@@ -10,6 +10,9 @@ import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
 
+import '../modelo/municipio_model.dart';
+
+
 class Repository {
 
   final usuarioApiService = UsuarioApiService();
@@ -27,11 +30,14 @@ class Repository {
   Future<ApiResponse> listaUsuario() => usuarioApiService.listarUsuario();
   
   Future<ApiResponse> listaMunicipio() => municipioApiService.listarMunicipio();
-  //Departamento
+  Future<ApiResponse> registrarMunicipio(Municipio municipio) => municipioApiService.insertMunicipio(municipio);
+  Future<ApiResponse> actualizarMunicipio(Municipio municipio) => municipioApiService.updateMunicipio(municipio);
+  Future<ApiResponse> eliminarMunicipio(Municipio municipio) => municipioApiService.deleteMunicipio(municipio);
+
+  Future<ApiResponse> listaDepartamento() => departamentoApiService.listarDepartamento();
   Future<ApiResponse> registrarDepartamento(Departamento departamento) => departamentoApiService.insertDepartamento(departamento);
   Future<ApiResponse> actualizarDepartamento(Departamento departamento) => departamentoApiService.updateDepartamento(departamento);
   Future<ApiResponse> eliminarDepartamento(Departamento departamento) => departamentoApiService.deleteDepartamento(departamento);
-  Future<ApiResponse> listaDepartamento() => departamentoApiService.listarDepartamento();
   //Antena
   Future<ApiResponse> registrarAntena(Antena antena) => antenaApiService.insertAntena(antena);
   Future<ApiResponse> actualizarAntena(Antena antena) => antenaApiService.updateAntena(antena);

@@ -4,6 +4,7 @@ class Municipio {
   int idMunicipio;
   String nombre;
   Departamento departament;
+  
 
   Municipio({this.idMunicipio,this.nombre, this.departament});
 
@@ -11,13 +12,13 @@ class Municipio {
     return Municipio(
       idMunicipio: parsedJson['idMunicipio'],
       nombre: parsedJson['nombre'],
-      departament: Departamento.fromJson(parsedJson['departament']),
+      departament: Departamento.fromJson(parsedJson['departament'])
     );
   }
 
   Map<String, dynamic> toJson() => {
         'idMunicipio': idMunicipio,
         'nombre': nombre,
-        'departament': departament.toJson()
+        'departament': departament.toJson(),
       };
 }

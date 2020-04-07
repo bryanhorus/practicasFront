@@ -8,6 +8,9 @@ class Constants{
   //servicio
   static const String pathServiceUsuario ="/api/tecni/user/insert";
   static const String pathServiceinsertDpto ="/api/tecni/departament/insert";
+  static const String pathServiceinsertMunicipio ="/api/tecni/municipio/insert";
+  static const String pathServiceMunicipioUpdate ="/api/tecni/municipio/update";
+  static const String pathServiceMunicipioDelete ="/api/tecni/municipio/delete/id";
   static const String pathServiceMinicipiosLista ="/api/tecni/municipio/get/all";
   static const String pathServiceUsuarioUpdate ="/user/update";
   static const String pathServiceDepartamentoUpdate ="/api/tecni/departament/update";

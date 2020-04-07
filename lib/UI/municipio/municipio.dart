@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:tenic_api/resource/constants.dart';
 
@@ -43,27 +43,6 @@ class MyStatelessMunicipio extends StatelessWidget {
               ),
               padding: const EdgeInsets.all(10.0),
               child: const Text(Constants.btnRegistar,
-                  style: TextStyle(fontSize: 20)),
-            ),
-          ),
-          const SizedBox(height: 30),
-          RaisedButton(
-            onPressed: () {
-              TecniNavigator.goToActualizarMunicipio(context);            },
-            textColor: Colors.white,
-            padding: const EdgeInsets.all(0.0),
-            child: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: <Color>[
-                    Color(0xFF0D47A1),
-                    Color(0xFF1976D2),
-                    Color(0xFF42A5F5),
-                  ],
-                ),
-              ),
-              padding: const EdgeInsets.all(10.0),
-              child: const Text(Constants.btnModificar,
                   style: TextStyle(fontSize: 20)),
             ),
           ),
