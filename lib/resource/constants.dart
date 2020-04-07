@@ -8,6 +8,7 @@ class Constants{
   //servicio
   static const String pathServiceUsuario ="/api/tecni/user/insert";
   static const String pathServiceListUsuario ="/api/tecni/user/get/all";
+  static const String pathServiceDeleteU ="/api/tecni/user/delete/id";
   static const String pathServiceListAntena ="";
   static const String pathServiceinsertDpto ="/api/tecni/departament/insert";
   static const String pathServiceinsertMunicipio ="/api/tecni/municipio/insert";
@@ -23,20 +24,14 @@ class Constants{
   static const String pathServiceTorre = "/api/tecni/torre/get/all";
   static const String pathServiceDepartamentoDelete ="/api/tecni/departament/delete/id";
   static const String pathServiceDepartamento = "/api/tecni/departament/get/all";
-<<<<<<< HEAD
-  static const String pathServiceAntena ="";
-  static const String pathServiceDeleteU="/api/tecni/user/delete/id";
-  static const String pathServiceDeleteAntena="";
-=======
   static const String pathServiceinsertAntena ="/api/tecni/antenna/insert";
-  static const String pathServiceAntenaUpdate ="/api/tecni/antenna/update";
+  //static const String pathServiceAntenaUpdate ="/api/tecni/antenna/update";
   static const String pathServiceAntenaDelete ="/api/tecni/antenna/delete/id";
   static const String pathServiceAntena = "/api/tecni/antenna/get/all";
-  static const String pathServiceinsertTorre ="/api/tecni/torre/insert";
-  static const String pathServiceTorreUpdate ="/api/tecni/torre/update";
+  //static const String pathServiceinsertTorre ="/api/tecni/torre/insert";
+  //static const String pathServiceTorreUpdate ="/api/tecni/torre/update";
   static const String pathServiceTorreDelete ="/api/tecni/torre/delete/id";
-  static const String pathServiceTorre = "/api/tecni/torre/get/all";
->>>>>>> 13b45c8617b06d2310ccf6815e96a91fad45a1fb
+  //static const String pathServiceTorre = "/api/tecni/torre/get/all";
   static const String pathServiceLogin ="/usuarios/login";
 
 

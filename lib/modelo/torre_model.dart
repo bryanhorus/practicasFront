@@ -1,11 +1,6 @@
 import 'dart:core';
 
-<<<<<<< HEAD
-import 'municipio_model.dart';
-//import 'municipio_model.dart';
-=======
 import 'package:tenic_api/modelo/municipio_model.dart';
->>>>>>> 13b45c8617b06d2310ccf6815e96a91fad45a1fb
 
 class Torre {
   int idTorre;
@@ -16,11 +11,7 @@ class Torre {
   String altura;
   String tecnologia;
   Municipio municipio;
-<<<<<<< HEAD
-
-=======
   
->>>>>>> 13b45c8617b06d2310ccf6815e96a91fad45a1fb
   Torre(
       {this.idTorre,
       this.nombre,

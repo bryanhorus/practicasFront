@@ -14,14 +14,8 @@ class ApiResponse {
   List<Usuario> listUsuario = List();
   List<Municipio> listMunicipio = List();
   List<Departamento> listDepartamento = List();
-<<<<<<< HEAD
-  List<Torre> listTorre = List();
-  List<Antena> listAntena = List();
-  
-=======
   List<Antena> listAntena = List();
   List<Torre> listTorre = List();
->>>>>>> 13b45c8617b06d2310ccf6815e96a91fad45a1fb
   ApiResponse({this.statusResponse, this.object, this.message});
 
   factory ApiResponse.fromJson(Map<String, dynamic> json) {

@@ -21,7 +21,7 @@ class ActualizarTorreState extends State<ActualizarTorre>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   ActualizarTorreState({this.torre});
-  TorreBLoC torreBLoC;
+  TorreBloc torreBLoC;
 
   Torre torre = Torre(
     nombre: "",
@@ -39,7 +39,7 @@ class ActualizarTorreState extends State<ActualizarTorre>
   @override
   void initState() {
     super.initState();
-    torreBLoC = TorreBLoC(context);
+    torreBLoC = TorreBloc(context);
 
   }
 

@@ -1,10 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/torre_bloc.dart';
-<<<<<<< HEAD
-=======
 import 'package:tenic_api/modelo/departamento_model.dart';
->>>>>>> 13b45c8617b06d2310ccf6815e96a91fad45a1fb
 import 'package:tenic_api/modelo/municipio_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/resource/constants.dart';
@@ -20,20 +17,6 @@ class CrearTorreState extends State<CrearTorre>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-<<<<<<< HEAD
-  TorreBLoC torreBloc;
-  Torre _torre = Torre(
-    nombre: '',
-    identificacion: '',
-    direccion: '',
-    coordenadas: '',
-    altura: '',
-    tecnologia: '',
-    municipio: Municipio(idMunicipio: 0)//id
-
-  );
-
-=======
   TorreBloc torreBloc;
   Torre _torre = Torre(
       nombre:'',
@@ -43,17 +26,11 @@ class CrearTorreState extends State<CrearTorre>
       altura:'',
       tecnologia:'',
       municipio: Municipio(idMunicipio: 0, departament: Departamento(idDpto: 0)));
->>>>>>> 13b45c8617b06d2310ccf6815e96a91fad45a1fb
 
   @override
   void initState() {
     super.initState();
-<<<<<<< HEAD
-    torreBloc = TorreBLoC(context);
-
-=======
     torreBloc = TorreBloc(context);
->>>>>>> 13b45c8617b06d2310ccf6815e96a91fad45a1fb
   }
 
   void showInSnackBar(String value) {
@@ -73,11 +50,6 @@ class CrearTorreState extends State<CrearTorre>
     } else {
       form.save();
       torreBloc.createTorre(_torre);
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 13b45c8617b06d2310ccf6815e96a91fad45a1fb
     }
   }
 
@@ -167,7 +139,7 @@ class CrearTorreState extends State<CrearTorre>
                             ),
                             keyboardType: TextInputType.number,
                             maxLength: 2,
-                            validator: validateAltura,
+                            //validator: validateAltura,
                             onSaved: (String value) {
                               _torre.altura = value;
                             },
@@ -364,11 +336,7 @@ class CrearTorreState extends State<CrearTorre>
     );
   }
 
-<<<<<<< HEAD
-String validateName(String value) {
-=======
   String validateName(String value) {
->>>>>>> 13b45c8617b06d2310ccf6815e96a91fad45a1fb
     String pattern = Constants.patternNombre;
     RegExp regExp = new RegExp(pattern);
     if (value.length == 0) {
@@ -378,9 +346,6 @@ String validateName(String value) {
     }
     return null;
   }
-<<<<<<< HEAD
-  
-=======
 
     String validateAltura(String value) {
     if (value.length == 0) {
@@ -398,6 +363,5 @@ String validateName(String value) {
     }
     return null;
   }
->>>>>>> 13b45c8617b06d2310ccf6815e96a91fad45a1fb
 
 }

@@ -17,7 +17,7 @@ class ListaTorreState extends State<ListaTorre>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  TorreBLoC torreBLoC;
+  TorreBloc torreBLoC;
 
   ApiResponse apiResponse;
 
@@ -44,7 +44,7 @@ class ListaTorreState extends State<ListaTorre>
   @override
   void initState() {
     super.initState();
-    torreBLoC = TorreBLoC(context);
+    torreBLoC = TorreBloc(context);
 
     _handleSubmitted();
   }
