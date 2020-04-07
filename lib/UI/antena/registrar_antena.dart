@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/antena_bloc.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
+import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/estado_model.dart';
+import 'package:tenic_api/modelo/municipio_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/resource/constants.dart';
 
@@ -21,8 +23,8 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
     altura:'',
     orientacion:'',
     inclinacion:'',
-    state: Estado(idEstado: 0),
-    //torre: Torre(idTorre: 0)
+    state: Estado(id: 0),
+    torre: Torre(idTorre: 0 , municipio: Municipio(idMunicipio: 0, departament: Departamento(idDpto: 0)))
   );
 
 
@@ -172,7 +174,7 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                             keyboardType: TextInputType.number,
                             maxLength: 12,
                             onSaved: (String value) {
-                              _antena.state.idEstado = int.parse(value);
+                              _antena.state.id = int.parse(value);
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),

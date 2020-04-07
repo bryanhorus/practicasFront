@@ -1,17 +1,17 @@
 class Estado {
-  int idEstado;
+  int id;
   String estado;
 
-  Estado({this.idEstado,this.estado});
+  Estado({this.id,this.estado});
 
   factory Estado.fromJson(Map<String, dynamic> parsedJson) {
     return Estado(
-      idEstado: parsedJson['id'],
-      estado: parsedJson['estado'],
+      id: parsedJson['id'],
+      estado: parsedJson['estado']
     );
   }
 
   Map<String, dynamic> toJson() => {
-    'id': idEstado,
+    'id': id,
     'estado': estado};
 }

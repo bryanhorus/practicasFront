@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/torre_bloc.dart';
+import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/municipio_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/resource/constants.dart';
@@ -24,7 +25,7 @@ class CrearTorreState extends State<CrearTorre>
       coordenadas:'',
       altura:'',
       tecnologia:'',
-      municipio: Municipio(idMunicipio: 0));
+      municipio: Municipio(idMunicipio: 0, departament: Departamento(idDpto: 0)));
 
   @override
   void initState() {
@@ -149,7 +150,7 @@ class CrearTorreState extends State<CrearTorre>
                               labelText: Constants.labelTecnologia,
                             ),
                             keyboardType: TextInputType.number,
-                            maxLength: 2,
+                            maxLength: 10,
                             onSaved: (String value) {
                               _torre.tecnologia = value;
                             },
@@ -160,7 +161,7 @@ class CrearTorreState extends State<CrearTorre>
                               labelText: Constants.labelMunicipio,
                             ),
                             keyboardType: TextInputType.number,
-                            maxLength: 1,
+                            maxLength: 4,
                             onSaved: (String municipio) {
                               _torre.municipio.idMunicipio = int.parse(municipio);
                             },

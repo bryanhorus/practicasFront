@@ -7,7 +7,7 @@ class Departamento {
   factory Departamento.fromJson(Map<String, dynamic> parsedJson) {
     return Departamento(
       nombre: parsedJson['nombre'],
-      idDpto: parsedJson['idDpto'],
+      idDpto: parsedJson['idDpto']
     );
   }
 

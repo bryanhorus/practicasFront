@@ -35,7 +35,7 @@ class Antena {
   }
 
   Map<String, dynamic> toJson() => {
-    'idAntena': idAntena,
+        'idAntena': idAntena,
         'nombre': nombre,
         'referencia': referencia,
         'altura': altura,
