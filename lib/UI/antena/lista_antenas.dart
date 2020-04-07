@@ -26,12 +26,13 @@ class ListaAntenasState extends State<ListaAntenas>
   //List<> listDepartamento = List();
 
   _handleSubmitted() {
-  
+    //antenaBloc.listarAntenas().then((apiResponse) {
+      setState(() {});
+    //});
   }
 
   @override
   void initState() {
-
     _handleSubmitted();
   }
 

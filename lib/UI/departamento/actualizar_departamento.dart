@@ -96,7 +96,11 @@ class ActualizarDepartamentoState extends State<ActualizarDepartamento>
                             //validator: validateName,
                             keyboardType: TextInputType.number,
                             onSaved: (String value) {
+<<<<<<< HEAD
                               _departamento.idDpto = int.parse(value);
+=======
+                            //  _departamento.idDpto = value;
+>>>>>>> f01f5da794a76f5f28d070c97b772f20f36b6d56
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),

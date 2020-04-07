@@ -10,6 +10,9 @@ class Constants{
   static const String pathServiceListUsuario ="/api/tecni/user/get/all";
   static const String pathServiceListAntena ="";
   static const String pathServiceinsertDpto ="/api/tecni/departament/insert";
+  static const String pathServiceinsertMunicipio ="/api/tecni/municipio/insert";
+  static const String pathServiceMunicipioUpdate ="/api/tecni/municipio/update";
+  static const String pathServiceMunicipioDelete ="/api/tecni/municipio/delete/id";
   static const String pathServiceMinicipiosLista ="/api/tecni/municipio/get/all";
   static const String pathServiceUsuarioUpdate ="/api/tecni/user/update";
   static const String pathServiceAntenaUpdate ="";
