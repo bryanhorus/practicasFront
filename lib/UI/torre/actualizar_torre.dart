@@ -56,7 +56,7 @@ class ActualizarTorreState extends State<ActualizarTorre>
     } else {
       form.save();
       torreBloc.updateTorre(torre);
-      TecniNavigator.goToListaTorre(context);
+      TecniNavigator.goToHomeCoordinador(context);
     }
   }
 

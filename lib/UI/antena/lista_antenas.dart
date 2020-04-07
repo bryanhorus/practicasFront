@@ -8,7 +8,8 @@ import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class ListaAntenas extends StatefulWidget {
-  const ListaAntenas({Key key}) : super(key: key);
+  final Antena antena;
+  const ListaAntenas({Key key,this.antena}) : super(key: key);
 
   @override
   ListaAntenasState createState() => ListaAntenasState();
@@ -39,7 +40,7 @@ class ListaAntenasState extends State<ListaAntenas>
 
   void _delete(Antena antena) {
     antenaBloc.deleteAntena(antena);
-    TecniNavigator.goToListaAntena(context);
+    TecniNavigator.goToHomeCoordinador(context);
   }
 
   @override
@@ -94,6 +95,7 @@ class ListaAntenasState extends State<ListaAntenas>
                                   style: TextStyle(
                                       fontSize: 15, color: Colors.black87)),
                               onPressed: () {
+                                print(listAntena[indice].nombre);
                                 antena = listAntena[indice];
                                 Navigator.push(
                                     context,
