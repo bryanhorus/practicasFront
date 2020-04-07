@@ -7,6 +7,8 @@ import 'package:tenic_api/resource/constants.dart';
 
 class TorreApiService {
   Torre _torre;
+  TorreApiService();
+
   Future<ApiResponse> insertTorre(Torre torre) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var body2 = json.encode(torre.toJson());
@@ -23,6 +25,7 @@ class TorreApiService {
       apiResponse.object = _torre;
     }
     return apiResponse;
+  
   }
 
   Future<ApiResponse> updateTorre(Torre torre) async {
