@@ -9,8 +9,11 @@ import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
+<<<<<<< HEAD
 
 import '../modelo/torre_model.dart';
+=======
+>>>>>>> b086dfec78be9ff0b969dad5c9c3ded3df421e04
 import '../modelo/municipio_model.dart';
 
 

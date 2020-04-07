@@ -28,7 +28,6 @@ class _ListaDptoState extends State<ListaDpto>
     ));
   }
 
-  final List<String> ciudad = [];
   List<Departamento> listDepartamento = List();
 
   _handleSubmitted() {
@@ -66,13 +65,14 @@ class _ListaDptoState extends State<ListaDpto>
             itemCount: listDepartamento.length,
             itemBuilder: (BuildContext context, int indice) {
               return Card(
-                color: Colors.accents[indice],
+                color: Colors.blueGrey[indice],
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     ListTile(
                       title: Text(listDepartamento[indice].nombre,
-                          style: TextStyle(fontSize: 22, color: Colors.white)),
+                          style:
+                              TextStyle(fontSize: 20, color: Colors.black87)),
                       onTap: () {
                         print(listDepartamento[indice].nombre);
                         departamento = listDepartamento[indice];
@@ -89,7 +89,14 @@ class _ListaDptoState extends State<ListaDpto>
                       child: ButtonBar(
                         children: <Widget>[
                           FlatButton(
-                            child: const Text(Constants.btnModificar),
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0)),
+                            ),
+                            color: Colors.yellow[300],
+                            child: const Text(Constants.btnModificar,
+                                style: TextStyle(
+                                    fontSize: 15, color: Colors.black)),
                             onPressed: () {
                               departamento = listDepartamento[indice];
                               Navigator.push(
@@ -102,6 +109,11 @@ class _ListaDptoState extends State<ListaDpto>
                             },
                           ),
                           FlatButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0)),
+                            ),
+                            color: Colors.red[300],
                             child: const Text(Constants.btnEliminar),
                             onPressed: () {
                               departamento = listDepartamento[indice];

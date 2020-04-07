@@ -14,7 +14,7 @@ class TorreApiService {
   Future<ApiResponse> insertTorre(Torre torre) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var body2 = json.encode(torre.toJson());
-    Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceinsertTorre);
+    Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceTorreInsert);
     var res = await http.post(uri,
         headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader},
         body: body2);
@@ -69,7 +69,7 @@ class TorreApiService {
   Future<ApiResponse> listarTorre() async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     Uri uri =
-        Uri.http(Constants.urlAuthority, Constants.pathServiceTorre);
+        Uri.http(Constants.urlAuthority, Constants.pathServiceTorreLista);
     var res = await http.get(
       uri,
       headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader},

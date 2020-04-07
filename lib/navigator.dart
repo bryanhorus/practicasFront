@@ -19,9 +19,6 @@ class TecniNavigator {
   static void goToListaUsuarios(BuildContext context) {
     Navigator.pushNamed(context, Constants.listaUsuariosRoute);
   }
-  static void goTocord(BuildContext context) {
-    Navigator.pushNamed(context, Constants.homeCoordinadorRoute);
-  }
   //Departamentos
   static void goToRegistrarDepartamento(BuildContext context) {
     Navigator.pushNamed(context, Constants.registrarDepartamentosRoute);

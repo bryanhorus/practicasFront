@@ -14,7 +14,7 @@ class AntenaApiService {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var body2 = json.encode(antena.toJson());
     Uri uri =
-        Uri.http(Constants.urlAuthority, Constants.pathServiceinsertAntena);
+        Uri.http(Constants.urlAuthority, Constants.pathServiceAntenaInsert);
     var res = await http.post(uri,
         headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader},
         body: body2);
@@ -67,7 +67,7 @@ class AntenaApiService {
 
   Future<ApiResponse> listarAntena() async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
-    Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceAntena);
+    Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceAntenasLista);
     var res = await http.get(
       uri,
       headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader},

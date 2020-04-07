@@ -8,7 +8,7 @@ class TorreUi extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(title: const Text(Constants.tittleTorre)),
         body: Container(
-          color: Colors.redAccent,
+          color: Colors.blue[50],
           child: MyStatelessTorre(),
         ));
   }
@@ -40,29 +40,7 @@ class MyStatelessTorre extends StatelessWidget {
                 ),
               ),
               padding: const EdgeInsets.all(10.0),
-              child: const Text(Constants.btnRegistar,
-                  style: TextStyle(fontSize: 20)),
-            ),
-          ),
-          const SizedBox(height: 30),
-          RaisedButton(
-            onPressed: () {
-              TecniNavigator.goToActualizarTorre(context);
-            },
-            textColor: Colors.white,
-            padding: const EdgeInsets.all(0.0),
-            child: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: <Color>[
-                    Color(0xFF0D47A1),
-                    Color(0xFF1976D2),
-                    Color(0xFF42A5F5),
-                  ],
-                ),
-              ),
-              padding: const EdgeInsets.all(10.0),
-              child: const Text(Constants.btnModificar,
+              child: const Text(Constants.btnRegistarT,
                   style: TextStyle(fontSize: 20)),
             ),
           ),
@@ -84,7 +62,7 @@ class MyStatelessTorre extends StatelessWidget {
                 ),
               ),
               padding: const EdgeInsets.all(10.0),
-              child: const Text(Constants.btnLista,
+              child: const Text(Constants.btnListaT,
                   style: TextStyle(fontSize: 20)),
             ),
           ),

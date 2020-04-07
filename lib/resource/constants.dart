@@ -24,6 +24,7 @@ class Constants{
   static const String pathServiceTorre = "/api/tecni/torre/get/all";
   static const String pathServiceDepartamentoDelete ="/api/tecni/departament/delete/id";
   static const String pathServiceDepartamento = "/api/tecni/departament/get/all";
+<<<<<<< HEAD
   static const String pathServiceinsertAntena ="/api/tecni/antenna/insert";
   //static const String pathServiceAntenaUpdate ="/api/tecni/antenna/update";
   static const String pathServiceAntenaDelete ="/api/tecni/antenna/delete/id";
@@ -32,6 +33,17 @@ class Constants{
   //static const String pathServiceTorreUpdate ="/api/tecni/torre/update";
   static const String pathServiceTorreDelete ="/api/tecni/torre/delete/id";
   //static const String pathServiceTorre = "/api/tecni/torre/get/all";
+=======
+  static const String pathServiceAntenaInsert ="/api/tecni/antenna/insert";
+  static const String pathServiceAntenaUpdate ="/api/tecni/antenna/update";
+  static const String pathServiceAntenaDelete ="/api/tecni/antenna/delete/id";
+  static const String pathServiceAntenasLista ="/api/tecni/antenna/get/all";
+  static const String pathServiceTorreInsert ="/api/tecni/torre/insert";
+  static const String pathServiceTorreUpdate ="/api/tecni/torre/update";
+  static const String pathServiceTorreDelete ="/api/tecni/torre/delete/id";
+  static const String pathServiceTorreLista ="/api/tecni/torre/get/all";
+  static const String pathServiceDeleteU="/api/tecni/user/delete/id";
+>>>>>>> b086dfec78be9ff0b969dad5c9c3ded3df421e04
   static const String pathServiceLogin ="/usuarios/login";
 
 
@@ -65,6 +77,14 @@ class Constants{
   static const String btnLista = "Lista ";
   static const String btnListaU = "Lista Usuarios";
   static const String btnRegistarU = "Registrar Usuarios";
+  static const String btnListaD = "Lista Departamentos";
+  static const String btnRegistarD = "Registrar Departamento";
+  static const String btnListaM = "Lista Municipios";
+  static const String btnRegistarM = "Registrar Municipios";
+  static const String btnListaT = "Lista Torres";
+  static const String btnRegistarT = "Registrar Torre";
+  static const String btnListaA = "Lista Antena";
+  static const String btnRegistarA = "Registrar Antena";
   static const String btnEliminar = "Eliminar ";
   static const String btnAsignar = "Asignar ";
   static const String btnPerfil = "Perfil";
@@ -143,6 +163,7 @@ class Constants{
   static const String labelMunicipio ="Municipio";
   static const String labelTecnologia ="Tecnologia";
   static const String labelNombreAntena ="Nombre de la Antena";
+  static const String labelDepartamento ="Departamento";
 
   static const String labelNombreTorre ="Nombre de la Torre";
   static const String labelStringid_torre ="String id_torre";

@@ -55,7 +55,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
       form.save();
       userBloc.updateUsuario(usuario);
     }
-    TecniNavigator.goTocord(context);
+    TecniNavigator.goToListaUsuarios(context);
   }
 
   @override
@@ -64,15 +64,6 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
       key: _scaffoldKey,
       appBar: AppBar(title: const Text(Constants.tittleActualizar)),
       body: Stack(fit: StackFit.expand, children: <Widget>[
-        Container(
-          color: Colors.blueAccent,
-          /* child: Image(
-            image: AssetImage(Constants.registroImage),
-            fit: BoxFit.cover,
-            colorBlendMode: BlendMode.difference,
-            color: Colors.black12,
-          ),*/
-        ),
         Center(
           child: Container(
             child: Theme(
@@ -97,20 +88,6 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                           Padding(
                             padding: const EdgeInsets.only(top: 40.0),
                           ),
-                         /* const SizedBox(height: 12.0),
-                          TextFormField(
-                            decoration: new InputDecoration(
-                              labelText: Constants.labelNombre,
-                            ),
-                            initialValue: usuario.idUsuario.toString(),
-                            validator: validateName,
-                            keyboardType: TextInputType.emailAddress,
-                            onSaved: (String value) {
-                              usuario.idUsuario = int.parse(value);
-                            },
-                            style: TextStyle(fontSize: 18.0),
-                          ),
-                          const SizedBox(height: 12.0),*/
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelNombre,
@@ -121,7 +98,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             onSaved: (String value) {
                               usuario.nombre = value;
                             },
-                            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                            style: TextStyle(fontSize: 18.0),
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
@@ -133,7 +110,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             onSaved: (String value) {
                               usuario.apellido = value;
                             },
-                            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                            style: TextStyle(fontSize: 18.0),
                           ),
                           TextFormField(
                             decoration: new InputDecoration(
@@ -146,7 +123,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             onSaved: (String value) {
                               usuario.correo = value;
                             },
-                            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                            style: TextStyle(fontSize: 18.0),
                           ),
                           TextFormField(
                             obscureText: true,
@@ -160,7 +137,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             onSaved: (String value) {
                               usuario.password = value;
                             },
-                            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                            style: TextStyle(fontSize: 18.0),
                           ),
                           TextFormField(
                             decoration: new InputDecoration(
@@ -173,7 +150,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             onSaved: (String value) {
                               usuario.telfono = value;
                             },
-                            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                            style: TextStyle(fontSize: 18.0),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 60.0),
@@ -185,27 +162,10 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             ),
                             height: 50.0,
                             minWidth: 150.0,
-                            color: Color(0xFFE1F5FE),
-                            splashColor: Colors.blueAccent,
-                            textColor: Colors.black,
+                            color: Color(0XFF03A9F4),
+                            splashColor: Colors.blue,
+                            textColor: Colors.white,
                             child: Text(Constants.btnModificar),
-                            onPressed: _handleSubmitted,
-
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
-                          ),
-                          MaterialButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
-                            ),
-                            height: 50.0,
-                            minWidth: 150.0,
-                            color: Color(0xFFE1F5FE),
-                            splashColor: Colors.blueAccent,
-                            textColor: Colors.black,
-                            child: Text(Constants.btnEliminar),
                             onPressed: _handleSubmitted,
                           ),
                           Padding(
