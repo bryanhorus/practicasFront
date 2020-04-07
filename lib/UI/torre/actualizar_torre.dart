@@ -1,22 +1,45 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tenic_api/bloc/torre_bloc.dart';
+import 'package:tenic_api/modelo/municipio_model.dart';
+import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/resource/constants.dart';
 
+import '../../navigator.dart';
+
 class ActualizarTorre extends StatefulWidget {
-  const ActualizarTorre({Key key}) : super(key: key);
+
+  final Torre torre;
+  const ActualizarTorre({this.torre, Key key}) : super(key: key);
 
   @override
-  ActualizarTorreState createState() => ActualizarTorreState();
+  ActualizarTorreState createState() => ActualizarTorreState(torre: torre);
 }
 
 class ActualizarTorreState extends State<ActualizarTorre>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  ActualizarTorreState({this.torre});
+  TorreBLoC torreBLoC;
+
+  Torre torre = Torre(
+    nombre: "",
+    identificacion: "",
+    direccion: "",
+    coordenadas: "",
+    altura: "",
+    tecnologia: "",
+    municipio: Municipio(idMunicipio: 0)//id
+
+
+  );
+
 
   @override
   void initState() {
     super.initState();
+    torreBLoC = TorreBLoC(context);
 
   }
 
@@ -32,14 +55,14 @@ class ActualizarTorreState extends State<ActualizarTorre>
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   void _handleSubmitted() {
-    final FormState form = _formKey.currentState;
+   final FormState form = _formKey.currentState;
     if (!form.validate()) {
       _autovalidate = true;
     } else {
       form.save();
-
-
+      torreBLoC.updateTorre(torre);
     }
+    //TecniNavigator.goTocord(context);
   }
 
   @override
@@ -59,5 +82,7 @@ class ActualizarTorreState extends State<ActualizarTorre>
       ]),
     );
   }
+
+  
 
 }

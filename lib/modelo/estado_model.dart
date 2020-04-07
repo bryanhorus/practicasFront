@@ -6,9 +6,10 @@ class Estado {
 
   factory Estado.fromJson(Map<String, dynamic> parsedJson) {
     return Estado(
+      id: parsedJson['id'],
       estado: parsedJson['estado'],
     );
   }
 
-  Map<String, dynamic> toJson() => {'estado': estado};
+  Map<String, dynamic> toJson() => {'id': id, 'estado': estado};
 }

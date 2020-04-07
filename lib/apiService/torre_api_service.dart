@@ -8,8 +8,8 @@ import 'package:tenic_api/resource/constants.dart';
 //import '../modelo/torre_model.dart';
 
 class TorreApiService {
-  Torre _torre;
-  TorreApiService();
+    TorreApiService();
+    Torre _torre;
 
   Future<ApiResponse> insertTorres(Torre torre) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
@@ -50,7 +50,7 @@ class TorreApiService {
 
     Future<ApiResponse> deleteTorre(Torre torre) async {
     var queryParameters = {
-      'id': torre.identificacionTorre
+      'id': torre.idTorre
           .toString(), //query del id que permite identificr en el servicion el acceso
     };
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);

@@ -9,12 +9,9 @@ import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
 
-<<<<<<< HEAD
 import '../modelo/torre_model.dart';
-=======
 import '../modelo/municipio_model.dart';
 
->>>>>>> f01f5da794a76f5f28d070c97b772f20f36b6d56
 
 class Repository {
 

@@ -16,13 +16,13 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
 
   AntenaBloc antenaBloc;
   Antena _antena = Antena(
-    nombre:"",
-    referencia:"",
-    altura:"",
-    orientacion:"",
-    inclinacion:"",
-    torre: Torre(id: 0),
-    estado: Estado(id: 0)
+    nombre: '',
+    referencia: '',
+    altura: '',
+    orientacion: '',
+    inclinacion: '',
+    torre: Torre(idTorre: 0),
+    state: Estado(id: 0)
 
   );
 
@@ -178,7 +178,7 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                             keyboardType: TextInputType.number,
                             maxLength: 1,
                             onSaved: (String tow) {
-                              _antena.torre.id = int.parse(tow);
+                              _antena.torre.idTorre = int.parse(tow);
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
@@ -190,7 +190,7 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                             keyboardType: TextInputType.number,
                             maxLength: 1,
                             onSaved: (String sta) {
-                              _antena.estado.id = int.parse(sta);
+                              _antena.state.id = int.parse(sta);
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
@@ -208,7 +208,7 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                             color: Color(0xFFE1F5FE),
                             splashColor: Colors.blueAccent,
                             textColor: Colors.black,
-                            child: Text(Constants.btnModificar),
+                            child: Text(Constants.btnRegistar),
                             onPressed: _handleSubmitted,
                           ),
                         ],

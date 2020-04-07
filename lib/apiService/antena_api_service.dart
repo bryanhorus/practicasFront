@@ -6,8 +6,9 @@ import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class AntenaApiService {
-  Antena _antena;
   AntenaApiService();
+  Antena _antena;
+  
 
   Future<ApiResponse> insertAntena(Antena antena) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);

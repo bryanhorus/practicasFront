@@ -18,12 +18,13 @@ class CrearTorreState extends State<CrearTorre>
 
   TorreBLoC torreBloc;
   Torre _torre = Torre(
-    nombreTorre: '',
-    direccionTorre: '',
+    nombre: '',
+    identificacion: '',
+    direccion: '',
     coordenadas: '',
     altura: '',
     tecnologia: '',
-    municipio: Municipio(id: 0)//id
+    municipio: Municipio(idMunicipio: 0)//id
 
   );
 
@@ -102,10 +103,10 @@ class CrearTorreState extends State<CrearTorre>
                             decoration: new InputDecoration(
                               labelText: Constants.labelNombreTorre,
                             ),
-                            //validator: validateName,
-                            //keyboardType: TextInputType.emailAddress,
+                            validator: validateName,
+                            keyboardType: TextInputType.text,
                             onSaved: (String value) {
-                              _torre.nombreTorre = value;
+                              _torre.nombre = value;
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
@@ -117,7 +118,7 @@ class CrearTorreState extends State<CrearTorre>
                             ),
                             //validator: validateName,
                             onSaved: (String value) {
-                              _torre.identificacionTorre = value;
+                              _torre.identificacion = value;
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
@@ -130,7 +131,7 @@ class CrearTorreState extends State<CrearTorre>
                             //maxLength: 32,
                             //validator: validateEmail,
                             onSaved: (String value) {
-                              _torre.direccionTorre = value;
+                              _torre.direccion = value;
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
@@ -170,7 +171,7 @@ class CrearTorreState extends State<CrearTorre>
                             //maxLength: 12,
                             //validator: validateMobile,
                             onSaved: (String value) {
-                              _torre.altura = value;
+                              _torre.tecnologia = value;
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
@@ -182,7 +183,7 @@ class CrearTorreState extends State<CrearTorre>
                             keyboardType: TextInputType.number,
                             maxLength: 1,
                             onSaved: (String mun) {
-                              _torre.municipio.id = int.parse(mun);
+                              _torre.municipio.idMunicipio = int.parse(mun);
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
@@ -216,7 +217,16 @@ class CrearTorreState extends State<CrearTorre>
     );
   }
 
-
+String validateName(String value) {
+    String pattern = Constants.patternNombre;
+    RegExp regExp = new RegExp(pattern);
+    if (value.length == 0) {
+      return Constants.validateName;
+    } else if (!regExp.hasMatch(value)) {
+      return Constants.nameStructure;
+    }
+    return null;
+  }
   
 
 }
