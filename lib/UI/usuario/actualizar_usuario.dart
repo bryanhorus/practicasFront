@@ -55,7 +55,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
       form.save();
       userBloc.updateUsuario(usuario);
     }
-    TecniNavigator.goToListaUsuarios(context);
+    TecniNavigator.goToHomeCoordinador(context);
   }
 
   @override

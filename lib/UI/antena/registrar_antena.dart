@@ -6,6 +6,7 @@ import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/estado_model.dart';
 import 'package:tenic_api/modelo/municipio_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
+import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class RegistrarAntena extends StatefulWidget {
@@ -52,6 +53,7 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
     } else {
       form.save();
       antenaBloc.createAntena(_antena);
+      TecniNavigator.goToHomeCoordinador(context);
     }
   }
 

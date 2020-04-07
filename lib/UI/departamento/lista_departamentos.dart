@@ -85,6 +85,7 @@ class _ListaDptoState extends State<ListaDpto>
                                     )));
                       },
                     ),
+                    // ignore: deprecated_member_use
                     ButtonTheme.bar(
                       child: ButtonBar(
                         children: <Widget>[

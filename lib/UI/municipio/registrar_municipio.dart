@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 import '../../bloc/municipio_bloc.dart';
 import '../../modelo/departamento_model.dart';
@@ -44,6 +45,7 @@ class CrearMunicipioState extends State<CrearMunicipio>
       form.save();
 
       municipioBloc.createMunicipio(_municipio);
+      TecniNavigator.goToHomeCoordinador(context);
     }
   }
 

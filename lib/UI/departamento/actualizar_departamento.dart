@@ -3,21 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/departamento_bloc.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/resource/constants.dart';
+import 'package:tenic_api/navigator.dart';
 
 class ActualizarDepartamento extends StatefulWidget {
+
   final Departamento departamento;
+
   const ActualizarDepartamento({this.departamento,Key key}) : super(key: key);
 
   @override
-  ActualizarDepartamentoState createState() => ActualizarDepartamentoState();
+  ActualizarDepartamentoState createState() => ActualizarDepartamentoState(departamento: departamento);
 }
 
 class ActualizarDepartamentoState extends State<ActualizarDepartamento>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  ActualizarDepartamentoState({this.departamento});
+
   DptoBloc departamentoBloc;
-  Departamento _departamento = Departamento(nombre: '', idDpto: 0);
+  Departamento departamento = Departamento(nombre: '', idDpto: 0);
 
   @override
   void initState() {
@@ -44,9 +49,8 @@ class ActualizarDepartamentoState extends State<ActualizarDepartamento>
       _autovalidate = true;
     } else {
       form.save();
-
-      //_tecnico.tipoUsuario = 'descripcion';
-      departamentoBloc.updateDepartamento(_departamento);
+      departamentoBloc.updateDepartamento(departamento);
+      TecniNavigator.goToHomeCoordinador(context);
     }
   }
 
@@ -93,10 +97,11 @@ class ActualizarDepartamentoState extends State<ActualizarDepartamento>
                             decoration: new InputDecoration(
                               labelText: Constants.labelNombre,
                             ),
+                            initialValue: departamento.nombre,
                             validator: validateName,
                             keyboardType: TextInputType.text,
                             onSaved: (String value) {
-                              _departamento.nombre = value;
+                              departamento.nombre = value;
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),

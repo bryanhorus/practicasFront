@@ -47,7 +47,7 @@ class ActualizarMunicipioState extends State<ActualizarMunicipio>
       form.save();
       municipioBloc.updateMunicipio(municipio);
     }
-    TecniNavigator.goToListaMuncipio(context);
+    TecniNavigator.goToHomeCoordinador(context);
   }
 
   @override
