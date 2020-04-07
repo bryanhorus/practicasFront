@@ -1,16 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/municipio_bloc.dart';
-import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/municipio_model.dart';
+import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class ActualizarMunicipio extends StatefulWidget {
   final Municipio municipio;
-  const ActualizarMunicipio({this.municipio,Key key}) : super(key: key);
+  const ActualizarMunicipio({this.municipio, Key key}) : super(key: key);
 
   @override
-  ActualizarMunicipioState createState() => ActualizarMunicipioState( municipio: municipio);
+  ActualizarMunicipioState createState() =>
+      ActualizarMunicipioState(municipio: municipio);
 }
 
 class ActualizarMunicipioState extends State<ActualizarMunicipio>
@@ -19,15 +20,13 @@ class ActualizarMunicipioState extends State<ActualizarMunicipio>
 
   ActualizarMunicipioState({this.municipio});
   MunicipioBloc municipioBloc;
-  
+
   Municipio municipio;
-    
 
   @override
   void initState() {
     super.initState();
-     municipioBloc = MunicipioBloc(context);
-
+    municipioBloc = MunicipioBloc(context);
   }
 
   void showInSnackBar(String value) {
@@ -38,7 +37,6 @@ class ActualizarMunicipioState extends State<ActualizarMunicipio>
 
   bool _autovalidate = false;
 
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   void _handleSubmitted() {
@@ -47,24 +45,19 @@ class ActualizarMunicipioState extends State<ActualizarMunicipio>
       _autovalidate = true;
     } else {
       form.save();
-     municipioBloc.updateMunicipio(municipio);
+      municipioBloc.updateMunicipio(municipio);
     }
+    TecniNavigator.goToListaMuncipio(context);
   }
 
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
+    return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(title: const Text(Constants.tittleMunicipioactualizar)),
       body: Stack(fit: StackFit.expand, children: <Widget>[
         Container(
-         /* child: Image(
-            image: AssetImage(Constants.registroImage),
-            fit: BoxFit.cover,
-            colorBlendMode: BlendMode.difference,
-            color: Colors.black12,
-          ),*/
-        ),
+            ),
         Center(
           child: Container(
             child: Theme(
@@ -90,17 +83,6 @@ class ActualizarMunicipioState extends State<ActualizarMunicipio>
                             padding: const EdgeInsets.only(top: 40.0),
                           ),
                           const SizedBox(height: 12.0),
-                        /* TextFormField(
-                            decoration: new InputDecoration(
-                              labelText: Constants.labelNombre,
-                            ),
-                            //
-                            keyboardType: TextInputType.text,
-                            onSaved: (String depart) {
-                           //   _municipio.idMunicipio = int.parse(depart);
-                            },
-                            style: TextStyle(fontSize: 18.0),
-                          ),*/
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelNombre,

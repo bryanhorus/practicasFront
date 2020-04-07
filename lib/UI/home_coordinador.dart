@@ -58,13 +58,13 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
             Icon(Icons.perm_identity, size: 30),
             Icon(Icons.person_add, size: 30),
             Icon(Icons.library_books, size: 30),
-            Icon(Icons.library_books, size: 30),
-            Icon(Icons.add_circle, size: 30),
+            Icon(Icons.account_balance, size: 30),
+            Icon(Icons.assessment, size: 30),
             Icon(Icons.add_circle, size: 30),
           ],
           color: Colors.white,
           buttonBackgroundColor: Colors.white,
-          backgroundColor: Colors.redAccent,
+          backgroundColor: Colors.blue[400],
           animationCurve: Curves.easeInOut,
           animationDuration: Duration(milliseconds: 600),
           onTap: (int tappedIndex) {
@@ -74,7 +74,7 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
           },
         ),
         body: Container(
-          color: Colors.redAccent,
+          color: Colors.blue,
           child: Center(
             child: _showPage,
           ),

@@ -52,7 +52,7 @@ class ListaMunicipioState extends State<ListaMunicipio>
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: const Text(Constants.tittleMunicipio),
+        title: const Text(Constants.tittleListaMunicipio),
       ),
       body: Stack(fit: StackFit.expand, children: <Widget>[
         Container(
@@ -65,7 +65,7 @@ class ListaMunicipioState extends State<ListaMunicipio>
             itemBuilder: (BuildContext context, int indice) {
               return Card(
                 //le damos un color de la lista de primarios
-                color: Colors.primaries[indice%Colors.primaries.length],
+                color: Colors.blue[indice],
                 //agregamos un contenedor de 100 de alto
                 child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -74,7 +74,7 @@ class ListaMunicipioState extends State<ListaMunicipio>
                   title: Text(
                     listMunicipio[indice].nombre,
                     //le damos estilo a cada texto
-                    style: TextStyle(fontSize: 20, color: Colors.white)),
+                    style: TextStyle(fontSize: 20, color: Colors.black87)),
                   onTap: (){
                     print(listMunicipio[indice].nombre);
                     municipio = listMunicipio[indice];
@@ -98,48 +98,3 @@ class ListaMunicipioState extends State<ListaMunicipio>
   }
 }
 
-class EditScreen extends StatefulWidget{
-
-  @override
-  _EditScreenState createState() => _EditScreenState();
-}
-
-class _EditScreenState extends State<EditScreen>{
-  TextEditingController _controller;
-
-  @override
-  void initState() {
-    _controller = TextEditingController();
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('editar'),
-      ),
-      body: Center(child: Column(children: <Widget>[
-        TextField(controller: _controller),
-          RaisedButton(
-            child: Text('guardar'),
-            onPressed: () {},
-          )
-      ],
-      ),
-      ),
-    );
-  }
-}
-
-           /*     child: Container(
-                  height: 50,
-                  child: Center(
-                    child: Text(
-                      listMunicipio[indice].nombre,
-                      //le damos estilo a cada texto
-                      style: TextStyle(fontSize: 20, color: Colors.white),
-                      onTap(){
-
-                      }*/

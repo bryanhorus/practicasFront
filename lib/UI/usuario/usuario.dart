@@ -8,7 +8,7 @@ class UsuarioUi extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(title: const Text(Constants.tittleUsuario)),
         body: Container(
-          color: Colors.redAccent,
+          color: Colors.blue[50],
           child: MyStatelessUsuario(),
         ));
   }

@@ -8,7 +8,7 @@ class DepartamentoUi extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(title: const Text(Constants.tittleDepartamento)),
         body: Container(
-          color: Colors.redAccent,
+          color: Colors.blue[50],
           child: MyStatelessDepartamento(),
         ));
   }
@@ -40,7 +40,7 @@ class MyStatelessDepartamento extends StatelessWidget {
                 ),
               ),
               padding: const EdgeInsets.all(10.0),
-              child: const Text(Constants.btnRegistar,
+              child: const Text(Constants.btnRegistarD,
                   style: TextStyle(fontSize: 20)),
             ),
           ),
@@ -62,7 +62,7 @@ class MyStatelessDepartamento extends StatelessWidget {
                 ),
               ),
               padding: const EdgeInsets.all(10.0),
-              child: const Text(Constants.btnLista,
+              child: const Text(Constants.btnListaD,
                   style: TextStyle(fontSize: 20)),
             ),
           ),

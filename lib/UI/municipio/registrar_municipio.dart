@@ -88,7 +88,7 @@ class CrearMunicipioState extends State<CrearMunicipio>
                           const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
-                              labelText: Constants.labelNombre,
+                              labelText: Constants.labelDepartamento,
                             ),
                             keyboardType: TextInputType.text,
                             onSaved: (String depart) {
