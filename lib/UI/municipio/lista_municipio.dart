@@ -4,6 +4,7 @@ import 'package:tenic_api/UI/municipio/actualizar_municipio.dart';
 import 'package:tenic_api/bloc/municipio_bloc.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/municipio_model.dart';
+import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 import 'actualizar_municipio.dart';
@@ -36,6 +37,7 @@ class ListaMunicipioState extends State<ListaMunicipio>
     municipioBloc.listarMunicipio().then((apiResponse) {
       setState(() {
         listMunicipio = apiResponse.listMunicipio;
+        TecniNavigator.goToHomeCoordinador(context);
       });
     });
   }

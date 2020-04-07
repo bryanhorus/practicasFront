@@ -4,6 +4,7 @@ import 'package:tenic_api/bloc/torre_bloc.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/municipio_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
+import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class CrearTorre extends StatefulWidget {
@@ -50,6 +51,7 @@ class CrearTorreState extends State<CrearTorre>
     } else {
       form.save();
       torreBloc.createTorre(_torre);
+      TecniNavigator.goToHomeCoordinador(context);
     }
   }
 

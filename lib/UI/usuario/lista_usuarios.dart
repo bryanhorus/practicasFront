@@ -39,7 +39,7 @@ class ListaUsuariosState extends State<ListaUsuarios>
 
   void _delete(Usuario usuario) {
     userBloc.deleteUsuario(usuario);
-    TecniNavigator.goToListaUsuarios(context);
+    TecniNavigator.goToHomeCoordinador(context);
   }
 
   @override

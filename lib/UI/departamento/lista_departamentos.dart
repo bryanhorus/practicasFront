@@ -40,7 +40,7 @@ class _ListaDptoState extends State<ListaDpto>
 
   void _delete(Departamento departamento) {
     dptoBloc.deleteDepartamento(departamento);
-    TecniNavigator.goToListaDepartamento(context);
+    TecniNavigator.goToHomeCoordinador(context);
   }
 
   @override
