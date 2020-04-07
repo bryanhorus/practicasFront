@@ -6,7 +6,7 @@ import 'package:tenic_api/resource/constants.dart';
 
 class ActualizarDepartamento extends StatefulWidget {
   final Departamento departamento;
-  const ActualizarDepartamento({Key key, this.departamento}) : super(key: key);
+  const ActualizarDepartamento({this.departamento,Key key}) : super(key: key);
 
   @override
   ActualizarDepartamentoState createState() => ActualizarDepartamentoState();

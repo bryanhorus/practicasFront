@@ -1,27 +1,34 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/usuario_bloc.dart';
+import 'package:tenic_api/modelo/tipo_usuario_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
 import 'package:tenic_api/resource/constants.dart';
+import 'package:tenic_api/navigator.dart';
 
 class ActualizarUsuario extends StatefulWidget {
-  const ActualizarUsuario({Key key}) : super(key: key);
+
+  final Usuario usuario;
+  const ActualizarUsuario({this.usuario,Key key}) : super(key: key);
 
   @override
-  ActualizarUsuarioState createState() => ActualizarUsuarioState();
+  ActualizarUsuarioState createState() => ActualizarUsuarioState( usuario: usuario);
 }
 
 class ActualizarUsuarioState extends State<ActualizarUsuario>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  ActualizarUsuarioState ({this.usuario});
   UsuarioBloc userBloc;
-  Usuario _tecnico = Usuario(
-    nombre: "",
-    apellido: "",
-    correo: "",
-    password: "",
-    telfono: "",
+
+  Usuario usuario = Usuario(
+      nombre: "",
+      apellido: "",
+      correo: "",
+      password: "",
+      telfono: "",
+      typeUser: TipoUsuario(idTipo: 0)
   );
 
   @override
@@ -46,9 +53,9 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
       _autovalidate = true;
     } else {
       form.save();
-
-      userBloc.updateUsuario(_tecnico);
+      userBloc.updateUsuario(usuario);
     }
+    TecniNavigator.goTocord(context);
   }
 
   @override
@@ -58,12 +65,13 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
       appBar: AppBar(title: const Text(Constants.tittleActualizar)),
       body: Stack(fit: StackFit.expand, children: <Widget>[
         Container(
-          child: Image(
+          color: Colors.blueAccent,
+          /* child: Image(
             image: AssetImage(Constants.registroImage),
             fit: BoxFit.cover,
             colorBlendMode: BlendMode.difference,
             color: Colors.black12,
-          ),
+          ),*/
         ),
         Center(
           child: Container(
@@ -89,28 +97,43 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                           Padding(
                             padding: const EdgeInsets.only(top: 40.0),
                           ),
-                          const SizedBox(height: 12.0),
+                         /* const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelNombre,
                             ),
+                            initialValue: usuario.idUsuario.toString(),
                             validator: validateName,
                             keyboardType: TextInputType.emailAddress,
                             onSaved: (String value) {
-                              _tecnico.nombre = value;
+                              usuario.idUsuario = int.parse(value);
                             },
                             style: TextStyle(fontSize: 18.0),
+                          ),
+                          const SizedBox(height: 12.0),*/
+                          TextFormField(
+                            decoration: new InputDecoration(
+                              labelText: Constants.labelNombre,
+                            ),
+                            initialValue: usuario.nombre,
+                            validator: validateName,
+                            keyboardType: TextInputType.emailAddress,
+                            onSaved: (String value) {
+                              usuario.nombre = value;
+                            },
+                            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelApellido,
                             ),
+                            initialValue: usuario.apellido,
                             validator: validateName,
                             onSaved: (String value) {
-                              _tecnico.apellido = value;
+                              usuario.apellido = value;
                             },
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                           ),
                           TextFormField(
                             decoration: new InputDecoration(
@@ -118,11 +141,12 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             ),
                             keyboardType: TextInputType.emailAddress,
                             maxLength: 32,
+                            initialValue: usuario.correo,
                             validator: validateEmail,
                             onSaved: (String value) {
-                              _tecnico.correo = value;
+                              usuario.correo = value;
                             },
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                           ),
                           TextFormField(
                             obscureText: true,
@@ -131,11 +155,12 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                               labelText: Constants.labelPassword,
                             ),
                             maxLength: 12,
+                            initialValue: usuario.password,
                             validator: validatePassword,
                             onSaved: (String value) {
-                              _tecnico.password = value;
+                              usuario.password = value;
                             },
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                           ),
                           TextFormField(
                             decoration: new InputDecoration(
@@ -143,22 +168,12 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             ),
                             keyboardType: TextInputType.phone,
                             maxLength: 12,
+                            initialValue: usuario.telfono,
                             validator: validateMobile,
                             onSaved: (String value) {
-                              _tecnico.telfono = value;
+                              usuario.telfono = value;
                             },
-                            style: TextStyle(fontSize: 18.0),
-                          ),
-                          TextFormField(
-                            decoration: new InputDecoration(
-                              labelText: Constants.tipoUsuario,
-                            ),
-                            keyboardType: TextInputType.number,
-                            maxLength: 1,
-                            onSaved: (String value) {
-                              _tecnico.telfono = value;
-                            },
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 60.0),
@@ -173,8 +188,12 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             color: Color(0xFFE1F5FE),
                             splashColor: Colors.blueAccent,
                             textColor: Colors.black,
-                            child: Text(Constants.btnRegistar),
+                            child: Text(Constants.btnModificar),
                             onPressed: _handleSubmitted,
+
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10.0),
                           ),
                           MaterialButton(
                             shape: RoundedRectangleBorder(
@@ -188,6 +207,9 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             textColor: Colors.black,
                             child: Text(Constants.btnEliminar),
                             onPressed: _handleSubmitted,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10.0),
                           ),
                         ],
                       ),

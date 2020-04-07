@@ -7,23 +7,25 @@ class Constants{
   static const String contenTypeHeader = "application/json";
   //servicio
   static const String pathServiceUsuario ="/api/tecni/user/insert";
+  static const String pathServiceListUsuario ="/api/tecni/user/get/all";
   static const String pathServiceinsertDpto ="/api/tecni/departament/insert";
   static const String pathServiceinsertMunicipio ="/api/tecni/municipio/insert";
   static const String pathServiceMunicipioUpdate ="/api/tecni/municipio/update";
   static const String pathServiceMunicipioDelete ="/api/tecni/municipio/delete/id";
   static const String pathServiceMinicipiosLista ="/api/tecni/municipio/get/all";
-  static const String pathServiceUsuarioUpdate ="/user/update";
+  static const String pathServiceUsuarioUpdate ="/api/tecni/user/update";
   static const String pathServiceDepartamentoUpdate ="/api/tecni/departament/update";
   static const String pathServiceDepartamentoDelete ="/api/tecni/departament/delete/id";
   static const String pathServiceDepartamento = "/api/tecni/departament/get/all";
-  static const String pathServiceinsertAntena ="/api/tecni/antenna/insert";
+  static const String pathServiceAntenaInsert ="/api/tecni/antenna/insert";
   static const String pathServiceAntenaUpdate ="/api/tecni/antenna/update";
   static const String pathServiceAntenaDelete ="/api/tecni/antenna/delete/id";
-  static const String pathServiceAntena = "/api/tecni/antenna/get/all";
-  static const String pathServiceinsertTorre ="/api/tecni/torre/insert";
+  static const String pathServiceAntenasLista ="/api/tecni/antenna/get/all";
+  static const String pathServiceTorreInsert ="/api/tecni/torre/insert";
   static const String pathServiceTorreUpdate ="/api/tecni/torre/update";
   static const String pathServiceTorreDelete ="/api/tecni/torre/delete/id";
-  static const String pathServiceTorre = "/api/tecni/torre/get/all";
+  static const String pathServiceTorreLista ="/api/tecni/torre/get/all";
+  static const String pathServiceDeleteU="/api/tecni/user/delete/id";
   static const String pathServiceLogin ="/usuarios/login";
 
 
@@ -55,6 +57,16 @@ class Constants{
   static const String btnSiguiente = "Siguiente ";
   static const String btnModificar = "Editar ";
   static const String btnLista = "Lista ";
+  static const String btnListaU = "Lista Usuarios";
+  static const String btnRegistarU = "Registrar Usuarios";
+  static const String btnListaD = "Lista Departamentos";
+  static const String btnRegistarD = "Registrar Departamento";
+  static const String btnListaM = "Lista Municipios";
+  static const String btnRegistarM = "Registrar Municipios";
+  static const String btnListaT = "Lista Torres";
+  static const String btnRegistarT = "Registrar Torre";
+  static const String btnListaA = "Lista Antena";
+  static const String btnRegistarA = "Registrar Antena";
   static const String btnEliminar = "Eliminar ";
   static const String btnAsignar = "Asignar ";
   static const String btnPerfil = "Perfil";
@@ -91,6 +103,7 @@ class Constants{
   static const String homeCoordinadorRoute = "/home_coordinador";
   static const String perfilCoordinadorRoute = "/perfil_coordinador";
   static const String registroRoute = "/registro_usuarios";
+  static const String userRoute = "/usuario";
   static const String asignarTorresRoute = "/torre";
   static const String registrarTorreRoute = "/registrar_torre";
   static const String registrarantenaRoute = "/registrar_antena";
@@ -132,6 +145,7 @@ class Constants{
   static const String labelMunicipio ="Municipio";
   static const String labelTecnologia ="Tecnologia";
   static const String labelNombreAntena ="Nombre de la Antena";
+  static const String labelDepartamento ="Departamento";
 
   //mensajes
   static const String agradecimiento = "¡Gracias por ser parte de esta gran familia,nos sentimos orgullosos de que cada día ponga todo su esfuerzo y dedicación para lograr el éxito que deseamos!";

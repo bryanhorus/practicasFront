@@ -21,6 +21,7 @@ import 'UI/home_coordinador.dart';
 import 'UI/municipio/registrar_municipio.dart';
 import 'UI/torre/actualizar_torre.dart';
 import 'UI/torre/lista_torre.dart';
+import 'UI/usuario/usuario.dart';
 
 class App extends StatelessWidget {
   @override
@@ -42,6 +43,7 @@ class App extends StatelessWidget {
         Constants.registroRoute: (context) => TextFormFieldDemo(),
         Constants.actualizarUsuarioRoute: (context) => ActualizarUsuario(),
         Constants.listaUsuariosRoute: (context) => ListaUsuarios(),
+        Constants.userRoute: (context) => UsuarioUi(),
         //departamento
         Constants.registrarDepartamentosRoute: (context) => CrearDepartamento(),
         Constants.actualizarDepartamentosRoute: (context) => ActualizarDepartamento(),

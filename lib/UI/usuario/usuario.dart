@@ -27,28 +27,10 @@ class MyStatelessUsuario extends StatelessWidget {
             onPressed: () {
               TecniNavigator.goToRegistrarUsuario(context);
             },
-            textColor: Colors.white,
-            padding: const EdgeInsets.all(0.0),
-            child: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: <Color>[
-                    Color(0xFF0D47A1),
-                    Color(0xFF1976D2),
-                    Color(0xFF42A5F5),
-                  ],
-                ),
-              ),
-              padding: const EdgeInsets.all(10.0),
-              child: const Text(Constants.btnRegistar,
-                  style: TextStyle(fontSize: 20)),
+            shape: RoundedRectangleBorder(
+              borderRadius:
+              BorderRadius.all(Radius.circular(20.0)),
             ),
-          ),
-          const SizedBox(height: 30),
-          RaisedButton(
-            onPressed: () {
-              TecniNavigator.goToActualizarUsuario(context);
-            },
             textColor: Colors.white,
             padding: const EdgeInsets.all(0.0),
             child: Container(
@@ -62,7 +44,7 @@ class MyStatelessUsuario extends StatelessWidget {
                 ),
               ),
               padding: const EdgeInsets.all(10.0),
-              child: const Text(Constants.btnModificar,
+              child: const Text(Constants.btnRegistarU,
                   style: TextStyle(fontSize: 20)),
             ),
           ),
@@ -84,7 +66,7 @@ class MyStatelessUsuario extends StatelessWidget {
                 ),
               ),
               padding: const EdgeInsets.all(10.0),
-              child: const Text(Constants.btnLista,
+              child: const Text(Constants.btnListaU,
                   style: TextStyle(fontSize: 20)),
             ),
           ),

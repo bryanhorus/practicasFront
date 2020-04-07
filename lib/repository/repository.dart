@@ -9,7 +9,6 @@ import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
-
 import '../modelo/municipio_model.dart';
 
 
@@ -28,6 +27,7 @@ class Repository {
   Future<ApiResponse> registrarUsuario(Usuario usuario) => usuarioApiService.insertUsuario(usuario);
   Future<ApiResponse> actualizarUsuario(Usuario usuario) => usuarioApiService.updateUsuario(usuario);
   Future<ApiResponse> listaUsuario() => usuarioApiService.listarUsuario();
+  Future<ApiResponse>eliminarUsuario(Usuario usuario)=> usuarioApiService.deleteUsuario(usuario);
   
   Future<ApiResponse> listaMunicipio() => municipioApiService.listarMunicipio();
   Future<ApiResponse> registrarMunicipio(Municipio municipio) => municipioApiService.insertMunicipio(municipio);
