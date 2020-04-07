@@ -7,6 +7,7 @@ import 'package:tenic_api/apiService/usuario_api_service.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
+import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
 
 import '../modelo/torre_model.dart';
@@ -28,6 +29,7 @@ class Repository {
   Future<ApiResponse> registrarUsuario(Usuario usuario) => usuarioApiService.insertUsuario(usuario);
   Future<ApiResponse> actualizarUsuario(Usuario usuario) => usuarioApiService.updateUsuario(usuario);
   Future<ApiResponse> listaUsuario() => usuarioApiService.listarUsuario();
+<<<<<<< HEAD
   Future<ApiResponse>eliminarUsuario(Usuario usuario)=> usuarioApiService.deleteUsuario(usuario);
 
   //
@@ -35,6 +37,8 @@ class Repository {
   Future<ApiResponse> actualizarAntena(Antena antena) => antenaApiService.updateAntena(antena);
   Future<ApiResponse> listaAntena() => antenaApiService.listarAntena();
   //Future<ApiResponse> eliminarAntena(Antena antena) => antenaApiService.deleteAntena(antena);
+=======
+>>>>>>> 13b45c8617b06d2310ccf6815e96a91fad45a1fb
   
 
 
@@ -47,10 +51,23 @@ class Repository {
   Future<ApiResponse> registrarDepartamento(Departamento departamento) => departamentoApiService.insertDepartamento(departamento);
   Future<ApiResponse> actualizarDepartamento(Departamento departamento) => departamentoApiService.updateDepartamento(departamento);
   Future<ApiResponse> eliminarDepartamento(Departamento departamento) => departamentoApiService.deleteDepartamento(departamento);
+<<<<<<< HEAD
 
 //
   Future<ApiResponse> listaTorre() => torreApiService.listarTorre();
   Future<ApiResponse> registrarTorre(Torre torre) => torreApiService.insertTorres(torre);
   Future<ApiResponse> actualizarTorre(Torre torre) => torreApiService.updateTorre(torre);
   Future<ApiResponse> eliminarTorre(Torre torre) => torreApiService.deleteTorre(torre);
+=======
+  //Antena
+  Future<ApiResponse> registrarAntena(Antena antena) => antenaApiService.insertAntena(antena);
+  Future<ApiResponse> actualizarAntena(Antena antena) => antenaApiService.updateAntena(antena);
+  Future<ApiResponse> eliminarAntena(Antena antena) => antenaApiService.deleteAntena(antena);
+  Future<ApiResponse> listaAntena() => antenaApiService.listarAntena();
+  //Torre
+  Future<ApiResponse> registrarTorre(Torre torre) => torreApiService.insertTorre(torre);
+  Future<ApiResponse> actualizarTorre(Torre torre) => torreApiService.updateTorre(torre);
+  Future<ApiResponse> eliminarTorre(Torre torre) => torreApiService.deleteTorre(torre);
+  Future<ApiResponse> listaTorre() => torreApiService.listarTorre();
+>>>>>>> 13b45c8617b06d2310ccf6815e96a91fad45a1fb
 }

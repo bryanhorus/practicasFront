@@ -8,6 +8,7 @@ class Antena {
   String altura;
   String orientacion;
   String inclinacion;
+  Estado state;
   Torre torre;
   Estado state;
 
@@ -18,8 +19,13 @@ class Antena {
       this.altura,
       this.orientacion,
       this.inclinacion,
+<<<<<<< HEAD
       this.torre, 
       this.state});
+=======
+      this.state,
+      this.torre});
+>>>>>>> 13b45c8617b06d2310ccf6815e96a91fad45a1fb
 
   factory Antena.fromJson(Map<String, dynamic> parsedJson) {
     return Antena(
@@ -29,9 +35,14 @@ class Antena {
       altura: parsedJson['altura'],
       orientacion: parsedJson['orientacion'],
       inclinacion: parsedJson['inclinacion'],
+<<<<<<< HEAD
       torre: Torre.fromJson(parsedJson['torre']),
       state: Estado.fromJson(parsedJson['estado'])
 
+=======
+      state: Estado.fromJson(parsedJson['state']),
+      torre: Torre.fromJson(parsedJson['torre'])
+>>>>>>> 13b45c8617b06d2310ccf6815e96a91fad45a1fb
     );
   }
 
@@ -42,7 +53,12 @@ class Antena {
         'altura': altura,
         'orientacion': orientacion,
         'inclinacion': inclinacion,
+<<<<<<< HEAD
         'torre': torre.toJson(),
         'estado': state.toJson()
+=======
+        'state': state.toJson(),
+        'torre': torre.toJson()
+>>>>>>> 13b45c8617b06d2310ccf6815e96a91fad45a1fb
       };
 }

@@ -19,6 +19,6 @@ class Municipio {
   Map<String, dynamic> toJson() => {
         'idMunicipio': idMunicipio,
         'nombre': nombre,
-        'departament': departament.toJson(),
+        'departament': departament.toJson()
       };
 }

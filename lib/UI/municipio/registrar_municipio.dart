@@ -1,11 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tenic_api/resource/constants.dart';
-
 import '../../bloc/municipio_bloc.dart';
-import '../../bloc/municipio_bloc.dart';
-import '../../bloc/municipio_bloc.dart';
-import '../../modelo/departamento_model.dart';
 import '../../modelo/departamento_model.dart';
 import '../../modelo/municipio_model.dart';
 
@@ -21,15 +17,13 @@ class CrearMunicipioState extends State<CrearMunicipio>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   MunicipioBloc municipioBloc;
-  Municipio _municipio = Municipio(
-    nombre: '', 
-    departament: Departamento(idDpto: 0));
+  Municipio _municipio =
+      Municipio(nombre: '', departament: Departamento(idDpto: 0));
 
   @override
   void initState() {
     super.initState();
-     municipioBloc = MunicipioBloc(context);
-
+    municipioBloc = MunicipioBloc(context);
   }
 
   void showInSnackBar(String value) {
@@ -40,7 +34,6 @@ class CrearMunicipioState extends State<CrearMunicipio>
 
   bool _autovalidate = false;
 
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   void _handleSubmitted() {
@@ -50,7 +43,7 @@ class CrearMunicipioState extends State<CrearMunicipio>
     } else {
       form.save();
 
-municipioBloc.createMunicipio(_municipio);
+      municipioBloc.createMunicipio(_municipio);
     }
   }
 
@@ -98,7 +91,6 @@ municipioBloc.createMunicipio(_municipio);
                             decoration: new InputDecoration(
                               labelText: Constants.labelNombre,
                             ),
-                            
                             keyboardType: TextInputType.text,
                             onSaved: (String depart) {
                               _municipio.departament.idDpto = int.parse(depart);

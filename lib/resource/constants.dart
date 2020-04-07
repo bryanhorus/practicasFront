@@ -5,7 +5,7 @@ class Constants{
   //Url
   static const String urlAuthority = "ec2-3-15-37-85.us-east-2.compute.amazonaws.com:8090";
   static const String contenTypeHeader = "application/json";
-//servicio
+  //servicio
   static const String pathServiceUsuario ="/api/tecni/user/insert";
   static const String pathServiceListUsuario ="/api/tecni/user/get/all";
   static const String pathServiceListAntena ="";
@@ -23,10 +23,22 @@ class Constants{
   static const String pathServiceTorre = "/api/tecni/torre/get/all";
   static const String pathServiceDepartamentoDelete ="/api/tecni/departament/delete/id";
   static const String pathServiceDepartamento = "/api/tecni/departament/get/all";
+<<<<<<< HEAD
   static const String pathServiceAntena ="";
   static const String pathServiceDeleteU="/api/tecni/user/delete/id";
   static const String pathServiceDeleteAntena="";
+=======
+  static const String pathServiceinsertAntena ="/api/tecni/antenna/insert";
+  static const String pathServiceAntenaUpdate ="/api/tecni/antenna/update";
+  static const String pathServiceAntenaDelete ="/api/tecni/antenna/delete/id";
+  static const String pathServiceAntena = "/api/tecni/antenna/get/all";
+  static const String pathServiceinsertTorre ="/api/tecni/torre/insert";
+  static const String pathServiceTorreUpdate ="/api/tecni/torre/update";
+  static const String pathServiceTorreDelete ="/api/tecni/torre/delete/id";
+  static const String pathServiceTorre = "/api/tecni/torre/get/all";
+>>>>>>> 13b45c8617b06d2310ccf6815e96a91fad45a1fb
   static const String pathServiceLogin ="/usuarios/login";
+
 
   static const String createMessage = "Creación exitosa";
   //validacion de campos
@@ -129,7 +141,12 @@ class Constants{
   static const String labelAltura ="Altura";
   static const String labelOrientacion ="Orientacion";
   static const String labelInclinacion ="Inclinacion";
+  static const String labelIdentificacion ="Identificacion";
+  static const String labelDireccion ="Direccion";
+  static const String labelCoordenadas ="Coordenadas";
   static const String labelTorre ="Torre";
+  static const String labelMunicipio ="Municipio";
+  static const String labelTecnologia ="Tecnologia";
   static const String labelNombreAntena ="Nombre de la Antena";
 
   static const String labelNombreTorre ="Nombre de la Torre";

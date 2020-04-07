@@ -2,7 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/antena_bloc.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
+<<<<<<< HEAD
 import 'package:tenic_api/modelo/estado_model.dart';
+=======
+import 'package:tenic_api/modelo/departamento_model.dart';
+import 'package:tenic_api/modelo/estado_model.dart';
+import 'package:tenic_api/modelo/municipio_model.dart';
+>>>>>>> 13b45c8617b06d2310ccf6815e96a91fad45a1fb
 import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/resource/constants.dart';
 
@@ -16,6 +22,7 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
 
   AntenaBloc antenaBloc;
   Antena _antena = Antena(
+<<<<<<< HEAD
     nombre: '',
     referencia: '',
     altura: '',
@@ -24,6 +31,15 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
     torre: Torre(idTorre: 0),
     state: Estado(id: 0)
 
+=======
+    nombre:'',
+    referencia:'',
+    altura:'',
+    orientacion:'',
+    inclinacion:'',
+    state: Estado(id: 0),
+    torre: Torre(idTorre: 0 , municipio: Municipio(idMunicipio: 0, departament: Departamento(idDpto: 0)))
+>>>>>>> 13b45c8617b06d2310ccf6815e96a91fad45a1fb
   );
 
 
@@ -132,8 +148,6 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                             style: TextStyle(fontSize: 18.0),
                           ),
                           TextFormField(
-                            obscureText: true,
-                            autocorrect: false,
                             decoration: new InputDecoration(
                               labelText: Constants.labelOrientacion,
                             ),
@@ -162,11 +176,22 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                             decoration: new InputDecoration(
                               labelText: Constants.labelTorre,
                             ),
-                            keyboardType: TextInputType.text,
+                            keyboardType: TextInputType.number,
                             maxLength: 12,
-                            validator: validateName,
+                            //validator: validateName,
                             onSaved: (String value) {
-                              //_antena.torre = value;
+                              _antena.torre.idTorre = int.parse(value);
+                            },
+                            style: TextStyle(fontSize: 18.0),
+                          ),
+                          TextFormField(
+                            decoration: new InputDecoration(
+                              labelText: ('estado'),
+                            ),
+                            keyboardType: TextInputType.number,
+                            maxLength: 12,
+                            onSaved: (String value) {
+                              _antena.state.id = int.parse(value);
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),*/

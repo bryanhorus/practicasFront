@@ -91,6 +91,7 @@ class ActualizarDepartamentoState extends State<ActualizarDepartamento>
                           const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
+<<<<<<< HEAD
                               labelText: "Posicion",
                             ),
                             //validator: validateName,
@@ -103,6 +104,8 @@ class ActualizarDepartamentoState extends State<ActualizarDepartamento>
                           const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
+=======
+>>>>>>> 13b45c8617b06d2310ccf6815e96a91fad45a1fb
                               labelText: Constants.labelNombre,
                             ),
                             validator: validateName,
