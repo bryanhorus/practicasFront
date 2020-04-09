@@ -91,6 +91,11 @@ class CrearMunicipioState extends State<CrearMunicipio>
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelDepartamento,
+                              border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0)),
+                             hintText: Constants.labelDept,
+                             suffix: Icon(Icons.create),
+                             icon: Icon(Icons.assistant_photo)
                             ),
                             keyboardType: TextInputType.text,
                             onSaved: (String depart) {
@@ -98,9 +103,16 @@ class CrearMunicipioState extends State<CrearMunicipio>
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
+                            Divider(),
+
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelNombre,
+                              border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0)),
+                             hintText: Constants.labelMunc,
+                             suffix: Icon(Icons.create),
+                             icon: Icon(Icons.image)
                             ),
                             validator: validateName,
                             keyboardType: TextInputType.text,

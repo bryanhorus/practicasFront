@@ -37,7 +37,7 @@ class ListaMunicipioState extends State<ListaMunicipio>
     municipioBloc.listarMunicipio().then((apiResponse) {
       setState(() {
         listMunicipio = apiResponse.listMunicipio;
-        TecniNavigator.goToHomeCoordinador(context);
+       // TecniNavigator.goToHomeCoordinador(context);
       });
     });
   }
@@ -87,16 +87,40 @@ class ListaMunicipioState extends State<ListaMunicipio>
                             builder: (BuildContext context) =>
                                 ActualizarMunicipio( municipio:municipio)));
                                 },
-                )
-                  ]
-            )
-          );
-        },
-      ),
-    ),
-      ]
+                ),
+                ButtonTheme.bar(
+                      child: ButtonBar(
+                        children: <Widget>[
+                          FlatButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0)),
+                            ),
+                            color: Colors.yellow[300],
+                            child: const Text(Constants.btnModificar,
+                                style: TextStyle(
+                                    fontSize: 15, color: Colors.black)),
+                            onPressed: () {
+                              municipio = listMunicipio[indice];
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          ActualizarMunicipio(
+                                            municipio:municipio,
+                                          )));
+                          },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
         ),
+      ]),
     );
   }
 }
-

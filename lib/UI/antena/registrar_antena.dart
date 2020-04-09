@@ -101,6 +101,11 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelNombre,
+                              border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0)),
+                             hintText: Constants.labelNombre,
+                             suffix: Icon(Icons.create),
+                             icon: Icon(Icons.account_circle)
                             ),
                             validator: validateName,
                             keyboardType: TextInputType.text,
@@ -113,6 +118,15 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelReferencia,
+                                  border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0)),
+                             hintText: Constants.labelReferencia,
+                             suffix: Icon(Icons.create),
+                             icon: Icon(Icons.receipt)
+
+
+
+
                             ),
                             keyboardType: TextInputType.number,
                             validator: validateReferencia,
@@ -120,10 +134,15 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                               _antena.referencia = value;
                             },
                             style: TextStyle(fontSize: 18.0),
-                          ),
+                          ),const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelAltura,
+                              border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0)),
+                             hintText: Constants.labelAltura,
+                             suffix: Icon(Icons.create),
+                             icon: Icon(Icons.show_chart)
                             ),
                             keyboardType: TextInputType.number,
                             maxLength: 2,
@@ -136,6 +155,11 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelOrientacion,
+                              border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0)),
+                             hintText: Constants.labelOrientacion,
+                             suffix: Icon(Icons.create),
+                             icon: Icon(Icons.call_missed_outgoing)
                             ),
                             keyboardType: TextInputType.number,
                             maxLength: 3,
@@ -148,6 +172,11 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelInclinacion,
+                              border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0)),
+                             hintText: Constants.labelInclinacion,
+                             suffix: Icon(Icons.create),
+                             icon: Icon(Icons.call_split)
                             ),
                             keyboardType: TextInputType.number,
                             maxLength: 3,
@@ -160,8 +189,14 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelTorre,
+                                 border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0)),
+                             hintText: Constants.labelTorre,
+                             suffix: Icon(Icons.create),
+                             icon: Icon(Icons.settings_input_antenna)
                             ),
                             keyboardType: TextInputType.number,
+                            
                             maxLength: 12,
                             //validator: validateName,
                             onSaved: (String value) {
@@ -172,6 +207,11 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: ('estado'),
+                                border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0)),
+                             hintText: Constants.labelestado,
+                             suffix: Icon(Icons.create),
+                             icon: Icon(Icons.graphic_eq)
                             ),
                             keyboardType: TextInputType.number,
                             maxLength: 12,

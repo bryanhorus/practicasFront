@@ -146,6 +146,10 @@ class Constants{
   static const String labelTecnologia ="Tecnologia";
   static const String labelNombreAntena ="Nombre de la Antena";
   static const String labelDepartamento ="Departamento";
+  static const String labelMunc ="Nombre de Municipio";
+  static const String labelDept ="Nombre de Depatamento";
+  static const String labelestado ="Estado";
+  
 
   //mensajes
   static const String agradecimiento = "¡Gracias por ser parte de esta gran familia,nos sentimos orgullosos de que cada día ponga todo su esfuerzo y dedicación para lograr el éxito que deseamos!";
