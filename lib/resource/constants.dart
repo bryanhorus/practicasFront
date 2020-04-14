@@ -155,5 +155,11 @@ class Constants{
   static const String agradecimiento = "¡Gracias por ser parte de esta gran familia,nos sentimos orgullosos de que cada día ponga todo su esfuerzo y dedicación para lograr el éxito que deseamos!";
   static const String mensajePerfil = "Mensaje del dia";
 
+  //´´´´
+
+  static const List<String> chh = <String>[
+labelMunc,
+  ];
+
 
 }
