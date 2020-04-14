@@ -22,16 +22,11 @@ class _ListaTorreState extends State<ListaTorre>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-<<<<<<< HEAD
-  TorreBloc torreBLoC;
-
-=======
   Torre torre;
   TorreBloc torreBloc;
->>>>>>> b086dfec78be9ff0b969dad5c9c3ded3df421e04
   ApiResponse apiResponse;
 
-  Torre torre;
+  //Torre torre;
 
   void showInSnackBar(String value) {
     _scaffoldKey.currentState.showSnackBar(SnackBar(
@@ -41,15 +36,6 @@ class _ListaTorreState extends State<ListaTorre>
 
   final List<String> ciudad = [];
   List<Torre> listTorre = List();
-<<<<<<< HEAD
-
-  _handleSubmitted() {
-    torreBLoC.listarTorre().then((apiResponse) {
-      setState(() {
-        listTorre = apiResponse.listTorre;
-      });
-    });
-=======
 
   _handleSubmitted() {
     torreBloc.listarTorre().then((apiResponse) {
@@ -62,18 +48,12 @@ class _ListaTorreState extends State<ListaTorre>
   void _delete(Torre torre) {
     torreBloc.deleteTorre(torre);
     TecniNavigator.goToListaTorre(context);
->>>>>>> b086dfec78be9ff0b969dad5c9c3ded3df421e04
   }
 
   @override
   void initState() {
     super.initState();
-<<<<<<< HEAD
-    torreBLoC = TorreBloc(context);
-
-=======
     torreBloc = TorreBloc(context);
->>>>>>> b086dfec78be9ff0b969dad5c9c3ded3df421e04
     _handleSubmitted();
   }
 /*
@@ -183,7 +163,7 @@ class _ListaTorreState extends State<ListaTorre>
                         onPressed: () {
                           print(listTorre[indice].nombre);
                           torre = listTorre[indice];
-                          //_delete(torre);
+                          _delete(torre);
                         },
                       ),
                     ],

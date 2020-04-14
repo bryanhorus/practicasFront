@@ -2,6 +2,7 @@ import 'package:tenic_api/apiService/antena_api_service.dart';
 import 'package:tenic_api/apiService/dpto_api_service.dart';
 import 'package:tenic_api/apiService/login_api_service.dart';
 import 'package:tenic_api/apiService/municipio_api_service.dart';
+import 'package:tenic_api/apiService/observation_api_service.dart';
 import 'package:tenic_api/apiService/torre_api_service.dart';
 import 'package:tenic_api/apiService/usuario_api_service.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
@@ -9,11 +10,6 @@ import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
-<<<<<<< HEAD
-
-import '../modelo/torre_model.dart';
-=======
->>>>>>> b086dfec78be9ff0b969dad5c9c3ded3df421e04
 import '../modelo/municipio_model.dart';
 
 
@@ -25,6 +21,7 @@ class Repository {
   final antenaApiService = AntenaApiService();
   final municipioApiService = MunicipioApiService();
   final departamentoApiService = DepartamentoApiService();
+  final observationApiService = ObservationApiService();
 
   //promesa de invocacion al usuarioApiService metodo insertar usuario
   Future<ApiResponse> iniciar(Usuario usuario) => loginApiService.iniciarSesion(usuario);
@@ -33,9 +30,9 @@ class Repository {
   Future<ApiResponse> actualizarUsuario(Usuario usuario) => usuarioApiService.updateUsuario(usuario);
   Future<ApiResponse> listaUsuario() => usuarioApiService.listarUsuario();
   Future<ApiResponse>eliminarUsuario(Usuario usuario)=> usuarioApiService.deleteUsuario(usuario);
+
+  Future<ApiResponse> listaObservation() => observationApiService.listarObservation();
   
-
-
   Future<ApiResponse> listaMunicipio() => municipioApiService.listarMunicipio();
   Future<ApiResponse> registrarMunicipio(Municipio municipio) => municipioApiService.insertMunicipio(municipio);
   Future<ApiResponse> actualizarMunicipio(Municipio municipio) => municipioApiService.updateMunicipio(municipio);

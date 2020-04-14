@@ -1,25 +1,24 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tenic_api/UI/antena/actualizar_antena.dart';
-import 'package:tenic_api/bloc/antena_bloc.dart';
-import 'package:tenic_api/modelo/antena_model.dart';
+import 'package:tenic_api/bloc/observation_bloc.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
-import 'package:tenic_api/navigator.dart';
+import 'package:tenic_api/modelo/observation_model.dart';
 import 'package:tenic_api/resource/constants.dart';
 
-class ListaAntenas extends StatefulWidget {
-  const ListaAntenas({Key key}) : super(key: key);
+class ListaObservation extends StatefulWidget{
+  
+  const ListaObservation({Key key}) : super(key: key);
 
   @override
-  ListaAntenasState createState() => ListaAntenasState();
-}
+  ListaObservationState createState() => ListaObservationState();
+  }
 
-class ListaAntenasState extends State<ListaAntenas>
+class ListaObservationState extends State<ListaObservation>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  AntenaBloc antenaBloc;
+
+  ObservationBloc observationBloc;
   ApiResponse apiResponse;
-  Antena antena;
+  Observation observation;
 
   void showInSnackBar(String value) {
     _scaffoldKey.currentState.showSnackBar(SnackBar(
@@ -27,36 +26,29 @@ class ListaAntenasState extends State<ListaAntenas>
     ));
   }
 
-  final List<String> nombres = [];
-  final List<String> ciudad = [];
-  List<Antena> listAntena = List();
+  List<Observation> listObservation = List();
 
-  _handleSubmitted() {
-    antenaBloc.listarAntena().then((apiResponse) {
+    _handleSubmitted() {
+    observationBloc.listarObservation().then((apiResponse) {
       setState(() {
-        listAntena = apiResponse.listAntena;
+        listObservation = apiResponse.listObservation;
       });
     });
-  }
-
-  void _delete(Antena antena) {
-    antenaBloc.deleteAntena(antena);
-    TecniNavigator.goToListaAntena(context);
   }
 
   @override
   void initState() {
     super.initState();
-    antenaBloc = AntenaBloc(context);
+    observationBloc = ObservationBloc(context);
     _handleSubmitted();
   }
 
-  @override
+    @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: const Text(Constants.tittleListaAntenas),
+        title: const Text(Constants.tittleListaObs),
       ),
       body: Stack(fit: StackFit.expand, children: <Widget>[
         Container(
@@ -64,7 +56,7 @@ class ListaAntenasState extends State<ListaAntenas>
             shrinkWrap: true,
             padding: const EdgeInsets.all(20.0),
             // tamaño de la lista
-            itemCount: listAntena.length,
+            itemCount: listObservation.length,
             // Constructor de widget para cada elemento de la lista
             itemBuilder: (BuildContext context, int indice) {
               return Card(
@@ -75,25 +67,17 @@ class ListaAntenasState extends State<ListaAntenas>
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       ListTile(
-                        title: Text(listAntena[indice].nombre,
+                        title: Text(listObservation[indice].fecha,
                             //le damos estilo a cada texto
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold)),
-
-                                onTap: (){
-                    print(listAntena[indice].nombre);
-                    antena = listAntena[indice];
-
-                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                ActualizarAntena(antena: antena)));
-                      /*
+                                onTap: (){ print(listObservation[indice].fecha);
+                    observation = listObservation[indice];},
+                      ),
                       // ignore: deprecated_member_use
-                      ButtonTheme.bar(
+                      /*ButtonTheme.bar(
                         child: ButtonBar(
                           children: <Widget>[
                             FlatButton(
@@ -106,13 +90,14 @@ class ListaAntenasState extends State<ListaAntenas>
                                   style: TextStyle(
                                       fontSize: 15, color: Colors.black87)),
                               onPressed: () {
-                                antena = listAntena[indice];
-                                Navigator.push(
+                                print(listObservation[indice].fecha);
+                                observation = listObservation[indice];
+                                /*Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (BuildContext context) =>
-                                            ActualizarAntena(
-                                                antena: antena)));
+                                            ActualizarUsuario(
+                                                usuario: usuario)));*/
                               },
                             ),
                             FlatButton(
@@ -125,14 +110,14 @@ class ListaAntenasState extends State<ListaAntenas>
                                   style: TextStyle(
                                       fontSize: 15, color: Colors.white)),
                               onPressed: () {
-                                antena = listAntena[indice];
-                                _delete(antena);
+                                print(listObservation[indice].fecha);
+                                observation = listObservation[indice];
+                                //_delete(usuario);
                               },
                             ),
                           ],
-                        ),*///
-                                },
-                      ),
+                        ),
+                      ),*/
                     ],
                   ));
             },

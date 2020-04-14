@@ -1,15 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/torre_bloc.dart';
-<<<<<<< HEAD
-import 'package:tenic_api/modelo/municipio_model.dart';
-import 'package:tenic_api/modelo/torre_model.dart';
-=======
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/municipio_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/navigator.dart';
->>>>>>> b086dfec78be9ff0b969dad5c9c3ded3df421e04
 import 'package:tenic_api/resource/constants.dart';
 
 import '../../navigator.dart';
@@ -17,40 +12,16 @@ import '../../navigator.dart';
 class ActualizarTorre extends StatefulWidget {
 
   final Torre torre;
-<<<<<<< HEAD
-  const ActualizarTorre({this.torre, Key key}) : super(key: key);
-
-  @override
-  ActualizarTorreState createState() => ActualizarTorreState(torre: torre);
-=======
   const ActualizarTorre({ this.torre,Key key}) : super(key: key);
 
   @override
   ActualizarTorreState createState() => ActualizarTorreState( torre: torre);
->>>>>>> b086dfec78be9ff0b969dad5c9c3ded3df421e04
 }
 
 class ActualizarTorreState extends State<ActualizarTorre>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-<<<<<<< HEAD
-  ActualizarTorreState({this.torre});
-  TorreBloc torreBLoC;
-
-  Torre torre = Torre(
-    nombre: "",
-    identificacion: "",
-    direccion: "",
-    coordenadas: "",
-    altura: "",
-    tecnologia: "",
-    municipio: Municipio(idMunicipio: 0)//id
-
-
-  );
-
-=======
   ActualizarTorreState ({this.torre});
   TorreBloc torreBloc;
 
@@ -62,17 +33,11 @@ class ActualizarTorreState extends State<ActualizarTorre>
       altura:'',
       tecnologia:'',
       municipio: Municipio(idMunicipio: 0, departament: Departamento(idDpto: 0)));
->>>>>>> b086dfec78be9ff0b969dad5c9c3ded3df421e04
 
   @override
   void initState() {
     super.initState();
-<<<<<<< HEAD
-    torreBLoC = TorreBloc(context);
-
-=======
   torreBloc = TorreBloc(context);
->>>>>>> b086dfec78be9ff0b969dad5c9c3ded3df421e04
   }
 
   void showInSnackBar(String value) {
@@ -92,12 +57,8 @@ class ActualizarTorreState extends State<ActualizarTorre>
       _autovalidate = true;
     } else {
       form.save();
-<<<<<<< HEAD
-      torreBLoC.updateTorre(torre);
-=======
       torreBloc.updateTorre(torre);
       TecniNavigator.goToListaTorre(context);
->>>>>>> b086dfec78be9ff0b969dad5c9c3ded3df421e04
     }
     //TecniNavigator.goTocord(context);
   }
@@ -233,9 +194,6 @@ class ActualizarTorreState extends State<ActualizarTorre>
     );
   }
 
-<<<<<<< HEAD
-  
-=======
   String validateName(String value) {
     String pattern = Constants.patternNombre;
     RegExp regExp = new RegExp(pattern);
@@ -263,6 +221,5 @@ class ActualizarTorreState extends State<ActualizarTorre>
     }
     return null;
   }
->>>>>>> b086dfec78be9ff0b969dad5c9c3ded3df421e04
 
 }

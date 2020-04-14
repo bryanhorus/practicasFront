@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/antena_bloc.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
 import 'package:tenic_api/modelo/estado_model.dart';
+import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class ActualizarAntena extends StatefulWidget {
   final Antena antena;
-  const ActualizarAntena({Key key, this.antena}) : super(key: key);
+  const ActualizarAntena({this.antena, Key key}) : super(key: key);
 
   @override
   ActualizarAntenaState createState() => ActualizarAntenaState(antena: antena);
@@ -19,11 +20,12 @@ class ActualizarAntenaState extends State<ActualizarAntena> with SingleTickerPro
   ActualizarAntenaState ({this.antena});
   AntenaBloc antenaBloc;
   Antena antena = Antena(
-    nombre:'',
-    referencia:'',
-    altura:'',
-    orientacion:'',
-    inclinacion:'',
+    nombre: "",
+    referencia: "",
+    altura: "",
+    orientacion: "",
+    inclinacion: "",
+    torre: Torre(idTorre: 0),
     state: Estado(id: 0),
   );
 
@@ -88,6 +90,7 @@ class ActualizarAntenaState extends State<ActualizarAntena> with SingleTickerPro
                           Padding(
                             padding: const EdgeInsets.only(top: 40.0),
                           ),
+                          
                           const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
@@ -153,6 +156,9 @@ class ActualizarAntenaState extends State<ActualizarAntena> with SingleTickerPro
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
+
+                          
+
                           Padding(
                             padding: const EdgeInsets.only(top: 60.0),
                           ),
