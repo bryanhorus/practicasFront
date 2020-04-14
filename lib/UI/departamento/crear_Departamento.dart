@@ -33,7 +33,6 @@ class CrearDepartamentoState extends State<CrearDepartamento>
 
   bool _autovalidate = false;
 
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   void _handleSubmitted() {
@@ -54,14 +53,6 @@ class CrearDepartamentoState extends State<CrearDepartamento>
       key: _scaffoldKey,
       appBar: AppBar(title: const Text(Constants.tittleDepartamento)),
       body: Stack(fit: StackFit.expand, children: <Widget>[
-        Container(
-          child: Image(
-            image: AssetImage(Constants.registroImage),
-            fit: BoxFit.cover,
-            colorBlendMode: BlendMode.difference,
-            color: Colors.black12,
-          ),
-        ),
         Center(
           child: Container(
             child: Theme(
@@ -89,8 +80,13 @@ class CrearDepartamentoState extends State<CrearDepartamento>
                           const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
-                              labelText: Constants.labelNombre,
-                            ),
+                                labelText: Constants.labelNombre,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelDepartamento,
+                                suffix: Icon(Icons.create),
+                                icon: Icon(Icons.assistant_photo) //
+                                ),
                             validator: validateName,
                             keyboardType: TextInputType.text,
                             onSaved: (String value) {
@@ -108,8 +104,8 @@ class CrearDepartamentoState extends State<CrearDepartamento>
                             ),
                             height: 50.0,
                             minWidth: 150.0,
-                            color: Color(0xFFE1F5FE),
-                            splashColor: Colors.blueAccent,
+                            color: Color(0xFF42a5f5),
+                            splashColor: Colors.blue,
                             textColor: Colors.black,
                             child: Text(Constants.btnRegistar),
                             onPressed: _handleSubmitted,

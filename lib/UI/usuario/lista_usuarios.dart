@@ -54,7 +54,13 @@ class ListaUsuariosState extends State<ListaUsuarios>
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: const Text(Constants.tittleListaUsuarios),
+        title: Text(Constants.tittleListaUsuarios),
+        actions: <Widget>[
+            IconButton(
+              icon: new Icon(Icons.person_add),
+              onPressed: () {TecniNavigator.goToRegistrarUsuario(context);},
+            ),
+          ],
       ),
       body: Stack(fit: StackFit.expand, children: <Widget>[
         Container(
