@@ -5,6 +5,8 @@ import 'package:tenic_api/navigator.dart';
 import 'dart:math' as math;
 import 'package:tenic_api/resource/constants.dart';
 
+import 'dialog.dart';
+
 class ProfilePageDesign extends StatefulWidget {
   final LoginUser usuario;
     const ProfilePageDesign({this.usuario, key}) : super(key: key);
@@ -24,7 +26,18 @@ with SingleTickerProviderStateMixin{
       fontWeight: FontWeight.bold
     );
   }
-
+onExit(){
+Dialogs.confirm(context, title: "Salir de la aplicacion",
+ message: "estas seguro salir",
+ onCancel: (){
+   Navigator.pop(context);
+ },
+onConfirm: (){
+  Navigator.pop(context);
+  Navigator.pushNamedAndRemoveUntil(context, '/', (_)=>false);
+}
+);
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +47,21 @@ with SingleTickerProviderStateMixin{
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            
+                        PopupMenuButton(
+              icon: Icon(Icons.more_vert),
+              onSelected: (String value){
+                if(value=="salir"){
+onExit();
+                }
+              },
+              itemBuilder: (context)=>[
+                PopupMenuItem(
+                  value: "salir",
+                  child: Text("Exit app"),
+                )
+
+              ],
+              ),
             Text(Constants.mensajePerfil, style: _style(),),
             SizedBox(height: 4,),
             Text(Constants.agradecimiento),
@@ -105,11 +132,11 @@ CustomAppBar({this.usuario});
                       ),
                     ),
                     SizedBox(height: 16,),
-                    Text('Stefania@gmail.com', style: TextStyle(
+                    Text('bryan@gmail.com', style: TextStyle(
                       color: Colors.white,
                       fontSize: 15
                     ),),
-                    Text('3166950211', style: TextStyle(
+                    Text('3196399117', style: TextStyle(
                       color: Colors.white,
                       fontSize: 15
                     ),)
@@ -120,9 +147,7 @@ CustomAppBar({this.usuario});
                     Text(Constants.trabajador, style: TextStyle(
                         color: Colors.white
                     ),),
-                    
-                    Text(
-                      'Stefania Ramirez', style: TextStyle(
+                    Text('Bryan alvarado', style: TextStyle(
                         fontSize: 26,
                         color: Colors.white
                     ),)
