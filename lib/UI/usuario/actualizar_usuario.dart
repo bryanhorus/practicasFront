@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/usuario_bloc.dart';
@@ -28,7 +30,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
       correo: "",
       password: "",
       telfono: "",
-      role: Role(idTipo: 0)
+      roles: [Role(idTipo: 0)]
   );
 
   @override
