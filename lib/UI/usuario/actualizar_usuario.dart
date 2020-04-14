@@ -28,7 +28,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
       correo: "",
       password: "",
       telfono: "",
-      typeUser: TipoUsuario(idTipo: 0)
+      role: Role(idTipo: 0)
   );
 
   @override
@@ -91,11 +91,6 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelNombre,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelNombre,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.account_circle)
                             ),
                             initialValue: usuario.nombre,
                             validator: validateName,
@@ -109,14 +104,6 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelApellido,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelApellido,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.account_circle)
-
-
-                              
                             ),
                             initialValue: usuario.apellido,
                             validator: validateName,
@@ -125,15 +112,9 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
-                          const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelCorreo,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelCorreo,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.email)
                             ),
                             keyboardType: TextInputType.emailAddress,
                             maxLength: 32,
@@ -144,17 +125,11 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
-                          
                           TextFormField(
                             obscureText: true,
                             autocorrect: false,
                             decoration: new InputDecoration(
                               labelText: Constants.labelPassword,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelPassword,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.security)
                             ),
                             maxLength: 12,
                             initialValue: usuario.password,
@@ -167,11 +142,6 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelTelefono,
-                                                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelTelefono,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.phone)
                             ),
                             keyboardType: TextInputType.phone,
                             maxLength: 12,

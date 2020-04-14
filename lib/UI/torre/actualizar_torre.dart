@@ -94,15 +94,6 @@ class ActualizarTorreState extends State<ActualizarTorre>
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelNombre,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelNombre,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.settings_input_antenna)
-
-
-
-
                             ),
                             initialValue: torre.nombre,
                             validator: validateName,
@@ -116,11 +107,6 @@ class ActualizarTorreState extends State<ActualizarTorre>
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelIdentificacion,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelIdentificacion,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.perm_identity)
                             ),
                             initialValue: torre.identificacion,
                             keyboardType: TextInputType.number,
@@ -129,15 +115,10 @@ class ActualizarTorreState extends State<ActualizarTorre>
                               torre.identificacion = value;
                             },
                             style: TextStyle(fontSize: 18.0),
-                          ),const SizedBox(height: 12.0),
+                          ),
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelDireccion,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelDireccion,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.directions)
                             ),
                             initialValue: torre.direccion,
                             keyboardType: TextInputType.emailAddress,
@@ -145,34 +126,20 @@ class ActualizarTorreState extends State<ActualizarTorre>
                               torre.direccion = value;
                             },
                             style: TextStyle(fontSize: 18.0),
-                          ),const SizedBox(height: 12.0),
+                          ),
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelCoordenadas,
-                                 border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelCoordenadas,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.map)
-
-
                             ),
                             initialValue: torre.coordenadas,
                             onSaved: (String value) {
                               torre.coordenadas = value;
                             },
                             style: TextStyle(fontSize: 18.0),
-                          ),const SizedBox(height: 12.0),
+                          ),
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelAltura,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelAltura,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.show_chart)
-
-
                             ),
                             initialValue: torre.altura,
                             keyboardType: TextInputType.number,
@@ -186,11 +153,6 @@ class ActualizarTorreState extends State<ActualizarTorre>
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelTecnologia,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelTecnologia,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.computer)
                             ),
                             initialValue: torre.tecnologia,
                             keyboardType: TextInputType.number,

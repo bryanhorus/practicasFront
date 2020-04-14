@@ -24,7 +24,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
       correo: '',
       password: '',
       telfono: '',
-      typeUser: TipoUsuario(idTipo: 0));
+      role: Role(idTipo: 0));
 
   @override
   void initState() {
@@ -94,11 +94,6 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelNombre,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelNombre,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.account_circle)
                             ),
                             validator: validateName,
                             keyboardType: TextInputType.emailAddress,
@@ -111,11 +106,6 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelApellido,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelApellido,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.account_circle)//
                             ),
                             validator: validateName,
                             onSaved: (String value) {
@@ -123,16 +113,9 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
-                          const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelCorreo,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelCorreo,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.email)
-                              
                             ),
                             keyboardType: TextInputType.emailAddress,
                             maxLength: 32,
@@ -147,11 +130,6 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                             autocorrect: false,
                             decoration: new InputDecoration(
                               labelText: Constants.labelPassword,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelPassword,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.security)
                             ),
                             maxLength: 12,
                             validator: validatePassword,
@@ -163,16 +141,6 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelTelefono,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelTelefono,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.phone)
-
-
-
-
-
                             ),
                             keyboardType: TextInputType.phone,
                             maxLength: 12,
@@ -185,19 +153,11 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.tipoUsuario,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.tipoUsuario,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.assignment_ind)
-
                             ),
                             keyboardType: TextInputType.number,
-                            
                             maxLength: 1,
-                            
                             onSaved: (String tipoU) {
-                              _tecnico.typeUser.idTipo = int.parse(tipoU);
+                              _tecnico.role.idTipo = int.parse(tipoU);
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),

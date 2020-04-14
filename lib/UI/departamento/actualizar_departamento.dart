@@ -96,11 +96,6 @@ class ActualizarDepartamentoState extends State<ActualizarDepartamento>
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelNombre,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelDept,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.assistant_photo)
                             ),
                             initialValue: departamento.nombre,
                             validator: validateName,

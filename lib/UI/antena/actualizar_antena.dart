@@ -99,11 +99,6 @@ class ActualizarAntenaState extends State<ActualizarAntena>
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelNombre,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelNombre,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.account_circle)
                             ),
                             initialValue: antena.nombre,
                             validator: validateName,
@@ -117,11 +112,6 @@ class ActualizarAntenaState extends State<ActualizarAntena>
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelReferencia,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelReferencia,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.receipt)
                             ),
                             initialValue: antena.referencia,
                             keyboardType: TextInputType.number,
@@ -130,15 +120,10 @@ class ActualizarAntenaState extends State<ActualizarAntena>
                               antena.referencia = value;
                             },
                             style: TextStyle(fontSize: 18.0),
-                          ),const SizedBox(height: 12.0),
+                          ),
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelAltura,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelAltura,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.show_chart)
                             ),
                             keyboardType: TextInputType.number,
                             maxLength: 4,
@@ -152,11 +137,6 @@ class ActualizarAntenaState extends State<ActualizarAntena>
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelOrientacion,
-                                border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelOrientacion,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.call_missed_outgoing)
                             ),
                             initialValue: antena.orientacion,
                             keyboardType: TextInputType.number,
@@ -170,12 +150,6 @@ class ActualizarAntenaState extends State<ActualizarAntena>
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelInclinacion,
-                                 border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelInclinacion,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.call_split)
-                          
                             ),
                             initialValue: antena.inclinacion,
                             keyboardType: TextInputType.number,

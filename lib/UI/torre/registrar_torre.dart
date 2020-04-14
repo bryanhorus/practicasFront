@@ -96,16 +96,6 @@ class CrearTorreState extends State<CrearTorre>
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelNombre,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelNombre,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.settings_input_antenna)
-
-
-
-
-
                             ),
                             validator: validateName,
                             keyboardType: TextInputType.text,
@@ -118,11 +108,6 @@ class CrearTorreState extends State<CrearTorre>
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelIdentificacion,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelIdentificacion,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.perm_identity)
                             ),
                             keyboardType: TextInputType.number,
                             //validator: validateName,
@@ -130,44 +115,29 @@ class CrearTorreState extends State<CrearTorre>
                               _torre.identificacion = value;
                             },
                             style: TextStyle(fontSize: 18.0),
-                          ),const SizedBox(height: 12.0),
+                          ),
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelDireccion,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelDireccion,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.directions)
                             ),
                             keyboardType: TextInputType.emailAddress,
                             onSaved: (String value) {
                               _torre.direccion = value;
                             },
                             style: TextStyle(fontSize: 18.0),
-                          ),const SizedBox(height: 12.0),
+                          ),
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelCoordenadas,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelCoordenadas,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.map)
                             ),
                             onSaved: (String value) {
                               _torre.coordenadas = value;
                             },
                             style: TextStyle(fontSize: 18.0),
-                          ),const SizedBox(height: 12.0),
+                          ),
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelAltura,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelAltura,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.show_chart)
                             ),
                             keyboardType: TextInputType.number,
                             maxLength: 2,
@@ -176,15 +146,10 @@ class CrearTorreState extends State<CrearTorre>
                               _torre.altura = value;
                             },
                             style: TextStyle(fontSize: 18.0),
-                          ),const SizedBox(height: 12.0),
+                          ),
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelTecnologia,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelTecnologia,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.computer)
                             ),
                             keyboardType: TextInputType.number,
                             maxLength: 10,
@@ -192,15 +157,10 @@ class CrearTorreState extends State<CrearTorre>
                               _torre.tecnologia = value;
                             },
                             style: TextStyle(fontSize: 18.0),
-                          ),const SizedBox(height: 12.0),
+                          ),
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelMunicipio,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelMunicipio,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.image)
                             ),
                             keyboardType: TextInputType.number,
                             maxLength: 4,

@@ -86,9 +86,6 @@ class ActualizarMunicipioState extends State<ActualizarMunicipio>
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelNombre,
-                               border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-
                             ),
                             validator: validateName,
                             initialValue: municipio.nombre,

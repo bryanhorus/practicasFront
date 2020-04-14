@@ -90,11 +90,6 @@ class CrearDepartamentoState extends State<CrearDepartamento>
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelNombre,
-                              border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                             hintText: Constants.labelDept,
-                             suffix: Icon(Icons.create),
-                             icon: Icon(Icons.assistant_photo)//
                             ),
                             validator: validateName,
                             keyboardType: TextInputType.text,
