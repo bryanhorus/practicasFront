@@ -26,7 +26,7 @@ class Constants{
   static const String pathServiceTorreDelete ="/api/tecni/torre/delete/id";
   static const String pathServiceTorreLista ="/api/tecni/torre/get/all";
   static const String pathServiceDeleteU="/api/tecni/user/delete/id";
-  static const String pathServiceLogin ="/usuarios/login";
+  static const String pathServiceLogin ="/api/tecni/auth";
 
 
   static const String createMessage = "Creación exitosa";
