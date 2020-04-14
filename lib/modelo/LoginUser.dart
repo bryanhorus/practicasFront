@@ -4,8 +4,10 @@ class LoginUser {
   String password;
   String token;
   String nombre;
+  String telfono;
 
-  LoginUser({this.correo, this.password, this.token, this.nombre, this.idUser});
+  LoginUser({this.correo, this.password, this.token, this.nombre, this.idUser, this.telfono
+  });
 
   factory LoginUser.fromJson(Map<String, dynamic> parsedJson) {
     return LoginUser(
@@ -13,6 +15,7 @@ class LoginUser {
         password: parsedJson['password'],
         token: parsedJson['token'],
         nombre: parsedJson['nombre'],
+        telfono: parsedJson['telfono'],
         idUser: parsedJson['idUser']);
   }
 
@@ -21,6 +24,7 @@ class LoginUser {
         'password': password,
         'token': token,
         'nombre': nombre,
+        'telfono':telfono,
         'idUser': idUser
       };
 }

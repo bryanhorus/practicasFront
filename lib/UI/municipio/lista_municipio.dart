@@ -54,6 +54,12 @@ class ListaMunicipioState extends State<ListaMunicipio>
       key: _scaffoldKey,
       appBar: AppBar(
         title: const Text(Constants.tittleListaMunicipio),
+        actions: <Widget>[
+            IconButton(
+              icon: new Icon(Icons.add_circle),
+              onPressed: () {TecniNavigator.goToRegistrarMunicipio(context);},
+            ),
+          ],
       ),
       body: Stack(fit: StackFit.expand, children: <Widget>[
         Container(
@@ -76,6 +82,8 @@ class ListaMunicipioState extends State<ListaMunicipio>
                     listMunicipio[indice].nombre,
                     //le damos estilo a cada texto
                     style: TextStyle(fontSize: 20, color: Colors.black87)),
+                    leading: new Icon(Icons.map),
+                    //subtitle: Text(listMunicipio[indice].nombre),
                   onTap: (){
                     print(listMunicipio[indice].nombre);
                     municipio = listMunicipio[indice];

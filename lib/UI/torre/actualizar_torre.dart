@@ -8,34 +8,34 @@ import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class ActualizarTorre extends StatefulWidget {
-
   final Torre torre;
-  const ActualizarTorre({ this.torre,Key key}) : super(key: key);
+  const ActualizarTorre({this.torre, Key key}) : super(key: key);
 
   @override
-  ActualizarTorreState createState() => ActualizarTorreState( torre: torre);
+  ActualizarTorreState createState() => ActualizarTorreState(torre: torre);
 }
 
 class ActualizarTorreState extends State<ActualizarTorre>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  ActualizarTorreState ({this.torre});
+  ActualizarTorreState({this.torre});
   TorreBloc torreBloc;
 
-  Torre torre= Torre(
-      nombre:'',
-      identificacion:'',
-      direccion:'',
-      coordenadas:'',
-      altura:'',
-      tecnologia:'',
-      municipio: Municipio(idMunicipio: 0, departament: Departamento(idDpto: 0)));
+  Torre torre = Torre(
+      nombre: '',
+      identificacion: '',
+      direccion: '',
+      coordenadas: '',
+      altura: '',
+      tecnologia: '',
+      municipio:
+          Municipio(idMunicipio: 0, departament: Departamento(idDpto: 0)));
 
   @override
   void initState() {
     super.initState();
-  torreBloc = TorreBloc(context);
+    torreBloc = TorreBloc(context);
   }
 
   void showInSnackBar(String value) {
@@ -45,7 +45,6 @@ class ActualizarTorreState extends State<ActualizarTorre>
   }
 
   bool _autovalidate = false;
-
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -93,8 +92,11 @@ class ActualizarTorreState extends State<ActualizarTorre>
                           const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
-                              labelText: Constants.labelNombre,
-                            ),
+                                labelText: Constants.labelNombre,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelNombre,
+                                icon: Icon(Icons.settings_input_antenna)),
                             initialValue: torre.nombre,
                             validator: validateName,
                             keyboardType: TextInputType.text,
@@ -106,8 +108,11 @@ class ActualizarTorreState extends State<ActualizarTorre>
                           const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
-                              labelText: Constants.labelIdentificacion,
-                            ),
+                                labelText: Constants.labelIdentificacion,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelIdentificacion,
+                                icon: Icon(Icons.perm_identity)),
                             initialValue: torre.identificacion,
                             keyboardType: TextInputType.number,
                             //validator: validateName,
@@ -116,10 +121,14 @@ class ActualizarTorreState extends State<ActualizarTorre>
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
+                          const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
-                              labelText: Constants.labelDireccion,
-                            ),
+                                labelText: Constants.labelDireccion,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelDireccion,
+                                icon: Icon(Icons.directions)),
                             initialValue: torre.direccion,
                             keyboardType: TextInputType.emailAddress,
                             onSaved: (String value) {
@@ -127,20 +136,28 @@ class ActualizarTorreState extends State<ActualizarTorre>
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
+                          const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
-                              labelText: Constants.labelCoordenadas,
-                            ),
+                                labelText: Constants.labelCoordenadas,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelCoordenadas,
+                                icon: Icon(Icons.map)),
                             initialValue: torre.coordenadas,
                             onSaved: (String value) {
                               torre.coordenadas = value;
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
+                          const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
-                              labelText: Constants.labelAltura,
-                            ),
+                                labelText: Constants.labelAltura,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelAltura,
+                                icon: Icon(Icons.show_chart)),
                             initialValue: torre.altura,
                             keyboardType: TextInputType.number,
                             maxLength: 2,
@@ -152,8 +169,11 @@ class ActualizarTorreState extends State<ActualizarTorre>
                           ),
                           TextFormField(
                             decoration: new InputDecoration(
-                              labelText: Constants.labelTecnologia,
-                            ),
+                                labelText: Constants.labelTecnologia,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelTecnologia,
+                                icon: Icon(Icons.computer)),
                             initialValue: torre.tecnologia,
                             keyboardType: TextInputType.number,
                             maxLength: 10,
@@ -168,12 +188,12 @@ class ActualizarTorreState extends State<ActualizarTorre>
                           MaterialButton(
                             shape: RoundedRectangleBorder(
                               borderRadius:
-                              BorderRadius.all(Radius.circular(20.0)),
+                                  BorderRadius.all(Radius.circular(20.0)),
                             ),
                             height: 50.0,
                             minWidth: 150.0,
-                            color: Color(0xFFE1F5FE),
-                            splashColor: Colors.blueAccent,
+                            color: Color(0xFF42a5f5),
+                            splashColor: Colors.blue,
                             textColor: Colors.black,
                             child: Text(Constants.btnRegistar),
                             onPressed: _handleSubmitted,
@@ -202,7 +222,7 @@ class ActualizarTorreState extends State<ActualizarTorre>
     return null;
   }
 
-    String validateAltura(String value) {
+  String validateAltura(String value) {
     if (value.length == 0) {
       return Constants.validateAltura;
     } else if (value.length != 2) {
@@ -210,7 +230,8 @@ class ActualizarTorreState extends State<ActualizarTorre>
     }
     return null;
   }
-    String validateGrados(String value) {
+
+  String validateGrados(String value) {
     if (value.length == 0) {
       return Constants.validateOrientacion;
     } else if (value.length != 3) {
@@ -218,5 +239,4 @@ class ActualizarTorreState extends State<ActualizarTorre>
     }
     return null;
   }
-
 }

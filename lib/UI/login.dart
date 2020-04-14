@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/inicio_sesion_bloc.dart';
 import 'package:tenic_api/modelo/LoginUser.dart';
-import 'package:tenic_api/modelo/usuario_model.dart';
 import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 
 
 class Login extends StatefulWidget {
-  const Login({Key key}) : super(key: key);
+  final LoginUser usuario;
+  const Login({Key key, this.usuario}) : super(key: key);
 
   @override
   LoginState createState() => LoginState();

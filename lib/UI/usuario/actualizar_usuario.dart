@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/usuario_bloc.dart';
@@ -9,19 +7,19 @@ import 'package:tenic_api/resource/constants.dart';
 import 'package:tenic_api/navigator.dart';
 
 class ActualizarUsuario extends StatefulWidget {
-
   final Usuario usuario;
-  const ActualizarUsuario({this.usuario,Key key}) : super(key: key);
+  const ActualizarUsuario({this.usuario, Key key}) : super(key: key);
 
   @override
-  ActualizarUsuarioState createState() => ActualizarUsuarioState( usuario: usuario);
+  ActualizarUsuarioState createState() =>
+      ActualizarUsuarioState(usuario: usuario);
 }
 
 class ActualizarUsuarioState extends State<ActualizarUsuario>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  ActualizarUsuarioState ({this.usuario});
+  ActualizarUsuarioState({this.usuario});
   UsuarioBloc userBloc;
 
   Usuario usuario = Usuario(
@@ -30,8 +28,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
       correo: "",
       password: "",
       telfono: "",
-      roles: [Role(idTipo: 0)]
-  );
+      roles: [Role(idTipo: 0)]);
 
   @override
   void initState() {
@@ -92,8 +89,11 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                           ),
                           TextFormField(
                             decoration: new InputDecoration(
-                              labelText: Constants.labelNombre,
-                            ),
+                                labelText: Constants.labelNombre,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelNombre,
+                                icon: Icon(Icons.account_circle)),
                             initialValue: usuario.nombre,
                             validator: validateName,
                             keyboardType: TextInputType.emailAddress,
@@ -105,8 +105,11 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                           const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
-                              labelText: Constants.labelApellido,
-                            ),
+                                labelText: Constants.labelApellido,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelApellido,
+                                icon: Icon(Icons.account_circle)),
                             initialValue: usuario.apellido,
                             validator: validateName,
                             onSaved: (String value) {
@@ -114,10 +117,14 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
+                          const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
-                              labelText: Constants.labelCorreo,
-                            ),
+                                labelText: Constants.labelCorreo,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelCorreo,
+                                icon: Icon(Icons.email)),
                             keyboardType: TextInputType.emailAddress,
                             maxLength: 32,
                             initialValue: usuario.correo,
@@ -131,8 +138,11 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             obscureText: true,
                             autocorrect: false,
                             decoration: new InputDecoration(
-                              labelText: Constants.labelPassword,
-                            ),
+                                labelText: Constants.labelPassword,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelPassword,
+                                icon: Icon(Icons.security)),
                             maxLength: 12,
                             initialValue: usuario.password,
                             validator: validatePassword,
@@ -143,8 +153,11 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                           ),
                           TextFormField(
                             decoration: new InputDecoration(
-                              labelText: Constants.labelTelefono,
-                            ),
+                                labelText: Constants.labelTelefono,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelTelefono,
+                                icon: Icon(Icons.phone)),
                             keyboardType: TextInputType.phone,
                             maxLength: 12,
                             initialValue: usuario.telfono,
@@ -164,7 +177,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             ),
                             height: 50.0,
                             minWidth: 150.0,
-                            color: Color(0XFF03A9F4),
+                            color: Color(0xFF42a5f5),
                             splashColor: Colors.blue,
                             textColor: Colors.white,
                             child: Text(Constants.btnModificar),

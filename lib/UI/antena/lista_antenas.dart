@@ -9,7 +9,7 @@ import 'package:tenic_api/resource/constants.dart';
 
 class ListaAntenas extends StatefulWidget {
   final Antena antena;
-  const ListaAntenas({Key key,this.antena}) : super(key: key);
+  const ListaAntenas({Key key, this.antena}) : super(key: key);
 
   @override
   ListaAntenasState createState() => ListaAntenasState();
@@ -56,6 +56,14 @@ class ListaAntenasState extends State<ListaAntenas>
       key: _scaffoldKey,
       appBar: AppBar(
         title: const Text(Constants.tittleListaAntenas),
+        actions: <Widget>[
+          IconButton(
+            icon: new Icon(Icons.add_circle),
+            onPressed: () {
+              TecniNavigator.goToRegistrarAntenaUi(context);
+            },
+          ),
+        ],
       ),
       body: Stack(fit: StackFit.expand, children: <Widget>[
         Container(
@@ -76,44 +84,26 @@ class ListaAntenasState extends State<ListaAntenas>
                       ListTile(
                         title: Text(listAntena[indice].nombre,
                             //le damos estilo a cada texto
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold)),
+                            style:
+                                TextStyle(fontSize: 20, color: Colors.black87)),
+                        subtitle: Text(listAntena[indice].referencia),
+                        leading: new Icon(Icons.flag),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      ActualizarAntena(
+                                        antena: antena,
+                                      )));
+                        },
                       ),
                       // ignore: deprecated_member_use
                       ButtonTheme.bar(
                         child: ButtonBar(
                           children: <Widget>[
-                            FlatButton(
-                              shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20.0)),
-                              ),
-                              color: Colors.yellow[300],
-                              child: const Text(Constants.btnModificar,
-                                  style: TextStyle(
-                                      fontSize: 15, color: Colors.black87)),
-                              onPressed: () {
-                                print(listAntena[indice].nombre);
-                                antena = listAntena[indice];
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            ActualizarAntena(
-                                                antena: antena)));
-                              },
-                            ),
-                            FlatButton(
-                              shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20.0)),
-                              ),
-                              color: Colors.red[300],
-                              child: const Text(Constants.btnEliminar,
-                                  style: TextStyle(
-                                      fontSize: 15, color: Colors.white)),
+                            IconButton(
+                              icon: new Icon(Icons.delete),
                               onPressed: () {
                                 antena = listAntena[indice];
                                 _delete(antena);

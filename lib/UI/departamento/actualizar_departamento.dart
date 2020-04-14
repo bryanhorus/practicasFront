@@ -6,13 +6,13 @@ import 'package:tenic_api/resource/constants.dart';
 import 'package:tenic_api/navigator.dart';
 
 class ActualizarDepartamento extends StatefulWidget {
-
   final Departamento departamento;
 
-  const ActualizarDepartamento({this.departamento,Key key}) : super(key: key);
+  const ActualizarDepartamento({this.departamento, Key key}) : super(key: key);
 
   @override
-  ActualizarDepartamentoState createState() => ActualizarDepartamentoState(departamento: departamento);
+  ActualizarDepartamentoState createState() =>
+      ActualizarDepartamentoState(departamento: departamento);
 }
 
 class ActualizarDepartamentoState extends State<ActualizarDepartamento>
@@ -60,14 +60,6 @@ class ActualizarDepartamentoState extends State<ActualizarDepartamento>
       key: _scaffoldKey,
       appBar: AppBar(title: const Text(Constants.tittleDepartamentoactualizar)),
       body: Stack(fit: StackFit.expand, children: <Widget>[
-        Container(
-          child: Image(
-            image: AssetImage(Constants.registroImage),
-            fit: BoxFit.cover,
-            colorBlendMode: BlendMode.difference,
-            color: Colors.black12,
-          ),
-        ),
         Center(
           child: Container(
             child: Theme(
@@ -95,8 +87,11 @@ class ActualizarDepartamentoState extends State<ActualizarDepartamento>
                           const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
-                              labelText: Constants.labelNombre,
-                            ),
+                                labelText: Constants.labelNombre,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelDepartamento,
+                                icon: Icon(Icons.assistant_photo)),
                             initialValue: departamento.nombre,
                             validator: validateName,
                             keyboardType: TextInputType.text,
@@ -115,8 +110,8 @@ class ActualizarDepartamentoState extends State<ActualizarDepartamento>
                             ),
                             height: 50.0,
                             minWidth: 150.0,
-                            color: Color(0xFFE1F5FE),
-                            splashColor: Colors.blueAccent,
+                            color: Color(0xFF42a5f5),
+                            splashColor: Colors.blue,
                             textColor: Colors.black,
                             child: Text(Constants.btnModificar),
                             onPressed: _handleSubmitted,
