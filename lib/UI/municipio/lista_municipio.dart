@@ -37,10 +37,6 @@ class ListaMunicipioState extends State<ListaMunicipio>
     municipioBloc.listarMunicipio().then((apiResponse) {
       setState(() {
         listMunicipio = apiResponse.listMunicipio;
-<<<<<<< HEAD
-       // TecniNavigator.goToHomeCoordinador(context);
-=======
->>>>>>> 106ac0c6935c7d52dc75daaf605b840604614e28
       });
     });
   }
