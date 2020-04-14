@@ -7,7 +7,7 @@ class Usuario {
   String correo;
   String password;
   String telfono;
-  TipoUsuario typeUser;
+  Role role;
 
   Usuario(
       {this.idUsuario,
@@ -16,7 +16,7 @@ class Usuario {
         this.correo,
         this.password,
         this.telfono,
-        this.typeUser});
+        this.role});
 
   factory Usuario.fromJson(Map<String, dynamic> parsedJson) {
     return Usuario(
@@ -26,7 +26,7 @@ class Usuario {
         correo: parsedJson['correo'],
         password: parsedJson['password'],
         telfono: parsedJson['telfono'],
-        typeUser: TipoUsuario.fromJson(parsedJson['typeUser'])
+        role: Role.fromJson(parsedJson['role'])
     );
   }
 
@@ -37,6 +37,6 @@ class Usuario {
     'correo': correo,
     'password': password,
     'telfono': telfono,
-    'typeUser': typeUser.toJson()
+    'role': role.toJson()
   };
 }

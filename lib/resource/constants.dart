@@ -6,7 +6,7 @@ class Constants{
   static const String urlAuthority = "ec2-3-15-37-85.us-east-2.compute.amazonaws.com:8090";
   static const String contenTypeHeader = "application/json";
   //servicio
-  static const String pathServiceUsuario ="/api/tecni/user/insert";
+  static const String pathServiceUsuario ="/api/tecni/auth/new";
   static const String pathServiceListUsuario ="/api/tecni/user/get/all";
   static const String pathServiceinsertDpto ="/api/tecni/departament/insert";
   static const String pathServiceinsertMunicipio ="/api/tecni/municipio/insert";

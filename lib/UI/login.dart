@@ -144,7 +144,6 @@ class LoginState extends State<Login> with SingleTickerProviderStateMixin {
                               onPressed: (){
                                 //_handleSubmitted;
                                 inicioBloc.iniciarSesion( context ,_userNameController.text ,_passwordController.text);
-
                                 },
                           ),
                         ],
