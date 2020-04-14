@@ -1,4 +1,3 @@
-import 'package:json_annotation/json_annotation.dart';
 import 'package:tenic_api/modelo/tipo_usuario_model.dart';
 
 class Usuario {

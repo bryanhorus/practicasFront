@@ -89,6 +89,8 @@ class ListaAntenasState extends State<ListaAntenas>
                         subtitle: Text(listAntena[indice].referencia),
                         leading: new Icon(Icons.flag),
                         onTap: () {
+                          print(listAntena[indice].nombre);
+                          antena = listAntena[indice];
                           Navigator.push(
                               context,
                               MaterialPageRoute(
