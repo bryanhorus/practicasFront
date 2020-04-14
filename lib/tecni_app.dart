@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:tenic_api/UI/antena/asignar_antena.dart';
 import 'package:tenic_api/UI/antena/registrar_antena.dart';
 import 'package:tenic_api/UI/departamento/actualizar_departamento.dart';
 import 'package:tenic_api/UI/departamento/crear_Departamento.dart';
@@ -39,6 +40,7 @@ class App extends StatelessWidget {
         Constants.registrarantenaRoute: (context) => RegistrarAntena(),
         Constants.actualizarAntenaRoute: (context) => ActualizarAntena(),
         Constants.listaAntenasRoute:(context) => ListaAntenas(),
+        Constants.asignarAntenaRoute:(context) => AsignarAntena(),
         //usuario
         Constants.registroRoute: (context) => TextFormFieldDemo(),
         Constants.actualizarUsuarioRoute: (context) => ActualizarUsuario(),
