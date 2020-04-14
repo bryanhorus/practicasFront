@@ -24,7 +24,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
       correo: '',
       password: '',
       telfono: '',
-      typeUser: TipoUsuario(idTipo: 0));
+      role: Role(idTipo: 0));
 
   @override
   void initState() {
@@ -157,7 +157,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                             keyboardType: TextInputType.number,
                             maxLength: 1,
                             onSaved: (String tipoU) {
-                              _tecnico.typeUser.idTipo = int.parse(tipoU);
+                              _tecnico.role.idTipo = int.parse(tipoU);
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),

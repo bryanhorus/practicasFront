@@ -14,6 +14,7 @@ class LoginApiService {
 
 
   Future<ApiResponse> iniciarSesion( BuildContext context, String correo, String password) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Map<String, String> body = {
       'correo': correo,
       'password': password
@@ -30,6 +31,7 @@ class LoginApiService {
 
     if (apiResponse.statusResponse == 200) {
       var _usuario = new LoginUser.fromJson(resBody);
+      sharedPreferences.setString("token", resBody['token']);
       saveCurrentLogin(_usuario);
       TecniNavigator.goToHomeCoordinador(context);
       return apiResponse;

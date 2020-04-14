@@ -28,7 +28,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
       correo: "",
       password: "",
       telfono: "",
-      typeUser: TipoUsuario(idTipo: 0)
+      role: Role(idTipo: 0)
   );
 
   @override

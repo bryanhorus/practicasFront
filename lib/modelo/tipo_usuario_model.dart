@@ -1,11 +1,11 @@
-class TipoUsuario {
+class Role {
   int idTipo;
   String descripcion;
 
-  TipoUsuario({this.descripcion,this.idTipo});
+  Role({this.descripcion,this.idTipo});
 
-  factory TipoUsuario.fromJson(Map<String, dynamic> parsedJson) {
-    return TipoUsuario(
+  factory Role.fromJson(Map<String, dynamic> parsedJson) {
+    return Role(
       idTipo: parsedJson['idTipo'],
       descripcion: parsedJson['descripcion'],
     );
