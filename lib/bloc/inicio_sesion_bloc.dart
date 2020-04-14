@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tenic_api/modelo/LoginUser.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
 import 'package:tenic_api/repository/repository.dart';
@@ -13,9 +14,9 @@ class InicioSesionBloc {
 
   InicioSesionBloc(BuildContext context);
 
-  Future<bool> iniciarSesion(Usuario usuario) async {
+  Future<bool> iniciarSesion(BuildContext context,String correo , String password) async {
     _validate = false;
-    ApiResponse apiResponse = await _repository.iniciar(usuario);
+    ApiResponse apiResponse = await _repository.iniciar(context,correo,password);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       return _validate = true;
@@ -23,4 +24,6 @@ class InicioSesionBloc {
       return _validate;
     }
   }
+
+
 }

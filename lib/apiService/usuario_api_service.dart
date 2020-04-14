@@ -1,12 +1,16 @@
 import 'dart:io';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:tenic_api/apiService/login_api_service.dart';
+import 'package:tenic_api/bloc/inicio_sesion_bloc.dart';
+import 'package:tenic_api/modelo/LoginUser.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class UsuarioApiService {
   Usuario _usuario;
+  LoginApiService loginApiService;
   UsuarioApiService();
 
   Future<ApiResponse> insertUsuario(Usuario usuario) async {
@@ -47,11 +51,12 @@ class UsuarioApiService {
   }
 
   Future<ApiResponse> listarUsuario() async {
+    LoginApiService.getToken().then((token){   });
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceListUsuario);
     var res = await http.get(
       uri,
-      headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader},
+      headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader },
     );
 
     var resBody = json.decode(res.body);
