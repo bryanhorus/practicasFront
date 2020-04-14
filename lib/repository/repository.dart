@@ -1,9 +1,12 @@
+
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:tenic_api/apiService/antena_api_service.dart';
 import 'package:tenic_api/apiService/dpto_api_service.dart';
 import 'package:tenic_api/apiService/login_api_service.dart';
 import 'package:tenic_api/apiService/municipio_api_service.dart';
 import 'package:tenic_api/apiService/torre_api_service.dart';
 import 'package:tenic_api/apiService/usuario_api_service.dart';
+import 'package:tenic_api/modelo/LoginUser.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
@@ -22,7 +25,9 @@ class Repository {
   final departamentoApiService = DepartamentoApiService();
 
   //promesa de invocacion al usuarioApiService metodo insertar usuario
-  Future<ApiResponse> iniciar(Usuario usuario) => loginApiService.iniciarSesion(usuario);
+  Future<ApiResponse> iniciar( BuildContext context, String correo, String password) => loginApiService.iniciarSesion(context , correo ,password );
+
+
 
   Future<ApiResponse> registrarUsuario(Usuario usuario) => usuarioApiService.insertUsuario(usuario);
   Future<ApiResponse> actualizarUsuario(Usuario usuario) => usuarioApiService.updateUsuario(usuario);
