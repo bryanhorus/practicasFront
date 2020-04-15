@@ -97,7 +97,7 @@ class ActualizarAntenaState extends State<ActualizarAntena>
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                               labelText: Constants.labelNombre,
                               border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -113,7 +113,7 @@ class ActualizarAntenaState extends State<ActualizarAntena>
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                               labelText: Constants.labelReferencia,
                               border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -128,7 +128,7 @@ class ActualizarAntenaState extends State<ActualizarAntena>
                             style: TextStyle(fontSize: 18.0),
                           ),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                               labelText: Constants.labelAltura,
                               border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -144,7 +144,7 @@ class ActualizarAntenaState extends State<ActualizarAntena>
                             style: TextStyle(fontSize: 18.0),
                           ),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                               labelText: Constants.labelOrientacion,
                               border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -160,7 +160,7 @@ class ActualizarAntenaState extends State<ActualizarAntena>
                             style: TextStyle(fontSize: 18.0),
                           ),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                               labelText: Constants.labelInclinacion,
                               border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20.0)),
@@ -206,7 +206,7 @@ class ActualizarAntenaState extends State<ActualizarAntena>
 
   String validateName(String value) {
     String pattern = Constants.patternNombre;
-    RegExp regExp = new RegExp(pattern);
+    RegExp regExp = RegExp(pattern);
     if (value.length == 0) {
       return Constants.validateName;
     } else if (!regExp.hasMatch(value)) {

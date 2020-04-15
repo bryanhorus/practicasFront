@@ -82,7 +82,7 @@ class ActualizarMunicipioState extends State<ActualizarMunicipio>
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                               labelText: Constants.labelNombre,
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20.0)),
@@ -126,7 +126,7 @@ class ActualizarMunicipioState extends State<ActualizarMunicipio>
 
   String validateName(String value) {
     String pattern = Constants.patternNombre;
-    RegExp regExp = new RegExp(pattern);
+    RegExp regExp =  RegExp(pattern);
     if (value.length == 0) {
       return Constants.validateName;
     } else if (!regExp.hasMatch(value)) {

@@ -81,12 +81,11 @@ class CrearMunicipioState extends State<CrearMunicipio>
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                                 labelText: Constants.labelDepartamento,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
                                 hintText: Constants.labelDepartamento,
-                                suffix: Icon(Icons.create),
                                 icon: Icon(Icons.assistant_photo)),
                             keyboardType: TextInputType.text,
                             onSaved: (String depart) {
@@ -96,12 +95,11 @@ class CrearMunicipioState extends State<CrearMunicipio>
                           ),
                           Divider(),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                                 labelText: Constants.labelNombre,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
                                 hintText: Constants.labelMunicipio,
-                                suffix: Icon(Icons.create),
                                 icon: Icon(Icons.image)),
                             validator: validateName,
                             keyboardType: TextInputType.text,
@@ -141,7 +139,7 @@ class CrearMunicipioState extends State<CrearMunicipio>
 
   String validateName(String value) {
     String pattern = Constants.patternNombre;
-    RegExp regExp = new RegExp(pattern);
+    RegExp regExp = RegExp(pattern);
     if (value.length == 0) {
       return Constants.validateName;
     } else if (!regExp.hasMatch(value)) {

@@ -88,7 +88,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             padding: const EdgeInsets.only(top: 40.0),
                           ),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration:  InputDecoration(
                                 labelText: Constants.labelNombre,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -104,7 +104,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration:  InputDecoration(
                                 labelText: Constants.labelApellido,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -119,7 +119,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration:  InputDecoration(
                                 labelText: Constants.labelCorreo,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -137,7 +137,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                           TextFormField(
                             obscureText: true,
                             autocorrect: false,
-                            decoration: new InputDecoration(
+                            decoration:  InputDecoration(
                                 labelText: Constants.labelPassword,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -152,7 +152,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             style: TextStyle(fontSize: 18.0),
                           ),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration:  InputDecoration(
                                 labelText: Constants.labelTelefono,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -201,7 +201,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
 
   String validateName(String value) {
     String pattern = Constants.patternNombre;
-    RegExp regExp = new RegExp(pattern);
+    RegExp regExp = RegExp(pattern);
     if (value.length == 0) {
       return Constants.validateName;
     } else if (!regExp.hasMatch(value)) {
@@ -212,7 +212,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
 
   String validateLastName(String value) {
     String pattern = Constants.patternNombre;
-    RegExp regExp = new RegExp(pattern);
+    RegExp regExp = RegExp(pattern);
     if (value.length == 0) {
       return Constants.validateLastName;
     } else if (!regExp.hasMatch(value)) {
@@ -223,7 +223,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
 
   String validateEmail(String value) {
     String pattern = Constants.pattern;
-    RegExp regExp = new RegExp(pattern);
+    RegExp regExp = RegExp(pattern);
     if (value.length == 0) {
       return Constants.validateEmail;
     } else if (!regExp.hasMatch(value)) {

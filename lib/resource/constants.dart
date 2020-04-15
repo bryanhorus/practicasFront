@@ -105,6 +105,7 @@ class Constants{
   static const String registroRoute = "/registro_usuarios";
   static const String userRoute = "/usuario";
   static const String asignarTorresRoute = "/torre";
+  static const String asignarAntenaRoute = "/asignar_antena";
   static const String registrarTorreRoute = "/registrar_torre";
   static const String registrarantenaRoute = "/registrar_antena";
   static const String actualizarAntenaRoute = "/actualizar_antena";

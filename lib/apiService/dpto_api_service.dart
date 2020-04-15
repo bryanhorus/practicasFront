@@ -9,18 +9,18 @@ import 'package:tenic_api/resource/constants.dart';
 import '../Session_Storage.dart';
 
 class DepartamentoApiService {
-
   Departamento _departamento;
-
   final SessionStorage _session = SessionStorage();
+  DepartamentoApiService();
+
 
   Future<ApiResponse> insertDepartamento(Departamento departamento) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
-
     var body2 = json.encode(departamento.toJson());
     Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceinsertDpto);
     var res = await http.post(uri,
-        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader: _session.getToken().toString()},
+        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, 
+        HttpHeaders.authorizationHeader: _session.getToken().toString()},
         body: body2);
 
     var resBody = json.decode(res.body);
@@ -39,7 +39,8 @@ class DepartamentoApiService {
     Uri uri = Uri.http(
         Constants.urlAuthority, Constants.pathServiceDepartamentoUpdate);
     var res = await http.put(uri,
-        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader: _session.getToken().toString()},
+        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader,
+        HttpHeaders.authorizationHeader: _session.getToken().toString()},
         body: body2);
 
     var resBody = json.decode(res.body);
@@ -62,7 +63,8 @@ class DepartamentoApiService {
     Uri uri = Uri.http(Constants.urlAuthority,
         Constants.pathServiceDepartamentoDelete, queryParameters);
     var res = await http.delete(uri,
-        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader: _session.getToken().toString()});
+        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, 
+        HttpHeaders.authorizationHeader: _session.getToken().toString()});
 
     apiResponse.statusResponse = res.statusCode;
 
@@ -75,7 +77,8 @@ class DepartamentoApiService {
         Uri.http(Constants.urlAuthority, Constants.pathServiceDepartamento);
     var res = await http.get(
       uri,
-      headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader: _session.getToken().toString()},
+      headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader , 
+      HttpHeaders.authorizationHeader: _session.getToken().toString()},
     );
 
     var resBody = json.decode(res.body);

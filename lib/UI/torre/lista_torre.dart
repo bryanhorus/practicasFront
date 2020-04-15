@@ -63,7 +63,7 @@ class _ListaTorreState extends State<ListaTorre>
         title: const Text(Constants.tittleListaTorre),
         actions: <Widget>[
             IconButton(
-              icon: new Icon(Icons.add_circle),
+              icon: Icon(Icons.add_circle),
               onPressed: () {TecniNavigator.goToRegistrarTorre(context);},
             ),
           ],
@@ -86,7 +86,7 @@ class _ListaTorreState extends State<ListaTorre>
                           style: TextStyle(fontSize: 20, color: Colors.black87)
                           ),
                       subtitle: Text(listTorre[indice].identificacion),
-                      leading: new Icon(Icons.place),
+                      leading: Icon(Icons.place),
                       onTap: () {
                         print(listTorre[indice].nombre);
                         torre = listTorre[indice];
