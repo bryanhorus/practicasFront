@@ -23,7 +23,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
       correo: '',
       password: '',
       telfono: '',
-      roles: [Role(idTipo: 0)]);
+      roles: List());
 
   @override
   void initState() {
@@ -169,7 +169,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                             keyboardType: TextInputType.number,
                             maxLength: 1,
                             onSaved: (String tipoU) {
-                              _tecnico.roles.length = int.parse(tipoU);
+                             _tecnico.roles.add(Role(idTipo: int.parse(tipoU)));
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),

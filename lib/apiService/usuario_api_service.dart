@@ -25,8 +25,8 @@ class UsuarioApiService {
     apiResponse.statusResponse = res.statusCode;
 
     if (apiResponse.statusResponse == 200) {
-      _usuario = Usuario.fromJson(resBody);
-      apiResponse.object = _usuario;
+     // _usuario = Usuario.fromJson(resBody);
+     // apiResponse.object = _usuario;
     }
     return apiResponse;
   }
@@ -37,8 +37,7 @@ class UsuarioApiService {
     Uri uri =
     Uri.http(Constants.urlAuthority, Constants.pathServiceUsuarioUpdate);
     var res = await http.put(uri,
-        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, 
-        HttpHeaders.authorizationHeader: _session.getToken().toString()},
+        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader},
         body: body2);
 
     var resBody = json.decode(res.body);

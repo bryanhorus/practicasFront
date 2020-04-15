@@ -1,4 +1,5 @@
 class Role {
+
   int idTipo;
   String descripcion;
 
