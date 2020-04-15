@@ -58,7 +58,7 @@ class _ListaDptoState extends State<ListaDpto>
         title: const Text(Constants.tittleListaDepartamentos),
         actions: <Widget>[
           IconButton(
-            icon: new Icon(Icons.add_circle),
+            icon: Icon(Icons.add_circle),
             onPressed: () {
               TecniNavigator.goToRegistrarDepartamento(context);
             },
@@ -81,7 +81,7 @@ class _ListaDptoState extends State<ListaDpto>
                       title: Text(listDepartamento[indice].nombre,
                           style:
                               TextStyle(fontSize: 20, color: Colors.black87)),
-                      leading: new Icon(Icons.flag),
+                      leading: Icon(Icons.flag),
                       onTap: () {
                         print(listDepartamento[indice].nombre);
                         departamento = listDepartamento[indice];
@@ -99,7 +99,7 @@ class _ListaDptoState extends State<ListaDpto>
                       child: ButtonBar(
                         children: <Widget>[
                           IconButton(
-                            icon: new Icon(Icons.delete),
+                            icon: Icon(Icons.delete),
                             onPressed: () {
                               departamento = listDepartamento[indice];
                               _delete(departamento);

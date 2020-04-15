@@ -58,13 +58,13 @@ class ListaAntenasState extends State<ListaAntenas>
         title: const Text(Constants.tittleListaAntenas),
         actions: <Widget>[
           IconButton(
-            icon: new Icon(Icons.add_circle),
+            icon: Icon(Icons.add_circle),
             onPressed: () {
-              TecniNavigator.goToAsignarTorre(context);
+              TecniNavigator.goToAsignarAntena(context);
             },
           ),
           IconButton(
-            icon: new Icon(Icons.add_circle),
+            icon: Icon(Icons.add_circle),
             onPressed: () {
               TecniNavigator.goToRegistrarAntenaUi(context);
             },
@@ -93,7 +93,7 @@ class ListaAntenasState extends State<ListaAntenas>
                             style:
                                 TextStyle(fontSize: 20, color: Colors.black87)),
                         subtitle: Text(listAntena[indice].referencia),
-                        leading: new Icon(Icons.flag),
+                        leading: Icon(Icons.flag),
                         onTap: () {
                           print(listAntena[indice].nombre);
                           antena = listAntena[indice];
@@ -111,7 +111,7 @@ class ListaAntenasState extends State<ListaAntenas>
                         child: ButtonBar(
                           children: <Widget>[
                             IconButton(
-                              icon: new Icon(Icons.delete),
+                              icon: Icon(Icons.delete),
                               onPressed: () {
                                 antena = listAntena[indice];
                                 _delete(antena);

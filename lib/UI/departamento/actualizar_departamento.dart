@@ -37,11 +37,9 @@ class ActualizarDepartamentoState extends State<ActualizarDepartamento>
   }
 
   bool _autovalidate = false;
-  //bool _formWasEdited = false;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  //final GlobalKey<FormFieldState<String>> _passwordFieldKey =
-  //GlobalKey<FormFieldState<String>>();
+
 
   void _handleSubmitted() {
     final FormState form = _formKey.currentState;
@@ -131,7 +129,7 @@ class ActualizarDepartamentoState extends State<ActualizarDepartamento>
 
   String validateName(String value) {
     String pattern = Constants.patternNombre;
-    RegExp regExp = new RegExp(pattern);
+    RegExp regExp = RegExp(pattern);
     if (value.length == 0) {
       return Constants.validateName;
     } else if (!regExp.hasMatch(value)) {

@@ -92,12 +92,11 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                                 labelText: Constants.labelNombre,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
                                 hintText: Constants.labelNombre,
-                                suffix: Icon(Icons.create),
                                 icon: Icon(Icons.account_circle)),
                             validator: validateName,
                             keyboardType: TextInputType.text,
@@ -108,12 +107,11 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                                 labelText: Constants.labelReferencia,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
                                 hintText: Constants.labelReferencia,
-                                suffix: Icon(Icons.create),
                                 icon: Icon(Icons.receipt)),
                             keyboardType: TextInputType.number,
                             validator: validateReferencia,
@@ -124,7 +122,7 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                                 labelText: Constants.labelAltura,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -140,7 +138,7 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                             style: TextStyle(fontSize: 18.0),
                           ),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                                 labelText: Constants.labelOrientacion,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -156,7 +154,7 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                             style: TextStyle(fontSize: 18.0),
                           ),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                                 labelText: Constants.labelInclinacion,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -172,7 +170,7 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                             style: TextStyle(fontSize: 18.0),
                           ),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                                 labelText: Constants.labelTorre,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -189,7 +187,7 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                             style: TextStyle(fontSize: 18.0),
                           ),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                                 labelText: ('estado'),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -234,7 +232,7 @@ class RegistrarAntenaState extends State<RegistrarAntena>
 
   String validateName(String value) {
     String pattern = Constants.patternNombre;
-    RegExp regExp = new RegExp(pattern);
+    RegExp regExp = RegExp(pattern);
     if (value.length == 0) {
       return Constants.validateName;
     } else if (!regExp.hasMatch(value)) {

@@ -79,13 +79,12 @@ class CrearDepartamentoState extends State<CrearDepartamento>
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                                 labelText: Constants.labelNombre,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
                                 hintText: Constants.labelDepartamento,
-                                suffix: Icon(Icons.create),
-                                icon: Icon(Icons.assistant_photo) //
+                                icon: Icon(Icons.assistant_photo) 
                                 ),
                             validator: validateName,
                             keyboardType: TextInputType.text,
@@ -125,7 +124,7 @@ class CrearDepartamentoState extends State<CrearDepartamento>
 
   String validateName(String value) {
     String pattern = Constants.patternNombre;
-    RegExp regExp = new RegExp(pattern);
+    RegExp regExp = RegExp(pattern);
     if (value.length == 0) {
       return Constants.validateName;
     } else if (!regExp.hasMatch(value)) {

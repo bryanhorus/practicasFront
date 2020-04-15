@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
 import 'package:tenic_api/resource/constants.dart';

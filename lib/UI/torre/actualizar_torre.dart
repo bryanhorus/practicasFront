@@ -91,7 +91,7 @@ class ActualizarTorreState extends State<ActualizarTorre>
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                                 labelText: Constants.labelNombre,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -107,7 +107,7 @@ class ActualizarTorreState extends State<ActualizarTorre>
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                                 labelText: Constants.labelIdentificacion,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -123,7 +123,7 @@ class ActualizarTorreState extends State<ActualizarTorre>
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration:  InputDecoration(
                                 labelText: Constants.labelDireccion,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -138,7 +138,7 @@ class ActualizarTorreState extends State<ActualizarTorre>
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration:  InputDecoration(
                                 labelText: Constants.labelCoordenadas,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -152,7 +152,7 @@ class ActualizarTorreState extends State<ActualizarTorre>
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                                 labelText: Constants.labelAltura,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -168,7 +168,7 @@ class ActualizarTorreState extends State<ActualizarTorre>
                             style: TextStyle(fontSize: 18.0),
                           ),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                                 labelText: Constants.labelTecnologia,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -213,7 +213,7 @@ class ActualizarTorreState extends State<ActualizarTorre>
 
   String validateName(String value) {
     String pattern = Constants.patternNombre;
-    RegExp regExp = new RegExp(pattern);
+    RegExp regExp = RegExp(pattern);
     if (value.length == 0) {
       return Constants.validateName;
     } else if (!regExp.hasMatch(value)) {

@@ -57,7 +57,7 @@ class ListaUsuariosState extends State<ListaUsuarios>
         title: Text(Constants.tittleListaUsuarios),
         actions: <Widget>[
             IconButton(
-              icon: new Icon(Icons.person_add),
+              icon:  Icon(Icons.person_add),
               onPressed: () {TecniNavigator.goToRegistrarUsuario(context);},
             ),
           ],
