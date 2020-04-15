@@ -7,15 +7,17 @@ import 'package:tenic_api/resource/constants.dart';
 
 
 
-class Login extends StatefulWidget {
-  final LoginUser usuario;
-  const Login({Key key, this.usuario}) : super(key: key);
-
+class LoginPage extends StatefulWidget {
   @override
   LoginState createState() => LoginState();
 }
 
-class LoginState extends State<Login> with SingleTickerProviderStateMixin {
+Login _login = Login(
+  correo: "",
+  password: "",
+);
+
+class LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -23,15 +25,13 @@ class LoginState extends State<Login> with SingleTickerProviderStateMixin {
   bool _validate;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  InicioSesionBloc inicioBloc;
-  LoginUser _usuario = LoginUser(
-    correo: "",
-    password: "",
-  );
+
+  final InicioSesionBloc inicioSesionBloc = InicioSesionBloc();
+
   @override
   void initState() {
     super.initState();
-    inicioBloc = InicioSesionBloc(context);
+    InicioSesionBloc();
   }
 
   void showInSnackBar(String value) {
@@ -44,9 +44,10 @@ class LoginState extends State<Login> with SingleTickerProviderStateMixin {
     final FormState form = _formKey.currentState;
     if (!form.validate()) {
       _autovalidate = true;
+      showInSnackBar('corregir');
     } else {
       form.save();
-      _validate = await inicioBloc.iniciarSesion( context ,_userNameController.text ,_passwordController.text);
+        _validate = await inicioSesionBloc.iniciarSesion(_login);
       if(_validate){
         TecniNavigator.goToHomeCoordinador(context);
       }
@@ -56,7 +57,7 @@ class LoginState extends State<Login> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
+      //key: _scaffoldKey,
       appBar: AppBar(
         title: const Text(Constants.tittleLogin),
       ),
@@ -97,7 +98,7 @@ class LoginState extends State<Login> with SingleTickerProviderStateMixin {
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                               hintText: Constants.labelCorreo,
                               icon: Icon(Icons.mail, color: Colors.grey),
                               labelText: Constants.labelCorreo,
@@ -107,14 +108,14 @@ class LoginState extends State<Login> with SingleTickerProviderStateMixin {
                             validator: validateEmail,
                             controller: _userNameController,
                             onSaved: (String value) {
-                              _usuario.correo = value;
+                              _login.correo = value;
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
                           TextFormField(
                             obscureText: true,
                             autocorrect: false,
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                               hintText: Constants.labelPassword,
                               icon: Icon(Icons.lock, color: Colors.grey),
                               labelText: Constants.labelPassword
@@ -123,7 +124,7 @@ class LoginState extends State<Login> with SingleTickerProviderStateMixin {
                             validator: validatePassword,
                             controller: _passwordController,
                             onSaved: (String value) {
-                              _usuario.password = value;
+                              _login.password = value;
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
@@ -141,10 +142,12 @@ class LoginState extends State<Login> with SingleTickerProviderStateMixin {
                               splashColor: Colors.blue,
                               textColor: Colors.white,
                               child: Text(Constants.btnIngresar),
-                              onPressed: (){
-                                //_handleSubmitted;
-                                inicioBloc.iniciarSesion( context ,_userNameController.text ,_passwordController.text);
-                                },
+
+                              //onPressed: (){inicioBloc.iniciarSesion(_login);}
+
+                              onPressed: _handleSubmitted
+
+
                           ),
                         ],
                       ),

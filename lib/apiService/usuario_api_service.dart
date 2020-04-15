@@ -16,12 +16,11 @@ class UsuarioApiService {
   SharedPreferences sharedPreferences;
 
   Future<ApiResponse> insertUsuario(Usuario usuario) async {
-    sharedPreferences = await SharedPreferences.getInstance();
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var body2 = json.encode(usuario.toJson());
     Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceUsuario);
     var res = await http.post(uri,
-        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader: sharedPreferences.getString("token")},
+        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader},
         body: body2);
 
     var resBody = json.decode(res.body);
@@ -56,7 +55,6 @@ class UsuarioApiService {
 
   Future<ApiResponse> listarUsuario() async {
     sharedPreferences = await SharedPreferences.getInstance();
-    LoginApiService.getToken().then((token){   });
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceListUsuario);
     var res = await http.get(

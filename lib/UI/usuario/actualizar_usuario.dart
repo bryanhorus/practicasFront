@@ -28,7 +28,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
       correo: "",
       password: "",
       telfono: "",
-      role: Role(idTipo: 0));
+      roles: [Role(idTipo: 0)]);
 
   @override
   void initState() {

@@ -10,6 +10,7 @@ import 'package:tenic_api/modelo/LoginUser.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
+import 'package:tenic_api/modelo/session_local.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
 import '../modelo/municipio_model.dart';
@@ -25,9 +26,7 @@ class Repository {
   final departamentoApiService = DepartamentoApiService();
 
   //promesa de invocacion al usuarioApiService metodo insertar usuario
-  Future<ApiResponse> iniciar( BuildContext context, String correo, String password) => loginApiService.iniciarSesion(context , correo ,password );
-
-
+  Future<Session> iniciar( Login login) => loginApiService.iniciarSesion(login);
 
   Future<ApiResponse> registrarUsuario(Usuario usuario) => usuarioApiService.insertUsuario(usuario);
   Future<ApiResponse> actualizarUsuario(Usuario usuario) => usuarioApiService.updateUsuario(usuario);

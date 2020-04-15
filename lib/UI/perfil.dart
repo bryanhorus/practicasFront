@@ -8,7 +8,7 @@ import 'package:tenic_api/resource/constants.dart';
 import 'dialog.dart';
 
 class ProfilePageDesign extends StatefulWidget {
-  final LoginUser usuario;
+  final Usuario usuario;
     const ProfilePageDesign({this.usuario, key}) : super(key: key);
 
   @override
@@ -20,7 +20,7 @@ with SingleTickerProviderStateMixin{
 
     ProfilePageDesignState({this.usuario});
 
-    LoginUser usuario = LoginUser(nombre: '', correo: '', telfono: '');
+    Usuario usuario = Usuario(nombre: '', correo:'', telfono:'');
   TextStyle _style(){
     return TextStyle(
       fontWeight: FontWeight.bold
@@ -80,7 +80,7 @@ class CustomAppBar extends StatelessWidget
   with PreferredSizeWidget{
 CustomAppBar({this.usuario});
 
-    LoginUser usuario = LoginUser(nombre: '', correo: '', telfono: '');
+Usuario usuario = Usuario(nombre: '', correo: '', telfono: '');
   @override
   Size get preferredSize => Size(double.infinity, 320);
 
