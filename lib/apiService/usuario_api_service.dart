@@ -11,8 +11,11 @@ import 'package:tenic_api/resource/constants.dart';
 
 class UsuarioApiService {
   Usuario _usuario;
+
   LoginApiService loginApiService;
+
   UsuarioApiService();
+
   SharedPreferences sharedPreferences;
 
   Future<ApiResponse> insertUsuario(Usuario usuario) async {
@@ -27,8 +30,8 @@ class UsuarioApiService {
     apiResponse.statusResponse = res.statusCode;
 
     if (apiResponse.statusResponse == 200) {
-      _usuario = Usuario.fromJson(resBody);
-      apiResponse.object = _usuario;
+     // _usuario = Usuario.fromJson(resBody);
+     // apiResponse.object = _usuario;
     }
     return apiResponse;
   }
