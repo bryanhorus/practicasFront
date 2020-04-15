@@ -6,6 +6,7 @@ import 'package:tenic_api/modelo/usuario_model.dart';
 import 'package:tenic_api/resource/constants.dart';
 import 'package:tenic_api/navigator.dart';
 import 'actualizar_usuario.dart';
+import 'actualizar_usuario.dart';
 
 class ListaUsuarios extends StatefulWidget {
   const ListaUsuarios({Key key}) : super(key: key);
@@ -56,11 +57,13 @@ class ListaUsuariosState extends State<ListaUsuarios>
       appBar: AppBar(
         title: Text(Constants.tittleListaUsuarios),
         actions: <Widget>[
-            IconButton(
-              icon:  Icon(Icons.person_add),
-              onPressed: () {TecniNavigator.goToRegistrarUsuario(context);},
-            ),
-          ],
+          IconButton(
+            icon: Icon(Icons.person_add),
+            onPressed: () {
+              TecniNavigator.goToRegistrarUsuario(context);
+            },
+          ),
+        ],
       ),
       body: Stack(fit: StackFit.expand, children: <Widget>[
         Container(
@@ -84,43 +87,28 @@ class ListaUsuariosState extends State<ListaUsuarios>
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.black,
-                                fontWeight: FontWeight.bold)),
+                                fontWeight: FontWeight.bold)
+                                ),
+                                subtitle: Text(listUsuario[indice].correo),
+                                leading: Icon(Icons.person),
+                        onTap: () {
+                          usuario = listUsuario[indice];
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      ActualizarUsuario(
+                                        usuario: usuario,
+                                      )));
+                        },
                       ),
                       // ignore: deprecated_member_use
                       ButtonTheme.bar(
                         child: ButtonBar(
                           children: <Widget>[
-                            FlatButton(
-                              shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20.0)),
-                              ),
-                              color: Colors.yellow[300],
-                              child: const Text(Constants.btnModificar,
-                                  style: TextStyle(
-                                      fontSize: 15, color: Colors.black87)),
+                            IconButton(
+                              icon: Icon(Icons.delete),
                               onPressed: () {
-                                print(listUsuario[indice].nombre);
-                                usuario = listUsuario[indice];
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            ActualizarUsuario(
-                                                usuario: usuario)));
-                              },
-                            ),
-                            FlatButton(
-                              shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20.0)),
-                              ),
-                              color: Colors.red[300],
-                              child: const Text(Constants.btnEliminar,
-                                  style: TextStyle(
-                                      fontSize: 15, color: Colors.white)),
-                              onPressed: () {
-                                print(listUsuario[indice].nombre);
                                 usuario = listUsuario[indice];
                                 _delete(usuario);
                               },
