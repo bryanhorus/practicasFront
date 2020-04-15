@@ -31,7 +31,7 @@ class App extends StatelessWidget {
       title: Constants.appName,
       initialRoute: Constants.homeRoute,
       routes: {
-        Constants.homeRoute: (context) => Login(),
+        Constants.homeRoute: (context) => LoginPage(),
         Constants.homeCoordinadorRoute: (context) => HomeCoordinador(),
         Constants.perfilCoordinadorRoute: (context) => ProfilePageDesign(),
         Constants.asignarTorresRoute: (context) => AsignarTorre(),

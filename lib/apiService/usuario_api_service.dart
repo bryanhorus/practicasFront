@@ -55,7 +55,6 @@ class UsuarioApiService {
 
   Future<ApiResponse> listarUsuario() async {
     sharedPreferences = await SharedPreferences.getInstance();
-    LoginApiService.getToken().then((token){   });
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceListUsuario);
     var res = await http.get(

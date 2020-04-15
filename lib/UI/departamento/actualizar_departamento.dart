@@ -86,7 +86,7 @@ class ActualizarDepartamentoState extends State<ActualizarDepartamento>
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                                 labelText: Constants.labelNombre,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
