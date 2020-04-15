@@ -2,25 +2,24 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tenic_api/apiService/login_api_service.dart';
-import 'package:tenic_api/bloc/inicio_sesion_bloc.dart';
-import 'package:tenic_api/modelo/LoginUser.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
 import 'package:tenic_api/resource/constants.dart';
+import '../Session_Storage.dart';
 
 class UsuarioApiService {
   Usuario _usuario;
-  LoginApiService loginApiService;
+
   UsuarioApiService();
-  SharedPreferences sharedPreferences;
+  final SessionStorage _session = SessionStorage();
 
   Future<ApiResponse> insertUsuario(Usuario usuario) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var body2 = json.encode(usuario.toJson());
     Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceUsuario);
     var res = await http.post(uri,
-        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader},
+        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader,
+        HttpHeaders.authorizationHeader:  _session.getToken().toString()},
         body: body2);
 
     var resBody = json.decode(res.body);
@@ -34,13 +33,13 @@ class UsuarioApiService {
   }
 
   Future<ApiResponse> updateUsuario(Usuario usuario) async {
-    sharedPreferences = await SharedPreferences.getInstance();
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var body2 = json.encode(usuario.toJson());
     Uri uri =
     Uri.http(Constants.urlAuthority, Constants.pathServiceUsuarioUpdate);
     var res = await http.put(uri,
-        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader: sharedPreferences.getString("token")},
+        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, 
+        HttpHeaders.authorizationHeader: _session.getToken().toString()},
         body: body2);
 
     var resBody = json.decode(res.body);
@@ -54,12 +53,12 @@ class UsuarioApiService {
   }
 
   Future<ApiResponse> listarUsuario() async {
-    sharedPreferences = await SharedPreferences.getInstance();
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceListUsuario);
     var res = await http.get(
       uri,
-      headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader , HttpHeaders.authorizationHeader: sharedPreferences.getString("token")},
+      headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader , 
+      HttpHeaders.authorizationHeader: _session.getToken().toString()}
     );
 
     var resBody = json.decode(res.body);
@@ -78,7 +77,6 @@ class UsuarioApiService {
   }
 
   Future<ApiResponse> deleteUsuario(Usuario usuario) async {
-    sharedPreferences = await SharedPreferences.getInstance();
     var queryParameters = {
       'id': usuario.idUsuario.toString(),//query del id que permite identificr en el servicion el acceso
     };
@@ -86,7 +84,7 @@ class UsuarioApiService {
     Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceDeleteU,
         queryParameters);
     var res = await http.delete(uri,
-        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader: sharedPreferences.getString("token")});
+        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader: _session.getToken().toString()});
     apiResponse.statusResponse = res.statusCode;
 
     if (apiResponse.statusResponse == 200) {
@@ -95,5 +93,6 @@ class UsuarioApiService {
     return apiResponse;
 
   }
+
 }
 
