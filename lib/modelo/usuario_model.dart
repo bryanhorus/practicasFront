@@ -19,8 +19,9 @@ class Usuario {
       this.roles});
 
   factory Usuario.fromJson(Map<String, dynamic> parsedJson) {
+
     var role = parsedJson['roles'] as List;
-    List<Role> imagesList = role.map((i) => Role.fromJson(i)).toList();
+    List<Role> imagesList = role != null ? role.map((i) => Role.fromJson(i)).toList() : null;
 
     return Usuario(
         idUsuario: parsedJson['idUsuario'],
@@ -29,7 +30,8 @@ class Usuario {
         correo: parsedJson['correo'],
         password: parsedJson['password'],
         telfono: parsedJson['telfono'],
-        roles: imagesList);
+        roles: imagesList
+    );
   }
 
   Map<String, dynamic> toJson() => {
@@ -39,6 +41,8 @@ class Usuario {
         'correo': correo,
         'password': password,
         'telfono': telfono,
-        'roles': roles
+        'roles': roles != null ? roles.map((i) => i.toJson()).toList():null
       };
+
+
 }

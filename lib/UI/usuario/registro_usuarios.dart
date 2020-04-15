@@ -23,7 +23,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
       correo: '',
       password: '',
       telfono: '',
-      roles: [Role(idTipo: 0)]);
+      roles: List());
 
   @override
   void initState() {
@@ -84,7 +84,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                                 labelText: Constants.labelNombre,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -99,7 +99,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration:  InputDecoration(
                                 labelText: Constants.labelApellido,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -114,7 +114,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                                 labelText: Constants.labelCorreo,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -131,7 +131,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                           TextFormField(
                             obscureText: true,
                             autocorrect: false,
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                                 labelText: Constants.labelPassword,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -145,7 +145,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                             style: TextStyle(fontSize: 18.0),
                           ),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration:  InputDecoration(
                                 labelText: Constants.labelTelefono,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -160,7 +160,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                             style: TextStyle(fontSize: 18.0),
                           ),
                           TextFormField(
-                            decoration: new InputDecoration(
+                            decoration:  InputDecoration(
                                 labelText: Constants.tipoUsuario,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -169,7 +169,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                             keyboardType: TextInputType.number,
                             maxLength: 1,
                             onSaved: (String tipoU) {
-                              _tecnico.roles.length = int.parse(tipoU);
+                             _tecnico.roles.add(Role(idTipo: int.parse(tipoU)));
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
