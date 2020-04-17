@@ -23,7 +23,7 @@ class _ListaTorreState extends State<ListaTorre>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   Torre torre;
-  TorreBloc torreBloc;
+  final TorreBloc torreBloc = TorreBloc();
   ApiResponse apiResponse;
 
   void showInSnackBar(String value) {
@@ -43,15 +43,10 @@ class _ListaTorreState extends State<ListaTorre>
     });
   }
 
-  void _delete(Torre torre) {
-    torreBloc.deleteTorre(torre);
-    TecniNavigator.goToListaTorre(context);
-  }
-
   @override
   void initState() {
     super.initState();
-    torreBloc = TorreBloc(context);
+    TorreBloc();
     _handleSubmitted();
   }
 
@@ -83,7 +78,7 @@ class _ListaTorreState extends State<ListaTorre>
                     ListTile(
                       title: Text(
                         listTorre[indice].nombre,
-                          style: TextStyle(fontSize: 20, color: Colors.black87)
+                          style: TextStyle(fontSize: 20, color: Colors.black87,fontWeight: FontWeight.bold)
                           ),
                       subtitle: Text(listTorre[indice].identificacion),
                       leading: Icon(Icons.place),

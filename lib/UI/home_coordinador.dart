@@ -15,14 +15,14 @@ class HomeCoordinador extends StatefulWidget {
 
 class HomeCoordinadorState extends State<HomeCoordinador> {
   int pageIndex = 0;
-  final ListaUsuarios _usuarioUi = new ListaUsuarios();
-  final ListaDpto _departamentoUi = new ListaDpto();
-  final ListaMunicipio _municipioUi = new ListaMunicipio();
-  final ListaTorre _torreUi = new ListaTorre();
-  final ListaAntenas _antenaUi = new ListaAntenas();
-  final ProfilePageDesign _perfil = new ProfilePageDesign();
+  final ListaUsuarios _usuarioUi =  ListaUsuarios();
+  final ListaDpto _departamentoUi = ListaDpto();
+  final ListaMunicipio _municipioUi = ListaMunicipio();
+  final ListaTorre _torreUi = ListaTorre();
+  final ListaAntenas _antenaUi = ListaAntenas();
+  final ProfilePageDesign _perfil = ProfilePageDesign();
 
-  Widget _showPage = new ProfilePageDesign();
+  Widget _showPage = ProfilePageDesign();
 
   Widget _pageChooser(int page) {
     switch (page) {
@@ -45,7 +45,7 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
         return _usuarioUi;
         break;
       default:
-        return new Container(child: new Center(child: new Text('ingrese.')));
+        return  Container(child: Center(child:  Text('ingrese.')));
     }
   }
 

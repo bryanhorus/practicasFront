@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tenic_api/UI/dialog.dart';
 import 'package:tenic_api/bloc/departamento_bloc.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
-import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class CrearDepartamento extends StatefulWidget {
@@ -16,13 +16,13 @@ class CrearDepartamentoState extends State<CrearDepartamento>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  DptoBloc departamentoBloc;
+  final DptoBloc departamentoBloc = DptoBloc();
   Departamento _departamento = Departamento(nombre: '');
 
   @override
   void initState() {
     super.initState();
-    departamentoBloc = DptoBloc(context);
+    DptoBloc();
   }
 
   void showInSnackBar(String value) {
@@ -41,9 +41,8 @@ class CrearDepartamentoState extends State<CrearDepartamento>
       _autovalidate = true;
     } else {
       form.save();
-
       departamentoBloc.createDepartamento(_departamento);
-      TecniNavigator.goToHomeCoordinador(context);
+      Message().showRegisterDialog(context);
     }
   }
 
@@ -125,7 +124,7 @@ class CrearDepartamentoState extends State<CrearDepartamento>
   String validateName(String value) {
     String pattern = Constants.patternNombre;
     RegExp regExp = RegExp(pattern);
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateName;
     } else if (!regExp.hasMatch(value)) {
       return Constants.nameStructure;

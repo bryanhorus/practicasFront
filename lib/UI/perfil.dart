@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tenic_api/modelo/LoginUser.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
 import 'package:tenic_api/navigator.dart';
 import 'dart:math' as math;

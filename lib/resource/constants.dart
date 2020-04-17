@@ -28,8 +28,6 @@ class Constants{
   static const String pathServiceDeleteU="/api/tecni/user/delete/id";
   static const String pathServiceLogin ="/api/tecni/auth";
 
-
-  static const String createMessage = "Creación exitosa";
   //validacion de campos
   static const String validateName = "El nombre es necesario";
   static const String nameStructure = "El nombre puede contener a-z y A-Z";
@@ -52,6 +50,7 @@ class Constants{
   static const String pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
   static const String patternNombre = r'(^[a-zA-Z ]*$)';
   //Botones
+  static const String btnCerrar = "Cerrar";
   static const String btnIngresar = "Ingresar";
   static const String btnRegistar = "Registrar ";
   static const String btnSiguiente = "Siguiente ";
@@ -125,6 +124,7 @@ class Constants{
   static const String registroImage = 'assets/imgRegistro.png';
   static const String perfilImage = 'assets/perfil.jpg';
   static const String asignarImage = 'assets/asignarAntena.jpg';
+  static const String image = 'assets/images.png';
   //labels
   static const String labelPassword ="Contraseña";
   static const String labelCorreo ="Correo";
@@ -152,6 +152,10 @@ class Constants{
   //mensajes
   static const String agradecimiento = "¡Gracias por ser parte de esta gran familia,nos sentimos orgullosos de que cada día ponga todo su esfuerzo y dedicación para lograr el éxito que deseamos!";
   static const String mensajePerfil = "Mensaje del dia";
+  static const String createMessage = "Creación exitosa";
+  static const String registroExitoso = "¡Registro exitoso!";
+  static const String tittleDialog = "Información";
+  static const String actualizacion = "  ¡Actualizado!";
 
 
 }

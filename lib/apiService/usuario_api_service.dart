@@ -21,7 +21,6 @@ class UsuarioApiService {
         HttpHeaders.authorizationHeader:  _session.getToken().toString()},
         body: body2);
 
-    var resBody = json.decode(res.body);
     apiResponse.statusResponse = res.statusCode;
 
     if (apiResponse.statusResponse == 200) {

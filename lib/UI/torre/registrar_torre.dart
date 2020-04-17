@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tenic_api/UI/dialog.dart';
 import 'package:tenic_api/bloc/torre_bloc.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/municipio_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
-import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class CrearTorre extends StatefulWidget {
@@ -18,7 +18,7 @@ class CrearTorreState extends State<CrearTorre>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  TorreBloc torreBloc;
+  final TorreBloc torreBloc = TorreBloc();
   Torre _torre = Torre(
       nombre: '',
       identificacion: '',
@@ -32,7 +32,7 @@ class CrearTorreState extends State<CrearTorre>
   @override
   void initState() {
     super.initState();
-    torreBloc = TorreBloc(context);
+    TorreBloc();
   }
 
   void showInSnackBar(String value) {
@@ -52,7 +52,7 @@ class CrearTorreState extends State<CrearTorre>
     } else {
       form.save();
       torreBloc.createTorre(_torre);
-      TecniNavigator.goToHomeCoordinador(context);
+      Message().showRegisterDialog(context);
     }
   }
 
@@ -222,7 +222,7 @@ class CrearTorreState extends State<CrearTorre>
   String validateName(String value) {
     String pattern = Constants.patternNombre;
     RegExp regExp = RegExp(pattern);
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateName;
     } else if (!regExp.hasMatch(value)) {
       return Constants.nameStructure;
@@ -231,7 +231,7 @@ class CrearTorreState extends State<CrearTorre>
   }
 
   String validateAltura(String value) {
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateAltura;
     } else if (value.length != 2) {
       return Constants.alturaStructure;
@@ -240,7 +240,7 @@ class CrearTorreState extends State<CrearTorre>
   }
 
   String validateGrados(String value) {
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateOrientacion;
     } else if (value.length != 3) {
       return Constants.orientacionStructure;

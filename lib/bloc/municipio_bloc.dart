@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/repository/repository.dart';
 import 'package:tenic_api/resource/constants.dart';
@@ -12,7 +12,6 @@ class MunicipioBloc {
 
   ApiResponse get apiResponse => _apiResponse;
 
- MunicipioBloc(BuildContext context);
   Future<ApiResponse> createMunicipio(Municipio municipio) async {
     ApiResponse apiResponse =
         await _repository.registrarMunicipio(municipio);

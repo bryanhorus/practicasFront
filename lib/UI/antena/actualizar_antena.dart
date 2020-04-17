@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:tenic_api/UI/dialog.dart';
 import 'package:tenic_api/bloc/antena_bloc.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/estado_model.dart';
 import 'package:tenic_api/modelo/municipio_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
-import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class ActualizarAntena extends StatefulWidget {
@@ -23,7 +23,7 @@ class ActualizarAntenaState extends State<ActualizarAntena>
 
   ActualizarAntenaState({this.antena});
 
-  AntenaBloc antenaBloc;
+  final AntenaBloc antenaBloc = AntenaBloc();
   Antena antena = Antena(
       nombre: '',
       referencia: '',
@@ -39,13 +39,7 @@ class ActualizarAntenaState extends State<ActualizarAntena>
   @override
   void initState() {
     super.initState();
-    antenaBloc = AntenaBloc(context);
-  }
-
-  void showInSnackBar(String value) {
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text(value),
-    ));
+    AntenaBloc();
   }
 
   bool _autovalidate = false;
@@ -59,7 +53,7 @@ class ActualizarAntenaState extends State<ActualizarAntena>
     } else {
       form.save();
       antenaBloc.updateAntena(antena);
-      TecniNavigator.goToHomeCoordinador(context);
+      Message().showUpdateDialog(context);
     }
   }
 
@@ -100,8 +94,8 @@ class ActualizarAntenaState extends State<ActualizarAntena>
                             decoration: InputDecoration(
                               labelText: Constants.labelNombre,
                               border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0)),
-                                hintText: Constants.labelNombre,
+                                  borderRadius: BorderRadius.circular(20.0)),
+                              hintText: Constants.labelNombre,
                             ),
                             initialValue: antena.nombre,
                             validator: validateName,
@@ -116,8 +110,8 @@ class ActualizarAntenaState extends State<ActualizarAntena>
                             decoration: InputDecoration(
                               labelText: Constants.labelReferencia,
                               border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0)),
-                                hintText: Constants.labelReferencia,
+                                  borderRadius: BorderRadius.circular(20.0)),
+                              hintText: Constants.labelReferencia,
                             ),
                             initialValue: antena.referencia,
                             keyboardType: TextInputType.number,
@@ -127,12 +121,13 @@ class ActualizarAntenaState extends State<ActualizarAntena>
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
+                          const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: InputDecoration(
                               labelText: Constants.labelAltura,
                               border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0)),
-                                hintText: Constants.labelAltura,
+                                  borderRadius: BorderRadius.circular(20.0)),
+                              hintText: Constants.labelAltura,
                             ),
                             keyboardType: TextInputType.number,
                             maxLength: 4,
@@ -147,8 +142,8 @@ class ActualizarAntenaState extends State<ActualizarAntena>
                             decoration: InputDecoration(
                               labelText: Constants.labelOrientacion,
                               border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0)),
-                                hintText: Constants.labelOrientacion,
+                                  borderRadius: BorderRadius.circular(20.0)),
+                              hintText: Constants.labelOrientacion,
                             ),
                             initialValue: antena.orientacion,
                             keyboardType: TextInputType.number,
@@ -163,7 +158,7 @@ class ActualizarAntenaState extends State<ActualizarAntena>
                             decoration: InputDecoration(
                               labelText: Constants.labelInclinacion,
                               border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
+                                  borderRadius: BorderRadius.circular(20.0)),
                               hintText: Constants.labelInclinacion,
                             ),
                             initialValue: antena.inclinacion,
@@ -176,7 +171,7 @@ class ActualizarAntenaState extends State<ActualizarAntena>
                             style: TextStyle(fontSize: 18.0),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 60.0),
+                            padding: const EdgeInsets.only(top: 40.0),
                           ),
                           MaterialButton(
                             shape: RoundedRectangleBorder(
@@ -188,7 +183,7 @@ class ActualizarAntenaState extends State<ActualizarAntena>
                             color: Color(0xFF42a5f5),
                             splashColor: Colors.blue,
                             textColor: Colors.black,
-                            child: Text(Constants.btnRegistar),
+                            child: Text(Constants.btnModificar),
                             onPressed: _handleSubmitted,
                           ),
                         ],
@@ -207,7 +202,7 @@ class ActualizarAntenaState extends State<ActualizarAntena>
   String validateName(String value) {
     String pattern = Constants.patternNombre;
     RegExp regExp = RegExp(pattern);
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateName;
     } else if (!regExp.hasMatch(value)) {
       return Constants.nameStructure;
@@ -216,7 +211,7 @@ class ActualizarAntenaState extends State<ActualizarAntena>
   }
 
   String validateReferencia(String value) {
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateReferencia;
     } else if (value.length != 10) {
       return Constants.referenciaStructure;
@@ -225,7 +220,7 @@ class ActualizarAntenaState extends State<ActualizarAntena>
   }
 
   String validateAltura(String value) {
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateAltura;
     } else if (value.length != 2) {
       return Constants.alturaStructure;
@@ -234,7 +229,7 @@ class ActualizarAntenaState extends State<ActualizarAntena>
   }
 
   String validateGrados(String value) {
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateOrientacion;
     } else if (value.length != 3) {
       return Constants.orientacionStructure;

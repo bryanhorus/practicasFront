@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
 import 'package:tenic_api/repository/repository.dart';
@@ -10,7 +10,6 @@ class UsuarioBloc {
 
   ApiResponse get apiResponse => _apiResponse;
 
-  UsuarioBloc(BuildContext context);
   Future<ApiResponse> createUsuario(Usuario usuario) async {
     ApiResponse apiResponse = await _repository.registrarUsuario(usuario);
     if (apiResponse.statusResponse == 200) {

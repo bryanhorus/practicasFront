@@ -6,7 +6,6 @@ import 'package:tenic_api/modelo/usuario_model.dart';
 import 'package:tenic_api/resource/constants.dart';
 import 'package:tenic_api/navigator.dart';
 import 'actualizar_usuario.dart';
-import 'actualizar_usuario.dart';
 
 class ListaUsuarios extends StatefulWidget {
   const ListaUsuarios({Key key}) : super(key: key);
@@ -18,7 +17,7 @@ class ListaUsuarios extends StatefulWidget {
 class ListaUsuariosState extends State<ListaUsuarios>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  UsuarioBloc userBloc;
+  final UsuarioBloc userBloc = UsuarioBloc();
   ApiResponse apiResponse;
   Usuario usuario;
 
@@ -46,7 +45,7 @@ class ListaUsuariosState extends State<ListaUsuarios>
   @override
   void initState() {
     super.initState();
-    userBloc = UsuarioBloc(context);
+    UsuarioBloc();
     _handleSubmitted();
   }
 
@@ -86,11 +85,11 @@ class ListaUsuariosState extends State<ListaUsuarios>
                             //le damos estilo a cada texto
                             style: TextStyle(
                                 fontSize: 20,
-                                color: Colors.black,
+                                color: Colors.black87,
                                 fontWeight: FontWeight.bold)
                                 ),
                                 subtitle: Text(listUsuario[indice].correo),
-                                leading: Icon(Icons.person),
+                                leading: Icon(Icons.face),
                         onTap: () {
                           usuario = listUsuario[indice];
                           Navigator.push(

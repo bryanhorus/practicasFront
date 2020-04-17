@@ -18,7 +18,7 @@ class ListaAntenas extends StatefulWidget {
 class ListaAntenasState extends State<ListaAntenas>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  AntenaBloc antenaBloc;
+  final AntenaBloc  antenaBloc = AntenaBloc();
   ApiResponse apiResponse;
   Antena antena;
 
@@ -46,7 +46,7 @@ class ListaAntenasState extends State<ListaAntenas>
   @override
   void initState() {
     super.initState();
-    antenaBloc = AntenaBloc(context);
+    AntenaBloc();
     _handleSubmitted();
   }
 
@@ -91,7 +91,7 @@ class ListaAntenasState extends State<ListaAntenas>
                         title: Text(listAntena[indice].nombre,
                             //le damos estilo a cada texto
                             style:
-                                TextStyle(fontSize: 20, color: Colors.black87)),
+                                TextStyle(fontSize: 20, color: Colors.black87,fontWeight: FontWeight.bold)),
                         subtitle: Text(listAntena[indice].referencia),
                         leading: Icon(Icons.flag),
                         onTap: () {

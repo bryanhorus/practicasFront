@@ -19,7 +19,7 @@ class ListaMunicipio extends StatefulWidget {
 class ListaMunicipioState extends State<ListaMunicipio>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  MunicipioBloc municipioBloc;
+  final MunicipioBloc municipioBloc = MunicipioBloc();
   ApiResponse apiResponse;
   Municipio municipio;
 
@@ -44,7 +44,7 @@ class ListaMunicipioState extends State<ListaMunicipio>
   @override
   void initState() {
     super.initState();
-    municipioBloc = MunicipioBloc(context);
+    MunicipioBloc();
     _handleSubmitted();
   }
 
@@ -81,7 +81,7 @@ class ListaMunicipioState extends State<ListaMunicipio>
                   title: Text(
                     listMunicipio[indice].nombre,
                     //le damos estilo a cada texto
-                    style: TextStyle(fontSize: 20, color: Colors.black87)),
+                    style: TextStyle(fontSize: 20, color: Colors.black87,fontWeight: FontWeight.bold)),
                     leading: Icon(Icons.map),
                     //subtitle: Text(listMunicipio[indice].nombre),
                   onTap: (){

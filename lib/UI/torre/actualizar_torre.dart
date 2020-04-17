@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tenic_api/UI/dialog.dart';
 import 'package:tenic_api/bloc/torre_bloc.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/municipio_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
-import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class ActualizarTorre extends StatefulWidget {
@@ -20,7 +20,7 @@ class ActualizarTorreState extends State<ActualizarTorre>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   ActualizarTorreState({this.torre});
-  TorreBloc torreBloc;
+  final TorreBloc torreBloc = TorreBloc();
 
   Torre torre = Torre(
       nombre: '',
@@ -35,7 +35,7 @@ class ActualizarTorreState extends State<ActualizarTorre>
   @override
   void initState() {
     super.initState();
-    torreBloc = TorreBloc(context);
+    TorreBloc();
   }
 
   void showInSnackBar(String value) {
@@ -55,7 +55,7 @@ class ActualizarTorreState extends State<ActualizarTorre>
     } else {
       form.save();
       torreBloc.updateTorre(torre);
-      TecniNavigator.goToHomeCoordinador(context);
+      Message().showUpdateDialog(context);
     }
   }
 
@@ -214,7 +214,7 @@ class ActualizarTorreState extends State<ActualizarTorre>
   String validateName(String value) {
     String pattern = Constants.patternNombre;
     RegExp regExp = RegExp(pattern);
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateName;
     } else if (!regExp.hasMatch(value)) {
       return Constants.nameStructure;
@@ -223,7 +223,7 @@ class ActualizarTorreState extends State<ActualizarTorre>
   }
 
   String validateAltura(String value) {
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateAltura;
     } else if (value.length != 2) {
       return Constants.alturaStructure;
@@ -232,7 +232,7 @@ class ActualizarTorreState extends State<ActualizarTorre>
   }
 
   String validateGrados(String value) {
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateOrientacion;
     } else if (value.length != 3) {
       return Constants.orientacionStructure;

@@ -1,6 +1,5 @@
 
 
-import 'package:flutter/cupertino.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/repository/repository.dart';
@@ -12,7 +11,6 @@ class AntenaBloc {
 
   ApiResponse get apiResponse => _apiResponse;
 
-  AntenaBloc(BuildContext context);
   Future<ApiResponse> createAntena(Antena antena) async {
     ApiResponse apiResponse =
         await _repository.registrarAntena(antena);

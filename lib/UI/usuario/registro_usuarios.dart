@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tenic_api/UI/dialog.dart';
 import 'package:tenic_api/bloc/usuario_bloc.dart';
 import 'package:tenic_api/modelo/tipo_usuario_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
-import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class TextFormFieldDemo extends StatefulWidget {
@@ -16,7 +16,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  UsuarioBloc userBloc;
+  final UsuarioBloc userBloc = UsuarioBloc();
   Usuario _tecnico = Usuario(
       nombre: '',
       apellido: '',
@@ -28,7 +28,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
   @override
   void initState() {
     super.initState();
-    userBloc = UsuarioBloc(context);
+    UsuarioBloc();
   }
 
   void showInSnackBar(String value) {
@@ -48,8 +48,8 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
     } else {
       form.save();
       userBloc.createUsuario(_tecnico);
-      TecniNavigator.goToHomeCoordinador(context);
     }
+    Message().showRegisterDialog(context);
   }
 
   @override
@@ -169,7 +169,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                             keyboardType: TextInputType.number,
                             maxLength: 1,
                             onSaved: (String tipoU) {
-                             _tecnico.roles.add(Role(idTipo: int.parse(tipoU)));
+                              _tecnico.roles.add(Role(idTipo: int.parse(tipoU)));
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
@@ -205,7 +205,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
   String validateName(String value) {
     String pattern = Constants.patternNombre;
     RegExp regExp =  RegExp(pattern);
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateName;
     } else if (!regExp.hasMatch(value)) {
       return Constants.nameStructure;
@@ -216,7 +216,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
   String validateLastName(String value) {
     String pattern = Constants.patternNombre;
     RegExp regExp =  RegExp(pattern);
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateLastName;
     } else if (!regExp.hasMatch(value)) {
       return Constants.lastNameStructure;
@@ -227,7 +227,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
   String validateEmail(String value) {
     String pattern = Constants.pattern;
     RegExp regExp =  RegExp(pattern);
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateEmail;
     } else if (!regExp.hasMatch(value)) {
       return Constants.emailStructure;
@@ -246,7 +246,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
   }
 
   String validateMobile(String value) {
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateMobile;
     } else if (value.length != 10) {
       return Constants.mobileStructure;
