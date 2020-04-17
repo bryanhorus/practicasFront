@@ -71,7 +71,7 @@ class Constants{
   static const String btnPerfil = "Perfil";
   static const String btnAsignarTorres = "Asignar Torres";
   //AppBar
-  static const String appBarPerfil = "Perfil Coordinador";
+  static const String appBarPerfil = "Perfil";
   static const String appBarTorre = "Torres Registradas";
   static const String tittleRegistroUsuario = "Registrar Usuarios";
   static const String tittleRegistroDepartamento = "Registrar Departamento";
@@ -96,7 +96,7 @@ class Constants{
   static const String tittleAsignarAntena = "Asignar Antenas";
   static const String tittleLogin = "TecniApp";
   static const String tittleHomeCoordinador = "Bienvenido Coordinador";
-  static const String color = "Colors.blueGrey.shade200";
+  static const String cerrarSesion = "Cerrar Sesión";
   //Rutas
   static const String homeRoute = "/";
   static const String homeCoordinadorRoute = "/home_coordinador";
