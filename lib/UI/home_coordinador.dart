@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:tenic_api/UI/antena/lista_antenas.dart';
-import 'package:tenic_api/UI/departamento/lista_departamentos.dart';
-import 'package:tenic_api/UI/municipio/lista_municipio.dart';
-import 'package:tenic_api/UI/perfil.dart';
-import 'package:tenic_api/UI/torre/lista_torre.dart';
-import 'package:tenic_api/UI/usuario/lista_usuarios.dart';
-
+import 'package:tenic_api/navigator.dart';
+import 'package:tenic_api/resource/constants.dart';
 
 class HomeCoordinador extends StatefulWidget {
   @override
@@ -14,72 +8,105 @@ class HomeCoordinador extends StatefulWidget {
 }
 
 class HomeCoordinadorState extends State<HomeCoordinador> {
-  int pageIndex = 0;
-  final ListaUsuarios _usuarioUi = new ListaUsuarios();
-  final ListaDpto _departamentoUi = new ListaDpto();
-  final ListaMunicipio _municipioUi = new ListaMunicipio();
-  final ListaTorre _torreUi = new ListaTorre();
-  final ListaAntenas _antenaUi = new ListaAntenas();
-  final ProfilePageDesign _perfil = new ProfilePageDesign();
-
-  Widget _showPage = new ProfilePageDesign();
-
-  Widget _pageChooser(int page) {
-    switch (page) {
-      case 0:
-        return _perfil;
-        break;
-      case 1: 
-        return _antenaUi; 
-        break;
-      case 2:
-        return _departamentoUi;
-        break;
-      case 3:
-        return _municipioUi;
-        break;
-      case 4:
-        return _torreUi;
-        break;
-      case 5:
-        return _usuarioUi;
-        break;
-      default:
-        return new Container(child: new Center(child: new Text('ingrese.')));
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        bottomNavigationBar: CurvedNavigationBar(
-          index: pageIndex,
-          height: 60.0,
-          items: <Widget>[
-            Icon(Icons.perm_identity, size: 30),
-            Icon(Icons.settings_input_antenna, size: 30),
-            Icon(Icons.place, size: 30),
-            Icon(Icons.assessment, size: 30),
-            Icon(Icons.add_circle, size: 30),
-            Icon(Icons.person_add, size: 30),
+    var perfil = ListTile(
+      leading: Icon(Icons.person_pin),
+      title: Text(
+        Constants.appBarPerfil,
+        style: TextStyle(color: Colors.black),
+      ),
+      onTap: () => {TecniNavigator.goToPerfilCoordinador(context)},
+    );
 
-          ],
-          color: Colors.white,
-          buttonBackgroundColor: Colors.white,
-          backgroundColor: Colors.blue[400],
-          animationCurve: Curves.easeInOut,
-          animationDuration: Duration(milliseconds: 600),
-          onTap: (int tappedIndex) {
-            setState(() {
-              _showPage = _pageChooser(tappedIndex);
-            });
-          },
-        ),
-        body: Container(
-          color: Colors.blue,
-          child: Center(
-            child: _showPage,
+    var torre = ListTile(
+      leading: Icon(Icons.text_fields),
+      title: Text(
+        Constants.tittleTorre,
+        style: TextStyle(color: Colors.black),
+      ),
+      onTap: () => {TecniNavigator.goToListaTorre(context)},
+    );
+
+    var antena = ListTile(
+      leading: Icon(Icons.settings_input_antenna),
+      title: Text(
+        Constants.tittleAntena,
+        style: TextStyle(color: Colors.black),
+      ),
+      onTap: () => {TecniNavigator.goToListaAntena(context)},
+    );
+
+    var departamento = ListTile(
+      leading: Icon(Icons.flag),
+      title: Text(
+        Constants.tittleDepartamento,
+        style: TextStyle(color: Colors.black),
+      ),
+      onTap: () => {TecniNavigator.goToListaDepartamento(context)},
+    );
+    var usuarios = ListTile(
+      leading: Icon(Icons.person_add),
+      title: Text(
+        Constants.tittleUsuario,
+        style: TextStyle(color: Colors.black),
+      ),
+      onTap: () => {TecniNavigator.goToListaUsuarios(context)},
+    );
+
+    var municipio = ListTile(
+      leading: Icon(Icons.pin_drop),
+      title: Text(
+        Constants.tittleMunicipio,
+        style: TextStyle(color: Colors.black),
+      ),
+      onTap: () => {TecniNavigator.goToListaMuncipio(context)},
+    );
+    var cerrar = ListTile(
+      leading: Icon(Icons.exit_to_app),
+      title: Text(
+        Constants.cerrarSesion,
+        style: TextStyle(color: Colors.black),
+      ),
+      onTap: () => {TecniNavigator.goToHome(context)},
+    );
+
+    var menu = Drawer(
+      child: ListView(
+        scrollDirection: Axis.vertical,
+        children: <Widget>[
+          UserAccountsDrawerHeader(
+            accountName: Text(
+              "Bryan Alvarado",
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            ),
+            accountEmail: Text(
+              "Bryan@hotmail.com",
+              style: TextStyle(color: Colors.black),
+            ),
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(Constants.perfilImage),
+                    fit: BoxFit.cover)),
           ),
-        ));
+          Ink(color: Colors.blue, child: perfil),
+          torre,
+          departamento,
+          municipio,
+          usuarios,
+          antena,
+          cerrar
+        ],
+      ),
+    );
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text(Constants.appName),
+        ),
+        drawer: menu,
+        body: Center(
+            child: Text(
+                "Aqui podemos hacer como una introducción a la empresa o la app, algo asi, como un texto y una imagen")));
   }
 }

@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tenic_api/UI/dialog.dart';
 import 'package:tenic_api/bloc/antena_bloc.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/estado_model.dart';
 import 'package:tenic_api/modelo/municipio_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
-import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class RegistrarAntena extends StatefulWidget {
@@ -18,7 +18,7 @@ class RegistrarAntenaState extends State<RegistrarAntena>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  AntenaBloc antenaBloc;
+  final AntenaBloc  antenaBloc = AntenaBloc();
   Antena _antena = Antena(
       nombre: '',
       referencia: '',
@@ -34,7 +34,7 @@ class RegistrarAntenaState extends State<RegistrarAntena>
   @override
   void initState() {
     super.initState();
-    antenaBloc = AntenaBloc(context);
+    AntenaBloc();
   }
 
   void showInSnackBar(String value) {
@@ -54,7 +54,7 @@ class RegistrarAntenaState extends State<RegistrarAntena>
     } else {
       form.save();
       antenaBloc.createAntena(_antena);
-      TecniNavigator.goToHomeCoordinador(context);
+      Message().showRegisterDialog(context);
     }
   }
 
@@ -127,7 +127,6 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
                                 hintText: Constants.labelAltura,
-                                suffix: Icon(Icons.create),
                                 icon: Icon(Icons.show_chart)),
                             keyboardType: TextInputType.number,
                             maxLength: 2,
@@ -143,7 +142,6 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
                                 hintText: Constants.labelOrientacion,
-                                suffix: Icon(Icons.create),
                                 icon: Icon(Icons.call_missed_outgoing)),
                             keyboardType: TextInputType.number,
                             maxLength: 3,
@@ -159,7 +157,6 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
                                 hintText: Constants.labelInclinacion,
-                                suffix: Icon(Icons.create),
                                 icon: Icon(Icons.call_split)),
                             keyboardType: TextInputType.number,
                             maxLength: 3,
@@ -175,7 +172,6 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
                                 hintText: Constants.labelTorre,
-                                suffix: Icon(Icons.create),
                                 icon: Icon(Icons.settings_input_antenna)),
                             keyboardType: TextInputType.number,
 
@@ -192,7 +188,6 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
                                 hintText: Constants.labelestado,
-                                suffix: Icon(Icons.create),
                                 icon: Icon(Icons.graphic_eq)),
                             keyboardType: TextInputType.number,
                             maxLength: 12,
@@ -233,7 +228,7 @@ class RegistrarAntenaState extends State<RegistrarAntena>
   String validateName(String value) {
     String pattern = Constants.patternNombre;
     RegExp regExp = RegExp(pattern);
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateName;
     } else if (!regExp.hasMatch(value)) {
       return Constants.nameStructure;
@@ -242,7 +237,7 @@ class RegistrarAntenaState extends State<RegistrarAntena>
   }
 
   String validateReferencia(String value) {
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateReferencia;
     } else if (value.length != 10) {
       return Constants.referenciaStructure;
@@ -251,7 +246,7 @@ class RegistrarAntenaState extends State<RegistrarAntena>
   }
 
   String validateAltura(String value) {
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateAltura;
     } else if (value.length != 2) {
       return Constants.alturaStructure;
@@ -260,7 +255,7 @@ class RegistrarAntenaState extends State<RegistrarAntena>
   }
 
   String validateGrados(String value) {
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateOrientacion;
     } else if (value.length != 3) {
       return Constants.orientacionStructure;

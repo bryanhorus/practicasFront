@@ -10,6 +10,7 @@ class UsuarioApiService {
   Usuario _usuario;
 
   UsuarioApiService();
+
   final SessionStorage _session = SessionStorage();
 
   Future<ApiResponse> insertUsuario(Usuario usuario) async {
@@ -20,8 +21,8 @@ class UsuarioApiService {
         headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader},
         body: body2);
 
-    var resBody = json.decode(res.body);
     apiResponse.statusResponse = res.statusCode;
+    var resBody = json.decode(res.body);
 
     if (apiResponse.statusResponse == 200) {
       _usuario = Usuario.fromJson(resBody);
@@ -36,7 +37,8 @@ class UsuarioApiService {
     Uri uri =
     Uri.http(Constants.urlAuthority, Constants.pathServiceUsuarioUpdate);
     var res = await http.put(uri,
-        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader},
+        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader,
+          HttpHeaders.authorizationHeader: _session.getToken().toString()},
         body: body2);
 
     var resBody = json.decode(res.body);

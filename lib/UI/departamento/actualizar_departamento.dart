@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/departamento_bloc.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/resource/constants.dart';
-import 'package:tenic_api/navigator.dart';
 
 class ActualizarDepartamento extends StatefulWidget {
   final Departamento departamento;
@@ -21,13 +20,13 @@ class ActualizarDepartamentoState extends State<ActualizarDepartamento>
 
   ActualizarDepartamentoState({this.departamento});
 
-  DptoBloc departamentoBloc;
+  final DptoBloc departamentoBloc = DptoBloc();
   Departamento departamento = Departamento(nombre: '', idDpto: 0);
 
   @override
   void initState() {
     super.initState();
-    departamentoBloc = DptoBloc(context);
+    DptoBloc();
   }
 
   void showInSnackBar(String value) {
@@ -48,7 +47,7 @@ class ActualizarDepartamentoState extends State<ActualizarDepartamento>
     } else {
       form.save();
       departamentoBloc.updateDepartamento(departamento);
-      TecniNavigator.goToHomeCoordinador(context);
+      showInSnackBar(Constants.actualizacion);
     }
   }
 
@@ -130,7 +129,7 @@ class ActualizarDepartamentoState extends State<ActualizarDepartamento>
   String validateName(String value) {
     String pattern = Constants.patternNombre;
     RegExp regExp = RegExp(pattern);
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateName;
     } else if (!regExp.hasMatch(value)) {
       return Constants.nameStructure;

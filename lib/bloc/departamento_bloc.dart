@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/repository/repository.dart';
@@ -10,7 +10,6 @@ class DptoBloc {
 
   ApiResponse get apiResponse => _apiResponse;
 
-  DptoBloc(BuildContext context);
   Future<ApiResponse> createDepartamento(Departamento departamento) async {
     ApiResponse apiResponse =
         await _repository.registrarDepartamento(departamento);

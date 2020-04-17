@@ -164,8 +164,8 @@ class LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
 
   String validateEmail(String value) {
     var pattern = Constants.pattern;
-    RegExp regExp = new RegExp(pattern);
-    if (value.length == 0) {
+    RegExp regExp = RegExp(pattern);
+    if (value.isEmpty) {
       return Constants.validateEmail;
     } else if (!regExp.hasMatch(value)) {
       return Constants.emailStructure;

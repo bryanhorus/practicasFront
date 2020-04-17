@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tenic_api/navigator.dart';
+import 'package:tenic_api/UI/dialog.dart';
 import 'package:tenic_api/resource/constants.dart';
 import '../../bloc/municipio_bloc.dart';
 import '../../modelo/departamento_model.dart';
@@ -17,20 +17,14 @@ class CrearMunicipioState extends State<CrearMunicipio>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  MunicipioBloc municipioBloc;
+  final MunicipioBloc municipioBloc = MunicipioBloc();
   Municipio _municipio =
       Municipio(nombre: '', departament: Departamento(idDpto: 0));
 
   @override
   void initState() {
     super.initState();
-    municipioBloc = MunicipioBloc(context);
-  }
-
-  void showInSnackBar(String value) {
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text(value),
-    ));
+    MunicipioBloc();
   }
 
   bool _autovalidate = false;
@@ -43,11 +37,11 @@ class CrearMunicipioState extends State<CrearMunicipio>
       _autovalidate = true;
     } else {
       form.save();
-
       municipioBloc.createMunicipio(_municipio);
-      TecniNavigator.goToHomeCoordinador(context);
+      Message().showRegisterDialog(context);
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +134,7 @@ class CrearMunicipioState extends State<CrearMunicipio>
   String validateName(String value) {
     String pattern = Constants.patternNombre;
     RegExp regExp = RegExp(pattern);
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateName;
     } else if (!regExp.hasMatch(value)) {
       return Constants.nameStructure;

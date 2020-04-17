@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tenic_api/UI/dialog.dart';
 import 'package:tenic_api/bloc/usuario_bloc.dart';
 import 'package:tenic_api/modelo/tipo_usuario_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
 import 'package:tenic_api/resource/constants.dart';
-import 'package:tenic_api/navigator.dart';
 
 class ActualizarUsuario extends StatefulWidget {
   final Usuario usuario;
@@ -20,7 +20,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   ActualizarUsuarioState({this.usuario});
-  UsuarioBloc userBloc;
+  final UsuarioBloc userBloc = UsuarioBloc();
 
   Usuario usuario = Usuario(
       nombre: "",
@@ -33,7 +33,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
   @override
   void initState() {
     super.initState();
-    userBloc = UsuarioBloc(context);
+    UsuarioBloc();
   }
 
   void showInSnackBar(String value) {
@@ -54,7 +54,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
       form.save();
       userBloc.updateUsuario(usuario);
     }
-    TecniNavigator.goToHomeCoordinador(context);
+    Message().showUpdateDialog(context);
   }
 
   @override
@@ -202,7 +202,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
   String validateName(String value) {
     String pattern = Constants.patternNombre;
     RegExp regExp = RegExp(pattern);
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateName;
     } else if (!regExp.hasMatch(value)) {
       return Constants.nameStructure;
@@ -213,7 +213,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
   String validateLastName(String value) {
     String pattern = Constants.patternNombre;
     RegExp regExp = RegExp(pattern);
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateLastName;
     } else if (!regExp.hasMatch(value)) {
       return Constants.lastNameStructure;
@@ -224,7 +224,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
   String validateEmail(String value) {
     String pattern = Constants.pattern;
     RegExp regExp = RegExp(pattern);
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateEmail;
     } else if (!regExp.hasMatch(value)) {
       return Constants.emailStructure;
@@ -243,7 +243,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
   }
 
   String validateMobile(String value) {
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateMobile;
     } else if (value.length != 10) {
       return Constants.mobileStructure;

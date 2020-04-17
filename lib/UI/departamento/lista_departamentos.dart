@@ -19,7 +19,7 @@ class _ListaDptoState extends State<ListaDpto>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   Departamento departamento;
-  DptoBloc dptoBloc;
+  final DptoBloc dptoBloc = DptoBloc();
   ApiResponse apiResponse;
 
   void showInSnackBar(String value) {
@@ -46,7 +46,7 @@ class _ListaDptoState extends State<ListaDpto>
   @override
   void initState() {
     super.initState();
-    dptoBloc = DptoBloc(context);
+    DptoBloc();
     _handleSubmitted();
   }
 
@@ -80,7 +80,7 @@ class _ListaDptoState extends State<ListaDpto>
                     ListTile(
                       title: Text(listDepartamento[indice].nombre,
                           style:
-                              TextStyle(fontSize: 20, color: Colors.black87)),
+                              TextStyle(fontSize: 20, color: Colors.black87,fontWeight: FontWeight.bold)),
                       leading: Icon(Icons.flag),
                       onTap: () {
                         print(listDepartamento[indice].nombre);

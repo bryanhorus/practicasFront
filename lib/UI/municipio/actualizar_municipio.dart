@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tenic_api/UI/dialog.dart';
 import 'package:tenic_api/bloc/municipio_bloc.dart';
 import 'package:tenic_api/modelo/municipio_model.dart';
-import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class ActualizarMunicipio extends StatefulWidget {
@@ -17,7 +17,7 @@ class ActualizarMunicipio extends StatefulWidget {
 class ActualizarMunicipioState extends State<ActualizarMunicipio>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   ActualizarMunicipioState({this.municipio});
   MunicipioBloc municipioBloc;
 
@@ -26,18 +26,11 @@ class ActualizarMunicipioState extends State<ActualizarMunicipio>
   @override
   void initState() {
     super.initState();
-    municipioBloc = MunicipioBloc(context);
-  }
-
-  void showInSnackBar(String value) {
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text(value),
-    ));
   }
 
   bool _autovalidate = false;
 
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
 
   void _handleSubmitted() {
     final FormState form = _formKey.currentState;
@@ -46,8 +39,8 @@ class ActualizarMunicipioState extends State<ActualizarMunicipio>
     } else {
       form.save();
       municipioBloc.updateMunicipio(municipio);
+      Message().showUpdateDialog(context);
     }
-    TecniNavigator.goToHomeCoordinador(context);
   }
 
   @override
@@ -83,10 +76,10 @@ class ActualizarMunicipioState extends State<ActualizarMunicipio>
                           const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: InputDecoration(
-                              labelText: Constants.labelNombre,
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20.0)),
-                            ),
+                                labelText: Constants.labelNombre,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                icon: Icon(Icons.flag)),
                             validator: validateName,
                             initialValue: municipio.nombre,
                             keyboardType: TextInputType.text,
@@ -126,8 +119,8 @@ class ActualizarMunicipioState extends State<ActualizarMunicipio>
 
   String validateName(String value) {
     String pattern = Constants.patternNombre;
-    RegExp regExp =  RegExp(pattern);
-    if (value.length == 0) {
+    RegExp regExp = RegExp(pattern);
+    if (value.isEmpty) {
       return Constants.validateName;
     } else if (!regExp.hasMatch(value)) {
       return Constants.nameStructure;

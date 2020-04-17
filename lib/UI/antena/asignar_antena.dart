@@ -16,13 +16,6 @@ class AsignarAntenaState extends State<AsignarAntena>
   @override
   void initState() {
     super.initState();
-    //userBloc = UsuarioBloc(context);
-  }
-
-  void showInSnackBar(String value) {
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text(value),
-    ));
   }
 
   bool _autovalidate = false;
@@ -36,7 +29,6 @@ class AsignarAntenaState extends State<AsignarAntena>
     } else {
       form.save();
 
-      //userBloc.createUsuario(_tecnico);
     }
   }
 
@@ -136,7 +128,7 @@ class AsignarAntenaState extends State<AsignarAntena>
   String validateName(String value) {
     String pattern = Constants.patternNombre;
     RegExp regExp = RegExp(pattern);
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateName;
     } else if (!regExp.hasMatch(value)) {
       return Constants.nameStructure;
