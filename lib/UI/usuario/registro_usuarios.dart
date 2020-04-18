@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:tenic_api/UI/dialog.dart';
 import 'package:tenic_api/bloc/usuario_bloc.dart';
@@ -11,6 +13,10 @@ class TextFormFieldDemo extends StatefulWidget {
   @override
   TextFormFieldDemoState createState() => TextFormFieldDemoState();
 }
+final String data =
+    '[{"idTipo": 1, "descripcion": "ADMIN"}, {"idTipo": 2, "descripcion": "TECNICO"}]';
+List<Role> _rol = [];
+int selectedRol;
 
 class TextFormFieldDemoState extends State<TextFormFieldDemo>
     with SingleTickerProviderStateMixin {
@@ -54,6 +60,11 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
 
   @override
   Widget build(BuildContext context) {
+
+    final json = JsonDecoder().convert(data);
+    _rol = (json).map<Role>((item) => Role.fromJson(item)).toList();
+    selectedRol = _rol[0].idTipo;
+
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(title: const Text(Constants.tittleRegistroUsuario)),
@@ -159,7 +170,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
-                          TextFormField(
+                          /*TextFormField(
                             decoration:  InputDecoration(
                                 labelText: Constants.tipoUsuario,
                                 border: OutlineInputBorder(
@@ -169,9 +180,31 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                             keyboardType: TextInputType.number,
                             maxLength: 1,
                             onSaved: (String tipoU) {
-                              _tecnico.roles.add(Role(idTipo: int.parse(tipoU)));
+                             // _tecnico.roles.add(Role(idTipo: int.parse(tipoU)));
                             },
                             style: TextStyle(fontSize: 18.0),
+                          ),
+                          */
+                          DropdownButtonHideUnderline(
+                            child: DropdownButton<int>(
+                              hint: Text("Product"),
+                              value: selectedRol,
+                              isDense: true,
+                              onChanged: (int newValue) {
+                                setState(() {
+                                  selectedRol = newValue;
+                                });
+                                _tecnico.roles.add(Role(idTipo: newValue));
+                                print(selectedRol);
+                              },
+                              items: _rol.map((Role map) {
+                                return DropdownMenuItem<int>(
+                                  value: map.idTipo,
+                                  child: Text(map.descripcion,
+                                      style: TextStyle(color: Colors.black)),
+                                );
+                              }).toList(),
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 60.0),
@@ -254,3 +287,5 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
     return null;
   }
 }
+
+
