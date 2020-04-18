@@ -170,24 +170,9 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
-                          /*TextFormField(
-                            decoration:  InputDecoration(
-                                labelText: Constants.tipoUsuario,
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0)),
-                                hintText: Constants.tipoUsuario,
-                                icon: Icon(Icons.assignment_ind)),
-                            keyboardType: TextInputType.number,
-                            maxLength: 1,
-                            onSaved: (String tipoU) {
-                             // _tecnico.roles.add(Role(idTipo: int.parse(tipoU)));
-                            },
-                            style: TextStyle(fontSize: 18.0),
-                          ),
-                          */
                           DropdownButtonHideUnderline(
                             child: DropdownButton<int>(
-                              hint: Text("Product"),
+                              hint: Text("Rol"),
                               value: selectedRol,
                               isDense: true,
                               onChanged: (int newValue) {
