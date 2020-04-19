@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tenic_api/UI/dialog.dart';
 import 'package:tenic_api/bloc/antena_bloc.dart';
+import 'package:tenic_api/bloc/torre_bloc.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/estado_model.dart';
@@ -18,7 +19,12 @@ class RegistrarAntenaState extends State<RegistrarAntena>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final AntenaBloc  antenaBloc = AntenaBloc();
+  final TorreBloc torreBloc = TorreBloc();
+  List<Torre> listaTorre = List();
+  int currentTorre;
+
+
+  final AntenaBloc antenaBloc = AntenaBloc();
   Antena _antena = Antena(
       nombre: '',
       referencia: '',
@@ -33,6 +39,13 @@ class RegistrarAntenaState extends State<RegistrarAntena>
 
   @override
   void initState() {
+
+    TorreBloc();
+    torreBloc.listarTorre().then((apiResponse) {
+      setState(() {
+        listaTorre = apiResponse.listTorre;
+      });
+    });
     super.initState();
     AntenaBloc();
   }
@@ -60,6 +73,7 @@ class RegistrarAntenaState extends State<RegistrarAntena>
 
   @override
   Widget build(BuildContext context) {
+    currentTorre = listaTorre[0].idTorre;
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -166,7 +180,7 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
-                          TextFormField(
+                          /*TextFormField(
                             decoration: InputDecoration(
                                 labelText: Constants.labelTorre,
                                 border: OutlineInputBorder(
@@ -181,6 +195,31 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                               _antena.torre.idTorre = int.parse(value);
                             },
                             style: TextStyle(fontSize: 18.0),
+                          ),*/
+                          DropdownButtonHideUnderline(
+                            child:  DropdownButton<int>(
+                              hint: Text(listaTorre[0].nombre),
+                              value: currentTorre,
+                              isDense: true,
+                              onChanged: (int newValue) {
+                                currentTorre = newValue;
+                                setState(() {
+                                  currentTorre = newValue;
+                                });
+                                print(currentTorre);
+                                _antena.torre.idTorre = newValue;
+                              },
+                              items: listaTorre.map((Torre map) {
+                                return  DropdownMenuItem<int>(
+                                  value: map.idTorre,
+                                  child:  Text(map.nombre,
+                                      style:  TextStyle(color: Colors.black)),
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20.0),
                           ),
                           TextFormField(
                             decoration: InputDecoration(

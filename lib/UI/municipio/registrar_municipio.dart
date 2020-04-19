@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tenic_api/UI/dialog.dart';
+import 'package:tenic_api/bloc/departamento_bloc.dart';
 import 'package:tenic_api/resource/constants.dart';
 import '../../bloc/municipio_bloc.dart';
 import '../../modelo/departamento_model.dart';
@@ -21,9 +22,19 @@ class CrearMunicipioState extends State<CrearMunicipio>
   Municipio _municipio =
       Municipio(nombre: '', departament: Departamento(idDpto: 0));
 
+  final DptoBloc dptoBloc = DptoBloc();
+  List<Departamento> listaDpto = List();
+  int currentDpto;
+
   @override
   void initState() {
     super.initState();
+    DptoBloc();
+    dptoBloc.listarDepartamento().then((apiResponse) {
+      setState(() {
+        listaDpto = apiResponse.listDepartamento;
+      });
+    });
     MunicipioBloc();
   }
 
@@ -45,6 +56,7 @@ class CrearMunicipioState extends State<CrearMunicipio>
 
   @override
   Widget build(BuildContext context) {
+    currentDpto = listaDpto[0].idDpto;
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(title: const Text(Constants.tittleMunicipio)),
@@ -74,7 +86,7 @@ class CrearMunicipioState extends State<CrearMunicipio>
                             padding: const EdgeInsets.only(top: 40.0),
                           ),
                           const SizedBox(height: 12.0),
-                          TextFormField(
+                         /* TextFormField(
                             decoration: InputDecoration(
                                 labelText: Constants.labelDepartamento,
                                 border: OutlineInputBorder(
@@ -86,6 +98,28 @@ class CrearMunicipioState extends State<CrearMunicipio>
                               _municipio.departament.idDpto = int.parse(depart);
                             },
                             style: TextStyle(fontSize: 18.0),
+                          ),*/
+                          DropdownButtonHideUnderline(
+                            child:  DropdownButton<int>(
+                              hint: Text("Product"),
+                              value: currentDpto,
+                              isDense: true,
+                              onChanged: (int newValue) {
+                                currentDpto = newValue;
+                                setState(() {
+                                  currentDpto = newValue;
+                                });
+                                print(currentDpto);
+                                _municipio.departament.idDpto = newValue;
+                              },
+                              items: listaDpto.map((Departamento map) {
+                                return  DropdownMenuItem<int>(
+                                  value: map.idDpto,
+                                  child:  Text(map.nombre,
+                                      style:  TextStyle(color: Colors.black)),
+                                );
+                              }).toList(),
+                            ),
                           ),
                           Divider(),
                           TextFormField(
