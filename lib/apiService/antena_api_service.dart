@@ -13,7 +13,6 @@ class AntenaApiService {
 
   static final SessionStorage _session = SessionStorage();
 
-
   AntenaApiService();
 
   Future<ApiResponse> insertAntena(Antena antena) async {
