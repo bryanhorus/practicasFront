@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:tenic_api/UI/antena/antenas.dart';
-import 'package:tenic_api/UI/departamento/departamento.dart';
-import 'package:tenic_api/UI/municipio/municipio.dart';
+import 'package:tenic_api/UI/antena/lista_antenas.dart';
+import 'package:tenic_api/UI/departamento/lista_departamentos.dart';
+import 'package:tenic_api/UI/municipio/lista_municipio.dart';
 import 'package:tenic_api/UI/perfil.dart';
-import 'package:tenic_api/UI/torre/torre.dart';
-import 'package:tenic_api/UI/usuario/usuario.dart';
+import 'package:tenic_api/UI/torre/lista_torre.dart';
+import 'package:tenic_api/UI/usuario/lista_usuarios.dart';
+
 
 class HomeCoordinador extends StatefulWidget {
   @override
@@ -14,11 +15,11 @@ class HomeCoordinador extends StatefulWidget {
 
 class HomeCoordinadorState extends State<HomeCoordinador> {
   int pageIndex = 0;
-  final UsuarioUi _usuarioUi = new UsuarioUi();
-  final DepartamentoUi _departamentoUi = new DepartamentoUi();
-  final MunicipioUi _municipioUi = new MunicipioUi();
-  final TorreUi _torreUi = new TorreUi();
-  final AntenaUi _antenaUi = new AntenaUi();
+  final ListaUsuarios _usuarioUi = new ListaUsuarios();
+  final ListaDpto _departamentoUi = new ListaDpto();
+  final ListaMunicipio _municipioUi = new ListaMunicipio();
+  final ListaTorre _torreUi = new ListaTorre();
+  final ListaAntenas _antenaUi = new ListaAntenas();
   final ProfilePageDesign _perfil = new ProfilePageDesign();
 
   Widget _showPage = new ProfilePageDesign();
@@ -28,8 +29,8 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
       case 0:
         return _perfil;
         break;
-      case 1:
-        return _usuarioUi;
+      case 1: 
+        return _antenaUi; 
         break;
       case 2:
         return _departamentoUi;
@@ -41,7 +42,7 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
         return _torreUi;
         break;
       case 5:
-        return _antenaUi;
+        return _usuarioUi;
         break;
       default:
         return new Container(child: new Center(child: new Text('ingrese.')));
@@ -56,11 +57,12 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
           height: 60.0,
           items: <Widget>[
             Icon(Icons.perm_identity, size: 30),
-            Icon(Icons.person_add, size: 30),
-            Icon(Icons.library_books, size: 30),
-            Icon(Icons.account_balance, size: 30),
+            Icon(Icons.settings_input_antenna, size: 30),
+            Icon(Icons.place, size: 30),
             Icon(Icons.assessment, size: 30),
             Icon(Icons.add_circle, size: 30),
+            Icon(Icons.person_add, size: 30),
+
           ],
           color: Colors.white,
           buttonBackgroundColor: Colors.white,

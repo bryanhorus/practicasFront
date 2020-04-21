@@ -40,7 +40,7 @@ class _ListaDptoState extends State<ListaDpto>
 
   void _delete(Departamento departamento) {
     dptoBloc.deleteDepartamento(departamento);
-    TecniNavigator.goToListaDepartamento(context);
+    TecniNavigator.goToHomeCoordinador(context);
   }
 
   @override
@@ -56,6 +56,14 @@ class _ListaDptoState extends State<ListaDpto>
       key: _scaffoldKey,
       appBar: AppBar(
         title: const Text(Constants.tittleListaDepartamentos),
+        actions: <Widget>[
+          IconButton(
+            icon: new Icon(Icons.add_circle),
+            onPressed: () {
+              TecniNavigator.goToRegistrarDepartamento(context);
+            },
+          ),
+        ],
       ),
       body: Stack(fit: StackFit.expand, children: <Widget>[
         Container(
@@ -73,6 +81,7 @@ class _ListaDptoState extends State<ListaDpto>
                       title: Text(listDepartamento[indice].nombre,
                           style:
                               TextStyle(fontSize: 20, color: Colors.black87)),
+                      leading: new Icon(Icons.flag),
                       onTap: () {
                         print(listDepartamento[indice].nombre);
                         departamento = listDepartamento[indice];
@@ -85,36 +94,12 @@ class _ListaDptoState extends State<ListaDpto>
                                     )));
                       },
                     ),
+                    // ignore: deprecated_member_use
                     ButtonTheme.bar(
                       child: ButtonBar(
                         children: <Widget>[
-                          FlatButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
-                            ),
-                            color: Colors.yellow[300],
-                            child: const Text(Constants.btnModificar,
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.black)),
-                            onPressed: () {
-                              departamento = listDepartamento[indice];
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          ActualizarDepartamento(
-                                            departamento: departamento,
-                                          )));
-                            },
-                          ),
-                          FlatButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
-                            ),
-                            color: Colors.red[300],
-                            child: const Text(Constants.btnEliminar),
+                          IconButton(
+                            icon: new Icon(Icons.delete),
                             onPressed: () {
                               departamento = listDepartamento[indice];
                               _delete(departamento);

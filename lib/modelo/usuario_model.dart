@@ -7,18 +7,21 @@ class Usuario {
   String correo;
   String password;
   String telfono;
-  TipoUsuario typeUser;
+  List<Role> roles;
 
   Usuario(
       {this.idUsuario,
-        this.nombre,
-        this.apellido,
-        this.correo,
-        this.password,
-        this.telfono,
-        this.typeUser});
+      this.nombre,
+      this.apellido,
+      this.correo,
+      this.password,
+      this.telfono,
+      this.roles});
 
   factory Usuario.fromJson(Map<String, dynamic> parsedJson) {
+    var role = parsedJson['roles'] as List;
+    List<Role> imagesList = role.map((i) => Role.fromJson(i)).toList();
+
     return Usuario(
         idUsuario: parsedJson['idUsuario'],
         nombre: parsedJson['nombre'],
@@ -26,17 +29,16 @@ class Usuario {
         correo: parsedJson['correo'],
         password: parsedJson['password'],
         telfono: parsedJson['telfono'],
-        typeUser: TipoUsuario.fromJson(parsedJson['typeUser'])
-    );
+        roles: imagesList);
   }
 
   Map<String, dynamic> toJson() => {
-    'idUsuario' : idUsuario,
-    'nombre': nombre,
-    'apellido': apellido,
-    'correo': correo,
-    'password': password,
-    'telfono': telfono,
-    'typeUser': typeUser.toJson()
-  };
+        'idUsuario': idUsuario,
+        'nombre': nombre,
+        'apellido': apellido,
+        'correo': correo,
+        'password': password,
+        'telfono': telfono,
+        'roles': roles
+      };
 }

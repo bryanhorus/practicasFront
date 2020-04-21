@@ -47,7 +47,7 @@ class ActualizarMunicipioState extends State<ActualizarMunicipio>
       form.save();
       municipioBloc.updateMunicipio(municipio);
     }
-    TecniNavigator.goToListaMuncipio(context);
+    TecniNavigator.goToHomeCoordinador(context);
   }
 
   @override
@@ -56,8 +56,6 @@ class ActualizarMunicipioState extends State<ActualizarMunicipio>
       key: _scaffoldKey,
       appBar: AppBar(title: const Text(Constants.tittleMunicipioactualizar)),
       body: Stack(fit: StackFit.expand, children: <Widget>[
-        Container(
-            ),
         Center(
           child: Container(
             child: Theme(
@@ -86,6 +84,8 @@ class ActualizarMunicipioState extends State<ActualizarMunicipio>
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelNombre,
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20.0)),
                             ),
                             validator: validateName,
                             initialValue: municipio.nombre,
@@ -105,8 +105,8 @@ class ActualizarMunicipioState extends State<ActualizarMunicipio>
                             ),
                             height: 50.0,
                             minWidth: 150.0,
-                            color: Color(0xFFE1F5FE),
-                            splashColor: Colors.blueAccent,
+                            color: Color(0xFF42a5f5),
+                            splashColor: Colors.blue,
                             textColor: Colors.black,
                             child: Text(Constants.btnModificar),
                             onPressed: _handleSubmitted,

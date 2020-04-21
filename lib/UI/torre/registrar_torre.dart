@@ -4,6 +4,7 @@ import 'package:tenic_api/bloc/torre_bloc.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/municipio_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
+import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class CrearTorre extends StatefulWidget {
@@ -19,13 +20,14 @@ class CrearTorreState extends State<CrearTorre>
 
   TorreBloc torreBloc;
   Torre _torre = Torre(
-      nombre:'',
-      identificacion:'',
-      direccion:'',
-      coordenadas:'',
-      altura:'',
-      tecnologia:'',
-      municipio: Municipio(idMunicipio: 0, departament: Departamento(idDpto: 0)));
+      nombre: '',
+      identificacion: '',
+      direccion: '',
+      coordenadas: '',
+      altura: '',
+      tecnologia: '',
+      municipio:
+          Municipio(idMunicipio: 0, departament: Departamento(idDpto: 0)));
 
   @override
   void initState() {
@@ -50,6 +52,7 @@ class CrearTorreState extends State<CrearTorre>
     } else {
       form.save();
       torreBloc.createTorre(_torre);
+      TecniNavigator.goToHomeCoordinador(context);
     }
   }
 
@@ -59,13 +62,6 @@ class CrearTorreState extends State<CrearTorre>
       key: _scaffoldKey,
       appBar: AppBar(title: const Text(Constants.tittleRegistroTorre)),
       body: Stack(fit: StackFit.expand, children: <Widget>[
-        Container(
-          child: Image(
-              image: AssetImage(Constants.registroImage),
-              fit: BoxFit.cover,
-              colorBlendMode: BlendMode.difference,
-              color: Colors.black12),
-        ),
         Center(
           child: Container(
             child: Theme(
@@ -93,8 +89,11 @@ class CrearTorreState extends State<CrearTorre>
                           const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
-                              labelText: Constants.labelNombre,
-                            ),
+                                labelText: Constants.labelNombre,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelNombre,
+                                icon: Icon(Icons.settings_input_antenna)),
                             validator: validateName,
                             keyboardType: TextInputType.text,
                             onSaved: (String value) {
@@ -105,8 +104,11 @@ class CrearTorreState extends State<CrearTorre>
                           const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
-                              labelText: Constants.labelIdentificacion,
-                            ),
+                                labelText: Constants.labelIdentificacion,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelIdentificacion,
+                                icon: Icon(Icons.perm_identity)),
                             keyboardType: TextInputType.number,
                             //validator: validateName,
                             onSaved: (String value) {
@@ -114,29 +116,41 @@ class CrearTorreState extends State<CrearTorre>
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
+                          const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
-                              labelText: Constants.labelDireccion,
-                            ),
+                                labelText: Constants.labelDireccion,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelDireccion,
+                                icon: Icon(Icons.directions)),
                             keyboardType: TextInputType.emailAddress,
                             onSaved: (String value) {
                               _torre.direccion = value;
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
+                          const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
-                              labelText: Constants.labelCoordenadas,
-                            ),
+                                labelText: Constants.labelCoordenadas,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelCoordenadas,
+                                icon: Icon(Icons.map)),
                             onSaved: (String value) {
                               _torre.coordenadas = value;
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
+                          const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
-                              labelText: Constants.labelAltura,
-                            ),
+                                labelText: Constants.labelAltura,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelAltura,
+                                icon: Icon(Icons.show_chart)),
                             keyboardType: TextInputType.number,
                             maxLength: 2,
                             //validator: validateAltura,
@@ -145,10 +159,14 @@ class CrearTorreState extends State<CrearTorre>
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
+                          const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
-                              labelText: Constants.labelTecnologia,
-                            ),
+                                labelText: Constants.labelTecnologia,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelTecnologia,
+                                icon: Icon(Icons.computer)),
                             keyboardType: TextInputType.number,
                             maxLength: 10,
                             onSaved: (String value) {
@@ -156,14 +174,19 @@ class CrearTorreState extends State<CrearTorre>
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
+                          const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: new InputDecoration(
-                              labelText: Constants.labelMunicipio,
-                            ),
+                                labelText: Constants.labelMunicipio,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelMunicipio,
+                                icon: Icon(Icons.image)),
                             keyboardType: TextInputType.number,
                             maxLength: 4,
                             onSaved: (String municipio) {
-                              _torre.municipio.idMunicipio = int.parse(municipio);
+                              _torre.municipio.idMunicipio =
+                                  int.parse(municipio);
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
@@ -173,11 +196,11 @@ class CrearTorreState extends State<CrearTorre>
                           MaterialButton(
                             shape: RoundedRectangleBorder(
                               borderRadius:
-                              BorderRadius.all(Radius.circular(20.0)),
+                                  BorderRadius.all(Radius.circular(20.0)),
                             ),
                             height: 50.0,
                             minWidth: 150.0,
-                            color: Color(0xFFE1F5FE),
+                            color: Color(0xFF42a5f5),
                             splashColor: Colors.blueAccent,
                             textColor: Colors.black,
                             child: Text(Constants.btnRegistar),
@@ -347,7 +370,7 @@ class CrearTorreState extends State<CrearTorre>
     return null;
   }
 
-    String validateAltura(String value) {
+  String validateAltura(String value) {
     if (value.length == 0) {
       return Constants.validateAltura;
     } else if (value.length != 2) {
@@ -355,7 +378,8 @@ class CrearTorreState extends State<CrearTorre>
     }
     return null;
   }
-    String validateGrados(String value) {
+
+  String validateGrados(String value) {
     if (value.length == 0) {
       return Constants.validateOrientacion;
     } else if (value.length != 3) {
@@ -363,5 +387,4 @@ class CrearTorreState extends State<CrearTorre>
     }
     return null;
   }
-
 }

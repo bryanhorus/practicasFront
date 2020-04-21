@@ -6,7 +6,7 @@ class Constants{
   static const String urlAuthority = "ec2-3-15-37-85.us-east-2.compute.amazonaws.com:8090";
   static const String contenTypeHeader = "application/json";
   //servicio
-  static const String pathServiceUsuario ="/api/tecni/user/insert";
+  static const String pathServiceUsuario ="/api/tecni/auth/new";
   static const String pathServiceListUsuario ="/api/tecni/user/get/all";
   static const String pathServiceDeleteU ="/api/tecni/user/delete/id";
   static const String pathServiceListAntena ="";
@@ -34,7 +34,7 @@ class Constants{
   static const String pathServiceTorreDelete ="/api/tecni/torre/delete/id";
   static const String pathServiceTorreLista ="/api/tecni/torre/get/all";
   //static const String pathServiceDeleteU="/api/tecni/user/delete/id";
-  static const String pathServiceLogin ="/usuarios/login";
+  static const String pathServiceLogin ="/api/tecni/auth";
 
 
   static const String createMessage = "Creación exitosa";
@@ -157,6 +157,7 @@ class Constants{
   static const String labelTecnologia ="Tecnologia";
   static const String labelNombreAntena ="Nombre de la Antena";
   static const String labelDepartamento ="Departamento";
+    static const String labelestado ="Estado";
 
   static const String labelNombreTorre ="Nombre de la Torre";
   static const String labelStringid_torre ="String id_torre";

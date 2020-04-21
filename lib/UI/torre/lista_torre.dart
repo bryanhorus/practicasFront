@@ -63,6 +63,12 @@ class _ListaTorreState extends State<ListaTorre>
       key: _scaffoldKey,
       appBar: AppBar(
         title: const Text(Constants.tittleListaTorre),
+        actions: <Widget>[
+            IconButton(
+              icon: new Icon(Icons.add_circle),
+              onPressed: () {TecniNavigator.goToRegistrarTorre(context);},
+            ),
+          ],
       ),
       body: Stack(fit: StackFit.expand, children: <Widget>[
         Container(
@@ -77,8 +83,12 @@ class _ListaTorreState extends State<ListaTorre>
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     ListTile(
-                      title: Text(listTorre[indice].nombre,
-                          style: TextStyle(fontSize: 20, color: Colors.black87)),
+                      title: Text(
+                        listTorre[indice].nombre,
+                          style: TextStyle(fontSize: 20, color: Colors.black87)
+                          ),
+                      subtitle: Text(listTorre[indice].identificacion),
+                      leading: new Icon(Icons.place),
                       onTap: () {
                         print(listTorre[indice].nombre);
                         torre = listTorre[indice];

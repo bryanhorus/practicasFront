@@ -1,27 +1,30 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/inicio_sesion_bloc.dart';
-import 'package:tenic_api/modelo/usuario_model.dart';
+import 'package:tenic_api/modelo/LoginUser.dart';
 import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 
 
 class Login extends StatefulWidget {
-  const Login({Key key}) : super(key: key);
+  final LoginUser usuario;
+  const Login({Key key, this.usuario}) : super(key: key);
 
   @override
   LoginState createState() => LoginState();
 }
 
 class LoginState extends State<Login> with SingleTickerProviderStateMixin {
+  final TextEditingController _userNameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _autovalidate = false;
   bool _validate;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   InicioSesionBloc inicioBloc;
-  Usuario _usuario = Usuario(
+  LoginUser _usuario = LoginUser(
     correo: "",
     password: "",
   );
@@ -43,14 +46,11 @@ class LoginState extends State<Login> with SingleTickerProviderStateMixin {
       _autovalidate = true;
     } else {
       form.save();
-      _validate = await inicioBloc.iniciarSesion(_usuario);
+      _validate = await inicioBloc.iniciarSesion( context ,_userNameController.text ,_passwordController.text);
       if(_validate){
         TecniNavigator.goToHomeCoordinador(context);
       }
-
-      
     }
-    
   }
 
   @override
@@ -105,6 +105,7 @@ class LoginState extends State<Login> with SingleTickerProviderStateMixin {
                             keyboardType: TextInputType.emailAddress,
                             maxLength: 32,
                             validator: validateEmail,
+                            controller: _userNameController,
                             onSaved: (String value) {
                               _usuario.correo = value;
                             },
@@ -116,10 +117,11 @@ class LoginState extends State<Login> with SingleTickerProviderStateMixin {
                             decoration: new InputDecoration(
                               hintText: Constants.labelPassword,
                               icon: Icon(Icons.lock, color: Colors.grey),
-                              labelText: Constants.labelPassword,
+                              labelText: Constants.labelPassword
                             ),
                             maxLength: 12,
                             validator: validatePassword,
+                            controller: _passwordController,
                             onSaved: (String value) {
                               _usuario.password = value;
                             },
@@ -140,8 +142,9 @@ class LoginState extends State<Login> with SingleTickerProviderStateMixin {
                               textColor: Colors.white,
                               child: Text(Constants.btnIngresar),
                               onPressed: (){
-                                //_handleSubmitted,
-                                TecniNavigator.goToHomeCoordinador(context);},
+                                //_handleSubmitted;
+                                inicioBloc.iniciarSesion( context ,_userNameController.text ,_passwordController.text);
+                                },
                           ),
                         ],
                       ),

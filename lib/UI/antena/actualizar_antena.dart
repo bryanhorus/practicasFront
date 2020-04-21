@@ -1,34 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/antena_bloc.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
+import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/estado_model.dart';
+import 'package:tenic_api/modelo/municipio_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class ActualizarAntena extends StatefulWidget {
   final Antena antena;
-  const ActualizarAntena({this.antena, Key key}) : super(key: key);
+
+  const ActualizarAntena({Key key, this.antena}) : super(key: key);
 
   @override
   ActualizarAntenaState createState() => ActualizarAntenaState(antena: antena);
 }
 
-class ActualizarAntenaState extends State<ActualizarAntena> with SingleTickerProviderStateMixin {
+class ActualizarAntenaState extends State<ActualizarAntena>
+    with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  ActualizarAntenaState ({this.antena});
+  ActualizarAntenaState({this.antena});
+
   AntenaBloc antenaBloc;
   Antena antena = Antena(
-    nombre: "",
-    referencia: "",
-    altura: "",
-    orientacion: "",
-    inclinacion: "",
-    torre: Torre(idTorre: 0),
-    state: Estado(id: 0),
-  );
-
+      nombre: '',
+      referencia: '',
+      altura: '',
+      orientacion: '',
+      inclinacion: '',
+      state: Estado(id: 0),
+      torre: Torre(
+          idTorre: 0,
+          municipio:
+              Municipio(idMunicipio: 0, departament: Departamento(idDpto: 0))));
 
   @override
   void initState() {
@@ -46,7 +52,6 @@ class ActualizarAntenaState extends State<ActualizarAntena> with SingleTickerPro
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-
   void _handleSubmitted() {
     final FormState form = _formKey.currentState;
     if (!form.validate()) {
@@ -54,8 +59,8 @@ class ActualizarAntenaState extends State<ActualizarAntena> with SingleTickerPro
     } else {
       form.save();
       antenaBloc.updateAntena(antena);
+      TecniNavigator.goToHomeCoordinador(context);
     }
-    TecniNavigator.goToListaAntena(context);
   }
 
   @override
@@ -95,6 +100,9 @@ class ActualizarAntenaState extends State<ActualizarAntena> with SingleTickerPro
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelNombre,
+                              border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelNombre,
                             ),
                             initialValue: antena.nombre,
                             validator: validateName,
@@ -108,6 +116,9 @@ class ActualizarAntenaState extends State<ActualizarAntena> with SingleTickerPro
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelReferencia,
+                              border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelReferencia,
                             ),
                             initialValue: antena.referencia,
                             keyboardType: TextInputType.number,
@@ -120,9 +131,12 @@ class ActualizarAntenaState extends State<ActualizarAntena> with SingleTickerPro
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelAltura,
+                              border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelAltura,
                             ),
                             keyboardType: TextInputType.number,
-                            maxLength: 2,
+                            maxLength: 4,
                             initialValue: antena.altura,
                             validator: validateAltura,
                             onSaved: (String value) {
@@ -133,6 +147,9 @@ class ActualizarAntenaState extends State<ActualizarAntena> with SingleTickerPro
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelOrientacion,
+                              border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelOrientacion,
                             ),
                             initialValue: antena.orientacion,
                             keyboardType: TextInputType.number,
@@ -146,6 +163,9 @@ class ActualizarAntenaState extends State<ActualizarAntena> with SingleTickerPro
                           TextFormField(
                             decoration: new InputDecoration(
                               labelText: Constants.labelInclinacion,
+                              border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0)),
+                              hintText: Constants.labelInclinacion,
                             ),
                             initialValue: antena.inclinacion,
                             keyboardType: TextInputType.number,
@@ -169,8 +189,8 @@ class ActualizarAntenaState extends State<ActualizarAntena> with SingleTickerPro
                             ),
                             height: 50.0,
                             minWidth: 150.0,
-                            color: Color(0xFFE1F5FE),
-                            splashColor: Colors.blueAccent,
+                            color: Color(0xFF42a5f5),
+                            splashColor: Colors.blue,
                             textColor: Colors.black,
                             child: Text(Constants.btnRegistar),
                             onPressed: _handleSubmitted,
@@ -188,7 +208,6 @@ class ActualizarAntenaState extends State<ActualizarAntena> with SingleTickerPro
     );
   }
 
-
   String validateName(String value) {
     String pattern = Constants.patternNombre;
     RegExp regExp = new RegExp(pattern);
@@ -199,6 +218,7 @@ class ActualizarAntenaState extends State<ActualizarAntena> with SingleTickerPro
     }
     return null;
   }
+
   String validateReferencia(String value) {
     if (value.length == 0) {
       return Constants.validateReferencia;
@@ -207,7 +227,8 @@ class ActualizarAntenaState extends State<ActualizarAntena> with SingleTickerPro
     }
     return null;
   }
-    String validateAltura(String value) {
+
+  String validateAltura(String value) {
     if (value.length == 0) {
       return Constants.validateAltura;
     } else if (value.length != 2) {
@@ -215,7 +236,8 @@ class ActualizarAntenaState extends State<ActualizarAntena> with SingleTickerPro
     }
     return null;
   }
-    String validateGrados(String value) {
+
+  String validateGrados(String value) {
     if (value.length == 0) {
       return Constants.validateOrientacion;
     } else if (value.length != 3) {
