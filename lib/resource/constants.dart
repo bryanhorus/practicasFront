@@ -21,6 +21,10 @@ class Constants{
   static const String pathServiceAntenaUpdate ="/api/tecni/antenna/update";
   static const String pathServiceAntenaDelete ="/api/tecni/antenna/delete/id";
   static const String pathServiceAntenasLista ="/api/tecni/antenna/get/all";
+  static const String pathServiceObservacionInsert ="/api/tecni/observacion/insert";
+  static const String pathServiceObservacionUpdate ="/api/tecni/observacion/update";
+  static const String pathServiceObservacionDelete ="/api/tecni/observacion/delete/id";
+  static const String pathServiceObservacionesLista ="/api/tecni/observacion/get/all";
   static const String pathServiceTorreInsert ="/api/tecni/torre/insert";
   static const String pathServiceTorreUpdate ="/api/tecni/torre/update";
   static const String pathServiceTorreDelete ="/api/tecni/torre/delete/id";

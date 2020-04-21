@@ -1,6 +1,7 @@
 import 'package:tenic_api/modelo/antena_model.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/municipio_model.dart';
+import 'package:tenic_api/modelo/observacion_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
 
@@ -14,6 +15,7 @@ class ApiResponse {
   List<Departamento> listDepartamento = List();
   List<Antena> listAntena = List();
   List<Torre> listTorre = List();
+  List<Observacion> listObservacion =List();
   ApiResponse({this.statusResponse, this.object, this.message});
 
   factory ApiResponse.fromJson(Map<String, dynamic> json) {

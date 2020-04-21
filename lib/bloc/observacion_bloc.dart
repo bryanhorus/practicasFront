@@ -1,17 +1,17 @@
-import 'package:tenic_api/modelo/antena_model.dart';
+import 'package:tenic_api/modelo/observacion_model.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/repository/repository.dart';
 import 'package:tenic_api/resource/constants.dart';
 
-class AntenaBloc {
+class ObservacionBloc {
   final Repository _repository = Repository();
   var _apiResponse = ApiResponse();
 
   ApiResponse get apiResponse => _apiResponse;
 
-  Future<ApiResponse> createAntena(Antena antena) async {
+  Future<ApiResponse> createObservacion(Observacion observacion) async {
     ApiResponse apiResponse =
-        await _repository.registrarAntena(antena);
+    await _repository.registrarObservacion(observacion);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
@@ -24,9 +24,9 @@ class AntenaBloc {
     return apiResponse;
   }
 
-  Future<ApiResponse> updateAntena(Antena antena) async {
+  Future<ApiResponse> updateObservacion(Observacion observacion) async {
     ApiResponse apiResponse =
-        await _repository.actualizarAntena(antena);
+    await _repository.actualizarObservacion(observacion);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
@@ -39,9 +39,9 @@ class AntenaBloc {
     return apiResponse;
   }
 
-  Future<ApiResponse> deleteAntena(Antena antena) async {
+  Future<ApiResponse> deleteObservacion(Observacion observacion) async {
     ApiResponse apiResponse =
-        await _repository.eliminarAntena(antena);
+    await _repository.eliminarObservacion(observacion);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
@@ -54,8 +54,8 @@ class AntenaBloc {
     return apiResponse;
   }
 
-  Future<ApiResponse> listarAntena() async {
-    ApiResponse apiResponse = await _repository.listaAntena();
+  Future<ApiResponse> listarObservacion() async {
+    ApiResponse apiResponse = await _repository.listaObservacion();
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
