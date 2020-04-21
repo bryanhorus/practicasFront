@@ -102,6 +102,8 @@ class LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
                     height: 90,
                     
                     decoration: BoxDecoration(
+                      image: const DecorationImage(image: NetworkImage( "https://as01.epimg.net/meristation/imagenes/2020/04/06/betech/1586182716_109543_1586183083_noticia_normal_recorte1.jpg"),
+                      ),
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15),
                       boxShadow:[
