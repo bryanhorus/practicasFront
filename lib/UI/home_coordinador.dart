@@ -105,8 +105,46 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
           title: const Text(Constants.appName),
         ),
         drawer: menu,
-        body: Center(
-            child: Text(
-                "Aqui podemos hacer como una introducción a la empresa o la app, algo asi, como un texto y una imagen")));
+        body:ListView(
+          children: <Widget>[
+            Card(
+              elevation: 25,
+              child: ListTile(
+                leading: Icon(Icons.center_focus_strong),
+                title: Text("ANTENA GLOBAL"),
+                subtitle: Text('Nuestra Compañia ofrece los mejores servicios, para la comunidad' +
+                              'donde puedes estar mas cerca de tu familia '),
+              ),
+            ),
+            //
+              Card(
+              elevation: 24,
+              child: ListTile(
+                leading: Icon(Icons.center_focus_strong),
+                title: Text("Mision"),
+                subtitle: Text("Generamos valor a la sociedad, clientes y accionistas, y  todos los grupos de interés, con una gestión innovadora, eficiente, neutral y de calidad en la prestación de servicios de redes compartidas e infraestructuras de telecomunicaciones, a través de la ilusión y el desarrollo de nuestro equipo de colaboradores."
+                ),
+              ),
+            ),
+
+            //
+ Card(
+              elevation: 25,
+              child: ListTile(
+                leading: Icon(Icons.center_focus_strong),
+                title: Text("Vision"),
+                subtitle: Text('Nuestra Compañia ofrece los mejores servicios, para la comunidad' +
+                              'donde puedes estar mas cerca de tu familia '),
+              ),
+            ),
+
+          ],
+        )
+    );
+    
+
+        // Center(
+          //  child: Text(
+            //    "Aqui podemos hacer como una introducción a la empresa o la app, algo asi, como un texto y una imagen")));
   }
 }
