@@ -9,4 +9,7 @@ class TecnicoNavigator {
   static void goToPerfilCoordinador(BuildContext context) {
     Navigator.pushNamed(context, Constants.perfilCoordinadorRoute);
   }
+  static void goToRegistrarObservacion(BuildContext context) {
+    Navigator.pushNamed(context, Constants.registrarobservacionRoute);
+  }
 }

@@ -86,7 +86,7 @@ class CrearMunicipioState extends State<CrearMunicipio>
                             padding: const EdgeInsets.only(top: 40.0),
                           ),
                           const SizedBox(height: 12.0),
-                         /* TextFormField(
+                          /* TextFormField(
                             decoration: InputDecoration(
                                 labelText: Constants.labelDepartamento,
                                 border: OutlineInputBorder(
@@ -101,16 +101,17 @@ class CrearMunicipioState extends State<CrearMunicipio>
                           ),*/
                           DropdownButtonHideUnderline(
                             child:  DropdownButton<int>(
-                              hint: Text("Product"),
+                              hint: Text(""),
                               value: currentDpto,
                               isDense: true,
-                              onChanged: (int newValue) {
+                              onChanged:  (int newValue) {
                                 currentDpto = newValue;
                                 setState(() {
                                   currentDpto = newValue;
                                 });
                                 print(currentDpto);
                                 _municipio.departament.idDpto = newValue;
+                                
                               },
                               items: listaDpto.map((Departamento map) {
                                 return  DropdownMenuItem<int>(

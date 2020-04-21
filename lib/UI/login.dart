@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/inicio_sesion_bloc.dart';
 import 'package:tenic_api/modelo/LoginUser.dart';
 import 'package:tenic_api/navigator.dart';
+import 'package:tenic_api/navigator_tecnico.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 
@@ -49,7 +50,8 @@ class LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
       form.save();
         _validate = await inicioSesionBloc.iniciarSesion(_login);
       if(_validate){
-        TecniNavigator.goToHomeCoordinador(context);
+        TecnicoNavigator.goToRegistrarObservacion(context);
+        //TecniNavigator.goToHomeCoordinador(context);
       }
     }
   }

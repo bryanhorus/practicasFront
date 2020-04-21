@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tenic_api/UI/dialog.dart';
+import 'package:tenic_api/bloc/observacion_bloc.dart';
+import 'package:tenic_api/bloc/torre_bloc.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
 import 'package:tenic_api/modelo/estado_model.dart';
 import 'package:tenic_api/modelo/observacion_model.dart';
@@ -18,8 +20,13 @@ class CrearObservacionState extends State<CrearObservacion>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  TextEditingController _inputDate = TextEditingController();
 
-  //final ObservacionBloc observacionBloc = ObservacionBloc();
+  final TorreBloc torreBloc = TorreBloc();
+  List<Torre> listaTorre = List();
+  int currentTorre;
+
+  final ObservacionBloc observacionBloc = ObservacionBloc();
   Observacion _observacion = Observacion(
       fecha: '',
       orientacion: '',
@@ -28,11 +35,34 @@ class CrearObservacionState extends State<CrearObservacion>
           Antena(idAntena: 0, torre: Torre(idTorre: 0), state: Estado(id: 0)));
   @override
   void initState() {
+
+    TorreBloc();
+    torreBloc.listarTorre().then((apiResponse) {
+      setState(() {
+        listaTorre = apiResponse.listTorre;
+      });
+    });
     super.initState();
-    //ObservacionBloc();
+    ObservacionBloc();
   }
 
   bool _autovalidate = false;
+
+  _selectDate(BuildContext context) async {
+    DateTime picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate:  DateTime(2020),
+      lastDate: DateTime(2099),
+    );
+    if (picked != null) {
+      setState(() {
+        //redibujar
+        _observacion.fecha = picked.toIso8601String() + "Z";
+        _inputDate.text = _observacion.fecha;
+      });
+    }
+  }
 
   void _handleSubmitted() {
     final FormState form = _formKey.currentState;
@@ -40,7 +70,7 @@ class CrearObservacionState extends State<CrearObservacion>
       _autovalidate = true;
     } else {
       form.save();
-      //observacionBloc.createTorre(_observacion);
+      observacionBloc.createObservacion(_observacion);
       Message().showRegisterDialog(context);
     }
   }
@@ -76,20 +106,20 @@ class CrearObservacionState extends State<CrearObservacion>
                             padding: const EdgeInsets.only(top: 40.0),
                           ),
                           const SizedBox(height: 12.0),
-                          TextFormField(
-                            decoration: InputDecoration(
-                                labelText: "Fecha",
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0)),
-                                hintText: "Fecha",
-                                icon: Icon(Icons.date_range)),
-                            validator: validateName,
-                            keyboardType: TextInputType.text,
-                            onSaved: (String value) {
-                              _observacion.fecha = value;
-                            },
-                            style: TextStyle(fontSize: 18.0),
-                          ),
+                          TextField(
+                      enableInteractiveSelection: false,
+                      controller: _inputDate,
+                      decoration: InputDecoration(
+                          hintText: "Fecha",
+                          labelText: "Fecha",
+                          suffix: Icon(Icons.create),
+                          icon: Icon(Icons.calendar_today)),
+                      onTap: () {
+                        FocusScope.of(context).requestFocus(FocusNode());
+                        _selectDate(context);
+
+                      }
+                      ),
                           const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: InputDecoration(
@@ -97,9 +127,8 @@ class CrearObservacionState extends State<CrearObservacion>
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
                                 hintText: Constants.labelOrientacion,
-                                icon: Icon(Icons.perm_identity)),
+                                icon: Icon(Icons.brightness_4)),
                             keyboardType: TextInputType.number,
-                            maxLength: 2,
                             //validator: validateName,
                             onSaved: (String value) {
                               _observacion.orientacion = value;
@@ -113,7 +142,7 @@ class CrearObservacionState extends State<CrearObservacion>
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
                                 hintText: Constants.labelInclinacion,
-                                icon: Icon(Icons.directions)),
+                                icon: Icon(Icons.brightness_1)),
                             keyboardType: TextInputType.number,
                             maxLength: 3,
                             onSaved: (String value) {
@@ -128,7 +157,7 @@ class CrearObservacionState extends State<CrearObservacion>
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
                                 hintText: Constants.labelNombreAntena,
-                                icon: Icon(Icons.image)),
+                                icon: Icon(Icons.settings_input_antenna)),
                             keyboardType: TextInputType.number,
                             maxLength: 4,
                             onSaved: (String antena) {
@@ -137,7 +166,7 @@ class CrearObservacionState extends State<CrearObservacion>
                             style: TextStyle(fontSize: 18.0),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 60.0),
+                            padding: const EdgeInsets.only(top: 40.0),
                           ),
                           MaterialButton(
                             shape: RoundedRectangleBorder(

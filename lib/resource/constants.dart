@@ -18,6 +18,7 @@ class Constants{
   static const String pathServiceDepartamentoDelete ="/api/tecni/departament/delete/id";
   static const String pathServiceDepartamento = "/api/tecni/departament/get/all";
   static const String pathServiceAntenaInsert ="/api/tecni/antenna/insert";
+  static const String pathServiceObservacionInsert ="/api/tecni/observacion/insert";
   static const String pathServiceAntenaUpdate ="/api/tecni/antenna/update";
   static const String pathServiceAntenaDelete ="/api/tecni/antenna/delete/id";
   static const String pathServiceAntenasLista ="/api/tecni/antenna/get/all";
@@ -77,7 +78,7 @@ class Constants{
   static const String tittleRegistroDepartamento = "Registrar Departamento";
   static const String tittleRegistroMunicipio = "Registrar Municipio";
   static const String tittleRegistroTorre = "Registrar Torre";
-  static const String tittleObservacion = "Realizar Observación";
+  static const String tittleObservacion = "Observación de Antena";
   static const String tittleTorreactualizar = "Actualizar Torre";
   static const String tittleListaTorre = "Lista Torres";
   static const String tittleRegistroAntena = "Registrar Antena";
@@ -92,6 +93,7 @@ class Constants{
   static const String tittleMunicipio = "Municipio";
   static const String tittleDepartamento = "Departamento";
   static const String tittleAntena = "Antena";
+  static const String tittleAntenaAsignadas = "Antenas Asignadas";
   static const String tittleListaMunicipio = "Lista Municipios";
   static const String tittleTorre = "Torre";
   static const String tittleAsignarAntena = "Asignar Antenas";
@@ -120,6 +122,7 @@ class Constants{
   static const String registrarMunicipiosRoute = "/registrar_Municipio";
   static const String actualizarMunicipioRoute = "/actualizar_Municipio";
   static const String actualizarDepartamentosRoute = "/actualizar_Departamento";
+  static const String registrarobservacionRoute = "/observacion";
   //Ruter imagenes
   static const String loginImage = 'assets/imgLogin.jpg';
   static const String registroImage = 'assets/imgRegistro.png';
