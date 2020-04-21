@@ -4,13 +4,15 @@ import 'package:http/http.dart' as http;
 import 'package:tenic_api/Session_Storage.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
+import 'package:tenic_api/modelo/session_local.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class AntenaApiService {
 
   Antena _antena;
 
-  final SessionStorage _session = SessionStorage();
+  static final SessionStorage _session = SessionStorage();
+
 
   AntenaApiService();
 
@@ -41,7 +43,7 @@ class AntenaApiService {
     Uri uri =
         Uri.http(Constants.urlAuthority, Constants.pathServiceAntenaUpdate);
     var res = await http.put(uri,
-        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader:  _session.getToken().toString()},
+        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader: _session.getToken().toString()},
         body: body2);
 
     var resBody = json.decode(res.body);
@@ -76,8 +78,10 @@ class AntenaApiService {
     Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceAntenasLista);
     var res = await http.get(
       uri,
-      headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader: _session.getToken().toString() },
+      headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader:  _session.getToken().toString()}
     );
+
+    print(_session.getToken().toString());
 
     var resBody = json.decode(res.body);
     apiResponse.statusResponse = res.statusCode;

@@ -39,8 +39,7 @@ class TorreApiService {
     Uri uri = Uri.http(
         Constants.urlAuthority, Constants.pathServiceTorreUpdate);
     var res = await http.put(uri,
-        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, 
-        HttpHeaders.authorizationHeader: _session.getToken().toString()},
+        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader: _session.getToken().toString()},
         body: body2);
 
     var resBody = json.decode(res.body);
