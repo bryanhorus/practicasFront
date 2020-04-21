@@ -76,6 +76,7 @@ class AntenaApiService {
   Future<ApiResponse> listarAntena() async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceAntenasLista);
+    print("********** " +  _session.getToken().toString());
     var res = await http.get(
       uri,
       headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader:  _session.getToken().toString()}

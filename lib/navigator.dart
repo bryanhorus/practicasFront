@@ -74,12 +74,4 @@ class TecniNavigator {
   static void goToPerfilCoordinador(BuildContext context) {
     Navigator.pushNamed(context, Constants.perfilCoordinadorRoute);
   }
-
-
-
-
-
-
-
-
 }
