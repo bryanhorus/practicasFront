@@ -133,8 +133,7 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
               child: ListTile(
                 leading: Icon(Icons.center_focus_strong),
                 title: Text("Vision"),
-                subtitle: Text('Nuestra Compañia ofrece los mejores servicios, para la comunidad' +
-                              'donde puedes estar mas cerca de tu familia '),
+                subtitle: Text('Líder en Colombia en soluciones de infraestructuras de telecomunicaciones. '),
               ),
             ),
 
