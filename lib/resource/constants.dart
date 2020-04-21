@@ -77,6 +77,7 @@ class Constants{
   static const String tittleRegistroDepartamento = "Registrar Departamento";
   static const String tittleRegistroMunicipio = "Registrar Municipio";
   static const String tittleRegistroTorre = "Registrar Torre";
+  static const String tittleObservacion = "Realizar Observación";
   static const String tittleTorreactualizar = "Actualizar Torre";
   static const String tittleListaTorre = "Lista Torres";
   static const String tittleRegistroAntena = "Registrar Antena";
@@ -145,7 +146,7 @@ class Constants{
   static const String labelTorre ="Torre";
   static const String labelMunicipio ="Municipio";
   static const String labelTecnologia ="Tecnologia";
-  static const String labelNombreAntena ="Nombre de la Antena";
+  static const String labelNombreAntena ="Antena";
   static const String labelDepartamento ="Departamento";
     static const String labelestado ="Estado";
 
