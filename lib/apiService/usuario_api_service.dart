@@ -4,14 +4,10 @@ import 'package:http/http.dart' as http;
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
 import 'package:tenic_api/resource/constants.dart';
-import '../Session_Storage.dart';
+
 
 class UsuarioApiService {
   Usuario _usuario;
-
-  UsuarioApiService();
-
-  final SessionStorage _session = SessionStorage();
 
   Future<ApiResponse> insertUsuario(Usuario usuario) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
@@ -31,14 +27,14 @@ class UsuarioApiService {
     return apiResponse;
   }
 
-  Future<ApiResponse> updateUsuario(Usuario usuario) async {
+  Future<ApiResponse> updateUsuario(Usuario usuario, String token) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var body2 = json.encode(usuario.toJson());
     Uri uri =
     Uri.http(Constants.urlAuthority, Constants.pathServiceUsuarioUpdate);
     var res = await http.put(uri,
         headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader,
-          HttpHeaders.authorizationHeader: _session.getToken().toString()},
+          HttpHeaders.authorizationHeader: token},
         body: body2);
 
     var resBody = json.decode(res.body);
@@ -51,13 +47,13 @@ class UsuarioApiService {
     return apiResponse;
   }
 
-  Future<ApiResponse> listarUsuario() async {
+  Future<ApiResponse> listarUsuario(String token) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceListUsuario);
     var res = await http.get(
       uri,
       headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader , 
-      HttpHeaders.authorizationHeader: _session.getToken().toString()}
+      HttpHeaders.authorizationHeader: token}
     );
 
     var resBody = json.decode(res.body);
@@ -75,7 +71,7 @@ class UsuarioApiService {
     return apiResponse;
   }
 
-  Future<ApiResponse> deleteUsuario(Usuario usuario) async {
+  Future<ApiResponse> deleteUsuario(Usuario usuario, String token) async {
     var queryParameters = {
       'id': usuario.idUsuario.toString(),//query del id que permite identificr en el servicion el acceso
     };
@@ -83,7 +79,8 @@ class UsuarioApiService {
     Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceDeleteU,
         queryParameters);
     var res = await http.delete(uri,
-        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader: _session.getToken().toString()});
+        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, 
+        HttpHeaders.authorizationHeader: token});
     apiResponse.statusResponse = res.statusCode;
 
     if (apiResponse.statusResponse == 200) {

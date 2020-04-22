@@ -2,63 +2,68 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tenic_api/UI/dialog.dart';
 import 'package:tenic_api/bloc/antena_bloc.dart';
-import 'package:tenic_api/bloc/torre_bloc.dart';
+import 'package:tenic_api/bloc/observacion_bloc.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/estado_model.dart';
 import 'package:tenic_api/modelo/municipio_model.dart';
+import 'package:tenic_api/modelo/observacion_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/resource/constants.dart';
 
-class RegistrarAntena extends StatefulWidget {
+class CrearObservacion extends StatefulWidget {
+  const CrearObservacion({Key key}) : super(key: key);
+
   @override
-  RegistrarAntenaState createState() => RegistrarAntenaState();
+  CrearObservacionState createState() => CrearObservacionState();
 }
 
-class RegistrarAntenaState extends State<RegistrarAntena>
+class CrearObservacionState extends State<CrearObservacion>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final TorreBloc torreBloc = TorreBloc();
-  List<Torre> listaTorre = List();
-  int currentTorre;
-
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  TextEditingController _inputDate = TextEditingController();
 
   final AntenaBloc antenaBloc = AntenaBloc();
-  Antena _antena = Antena(
-      nombre: '',
-      referencia: '',
-      altura: '',
+  List<Antena> listaAntena = List();
+  int currentAntena;
+
+  final ObservacionBloc observacionBloc = ObservacionBloc();
+  Observacion _observacion = Observacion(
+      fecha: '',
       orientacion: '',
       inclinacion: '',
-      state: Estado(id: 0),
-      torre: Torre(
-          idTorre: 0,
-          municipio:
-              Municipio(idMunicipio: 0, departament: Departamento(idDpto: 0))));
-
+      antena:
+          Antena(idAntena: 0, state: Estado(id: 0), torre: Torre(idTorre: 0, municipio: Municipio(idMunicipio: 0, departament: Departamento(idDpto: 0)))));
   @override
   void initState() {
-
-    TorreBloc();
-    torreBloc.listarTorre().then((apiResponse) {
+    AntenaBloc();
+    antenaBloc.listarAntena().then((apiResponse) {
       setState(() {
-        listaTorre = apiResponse.listTorre;
+        listaAntena = apiResponse.listAntena;
       });
     });
     super.initState();
-    AntenaBloc();
-  }
-
-  void showInSnackBar(String value) {
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text(value),
-    ));
+    ObservacionBloc();
   }
 
   bool _autovalidate = false;
 
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  _selectDate(BuildContext context) async {
+    DateTime picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2020),
+      lastDate: DateTime(2099),
+    );
+    if (picked != null) {
+      setState(() {
+        //redibujar
+        _observacion.fecha = picked.toIso8601String() + "Z";
+        _inputDate.text = _observacion.fecha;
+      });
+    }
+  }
 
   void _handleSubmitted() {
     final FormState form = _formKey.currentState;
@@ -66,7 +71,7 @@ class RegistrarAntenaState extends State<RegistrarAntena>
       _autovalidate = true;
     } else {
       form.save();
-      antenaBloc.createAntena(_antena);
+      observacionBloc.createObservacion(_observacion);
       Message().showRegisterDialog(context);
     }
   }
@@ -75,9 +80,7 @@ class RegistrarAntenaState extends State<RegistrarAntena>
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(
-        title: const Text(Constants.tittleAntena),
-      ),
+      appBar: AppBar(title: const Text(Constants.tittleObservacion)),
       body: Stack(fit: StackFit.expand, children: <Widget>[
         Center(
           child: Container(
@@ -103,124 +106,77 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                           Padding(
                             padding: const EdgeInsets.only(top: 40.0),
                           ),
-
                           const SizedBox(height: 12.0),
-                          TextFormField(
-                            decoration: InputDecoration(
-                                labelText: Constants.labelNombre,
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0)),
-                                hintText: Constants.labelNombre,
-                                icon: Icon(Icons.account_circle)),
-                            validator: validateName,
-                            keyboardType: TextInputType.text,
-                            onSaved: (String value) {
-                              _antena.nombre = value;
-                            },
-                            style: TextStyle(fontSize: 18.0),
-                          ),
+                          TextField(
+                              enableInteractiveSelection: false,
+                              controller: _inputDate,
+                              decoration: InputDecoration(
+                                  hintText: "Fecha",
+                                  labelText: "Fecha",
+                                  border: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(20.0)),
+                                  suffix: Icon(Icons.create),
+                                  icon: Icon(Icons.calendar_today)),
+                              onTap: () {
+                                FocusScope.of(context)
+                                    .requestFocus(FocusNode());
+                                _selectDate(context);
+                              }),
                           const SizedBox(height: 12.0),
-                          TextFormField(
-                            decoration: InputDecoration(
-                                labelText: Constants.labelReferencia,
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0)),
-                                hintText: Constants.labelReferencia,
-                                icon: Icon(Icons.receipt)),
-                            keyboardType: TextInputType.number,
-                            validator: validateReferencia,
-                            onSaved: (String value) {
-                              _antena.referencia = value;
-                            },
-                            style: TextStyle(fontSize: 18.0),
-                          ),
-                          const SizedBox(height: 12.0),
-                          TextFormField(
-                            decoration: InputDecoration(
-                                labelText: Constants.labelAltura,
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0)),
-                                hintText: Constants.labelAltura,
-                                icon: Icon(Icons.show_chart)),
-                            keyboardType: TextInputType.number,
-                            maxLength: 2,
-                            validator: validateAltura,
-                            onSaved: (String value) {
-                              _antena.altura = value;
-                            },
-                            style: TextStyle(fontSize: 18.0),
-                          ),
                           TextFormField(
                             decoration: InputDecoration(
                                 labelText: Constants.labelOrientacion,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
                                 hintText: Constants.labelOrientacion,
-                                icon: Icon(Icons.call_missed_outgoing)),
+                                icon: Icon(Icons.brightness_4)),
                             keyboardType: TextInputType.number,
-                            maxLength: 3,
-                            validator: validateGrados,
+                            //validator: validateName,
                             onSaved: (String value) {
-                              _antena.orientacion = value;
+                              _observacion.orientacion = value;
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
+                          const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: InputDecoration(
                                 labelText: Constants.labelInclinacion,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
                                 hintText: Constants.labelInclinacion,
-                                icon: Icon(Icons.call_split)),
+                                icon: Icon(Icons.brightness_1)),
                             keyboardType: TextInputType.number,
                             maxLength: 3,
-                            validator: validateGrados,
                             onSaved: (String value) {
-                              _antena.inclinacion = value;
+                              _observacion.inclinacion = value;
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
-                          TextFormField(
-                            decoration: InputDecoration(
-                                labelText: ('estado'),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0)),
-                                hintText: Constants.labelestado,
-                                icon: Icon(Icons.graphic_eq)),
-                            keyboardType: TextInputType.number,
-                            maxLength: 12,
-                            onSaved: (String value) {
-                              _antena.state.id = int.parse(value);
-                            },
-                            style: TextStyle(fontSize: 18.0),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20.0),
-                          ),
+                          const SizedBox(height: 12.0),
                           DropdownButtonHideUnderline(
                             child:  DropdownButton<int>(
                               hint: Text("Seleccionar"),
-                              value: currentTorre,
+                              value: currentAntena,
                               isDense: true,
-                              onChanged: (int newValue) {
-                                currentTorre = newValue;
+                              onChanged:  (int newValue) {
+                                currentAntena = newValue;
                                 setState(() {
-                                  currentTorre = newValue;
+                                  currentAntena = newValue;
                                 });
-                                print(currentTorre);
-                                _antena.torre.idTorre = newValue;
+                                print(currentAntena);
+                                _observacion.antena.idAntena = newValue;
+                                
                               },
-                              items: listaTorre.map((Torre map) {
+                              items: listaAntena.map((Antena map) {
                                 return  DropdownMenuItem<int>(
-                                  value: map.idTorre,
+                                  value: map.idAntena,
                                   child:  Text(map.nombre,
                                       style:  TextStyle(color: Colors.black)),
                                 );
                               }).toList(),
                             ),
                           ),
-                          
-                          
                           Padding(
                             padding: const EdgeInsets.only(top: 40.0),
                           ),
@@ -232,7 +188,7 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                             height: 50.0,
                             minWidth: 150.0,
                             color: Color(0xFF42a5f5),
-                            splashColor: Colors.blue,
+                            splashColor: Colors.blueAccent,
                             textColor: Colors.black,
                             child: Text(Constants.btnRegistar),
                             onPressed: _handleSubmitted,
@@ -257,15 +213,6 @@ class RegistrarAntenaState extends State<RegistrarAntena>
       return Constants.validateName;
     } else if (!regExp.hasMatch(value)) {
       return Constants.nameStructure;
-    }
-    return null;
-  }
-
-  String validateReferencia(String value) {
-    if (value.isEmpty) {
-      return Constants.validateReferencia;
-    } else if (value.length != 10) {
-      return Constants.referenciaStructure;
     }
     return null;
   }

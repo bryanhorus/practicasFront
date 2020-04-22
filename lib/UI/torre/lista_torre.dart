@@ -1,5 +1,4 @@
 
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tenic_api/UI/torre/actualizar_torre.dart';
@@ -7,7 +6,6 @@ import 'package:tenic_api/bloc/torre_bloc.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/resource/constants.dart';
-
 import '../../navigator.dart';
 
 class ListaTorre extends StatefulWidget {

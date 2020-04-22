@@ -89,6 +89,7 @@ class ActualizarAntenaState extends State<ActualizarAntena>
                           Padding(
                             padding: const EdgeInsets.only(top: 40.0),
                           ),
+                          
                           const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: InputDecoration(
@@ -170,6 +171,9 @@ class ActualizarAntenaState extends State<ActualizarAntena>
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
+
+                          
+
                           Padding(
                             padding: const EdgeInsets.only(top: 40.0),
                           ),

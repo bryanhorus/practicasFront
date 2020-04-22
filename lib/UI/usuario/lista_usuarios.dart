@@ -69,20 +69,15 @@ class ListaUsuariosState extends State<ListaUsuarios>
           child: ListView.builder(
             shrinkWrap: true,
             padding: const EdgeInsets.all(20.0),
-            // tamaño de la lista
             itemCount: listUsuario.length,
-            // Constructor de widget para cada elemento de la lista
             itemBuilder: (BuildContext context, int indice) {
               return Card(
-                  //le damos un color de la lista de primarios
                   color: Colors.blueAccent[indice],
-                  //agregamos un contenedor de 100 de alto
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       ListTile(
                         title: Text(listUsuario[indice].nombre,
-                            //le damos estilo a cada texto
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.black87,

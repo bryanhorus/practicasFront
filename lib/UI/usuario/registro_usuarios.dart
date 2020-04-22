@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:tenic_api/UI/dialog.dart';
 import 'package:tenic_api/bloc/usuario_bloc.dart';
@@ -63,7 +62,6 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
 
     final json = JsonDecoder().convert(data);
     _rol = (json).map<Role>((item) => Role.fromJson(item)).toList();
-    selectedRol = _rol[0].idTipo;
 
     return Scaffold(
       key: _scaffoldKey,
@@ -93,6 +91,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                           Padding(
                             padding: const EdgeInsets.only(top: 40.0),
                           ),
+                          
                           const SizedBox(height: 12.0),
                           TextFormField(
                             decoration:  InputDecoration(
