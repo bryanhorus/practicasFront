@@ -4,14 +4,10 @@ import 'package:http/http.dart' as http;
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
 import 'package:tenic_api/resource/constants.dart';
-import '../Session_Storage.dart';
+
 
 class UsuarioApiService {
   Usuario _usuario;
-
-  UsuarioApiService();
-
-  final SessionStorage _session = SessionStorage();
 
   Future<ApiResponse> insertUsuario(Usuario usuario) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
@@ -51,7 +47,7 @@ class UsuarioApiService {
     return apiResponse;
   }
 
-  Future<ApiResponse> listarUsuario( String token) async {
+  Future<ApiResponse> listarUsuario(String token) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceListUsuario);
     var res = await http.get(
@@ -83,7 +79,8 @@ class UsuarioApiService {
     Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceDeleteU,
         queryParameters);
     var res = await http.delete(uri,
-        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader: token});
+        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, 
+        HttpHeaders.authorizationHeader: token});
     apiResponse.statusResponse = res.statusCode;
 
     if (apiResponse.statusResponse == 200) {

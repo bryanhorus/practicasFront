@@ -18,19 +18,19 @@ class Observacion{
 
   factory Observacion.fromJson(Map<String, dynamic> parsedJson) {
     return Observacion(
-      idObservacion: parsedJson['id_observacion'],
-      fecha: parsedJson['ob_fecha'],
-      orientacion: parsedJson['ob_orientacion'],
-      inclinacion: parsedJson['ob_inclinacion'],
-      antena: Antena.fromJson(parsedJson['antena'])
+      idObservacion: parsedJson['id'],
+      fecha: parsedJson['fecha'],
+      orientacion: parsedJson['orientacion'],
+      inclinacion: parsedJson['inclinacion'],
+      antena: Antena.fromJson(parsedJson['antenna'])
     );
   }
 
   Map<String, dynamic> toJson() => {
-        'id_observacion': idObservacion,
-        'ob_fecha': fecha,
-        'ob_orientacion': orientacion,
-        'ob_inclinacion': inclinacion,
-        'antena': antena.toJson()
+        'id': idObservacion,
+        'fecha': fecha,
+        'orientacion': orientacion,
+        'inclinacion': inclinacion,
+        'antenna': antena.toJson()
       };
 }

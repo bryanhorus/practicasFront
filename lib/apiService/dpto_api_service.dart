@@ -1,18 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/resource/constants.dart';
 
-import '../Session_Storage.dart';
 
 class DepartamentoApiService {
-
   Departamento _departamento;
-
-  DepartamentoApiService();
 
   Future<ApiResponse> insertDepartamento(Departamento departamento, String token) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);

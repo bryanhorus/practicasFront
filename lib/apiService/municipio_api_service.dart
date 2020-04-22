@@ -4,18 +4,14 @@ import 'package:http/http.dart' as http;
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/municipio_model.dart';
 import 'package:tenic_api/resource/constants.dart';
-
-import '../Session_Storage.dart';
 import '../modelo/municipio_model.dart';
 
 
 class MunicipioApiService {
-  MunicipioApiService();
+
   Municipio _municipio;
 
-  final SessionStorage _session = SessionStorage();
-
-  Future<ApiResponse> insertMunicipio(Municipio municipio,String token) async {
+  Future<ApiResponse> insertMunicipio(Municipio municipio, String token) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var body2 = json.encode(municipio.toJson());
     Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceinsertMunicipio);
@@ -34,7 +30,7 @@ class MunicipioApiService {
     return apiResponse;
   }
 
-  Future<ApiResponse> updateMunicipio(Municipio municipio,String token) async {
+  Future<ApiResponse> updateMunicipio(Municipio municipio, String token) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var body2 = json.encode(municipio.toJson());
     Uri uri = Uri.http(
@@ -54,7 +50,7 @@ class MunicipioApiService {
     return apiResponse;
   }
 
-  Future<ApiResponse> deleteMunicipio(Municipio municipio,String token) async {
+  Future<ApiResponse> deleteMunicipio(Municipio municipio, String token) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     Uri uri = Uri.http(
         Constants.urlAuthority, Constants.pathServiceMunicipioDelete);
@@ -78,7 +74,7 @@ class MunicipioApiService {
     var res = await http.get(
       uri,
       headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, 
-      HttpHeaders.authorizationHeader: token}
+      HttpHeaders.authorizationHeader: token},
     );
 
     var resBody = json.decode(res.body);

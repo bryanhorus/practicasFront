@@ -13,7 +13,7 @@ class TorreBloc {
   Future<ApiResponse> createTorre(Torre torre) async {
     String token = await _repository.getLocalAccessToken();
     ApiResponse apiResponse =
-        await _repository.registrarTorre(torre,token);
+        await _repository.registrarTorre(torre, token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
@@ -29,7 +29,7 @@ class TorreBloc {
   Future<ApiResponse> updateTorre(Torre torre) async {
     String token = await _repository.getLocalAccessToken();
     ApiResponse apiResponse =
-        await _repository.actualizarTorre(torre,token);
+        await _repository.actualizarTorre(torre, token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
@@ -45,7 +45,7 @@ class TorreBloc {
   Future<ApiResponse> deleteTorre(Torre torre) async {
     String token = await _repository.getLocalAccessToken();
     ApiResponse apiResponse =
-        await _repository.eliminarTorre(torre,token);
+        await _repository.eliminarTorre(torre, token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:tenic_api/navigator.dart';
+import 'package:tenic_api/navigator_tecnico.dart';
 import 'package:tenic_api/resource/constants.dart';
 
-class HomeCoordinador extends StatefulWidget {
+class HomeTecnico extends StatefulWidget {
   @override
-  HomeCoordinadorState createState() => HomeCoordinadorState();
+  HomeTecnicoState createState() => HomeTecnicoState();
 }
 
-class HomeCoordinadorState extends State<HomeCoordinador> {
+class HomeTecnicoState extends State<HomeTecnico> {
   @override
   Widget build(BuildContext context) {
     var perfil = ListTile(
@@ -19,74 +20,31 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
       onTap: () => {TecniNavigator.goToPerfilCoordinador(context)},
     );
 
-    var torre = ListTile(
-      leading: Icon(Icons.text_fields),
+    var observacion = ListTile(
+      leading: Icon(Icons.create),
       title: Text(
-        Constants.tittleTorre,
+        Constants.tittleObservacion,
         style: TextStyle(color: Colors.black),
       ),
-      onTap: () => {TecniNavigator.goToListaTorre(context)},
+      onTap: () => {TecnicoNavigator.goToRegistrarObservacion(context)},
     );
 
-    var antena = ListTile(
+    var antenasAsignadas = ListTile(
       leading: Icon(Icons.settings_input_antenna),
       title: Text(
-        Constants.tittleAntena,
+        Constants.tittleAntenaAsignadas,
         style: TextStyle(color: Colors.black),
       ),
-      onTap: () => {TecniNavigator.goToListaAntena(context)},
+      onTap: () => {},
     );
 
-    var departamento = ListTile(
-      leading: Icon(Icons.flag),
-      title: Text(
-        Constants.tittleDepartamento,
-        style: TextStyle(color: Colors.black),
-      ),
-      onTap: () => {TecniNavigator.goToListaDepartamento(context)},
-    );
-    var usuarios = ListTile(
-      leading: Icon(Icons.person_add),
-      title: Text(
-        Constants.tittleUsuario,
-        style: TextStyle(color: Colors.black),
-      ),
-      onTap: () => {TecniNavigator.goToListaUsuarios(context)},
-    );
-
-    var municipio = ListTile(
-      leading: Icon(Icons.pin_drop),
-      title: Text(
-        Constants.tittleMunicipio,
-        style: TextStyle(color: Colors.black),
-      ),
-      onTap: () => {TecniNavigator.goToListaMuncipio(context)},
-    );
-
-    var asignar = ListTile(
-      leading: Icon(Icons.fiber_new),
-      title: Text(
-        Constants.tittleAsignarAntena,
-        style: TextStyle(color: Colors.black),
-      ),
-      onTap: () => {TecniNavigator.goToAsignarAntena(context)},
-    );
-
-    var observacion = ListTile(
-      leading: Icon(Icons.pin_drop),
-      title: Text(
-        Constants.tittleListaObservaciones,
-        style: TextStyle(color: Colors.black),
-      ),
-      onTap: () => {TecniNavigator.goToObservaciones(context)},
-    );
     var cerrar = ListTile(
       leading: Icon(Icons.exit_to_app),
       title: Text(
         Constants.cerrarSesion,
         style: TextStyle(color: Colors.black),
       ),
-      onTap: () => {TecniNavigator.goToHome(context)},
+      onTap: () => {TecnicoNavigator.goToHome(context)},
     );
 
     var menu = Drawer(
@@ -109,13 +67,8 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
                     fit: BoxFit.cover)),
           ),
           Ink(color: Colors.blue, child: perfil),
-          torre,
-          departamento,
-          municipio,
-          usuarios,
-          antena,
-          asignar,
           observacion,
+          antenasAsignadas,
           cerrar
         ],
       ),
@@ -160,9 +113,5 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
             ),
           ],
         ));
-
-    // Center(
-    //  child: Text(
-    //    "Aqui podemos hacer como una introducción a la empresa o la app, algo asi, como un texto y una imagen")));
   }
 }

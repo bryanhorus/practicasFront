@@ -13,7 +13,7 @@ class DptoBloc {
   Future<ApiResponse> createDepartamento(Departamento departamento) async {
     String token = await _repository.getLocalAccessToken();
     ApiResponse apiResponse =
-        await _repository.registrarDepartamento(departamento,token);
+        await _repository.registrarDepartamento(departamento, token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
@@ -29,7 +29,7 @@ class DptoBloc {
   Future<ApiResponse> updateDepartamento(Departamento departamento) async {
     String token = await _repository.getLocalAccessToken();
     ApiResponse apiResponse =
-        await _repository.actualizarDepartamento(departamento,token);
+        await _repository.actualizarDepartamento(departamento, token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
@@ -45,7 +45,7 @@ class DptoBloc {
   Future<ApiResponse> deleteDepartamento(Departamento departamento) async {
     String token = await _repository.getLocalAccessToken();
     ApiResponse apiResponse =
-        await _repository.eliminarDepartamento(departamento,token);
+        await _repository.eliminarDepartamento(departamento, token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);

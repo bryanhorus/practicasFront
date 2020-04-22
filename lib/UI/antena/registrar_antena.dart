@@ -73,7 +73,6 @@ class RegistrarAntenaState extends State<RegistrarAntena>
 
   @override
   Widget build(BuildContext context) {
-    currentTorre = listaTorre[0].idTorre;
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -104,6 +103,7 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                           Padding(
                             padding: const EdgeInsets.only(top: 40.0),
                           ),
+
                           const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: InputDecoration(
@@ -180,25 +180,26 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
-                          /*TextFormField(
+                          TextFormField(
                             decoration: InputDecoration(
-                                labelText: Constants.labelTorre,
+                                labelText: ('estado'),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
-                                hintText: Constants.labelTorre,
-                                icon: Icon(Icons.settings_input_antenna)),
+                                hintText: Constants.labelestado,
+                                icon: Icon(Icons.graphic_eq)),
                             keyboardType: TextInputType.number,
-
                             maxLength: 12,
-                            //validator: validateName,
                             onSaved: (String value) {
-                              _antena.torre.idTorre = int.parse(value);
+                              _antena.state.id = int.parse(value);
                             },
                             style: TextStyle(fontSize: 18.0),
-                          ),*/
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20.0),
+                          ),
                           DropdownButtonHideUnderline(
                             child:  DropdownButton<int>(
-                              hint: Text(listaTorre[0].nombre),
+                              hint: Text("Seleccionar"),
                               value: currentTorre,
                               isDense: true,
                               onChanged: (int newValue) {
@@ -218,25 +219,10 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                               }).toList(),
                             ),
                           ),
+                          
+                          
                           Padding(
-                            padding: const EdgeInsets.only(top: 20.0),
-                          ),
-                          TextFormField(
-                            decoration: InputDecoration(
-                                labelText: ('estado'),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0)),
-                                hintText: Constants.labelestado,
-                                icon: Icon(Icons.graphic_eq)),
-                            keyboardType: TextInputType.number,
-                            maxLength: 12,
-                            onSaved: (String value) {
-                              _antena.state.id = int.parse(value);
-                            },
-                            style: TextStyle(fontSize: 18.0),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 60.0),
+                            padding: const EdgeInsets.only(top: 40.0),
                           ),
                           MaterialButton(
                             shape: RoundedRectangleBorder(

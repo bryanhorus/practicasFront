@@ -5,13 +5,10 @@ import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/resource/constants.dart';
 
-import '../Session_Storage.dart';
 
 class TorreApiService {
+  
   Torre _torre;
-  TorreApiService();
-
-  final SessionStorage _session = SessionStorage();
 
   Future<ApiResponse> insertTorre(Torre torre, String token) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
@@ -39,7 +36,8 @@ class TorreApiService {
     Uri uri = Uri.http(
         Constants.urlAuthority, Constants.pathServiceTorreUpdate);
     var res = await http.put(uri,
-        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader: token},
+        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, 
+        HttpHeaders.authorizationHeader: token},
         body: body2);
 
     var resBody = json.decode(res.body);
@@ -55,7 +53,7 @@ class TorreApiService {
   Future<ApiResponse> deleteTorre(Torre torre, String token) async {
     var queryParameters = {
       'id': torre.idTorre
-          .toString(), //query del id que permite identificr en el servicion el acceso
+          .toString(), 
     };
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
 
@@ -70,7 +68,7 @@ class TorreApiService {
     return apiResponse;
   }
 
-  Future<ApiResponse> listarTorre( String token) async {
+  Future<ApiResponse> listarTorre(String token ) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     Uri uri =
         Uri.http(Constants.urlAuthority, Constants.pathServiceTorreLista);
@@ -94,4 +92,7 @@ class TorreApiService {
     }
     return apiResponse;
   }
+
+
+
 }

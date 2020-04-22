@@ -7,7 +7,7 @@ class InicioSesionBloc {
   final Repository _repository = Repository();
 
   bool _access = false;
-   Session session;
+  Session session;
   final SessionStorage sessionStorage = SessionStorage();
 
   InicioSesionBloc();
