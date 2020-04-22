@@ -5,21 +5,18 @@ import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/resource/constants.dart';
 
-import '../Session_Storage.dart';
 
 class TorreApiService {
+  
   Torre _torre;
-  TorreApiService();
 
-  final SessionStorage _session = SessionStorage();
-
-  Future<ApiResponse> insertTorre(Torre torre) async {
+  Future<ApiResponse> insertTorre(Torre torre, String token) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var body2 = json.encode(torre.toJson());
     Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceTorreInsert);
     var res = await http.post(uri,
         headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, 
-        HttpHeaders.authorizationHeader: _session.getToken().toString()},
+        HttpHeaders.authorizationHeader: token},
         body: body2);
 
     var resBody = json.decode(res.body);
@@ -33,13 +30,14 @@ class TorreApiService {
   
   }
 
-  Future<ApiResponse> updateTorre(Torre torre) async {
+  Future<ApiResponse> updateTorre(Torre torre, String token) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var body2 = json.encode(torre.toJson());
     Uri uri = Uri.http(
         Constants.urlAuthority, Constants.pathServiceTorreUpdate);
     var res = await http.put(uri,
-        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader: _session.getToken().toString()},
+        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, 
+        HttpHeaders.authorizationHeader: token},
         body: body2);
 
     var resBody = json.decode(res.body);
@@ -52,10 +50,10 @@ class TorreApiService {
     return apiResponse;
   }
 
-  Future<ApiResponse> deleteTorre(Torre torre) async {
+  Future<ApiResponse> deleteTorre(Torre torre, String token) async {
     var queryParameters = {
       'id': torre.idTorre
-          .toString(), //query del id que permite identificr en el servicion el acceso
+          .toString(), 
     };
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
 
@@ -63,21 +61,21 @@ class TorreApiService {
         Constants.pathServiceTorreDelete, queryParameters);
     var res = await http.delete(uri,
         headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader,
-        HttpHeaders.authorizationHeader: _session.getToken().toString()});
+        HttpHeaders.authorizationHeader: token});
 
     apiResponse.statusResponse = res.statusCode;
 
     return apiResponse;
   }
 
-  Future<ApiResponse> listarTorre() async {
+  Future<ApiResponse> listarTorre(String token ) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     Uri uri =
         Uri.http(Constants.urlAuthority, Constants.pathServiceTorreLista);
     var res = await http.get(
       uri,
       headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, 
-      HttpHeaders.authorizationHeader: _session.getToken().toString()},
+      HttpHeaders.authorizationHeader: token},
     );
 
     var resBody = json.decode(res.body);

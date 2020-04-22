@@ -28,13 +28,14 @@ class CrearMunicipioState extends State<CrearMunicipio>
 
   @override
   void initState() {
-    super.initState();
+    
     DptoBloc();
     dptoBloc.listarDepartamento().then((apiResponse) {
       setState(() {
         listaDpto = apiResponse.listDepartamento;
       });
     });
+    super.initState();
     MunicipioBloc();
   }
 
@@ -56,7 +57,6 @@ class CrearMunicipioState extends State<CrearMunicipio>
 
   @override
   Widget build(BuildContext context) {
-    currentDpto = listaDpto[0].idDpto;
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(title: const Text(Constants.tittleMunicipio)),
@@ -87,19 +87,6 @@ class CrearMunicipioState extends State<CrearMunicipio>
                           ),
                           
                           const SizedBox(height: 12.0),
-                          /* TextFormField(
-                            decoration: InputDecoration(
-                                labelText: Constants.labelDepartamento,
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0)),
-                                hintText: Constants.labelDepartamento,
-                                icon: Icon(Icons.assistant_photo)),
-                            keyboardType: TextInputType.text,
-                            onSaved: (String depart) {
-                              _municipio.departament.idDpto = int.parse(depart);
-                            },
-                            style: TextStyle(fontSize: 18.0),
-                          ),*/
                           DropdownButtonHideUnderline(
                             child:  DropdownButton<int>(
                               hint: Text("Seleccionar"),
@@ -123,7 +110,9 @@ class CrearMunicipioState extends State<CrearMunicipio>
                               }).toList(),
                             ),
                           ),
-                          Divider(),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 40.0),
+                          ),
                           TextFormField(
                             decoration: InputDecoration(
                                 labelText: Constants.labelNombre,

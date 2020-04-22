@@ -78,8 +78,40 @@ class HomeTecnicoState extends State<HomeTecnico> {
           title: const Text(Constants.appName),
         ),
         drawer: menu,
-        body: Center(
-            child: Text(
-                "")));
+        body: ListView(
+          children: <Widget>[
+            Card(
+              elevation: 25,
+              child: ListTile(
+                leading: Icon(Icons.center_focus_strong),
+                title: Text("ANTENA GLOBAL"),
+                subtitle: Text(
+                    'Nuestra Compañia ofrece los mejores servicios, para la comunidad' +
+                        'donde puedes estar mas cerca de tu familia '),
+              ),
+            ),
+            //
+            Card(
+              elevation: 24,
+              child: ListTile(
+                leading: Icon(Icons.center_focus_strong),
+                title: Text("Mision"),
+                subtitle: Text(
+                    "Generamos valor a la sociedad, clientes y accionistas, y  todos los grupos de interés, con una gestión innovadora, eficiente, neutral y de calidad en la prestación de servicios de redes compartidas e infraestructuras de telecomunicaciones, a través de la ilusión y el desarrollo de nuestro equipo de colaboradores."),
+              ),
+            ),
+
+            //
+            Card(
+              elevation: 25,
+              child: ListTile(
+                leading: Icon(Icons.center_focus_strong),
+                title: Text("Vision"),
+                subtitle: Text(
+                    'Líder en Colombia en soluciones de infraestructuras de telecomunicaciones. '),
+              ),
+            ),
+          ],
+        ));
   }
 }

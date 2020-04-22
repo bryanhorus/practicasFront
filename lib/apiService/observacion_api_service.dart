@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:tenic_api/Session_Storage.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/observacion_model.dart';
 import 'package:tenic_api/resource/constants.dart';
@@ -9,11 +8,7 @@ import 'package:tenic_api/resource/constants.dart';
 class ObservacionApiService {
   Observacion _observacion;
 
-  final SessionStorage _session = SessionStorage();
-
-  ObservacionApiService();
-
-  Future<ApiResponse> insertObservacion(Observacion observacion) async {
+  Future<ApiResponse> insertObservacion(Observacion observacion, String token) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var body2 = json.encode(observacion.toJson());
     Uri uri = Uri.http(
@@ -21,7 +16,7 @@ class ObservacionApiService {
     var res = await http.post(uri,
         headers: {
           HttpHeaders.contentTypeHeader: Constants.contenTypeHeader,
-          HttpHeaders.authorizationHeader: _session.getToken().toString()
+          HttpHeaders.authorizationHeader: token
         },
         body: body2);
 
@@ -35,13 +30,14 @@ class ObservacionApiService {
     return apiResponse;
   }
 
-    Future<ApiResponse> listarObservation() async {
+    Future<ApiResponse> listarObservation(String token) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     Uri uri =
         Uri.http(Constants.urlAuthority, Constants.pathServiceObsLista);
     var res = await http.get(
       uri,
-      headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader},
+      headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader,
+      HttpHeaders.authorizationHeader: token}
     );
 
     var resBody = json.decode(res.body);

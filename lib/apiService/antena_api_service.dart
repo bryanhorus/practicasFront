@@ -10,7 +10,6 @@ class AntenaApiService {
   Antena _antena;
 
   Future<ApiResponse> insertAntena(Antena antena, String token) async {
-
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var body2 = json.encode(antena.toJson());
     Uri uri =
@@ -30,7 +29,6 @@ class AntenaApiService {
   }
 
   Future<ApiResponse> updateAntena(Antena antena, String token) async {
-
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var body2 = json.encode(antena.toJson());
     Uri uri =
@@ -50,7 +48,6 @@ class AntenaApiService {
   }
 
   Future<ApiResponse> deleteAntena(Antena antena, String token) async {
-
     var queryParameters = {
       'id': antena.idAntena
           .toString(), //query del id que permite identificr en el servicion el acceso

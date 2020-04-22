@@ -10,8 +10,9 @@ class ObservacionBloc {
   ApiResponse get apiResponse => _apiResponse;
 
   Future<ApiResponse> createObservacion(Observacion observacion) async {
+    String token = await _repository.getLocalAccessToken();
     ApiResponse apiResponse =
-        await _repository.registrarObservacion(observacion);
+        await _repository.registrarObservacion(observacion, token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);

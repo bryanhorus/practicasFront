@@ -60,12 +60,6 @@ class ListaAntenasState extends State<ListaAntenas>
           IconButton(
             icon: Icon(Icons.add_circle),
             onPressed: () {
-              TecniNavigator.goToAsignarAntena(context);
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.add_circle),
-            onPressed: () {
               TecniNavigator.goToRegistrarAntenaUi(context);
             },
           ),

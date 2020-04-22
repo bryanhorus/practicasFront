@@ -7,7 +7,6 @@ import 'package:tenic_api/modelo/municipio_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/resource/constants.dart';
 
-import '../../navigator.dart';
 
 class ActualizarTorre extends StatefulWidget {
   final Torre torre;

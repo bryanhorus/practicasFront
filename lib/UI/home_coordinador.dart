@@ -62,6 +62,16 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
       ),
       onTap: () => {TecniNavigator.goToListaMuncipio(context)},
     );
+
+    var asignar = ListTile(
+      leading: Icon(Icons.fiber_new),
+      title: Text(
+        Constants.tittleAsignarAntena,
+        style: TextStyle(color: Colors.black),
+      ),
+      onTap: () => {TecniNavigator.goToAsignarAntena(context)},
+    );
+
     var observacion = ListTile(
       leading: Icon(Icons.pin_drop),
       title: Text(
@@ -104,6 +114,7 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
           municipio,
           usuarios,
           antena,
+          asignar,
           observacion,
           cerrar
         ],
@@ -114,45 +125,44 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
           title: const Text(Constants.appName),
         ),
         drawer: menu,
-        body:ListView(
+        body: ListView(
           children: <Widget>[
             Card(
               elevation: 25,
               child: ListTile(
                 leading: Icon(Icons.center_focus_strong),
                 title: Text("ANTENA GLOBAL"),
-                subtitle: Text('Nuestra Compañia ofrece los mejores servicios, para la comunidad' +
-                              'donde puedes estar mas cerca de tu familia '),
+                subtitle: Text(
+                    'Nuestra Compañia ofrece los mejores servicios, para la comunidad' +
+                        'donde puedes estar mas cerca de tu familia '),
               ),
             ),
             //
-              Card(
+            Card(
               elevation: 24,
               child: ListTile(
                 leading: Icon(Icons.center_focus_strong),
                 title: Text("Mision"),
-                subtitle: Text("Generamos valor a la sociedad, clientes y accionistas, y  todos los grupos de interés, con una gestión innovadora, eficiente, neutral y de calidad en la prestación de servicios de redes compartidas e infraestructuras de telecomunicaciones, a través de la ilusión y el desarrollo de nuestro equipo de colaboradores."
-                ),
+                subtitle: Text(
+                    "Generamos valor a la sociedad, clientes y accionistas, y  todos los grupos de interés, con una gestión innovadora, eficiente, neutral y de calidad en la prestación de servicios de redes compartidas e infraestructuras de telecomunicaciones, a través de la ilusión y el desarrollo de nuestro equipo de colaboradores."),
               ),
             ),
 
             //
- Card(
+            Card(
               elevation: 25,
               child: ListTile(
                 leading: Icon(Icons.center_focus_strong),
                 title: Text("Vision"),
-                subtitle: Text('Líder en Colombia en soluciones de infraestructuras de telecomunicaciones. '),
+                subtitle: Text(
+                    'Líder en Colombia en soluciones de infraestructuras de telecomunicaciones. '),
               ),
             ),
-
           ],
-        )
-    );
-    
+        ));
 
-        // Center(
-          //  child: Text(
-            //    "Aqui podemos hacer como una introducción a la empresa o la app, algo asi, como un texto y una imagen")));
+    // Center(
+    //  child: Text(
+    //    "Aqui podemos hacer como una introducción a la empresa o la app, algo asi, como un texto y una imagen")));
   }
 }

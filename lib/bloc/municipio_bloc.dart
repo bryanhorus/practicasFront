@@ -13,8 +13,9 @@ class MunicipioBloc {
   ApiResponse get apiResponse => _apiResponse;
 
   Future<ApiResponse> createMunicipio(Municipio municipio) async {
+    String token = await _repository.getLocalAccessToken();
     ApiResponse apiResponse =
-        await _repository.registrarMunicipio(municipio);
+        await _repository.registrarMunicipio(municipio, token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
@@ -27,7 +28,8 @@ class MunicipioBloc {
     return apiResponse;
   }
     Future<ApiResponse> updateMunicipio(Municipio municipio) async {
-    ApiResponse apiResponse = await _repository.actualizarMunicipio(municipio);
+      String token = await _repository.getLocalAccessToken();
+    ApiResponse apiResponse = await _repository.actualizarMunicipio(municipio, token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
@@ -41,7 +43,8 @@ class MunicipioBloc {
   }
 
   Future<ApiResponse> listarMunicipio() async {
-    ApiResponse apiResponse = await _repository.listaMunicipio();
+    String token = await _repository.getLocalAccessToken();
+    ApiResponse apiResponse = await _repository.listaMunicipio(token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);

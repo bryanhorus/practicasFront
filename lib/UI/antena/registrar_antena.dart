@@ -73,7 +73,6 @@ class RegistrarAntenaState extends State<RegistrarAntena>
 
   @override
   Widget build(BuildContext context) {
-    currentTorre = listaTorre[0].idTorre;
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -195,37 +194,12 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
-
-                          TextFormField(
-                            decoration: InputDecoration(
-                              //labelText: Constants.tipoUsuario,
-                            ),
-                            keyboardType: TextInputType.number,
-                            maxLength: 1,
-                            onSaved: (String tow) {
-                              _antena.torre.idTorre = int.parse(tow);
-                            },
-                            style: TextStyle(fontSize: 18.0),
-                          ),
-
-                          TextFormField(
-                            decoration: InputDecoration(
-                              //labelText: Constants.tipoUsuario,
-                            ),
-                            keyboardType: TextInputType.number,
-                            maxLength: 1,
-                            onSaved: (String sta) {
-                              _antena.state.id = int.parse(sta);
-                            },
-                            style: TextStyle(fontSize: 18.0),
-                          ),
-                          
                           Padding(
                             padding: const EdgeInsets.only(top: 20.0),
                           ),
                           DropdownButtonHideUnderline(
                             child:  DropdownButton<int>(
-                              hint: Text(listaTorre[0].nombre),
+                              hint: Text("Seleccionar"),
                               value: currentTorre,
                               isDense: true,
                               onChanged: (int newValue) {

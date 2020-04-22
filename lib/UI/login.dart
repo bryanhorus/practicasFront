@@ -81,7 +81,7 @@ class LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
               ] ,)
             ),
             //
-             Positioned(
+              Positioned(
             left: -size.width*0.16,
             top: -size.width*0.39,
             child: Circle(

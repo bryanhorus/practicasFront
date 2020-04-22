@@ -39,7 +39,7 @@ class ListaObservationState extends State<ListaObservation>
   @override
   void initState() {
     super.initState();
-    observationBloc = ObservationBloc(context);
+    observationBloc = ObservationBloc();
     _handleSubmitted();
   }
 

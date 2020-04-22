@@ -25,7 +25,8 @@ class UsuarioBloc {
   }
 
   Future<ApiResponse> updateUsuario(Usuario usuario) async {
-    ApiResponse apiResponse = await _repository.actualizarUsuario(usuario);
+    String token = await _repository.getLocalAccessToken();
+    ApiResponse apiResponse = await _repository.actualizarUsuario(usuario, token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
@@ -39,7 +40,8 @@ class UsuarioBloc {
   }
 
   Future<ApiResponse> listarUsuario() async {
-    ApiResponse apiResponse = await _repository.listaUsuario();
+    String token = await _repository.getLocalAccessToken();
+    ApiResponse apiResponse = await _repository.listaUsuario(token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
@@ -54,7 +56,8 @@ class UsuarioBloc {
   }
 
   Future<ApiResponse> deleteUsuario(Usuario usuario) async {
-    ApiResponse apiResponse = await _repository.eliminarUsuario(usuario);
+    String token = await _repository.getLocalAccessToken();
+    ApiResponse apiResponse = await _repository.eliminarUsuario(usuario, token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
