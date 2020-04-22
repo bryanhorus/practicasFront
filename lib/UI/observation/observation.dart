@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tenic_api/resource/constants.dart';
 
-import '../../navigator.dart';
 
 
 class ObservationUi extends StatelessWidget {

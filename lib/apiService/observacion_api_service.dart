@@ -34,4 +34,28 @@ class ObservacionApiService {
     }
     return apiResponse;
   }
+
+    Future<ApiResponse> listarObservation() async {
+    ApiResponse apiResponse = ApiResponse(statusResponse: 0);
+    Uri uri =
+        Uri.http(Constants.urlAuthority, Constants.pathServiceObsLista);
+    var res = await http.get(
+      uri,
+      headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader},
+    );
+
+    var resBody = json.decode(res.body);
+    apiResponse.statusResponse = res.statusCode;
+    apiResponse.listObservation = List();
+
+    if (apiResponse.statusResponse == 200) {
+      resBody.forEach((i) {
+        apiResponse.listObservation.add(Observacion.fromJson(i));
+        return i;
+      });
+
+      return apiResponse;
+    }
+    return apiResponse;
+  }
 }

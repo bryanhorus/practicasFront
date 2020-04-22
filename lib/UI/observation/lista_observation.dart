@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/observation_bloc.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
-import 'package:tenic_api/modelo/observation_model.dart';
+import 'package:tenic_api/modelo/observacion_model.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class ListaObservation extends StatefulWidget{
@@ -18,7 +18,7 @@ class ListaObservationState extends State<ListaObservation>
 
   ObservationBloc observationBloc;
   ApiResponse apiResponse;
-  Observation observation;
+  Observacion observation;
 
   void showInSnackBar(String value) {
     _scaffoldKey.currentState.showSnackBar(SnackBar(
@@ -26,7 +26,7 @@ class ListaObservationState extends State<ListaObservation>
     ));
   }
 
-  List<Observation> listObservation = List();
+  List<Observacion> listObservation = List();
 
     _handleSubmitted() {
     observationBloc.listarObservation().then((apiResponse) {
@@ -55,69 +55,26 @@ class ListaObservationState extends State<ListaObservation>
           child: ListView.builder(
             shrinkWrap: true,
             padding: const EdgeInsets.all(20.0),
-            // tamaño de la lista
             itemCount: listObservation.length,
-            // Constructor de widget para cada elemento de la lista
             itemBuilder: (BuildContext context, int indice) {
               return Card(
-                  //le damos un color de la lista de primarios
                   color: Colors.blueAccent[indice],
-                  //agregamos un contenedor de 100 de alto
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       ListTile(
-                        title: Text(listObservation[indice].fecha,
-                            //le damos estilo a cada texto
+                        title: Text(
+                          listObservation[indice].fecha,
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.black,
-                                fontWeight: FontWeight.bold)),
-                                onTap: (){ print(listObservation[indice].fecha);
+                                fontWeight: FontWeight.bold)
+                                ),
+                                subtitle: Text(listObservation[indice].fecha),
+                      leading: Icon(Icons.featured_play_list),
+                                onTap: (){ print(listObservation[indice].idObservacion);
                     observation = listObservation[indice];},
-                      ),
-                      // ignore: deprecated_member_use
-                      /*ButtonTheme.bar(
-                        child: ButtonBar(
-                          children: <Widget>[
-                            FlatButton(
-                              shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20.0)),
-                              ),
-                              color: Colors.yellow[300],
-                              child: const Text(Constants.btnModificar,
-                                  style: TextStyle(
-                                      fontSize: 15, color: Colors.black87)),
-                              onPressed: () {
-                                print(listObservation[indice].fecha);
-                                observation = listObservation[indice];
-                                /*Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            ActualizarUsuario(
-                                                usuario: usuario)));*/
-                              },
-                            ),
-                            FlatButton(
-                              shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20.0)),
-                              ),
-                              color: Colors.red[300],
-                              child: const Text(Constants.btnEliminar,
-                                  style: TextStyle(
-                                      fontSize: 15, color: Colors.white)),
-                              onPressed: () {
-                                print(listObservation[indice].fecha);
-                                observation = listObservation[indice];
-                                //_delete(usuario);
-                              },
-                            ),
-                          ],
-                        ),
-                      ),*/
+                      )
                     ],
                   ));
             },
