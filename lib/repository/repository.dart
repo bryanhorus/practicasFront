@@ -32,9 +32,9 @@ class Repository {
   Future<String> getLocalAccessToken() => _session.getToken();
 
   Future<ApiResponse> registrarUsuario(Usuario usuario) => usuarioApiService.insertUsuario(usuario);
-  Future<ApiResponse> actualizarUsuario(Usuario usuario) => usuarioApiService.updateUsuario(usuario);
-  Future<ApiResponse> listaUsuario() => usuarioApiService.listarUsuario();
-  Future<ApiResponse>eliminarUsuario(Usuario usuario)=> usuarioApiService.deleteUsuario(usuario);
+  Future<ApiResponse> actualizarUsuario(Usuario usuario, String token) => usuarioApiService.updateUsuario(usuario,token);
+  Future<ApiResponse> listaUsuario( String token) => usuarioApiService.listarUsuario(token);
+  Future<ApiResponse>eliminarUsuario(Usuario usuario, String token)=> usuarioApiService.deleteUsuario(usuario,token);
   
   Future<ApiResponse> listaMunicipio(String token) => municipioApiService.listarMunicipio(token);
   Future<ApiResponse> registrarMunicipio(Municipio municipio, String token) => municipioApiService.insertMunicipio(municipio, token);
