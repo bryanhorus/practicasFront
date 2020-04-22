@@ -5,25 +5,21 @@ import 'package:tenic_api/Session_Storage.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/session_local.dart';
+import 'package:tenic_api/repository/repository.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class AntenaApiService {
 
   Antena _antena;
 
-  static final SessionStorage _session = SessionStorage();
-
-  AntenaApiService();
-
-  Future<ApiResponse> insertAntena(Antena antena) async {
+  Future<ApiResponse> insertAntena(Antena antena, String token) async {
 
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var body2 = json.encode(antena.toJson());
     Uri uri =
         Uri.http(Constants.urlAuthority, Constants.pathServiceAntenaInsert);
     var res = await http.post(uri,
-        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, 
-        HttpHeaders.authorizationHeader:  _session.getToken().toString()},
+        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader:  token},
         body: body2);
 
     var resBody = json.decode(res.body);
@@ -36,13 +32,14 @@ class AntenaApiService {
     return apiResponse;
   }
 
-  Future<ApiResponse> updateAntena(Antena antena) async {
+  Future<ApiResponse> updateAntena(Antena antena, String token) async {
+
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var body2 = json.encode(antena.toJson());
     Uri uri =
         Uri.http(Constants.urlAuthority, Constants.pathServiceAntenaUpdate);
     var res = await http.put(uri,
-        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader: _session.getToken().toString()},
+        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader: token},
         body: body2);
 
     var resBody = json.decode(res.body);
@@ -55,7 +52,8 @@ class AntenaApiService {
     return apiResponse;
   }
 
-  Future<ApiResponse> deleteAntena(Antena antena) async {
+  Future<ApiResponse> deleteAntena(Antena antena, String token) async {
+
     var queryParameters = {
       'id': antena.idAntena
           .toString(), //query del id que permite identificr en el servicion el acceso
@@ -65,23 +63,21 @@ class AntenaApiService {
     Uri uri = Uri.http(Constants.urlAuthority,
         Constants.pathServiceAntenaDelete, queryParameters);
     var res = await http.delete(uri,
-        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader:  _session.getToken().toString()});
+        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader: token});
 
     apiResponse.statusResponse = res.statusCode;
 
     return apiResponse;
   }
 
-  Future<ApiResponse> listarAntena() async {
+  Future<ApiResponse> listarAntena(String token) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceAntenasLista);
-    print("********** " +  _session.getToken().toString());
+
     var res = await http.get(
       uri,
-      headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader:  _session.getToken().toString()}
+      headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader: token}
     );
-
-    print(_session.getToken().toString());
 
     var resBody = json.decode(res.body);
     apiResponse.statusResponse = res.statusCode;

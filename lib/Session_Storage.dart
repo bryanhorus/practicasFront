@@ -30,7 +30,6 @@ class SessionStorage {
     await _storage.write(key: 'accessToken', value: session.accessToken);
 
   }
-
   Future<String> getToken() async {
     final String token = await _storage.read(key:'accessToken');
     print(token);
