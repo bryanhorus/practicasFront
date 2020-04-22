@@ -29,8 +29,7 @@ class ListaMunicipioState extends State<ListaMunicipio>
     ));
   }
 
-  final List<String> nombres = [];
-  final List<String> ciudad = [];
+
   List<Municipio> listMunicipio = List();
 
   _handleSubmitted() {
