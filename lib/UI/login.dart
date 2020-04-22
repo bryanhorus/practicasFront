@@ -51,7 +51,7 @@ class LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
       form.save();
         _validate = await inicioSesionBloc.iniciarSesion(_login);
       if(_validate){
-        TecnicoNavigator.goToRegistrarObservacion(context);
+        TecnicoNavigator.goToHomeTecnico(context);
         //TecniNavigator.goToHomeCoordinador(context);
       }
     }

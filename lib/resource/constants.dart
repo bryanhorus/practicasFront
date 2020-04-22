@@ -123,6 +123,7 @@ class Constants{
   static const String actualizarMunicipioRoute = "/actualizar_Municipio";
   static const String actualizarDepartamentosRoute = "/actualizar_Departamento";
   static const String registrarobservacionRoute = "/observacion";
+  static const String homeTecnicoRoute = "/home_tecnico";
   //Ruter imagenes
   static const String loginImage = 'assets/imgLogin.jpg';
   static const String registroImage = 'assets/imgRegistro.png';

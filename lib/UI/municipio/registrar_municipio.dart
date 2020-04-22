@@ -101,7 +101,7 @@ class CrearMunicipioState extends State<CrearMunicipio>
                           ),*/
                           DropdownButtonHideUnderline(
                             child:  DropdownButton<int>(
-                              hint: Text(""),
+                              hint: Text("Seleccionar"),
                               value: currentDpto,
                               isDense: true,
                               onChanged:  (int newValue) {

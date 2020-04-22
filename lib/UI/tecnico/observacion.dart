@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tenic_api/UI/dialog.dart';
+import 'package:tenic_api/bloc/antena_bloc.dart';
 import 'package:tenic_api/bloc/observacion_bloc.dart';
-import 'package:tenic_api/bloc/torre_bloc.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
+import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/estado_model.dart';
+import 'package:tenic_api/modelo/municipio_model.dart';
 import 'package:tenic_api/modelo/observacion_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/resource/constants.dart';
@@ -22,9 +24,9 @@ class CrearObservacionState extends State<CrearObservacion>
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController _inputDate = TextEditingController();
 
-  final TorreBloc torreBloc = TorreBloc();
-  List<Torre> listaTorre = List();
-  int currentTorre;
+  final AntenaBloc antenaBloc = AntenaBloc();
+  List<Antena> listaAntena = List();
+  int currentAntena;
 
   final ObservacionBloc observacionBloc = ObservacionBloc();
   Observacion _observacion = Observacion(
@@ -32,14 +34,13 @@ class CrearObservacionState extends State<CrearObservacion>
       orientacion: '',
       inclinacion: '',
       antena:
-          Antena(idAntena: 0, torre: Torre(idTorre: 0), state: Estado(id: 0)));
+          Antena(idAntena: 0, state: Estado(id: 0), torre: Torre(idTorre: 0, municipio: Municipio(idMunicipio: 0, departament: Departamento(idDpto: 0)))));
   @override
   void initState() {
-
-    TorreBloc();
-    torreBloc.listarTorre().then((apiResponse) {
+    AntenaBloc();
+    antenaBloc.listarAntena().then((apiResponse) {
       setState(() {
-        listaTorre = apiResponse.listTorre;
+        listaAntena = apiResponse.listAntena;
       });
     });
     super.initState();
@@ -52,7 +53,7 @@ class CrearObservacionState extends State<CrearObservacion>
     DateTime picked = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      firstDate:  DateTime(2020),
+      firstDate: DateTime(2020),
       lastDate: DateTime(2099),
     );
     if (picked != null) {
@@ -107,19 +108,21 @@ class CrearObservacionState extends State<CrearObservacion>
                           ),
                           const SizedBox(height: 12.0),
                           TextField(
-                      enableInteractiveSelection: false,
-                      controller: _inputDate,
-                      decoration: InputDecoration(
-                          hintText: "Fecha",
-                          labelText: "Fecha",
-                          suffix: Icon(Icons.create),
-                          icon: Icon(Icons.calendar_today)),
-                      onTap: () {
-                        FocusScope.of(context).requestFocus(FocusNode());
-                        _selectDate(context);
-
-                      }
-                      ),
+                              enableInteractiveSelection: false,
+                              controller: _inputDate,
+                              decoration: InputDecoration(
+                                  hintText: "Fecha",
+                                  labelText: "Fecha",
+                                  border: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(20.0)),
+                                  suffix: Icon(Icons.create),
+                                  icon: Icon(Icons.calendar_today)),
+                              onTap: () {
+                                FocusScope.of(context)
+                                    .requestFocus(FocusNode());
+                                _selectDate(context);
+                              }),
                           const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: InputDecoration(
@@ -151,19 +154,28 @@ class CrearObservacionState extends State<CrearObservacion>
                             style: TextStyle(fontSize: 18.0),
                           ),
                           const SizedBox(height: 12.0),
-                          TextFormField(
-                            decoration: InputDecoration(
-                                labelText: Constants.labelNombreAntena,
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0)),
-                                hintText: Constants.labelNombreAntena,
-                                icon: Icon(Icons.settings_input_antenna)),
-                            keyboardType: TextInputType.number,
-                            maxLength: 4,
-                            onSaved: (String antena) {
-                              _observacion.antena.idAntena = int.parse(antena);
-                            },
-                            style: TextStyle(fontSize: 18.0),
+                          DropdownButtonHideUnderline(
+                            child:  DropdownButton<int>(
+                              hint: Text("Seleccionar"),
+                              value: currentAntena,
+                              isDense: true,
+                              onChanged:  (int newValue) {
+                                currentAntena = newValue;
+                                setState(() {
+                                  currentAntena = newValue;
+                                });
+                                print(currentAntena);
+                                _observacion.antena.idAntena = newValue;
+                                
+                              },
+                              items: listaAntena.map((Antena map) {
+                                return  DropdownMenuItem<int>(
+                                  value: map.idAntena,
+                                  child:  Text(map.nombre,
+                                      style:  TextStyle(color: Colors.black)),
+                                );
+                              }).toList(),
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 40.0),

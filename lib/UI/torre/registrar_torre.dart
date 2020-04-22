@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tenic_api/UI/dialog.dart';
+import 'package:tenic_api/bloc/municipio_bloc.dart';
 import 'package:tenic_api/bloc/torre_bloc.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/municipio_model.dart';
@@ -18,6 +19,10 @@ class CrearTorreState extends State<CrearTorre>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  final MunicipioBloc municipioBloc = MunicipioBloc();
+  List<Municipio> listMunicipio = List();
+  int currentMunicipio;
+
   final TorreBloc torreBloc = TorreBloc();
   Torre _torre = Torre(
       nombre: '',
@@ -31,6 +36,12 @@ class CrearTorreState extends State<CrearTorre>
 
   @override
   void initState() {
+    MunicipioBloc();
+    municipioBloc.listarMunicipio().then((apiResponse) {
+      setState(() {
+        listMunicipio = apiResponse.listMunicipio;
+      });
+    });
     super.initState();
     TorreBloc();
   }
@@ -175,20 +186,28 @@ class CrearTorreState extends State<CrearTorre>
                             style: TextStyle(fontSize: 18.0),
                           ),
                           const SizedBox(height: 12.0),
-                          TextFormField(
-                            decoration:  InputDecoration(
-                                labelText: Constants.labelMunicipio,
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0)),
-                                hintText: Constants.labelMunicipio,
-                                icon: Icon(Icons.image)),
-                            keyboardType: TextInputType.number,
-                            maxLength: 4,
-                            onSaved: (String municipio) {
-                              _torre.municipio.idMunicipio =
-                                  int.parse(municipio);
-                            },
-                            style: TextStyle(fontSize: 18.0),
+                          DropdownButtonHideUnderline(
+                            child:  DropdownButton<int>(
+                              hint: Text("Seleccionar"),
+                              value: currentMunicipio,
+                              isDense: true,
+                              onChanged:  (int newValue) {
+                                currentMunicipio = newValue;
+                                setState(() {
+                                  currentMunicipio = newValue;
+                                });
+                                print(currentMunicipio);
+                                _torre.municipio.idMunicipio = newValue;
+                                
+                              },
+                              items: listMunicipio.map((Municipio map) {
+                                return  DropdownMenuItem<int>(
+                                  value: map.idMunicipio,
+                                  child:  Text(map.nombre,
+                                      style:  TextStyle(color: Colors.black)),
+                                );
+                              }).toList(),
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 60.0),
