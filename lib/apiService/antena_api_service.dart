@@ -19,7 +19,7 @@ class AntenaApiService {
     Uri uri =
         Uri.http(Constants.urlAuthority, Constants.pathServiceAntenaInsert);
     var res = await http.post(uri,
-        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader:  token},
+        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, HttpHeaders.authorizationHeader: token},
         body: body2);
 
     var resBody = json.decode(res.body);
