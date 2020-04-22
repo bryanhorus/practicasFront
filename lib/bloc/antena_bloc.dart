@@ -12,8 +12,9 @@ class AntenaBloc {
   ApiResponse get apiResponse => _apiResponse;
 
   Future<ApiResponse> createAntena(Antena antena) async {
+    String token = await _repository.getLocalAccessToken();
     ApiResponse apiResponse =
-        await _repository.registrarAntena(antena);
+        await _repository.registrarAntena(antena, token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
@@ -27,8 +28,9 @@ class AntenaBloc {
   }
 
   Future<ApiResponse> updateAntena(Antena antena) async {
+    String token = await _repository.getLocalAccessToken();
     ApiResponse apiResponse =
-        await _repository.actualizarAntena(antena);
+        await _repository.actualizarAntena(antena, token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
@@ -42,8 +44,9 @@ class AntenaBloc {
   }
 
   Future<ApiResponse> deleteAntena(Antena antena) async {
+    String token = await _repository.getLocalAccessToken();
     ApiResponse apiResponse =
-        await _repository.eliminarAntena(antena);
+        await _repository.eliminarAntena(antena, token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
@@ -57,7 +60,8 @@ class AntenaBloc {
   }
 
   Future<ApiResponse> listarAntena() async {
-    ApiResponse apiResponse = await _repository.listaAntena();
+    String token = await _repository.getLocalAccessToken();
+    ApiResponse apiResponse = await _repository.listaAntena(token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);

@@ -1,3 +1,4 @@
+import 'package:tenic_api/Session_Storage.dart';
 import 'package:tenic_api/apiService/antena_api_service.dart';
 import 'package:tenic_api/apiService/dpto_api_service.dart';
 import 'package:tenic_api/apiService/login_api_service.dart';
@@ -24,10 +25,17 @@ class Repository {
   final antenaApiService = AntenaApiService();
   final municipioApiService = MunicipioApiService();
   final departamentoApiService = DepartamentoApiService();
+<<<<<<< HEAD
   final observacionApiService = ObservacionApiService();
+=======
+  final SessionStorage _session = SessionStorage();
+
+>>>>>>> 07b021f848ff036428a46f249f045b1c015a6881
 
   //promesa de invocacion al usuarioApiService metodo insertar usuario
   Future<Session> iniciar( Login login) => loginApiService.iniciarSesion(login);
+
+  Future<String> getLocalAccessToken() => _session.getToken();
 
   Future<ApiResponse> registrarUsuario(Usuario usuario) => usuarioApiService.insertUsuario(usuario);
   Future<ApiResponse> actualizarUsuario(Usuario usuario) => usuarioApiService.updateUsuario(usuario);
@@ -44,10 +52,10 @@ class Repository {
   Future<ApiResponse> actualizarDepartamento(Departamento departamento) => departamentoApiService.updateDepartamento(departamento);
   Future<ApiResponse> eliminarDepartamento(Departamento departamento) => departamentoApiService.deleteDepartamento(departamento);
   //Antena
-  Future<ApiResponse> registrarAntena(Antena antena) => antenaApiService.insertAntena(antena);
-  Future<ApiResponse> actualizarAntena(Antena antena) => antenaApiService.updateAntena(antena);
-  Future<ApiResponse> eliminarAntena(Antena antena) => antenaApiService.deleteAntena(antena);
-  Future<ApiResponse> listaAntena() => antenaApiService.listarAntena();
+  Future<ApiResponse> registrarAntena(Antena antena, String token) => antenaApiService.insertAntena(antena, token);
+  Future<ApiResponse> actualizarAntena(Antena antena, String token) => antenaApiService.updateAntena(antena, token);
+  Future<ApiResponse> eliminarAntena(Antena antena, String token) => antenaApiService.deleteAntena(antena, token);
+  Future<ApiResponse> listaAntena(String token) => antenaApiService.listarAntena(token);
   //Torre
   Future<ApiResponse> registrarTorre(Torre torre) => torreApiService.insertTorre(torre);
   Future<ApiResponse> actualizarTorre(Torre torre) => torreApiService.updateTorre(torre);
