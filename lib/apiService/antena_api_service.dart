@@ -1,28 +1,15 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:tenic_api/Session_Storage.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
-import 'package:tenic_api/modelo/session_local.dart';
-import 'package:tenic_api/repository/repository.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class AntenaApiService {
 
   Antena _antena;
 
-<<<<<<< HEAD
-  final SessionStorage _session = SessionStorage();
-
-  AntenaApiService();
-  //Antena _antena;
-  
-
-  Future<ApiResponse> insertAntena(Antena antena) async {
-=======
   Future<ApiResponse> insertAntena(Antena antena, String token) async {
->>>>>>> 07b021f848ff036428a46f249f045b1c015a6881
 
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var body2 = json.encode(antena.toJson());

@@ -19,18 +19,15 @@ import '../modelo/municipio_model.dart';
 
 class Repository {
 
-  final usuarioApiService = UsuarioApiService();
-  final loginApiService = LoginApiService();
-  final torreApiService = TorreApiService();
-  final antenaApiService = AntenaApiService();
-  final municipioApiService = MunicipioApiService();
-  final departamentoApiService = DepartamentoApiService();
-<<<<<<< HEAD
-  final observacionApiService = ObservacionApiService();
-=======
+  final UsuarioApiService usuarioApiService = UsuarioApiService();
+  final LoginApiService loginApiService = LoginApiService();
+  final TorreApiService torreApiService = TorreApiService();
+  final AntenaApiService antenaApiService = AntenaApiService();
+  final MunicipioApiService municipioApiService = MunicipioApiService();
+  final DepartamentoApiService departamentoApiService = DepartamentoApiService();
   final SessionStorage _session = SessionStorage();
+  final ObservacionApiService observacionApiService = ObservacionApiService();
 
->>>>>>> 07b021f848ff036428a46f249f045b1c015a6881
 
   //promesa de invocacion al usuarioApiService metodo insertar usuario
   Future<Session> iniciar( Login login) => loginApiService.iniciarSesion(login);
