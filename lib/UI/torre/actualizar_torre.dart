@@ -7,6 +7,8 @@ import 'package:tenic_api/modelo/municipio_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/resource/constants.dart';
 
+import '../../navigator.dart';
+
 class ActualizarTorre extends StatefulWidget {
   final Torre torre;
   const ActualizarTorre({this.torre, Key key}) : super(key: key);
@@ -49,7 +51,7 @@ class ActualizarTorreState extends State<ActualizarTorre>
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   void _handleSubmitted() {
-    final FormState form = _formKey.currentState;
+   final FormState form = _formKey.currentState;
     if (!form.validate()) {
       _autovalidate = true;
     } else {
@@ -57,6 +59,7 @@ class ActualizarTorreState extends State<ActualizarTorre>
       torreBloc.updateTorre(torre);
       Message().showUpdateDialog(context);
     }
+    //TecniNavigator.goTocord(context);
   }
 
   @override

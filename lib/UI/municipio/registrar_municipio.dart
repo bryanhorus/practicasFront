@@ -85,6 +85,7 @@ class CrearMunicipioState extends State<CrearMunicipio>
                           Padding(
                             padding: const EdgeInsets.only(top: 40.0),
                           ),
+                          
                           const SizedBox(height: 12.0),
                           /* TextFormField(
                             decoration: InputDecoration(

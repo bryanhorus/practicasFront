@@ -33,7 +33,7 @@ class Repository {
   Future<ApiResponse> actualizarUsuario(Usuario usuario) => usuarioApiService.updateUsuario(usuario);
   Future<ApiResponse> listaUsuario() => usuarioApiService.listarUsuario();
   Future<ApiResponse>eliminarUsuario(Usuario usuario)=> usuarioApiService.deleteUsuario(usuario);
-  
+ 
   Future<ApiResponse> listaMunicipio() => municipioApiService.listarMunicipio();
   Future<ApiResponse> registrarMunicipio(Municipio municipio) => municipioApiService.insertMunicipio(municipio);
   Future<ApiResponse> actualizarMunicipio(Municipio municipio) => municipioApiService.updateMunicipio(municipio);
@@ -55,4 +55,5 @@ class Repository {
   Future<ApiResponse> listaTorre() => torreApiService.listarTorre();
   //Observacion
   Future<ApiResponse> registrarObservacion(Observacion observacion) => observacionApiService.insertObservacion(observacion);
+    Future<ApiResponse> listaObservation() => observacionApiService.listarObservation();
 }

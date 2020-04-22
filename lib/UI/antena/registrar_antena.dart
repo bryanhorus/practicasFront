@@ -104,6 +104,7 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                           Padding(
                             padding: const EdgeInsets.only(top: 40.0),
                           ),
+
                           const SizedBox(height: 12.0),
                           TextFormField(
                             decoration: InputDecoration(
@@ -194,6 +195,31 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
+
+                          TextFormField(
+                            decoration: InputDecoration(
+                              //labelText: Constants.tipoUsuario,
+                            ),
+                            keyboardType: TextInputType.number,
+                            maxLength: 1,
+                            onSaved: (String tow) {
+                              _antena.torre.idTorre = int.parse(tow);
+                            },
+                            style: TextStyle(fontSize: 18.0),
+                          ),
+
+                          TextFormField(
+                            decoration: InputDecoration(
+                              //labelText: Constants.tipoUsuario,
+                            ),
+                            keyboardType: TextInputType.number,
+                            maxLength: 1,
+                            onSaved: (String sta) {
+                              _antena.state.id = int.parse(sta);
+                            },
+                            style: TextStyle(fontSize: 18.0),
+                          ),
+                          
                           Padding(
                             padding: const EdgeInsets.only(top: 20.0),
                           ),

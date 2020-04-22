@@ -8,13 +8,20 @@ class Constants{
   //servicio
   static const String pathServiceUsuario ="/api/tecni/auth/new";
   static const String pathServiceListUsuario ="/api/tecni/user/get/all";
+  static const String pathServiceDeleteU ="/api/tecni/user/delete/id";
+  static const String pathServiceListAntena ="";
   static const String pathServiceinsertDpto ="/api/tecni/departament/insert";
   static const String pathServiceinsertMunicipio ="/api/tecni/municipio/insert";
   static const String pathServiceMunicipioUpdate ="/api/tecni/municipio/update";
   static const String pathServiceMunicipioDelete ="/api/tecni/municipio/delete/id";
   static const String pathServiceMinicipiosLista ="/api/tecni/municipio/get/all";
+  static const String pathServiceObsLista ="/api/tecni/observacion/get/all";
   static const String pathServiceUsuarioUpdate ="/api/tecni/user/update";
   static const String pathServiceDepartamentoUpdate ="/api/tecni/departament/update";
+  static const String pathServiceTorreUpdate = "/api/tecni/torre/update";
+  static const String pathServiceinsertTorre = "/api/tecni/torre/insert";
+  static const String pathServiceDeleteTorre = "/api/tecni/torre/delete/id";
+  static const String pathServiceTorre = "/api/tecni/torre/get/all";
   static const String pathServiceDepartamentoDelete ="/api/tecni/departament/delete/id";
   static const String pathServiceDepartamento = "/api/tecni/departament/get/all";
   static const String pathServiceAntenaInsert ="/api/tecni/antenna/insert";
@@ -23,10 +30,10 @@ class Constants{
   static const String pathServiceAntenaDelete ="/api/tecni/antenna/delete/id";
   static const String pathServiceAntenasLista ="/api/tecni/antenna/get/all";
   static const String pathServiceTorreInsert ="/api/tecni/torre/insert";
-  static const String pathServiceTorreUpdate ="/api/tecni/torre/update";
+  //static const String pathServiceTorreUpdate ="/api/tecni/torre/update";
   static const String pathServiceTorreDelete ="/api/tecni/torre/delete/id";
   static const String pathServiceTorreLista ="/api/tecni/torre/get/all";
-  static const String pathServiceDeleteU="/api/tecni/user/delete/id";
+  //static const String pathServiceDeleteU="/api/tecni/user/delete/id";
   static const String pathServiceLogin ="/api/tecni/auth";
 
   //validacion de campos
@@ -62,6 +69,7 @@ class Constants{
   static const String btnListaD = "Lista Departamentos";
   static const String btnRegistarD = "Registrar Departamento";
   static const String btnListaM = "Lista Municipios";
+  static const String btnListaO = "Lista Observaciones";
   static const String btnRegistarM = "Registrar Municipios";
   static const String btnListaT = "Lista Torres";
   static const String btnRegistarT = "Registrar Torre";
@@ -81,6 +89,7 @@ class Constants{
   static const String tittleObservacion = "Observación de Antena";
   static const String tittleTorreactualizar = "Actualizar Torre";
   static const String tittleListaTorre = "Lista Torres";
+  static const String tittleListaObservaciones = "Observaciones realizadas ";
   static const String tittleRegistroAntena = "Registrar Antena";
   static const String tittleDepartamentoactualizar = "Actualizar Departamento";
   static const String tittleMunicipioactualizar = "Actualizar Municipio";
@@ -88,9 +97,11 @@ class Constants{
   static const String tittleListaAntenas = "Antenas Registrados";
   static const String tittleListaDepartamentos = "Lista Departamentos";
   static const String tittleListaUsuarios = "Usuarios Registrados";
+  static const String tittleListaObs = "Observaciones";
   static const String tittleActualizar = "Actualizar Usuarios";
   static const String tittleUsuario = "Usuario";
   static const String tittleMunicipio = "Municipio";
+  static const String tittleObs = "Observation";
   static const String tittleDepartamento = "Departamento";
   static const String tittleAntena = "Antena";
   static const String tittleAntenaAsignadas = "Antenas Asignadas";
@@ -123,6 +134,7 @@ class Constants{
   static const String actualizarMunicipioRoute = "/actualizar_Municipio";
   static const String actualizarDepartamentosRoute = "/actualizar_Departamento";
   static const String registrarobservacionRoute = "/observacion";
+  static const String observacionesRoute = "/lista_observation";
   static const String homeTecnicoRoute = "/home_tecnico";
   //Ruter imagenes
   static const String loginImage = 'assets/imgLogin.jpg';
@@ -153,6 +165,14 @@ class Constants{
   static const String labelNombreAntena ="Antena";
   static const String labelDepartamento ="Departamento";
     static const String labelestado ="Estado";
+
+  static const String labelNombreTorre ="Nombre de la Torre";
+  static const String labelStringid_torre ="String id_torre";
+  static const String labelDirTorre ="Dirección de la Torre";
+  static const String labelCoorTorre ="Coordenadas de la Torre";
+  static const String labelAlturaTorre ="Altura de la Torre";
+  static const String labelTechTorre ="Tecnología de la Torre";
+  //static const String labelNombreTorre ="Nombre de la Torre";
 
   //mensajes
   static const String agradecimiento = "¡Gracias por ser parte de esta gran familia,nos sentimos orgullosos de que cada día ponga todo su esfuerzo y dedicación para lograr el éxito que deseamos!";

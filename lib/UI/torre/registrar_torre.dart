@@ -164,7 +164,7 @@ class CrearTorreState extends State<CrearTorre>
                                 icon: Icon(Icons.show_chart)),
                             keyboardType: TextInputType.number,
                             maxLength: 2,
-                            validator: validateAltura,
+                            //validator: validateAltura,
                             onSaved: (String value) {
                               _torre.altura = value;
                             },
@@ -220,6 +220,146 @@ class CrearTorreState extends State<CrearTorre>
                             height: 50.0,
                             minWidth: 150.0,
                             color: Color(0xFF42a5f5),
+                            splashColor: Colors.blueAccent,
+                            textColor: Colors.black,
+                            child: Text(Constants.btnRegistar),
+                            onPressed: _handleSubmitted,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+        Center(
+          child: Container(
+            child: Theme(
+              data: ThemeData(
+                  brightness: Brightness.light,
+                  inputDecorationTheme: InputDecorationTheme(
+                    labelStyle: TextStyle(color: Colors.black, fontSize: 18.0),
+                  )),
+              isMaterialAppTheme: true,
+              child: SingleChildScrollView(
+                child: SafeArea(
+                  top: false,
+                  bottom: false,
+                  child: Form(
+                    key: _formKey,
+                    autovalidate: _autovalidate,
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(top: 40.0),
+                          ),
+                          
+                          const SizedBox(height: 12.0),
+                          TextFormField(
+                            decoration: new InputDecoration(
+                              labelText: Constants.labelNombreTorre,
+                            ),
+                            validator: validateName,
+                            keyboardType: TextInputType.text,
+                            onSaved: (String value) {
+                              _torre.nombre = value;
+                            },
+                            style: TextStyle(fontSize: 18.0),
+                          ),
+                          
+                          const SizedBox(height: 12.0),
+                          TextFormField(
+                            decoration: new InputDecoration(
+                              labelText: Constants.labelStringid_torre,
+                            ),
+                            //validator: validateName,
+                            onSaved: (String value) {
+                              _torre.identificacion = value;
+                            },
+                            style: TextStyle(fontSize: 18.0),
+                          ),
+                          
+                          TextFormField(
+                            decoration: new InputDecoration(
+                              labelText: Constants.labelDirTorre,
+                            ),
+                            //keyboardType: TextInputType.emailAddress,
+                            //maxLength: 32,
+                            //validator: validateEmail,
+                            onSaved: (String value) {
+                              _torre.direccion = value;
+                            },
+                            style: TextStyle(fontSize: 18.0),
+                          ),
+                          
+                          TextFormField(
+                            //obscureText: true,
+                            //autocorrect: false,
+                            decoration: new InputDecoration(
+                              labelText: Constants.labelCoorTorre,
+                            ),
+                            //maxLength: 12,
+                            //validator: validatePassword,
+                            onSaved: (String value) {
+                              _torre.coordenadas = value;
+                            },
+                            style: TextStyle(fontSize: 18.0),
+                          ),
+                          
+                          TextFormField(
+                            decoration: new InputDecoration(
+                              labelText: Constants.labelAlturaTorre,
+                            ),
+                            //keyboardType: TextInputType.phone,
+                            //maxLength: 12,
+                            //validator: validateMobile,
+                            onSaved: (String value) {
+                              _torre.altura = value;
+                            },
+                            style: TextStyle(fontSize: 18.0),
+                          ),
+
+                          TextFormField(
+                            decoration: new InputDecoration(
+                              labelText: Constants.labelTechTorre,
+                            ),
+                            //keyboardType: TextInputType.phone,
+                            //maxLength: 12,
+                            //validator: validateMobile,
+                            onSaved: (String value) {
+                              _torre.tecnologia = value;
+                            },
+                            style: TextStyle(fontSize: 18.0),
+                          ),
+                          //
+                          TextFormField(
+                            decoration: new InputDecoration(
+                              //labelText: Constants.tipoUsuario,
+                            ),
+                            keyboardType: TextInputType.number,
+                            maxLength: 1,
+                            onSaved: (String mun) {
+                              _torre.municipio.idMunicipio = int.parse(mun);
+                            },
+                            style: TextStyle(fontSize: 18.0),
+                          ),
+                          
+                          Padding(
+                            padding: const EdgeInsets.only(top: 60.0),
+                          ),
+                          MaterialButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(20.0)),
+                            ),
+                            height: 50.0,
+                            minWidth: 150.0,
+                            color: Color(0xFFE1F5FE),
                             splashColor: Colors.blueAccent,
                             textColor: Colors.black,
                             child: Text(Constants.btnRegistar),
