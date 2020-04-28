@@ -105,7 +105,9 @@ class _ListaTorreState extends State<ListaTorre>
                                   context,
                                   MaterialPageRoute(
                                       builder: (BuildContext context) =>
-                                          Mapa()));
+                                          Mapa(
+                                            torre: torre,
+                                          )));
                             },
                           ),
                         ],

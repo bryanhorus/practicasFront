@@ -11,22 +11,21 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 
 class Mapa extends StatefulWidget {
-  const Mapa({Key key}) : super(key: key);
+  final Torre torre;
+  const Mapa({this.torre,Key key}) : super(key: key);
 
   @override
-  CrearTorreState createState() => CrearTorreState();
+  CrearTorreState createState() => CrearTorreState(torre: torre);
 }
 
 class CrearTorreState extends State<Mapa>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final MunicipioBloc municipioBloc = MunicipioBloc();
-  List<Municipio> listaMunicipio = List();
-  int currentMunicipio;
+  CrearTorreState({this.torre});
 
   final TorreBloc torreBloc = TorreBloc();
-  Torre _torre = Torre(
+  Torre torre = Torre(
       nombre: '',
       identificacion: '',
       direccion: '',
@@ -38,12 +37,6 @@ class CrearTorreState extends State<Mapa>
 
   @override
   void initState() {
-    MunicipioBloc();
-    municipioBloc.listarMunicipio().then((apiResponse) {
-      setState(() {
-        listaMunicipio = apiResponse.listMunicipio;
-      });
-    });
     super.initState();
     TorreBloc();
   }
@@ -64,8 +57,6 @@ class CrearTorreState extends State<Mapa>
       _autovalidate = true;
     } else {
       form.save();
-      torreBloc.createTorre(_torre);
-      Message().showRegisterDialog(context);
     }
   }
 
@@ -75,8 +66,8 @@ class CrearTorreState extends State<Mapa>
       key: _scaffoldKey,
       appBar: AppBar(title: const Text(Constants.tittleMapaTorre)),
       body: Stack(fit: StackFit.expand, children: <Widget>[
-        FlutterMap(options: MapOptions(minZoom: 10.0,center: LatLng(3.260521, -76.536882)),layers: [ TileLayerOptions(urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',subdomains: ['a','b','c']),MarkerLayerOptions(markers: [Marker(width: 45.0,height: 45.0,point:LatLng(3.260521, -76.536882),builder: (context)=>Container(
-          child: IconButton(icon: Icon(Icons.add_location), onPressed: () {print('Marker tapped!');}),
+        FlutterMap(options: MapOptions(minZoom: 10.0, zoom: 17.0 ,center: LatLng(3.3836576,-76.5480667)),layers: [ TileLayerOptions(urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',subdomains: ['a','b','c']),MarkerLayerOptions(markers: [Marker(width: 45.0,height: 45.0,point:LatLng(3.3836576,-76.5480667),builder: (context)=>Container(
+          child: IconButton(icon: Icon(Icons.add_location), iconSize: 40.0, color: Colors.red, onPressed: () {print('Marker tapped!');}),
         ))])])
       ]),
     );
