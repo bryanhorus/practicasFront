@@ -1,18 +1,19 @@
-class TipoUsuario {
+class Role {
+
   int idTipo;
   String descripcion;
 
-  TipoUsuario({this.descripcion,this.idTipo});
+  Role({this.descripcion,this.idTipo});
 
-  factory TipoUsuario.fromJson(Map<String, dynamic> parsedJson) {
-    return TipoUsuario(
-      idTipo: parsedJson['id_tipo_usuario'],
+  factory Role.fromJson(Map<String, dynamic> parsedJson) {
+    return Role(
+      idTipo: parsedJson['idTipo'],
       descripcion: parsedJson['descripcion'],
     );
   }
 
   Map<String, dynamic> toJson() => {
-        'id_tipo_usuario':idTipo,
-        'descripcion': descripcion,
+        'idTipo':idTipo,
+        'descripcion': descripcion
       };
 }

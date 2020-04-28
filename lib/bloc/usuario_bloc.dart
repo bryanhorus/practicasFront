@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
 import 'package:tenic_api/repository/repository.dart';
@@ -10,23 +10,23 @@ class UsuarioBloc {
 
   ApiResponse get apiResponse => _apiResponse;
 
-  UsuarioBloc(BuildContext context);
   Future<ApiResponse> createUsuario(Usuario usuario) async {
     ApiResponse apiResponse = await _repository.registrarUsuario(usuario);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
     } else {
-      print("el código del error" +
+      print(Constants.errorCode +
           apiResponse.statusResponse.toString() +
-          " El mensaje de error es: " +
+          Constants.errorMessage +
           apiResponse.message);
     }
     return apiResponse;
   }
 
   Future<ApiResponse> updateUsuario(Usuario usuario) async {
-    ApiResponse apiResponse = await _repository.actualizarUsuario(usuario);
+    String token = await _repository.getLocalAccessToken();
+    ApiResponse apiResponse = await _repository.actualizarUsuario(usuario, token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
@@ -40,7 +40,8 @@ class UsuarioBloc {
   }
 
   Future<ApiResponse> listarUsuario() async {
-    ApiResponse apiResponse = await _repository.listaUsuario();
+    String token = await _repository.getLocalAccessToken();
+    ApiResponse apiResponse = await _repository.listaUsuario(token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
@@ -52,5 +53,20 @@ class UsuarioBloc {
           apiResponse.message);
       return apiResponse;
     }
+  }
+
+  Future<ApiResponse> deleteUsuario(Usuario usuario) async {
+    String token = await _repository.getLocalAccessToken();
+    ApiResponse apiResponse = await _repository.eliminarUsuario(usuario, token);
+    if (apiResponse.statusResponse == 200) {
+      apiResponse.message = Constants.createMessage;
+      print(apiResponse.message);
+    } else {
+      print("el código del error" +
+          apiResponse.statusResponse.toString() +
+          " El mensaje de error es: " +
+          apiResponse.message);
+    }
+    return apiResponse;
   }
 }

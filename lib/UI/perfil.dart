@@ -1,24 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:tenic_api/modelo/usuario_model.dart';
 import 'package:tenic_api/navigator.dart';
 import 'dart:math' as math;
 import 'package:tenic_api/resource/constants.dart';
+import 'dialog.dart';
 
 class ProfilePageDesign extends StatefulWidget {
-    const ProfilePageDesign
-    ({Key key}) : super(key: key);
+  final Usuario usuario;
+  const ProfilePageDesign({this.usuario, key}) : super(key: key);
 
   @override
-  ProfilePageDesignState createState() => ProfilePageDesignState();
+  ProfilePageDesignState createState() => ProfilePageDesignState(usuario: usuario);
 }
 
 class ProfilePageDesignState extends State<ProfilePageDesign> 
 with SingleTickerProviderStateMixin{
-  
+    ProfilePageDesignState({this.usuario});
+    Usuario usuario = Usuario(nombre: '', correo:'', telfono:'');
   TextStyle _style(){
     return TextStyle(
       fontWeight: FontWeight.bold
     );
   }
+
+onExit(){
+Dialogs.confirm(context, title: Constants.exitTittle,
+ message: Constants.exitMessage,
+ onCancel: (){
+   Navigator.pop(context);
+ },
+onConfirm: (){
+  Navigator.pop(context);
+  Navigator.pushNamedAndRemoveUntil(context, '/', (_)=>false);
+}
+);
+}
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +45,24 @@ with SingleTickerProviderStateMixin{
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            
+                        PopupMenuButton(
+              icon: Icon(Icons.more_vert),
+              onSelected: (String value){
+                if(value=="salir"){
+                  onExit();
+                }
+              },
+              itemBuilder: (context)=>[
+                PopupMenuItem(
+                  value: "salir",
+                  child: Text("Exit app"),
+                )
+              ],
+              ),
             Text(Constants.mensajePerfil, style: _style(),),
             SizedBox(height: 4,),
             Text(Constants.agradecimiento),
-            SizedBox(height: 20,),
-            
+            SizedBox(height: 20,),   
             Divider(color: Colors.lightBlue,)
           ],
         ),
@@ -43,9 +71,10 @@ with SingleTickerProviderStateMixin{
   }
 }
 
-
 class CustomAppBar extends StatelessWidget
   with PreferredSizeWidget{
+CustomAppBar({this.usuario});
+Usuario usuario = Usuario(nombre: '', correo: '', telfono: '');
 
   @override
   Size get preferredSize => Size(double.infinity, 320);
@@ -69,7 +98,6 @@ class CustomAppBar extends StatelessWidget
                   onPressed: (){
                     TecniNavigator.goToHomeCoordinador(context);},
                 ),
-
                 Text(Constants.perfil, style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
@@ -98,11 +126,11 @@ class CustomAppBar extends StatelessWidget
                       ),
                     ),
                     SizedBox(height: 16,),
-                    Text('Stefania@gmail.com', style: TextStyle(
+                    Text('bryan@gmail.com', style: TextStyle(
                       color: Colors.white,
                       fontSize: 15
                     ),),
-                    Text('3166950211', style: TextStyle(
+                    Text('3196399117', style: TextStyle(
                       color: Colors.white,
                       fontSize: 15
                     ),)
@@ -113,7 +141,7 @@ class CustomAppBar extends StatelessWidget
                     Text(Constants.trabajador, style: TextStyle(
                         color: Colors.white
                     ),),
-                    Text('Stefania Ramirez', style: TextStyle(
+                    Text('Bryan alvarado', style: TextStyle(
                         fontSize: 26,
                         color: Colors.white
                     ),)
@@ -140,7 +168,7 @@ class CustomAppBar extends StatelessWidget
                     child: Container(
                       width: 110,
                       height: 32,
-                      child: Center(child: Text("Editar"),),
+                      child: Center(child: Text(Constants.editText),),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -168,14 +196,10 @@ class MyClipper extends CustomClipper<Path>{
   @override
   Path getClip(Size size) {
     Path p = Path();
-
     p.lineTo(0, size.height-70);
     p.lineTo(size.width, size.height);
-
     p.lineTo(size.width, 0);
-
     p.close();
-
     return p;
   }
 

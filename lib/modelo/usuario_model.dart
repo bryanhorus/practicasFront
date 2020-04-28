@@ -1,38 +1,48 @@
 import 'package:tenic_api/modelo/tipo_usuario_model.dart';
 
 class Usuario {
+  int idUsuario;
   String nombre;
   String apellido;
   String correo;
   String password;
-  String telefono;
-  TipoUsuario tipoUsuario;
+  String telfono;
+  List<Role> roles;
 
   Usuario(
-      {this.nombre,
+      {this.idUsuario,
+      this.nombre,
       this.apellido,
       this.correo,
       this.password,
-      this.telefono,
-      this.tipoUsuario});
+      this.telfono,
+      this.roles});
 
   factory Usuario.fromJson(Map<String, dynamic> parsedJson) {
+
+    var role = parsedJson['roles'] as List;
+    List<Role> imagesList = role != null ? role.map((i) => Role.fromJson(i)).toList() : null;
+
     return Usuario(
-      nombre: parsedJson['nombre'],
-      apellido: parsedJson['apellido'],
-      correo: parsedJson['correo'],
-      password: parsedJson['password'],
-      telefono: parsedJson['telefono'],
-      tipoUsuario: TipoUsuario.fromJson(parsedJson['tipoUsuario']),
+        idUsuario: parsedJson['idUsuario'],
+        nombre: parsedJson['nombre'],
+        apellido: parsedJson['apellido'],
+        correo: parsedJson['correo'],
+        password: parsedJson['password'],
+        telfono: parsedJson['telfono'],
+        roles: imagesList
     );
   }
 
   Map<String, dynamic> toJson() => {
+        'idUsuario': idUsuario,
         'nombre': nombre,
         'apellido': apellido,
         'correo': correo,
         'password': password,
-        'telefono': telefono,
-        'tipoUsuario': tipoUsuario.toJson(),
+        'telfono': telfono,
+        'roles': roles != null ? roles.map((i) => i.toJson()).toList():null
       };
+
+
 }

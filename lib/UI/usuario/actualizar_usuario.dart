@@ -1,33 +1,39 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tenic_api/UI/dialog.dart';
 import 'package:tenic_api/bloc/usuario_bloc.dart';
+import 'package:tenic_api/modelo/tipo_usuario_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class ActualizarUsuario extends StatefulWidget {
-  const ActualizarUsuario({Key key}) : super(key: key);
+  final Usuario usuario;
+  const ActualizarUsuario({this.usuario, Key key}) : super(key: key);
 
   @override
-  ActualizarUsuarioState createState() => ActualizarUsuarioState();
+  ActualizarUsuarioState createState() =>
+      ActualizarUsuarioState(usuario: usuario);
 }
 
 class ActualizarUsuarioState extends State<ActualizarUsuario>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  UsuarioBloc userBloc;
-  Usuario _tecnico = Usuario(
-    nombre: "",
-    apellido: "",
-    correo: "",
-    password: "",
-    telefono: "",
-  );
+  ActualizarUsuarioState({this.usuario});
+  final UsuarioBloc userBloc = UsuarioBloc();
+
+  Usuario usuario = Usuario(
+      nombre: "",
+      apellido: "",
+      correo: "",
+      password: "",
+      telfono: "",
+      roles: [Role(idTipo: 0)]);
 
   @override
   void initState() {
     super.initState();
-    userBloc = UsuarioBloc(context);
+    UsuarioBloc();
   }
 
   void showInSnackBar(String value) {
@@ -46,9 +52,9 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
       _autovalidate = true;
     } else {
       form.save();
-
-      userBloc.updateUsuario(_tecnico);
+      userBloc.updateUsuario(usuario);
     }
+    Message().showUpdateDialog(context);
   }
 
   @override
@@ -57,14 +63,6 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
       key: _scaffoldKey,
       appBar: AppBar(title: const Text(Constants.tittleActualizar)),
       body: Stack(fit: StackFit.expand, children: <Widget>[
-        Container(
-          child: Image(
-            image: AssetImage(Constants.registroImage),
-            fit: BoxFit.cover,
-            colorBlendMode: BlendMode.difference,
-            color: Colors.black12,
-          ),
-        ),
         Center(
           child: Container(
             child: Theme(
@@ -89,74 +87,83 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                           Padding(
                             padding: const EdgeInsets.only(top: 40.0),
                           ),
-                          const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
-                              labelText: Constants.labelNombre,
-                            ),
+                            decoration:  InputDecoration(
+                                labelText: Constants.labelNombre,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelNombre,
+                                icon: Icon(Icons.account_circle)),
+                            initialValue: usuario.nombre,
                             validator: validateName,
                             keyboardType: TextInputType.emailAddress,
                             onSaved: (String value) {
-                              _tecnico.nombre = value;
+                              usuario.nombre = value;
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
-                              labelText: Constants.labelApellido,
-                            ),
+                            decoration:  InputDecoration(
+                                labelText: Constants.labelApellido,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelApellido,
+                                icon: Icon(Icons.account_circle)),
+                            initialValue: usuario.apellido,
                             validator: validateName,
                             onSaved: (String value) {
-                              _tecnico.apellido = value;
+                              usuario.apellido = value;
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
+                          const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
-                              labelText: Constants.labelCorreo,
-                            ),
+                            decoration:  InputDecoration(
+                                labelText: Constants.labelCorreo,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelCorreo,
+                                icon: Icon(Icons.email)),
                             keyboardType: TextInputType.emailAddress,
                             maxLength: 32,
+                            initialValue: usuario.correo,
                             validator: validateEmail,
                             onSaved: (String value) {
-                              _tecnico.correo = value;
+                              usuario.correo = value;
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
                           TextFormField(
                             obscureText: true,
                             autocorrect: false,
-                            decoration: new InputDecoration(
-                              labelText: Constants.labelPassword,
-                            ),
+                            decoration:  InputDecoration(
+                                labelText: Constants.labelPassword,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelPassword,
+                                icon: Icon(Icons.security)),
                             maxLength: 12,
+                            initialValue: usuario.password,
                             validator: validatePassword,
                             onSaved: (String value) {
-                              _tecnico.password = value;
+                              usuario.password = value;
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
                           TextFormField(
-                            decoration: new InputDecoration(
-                              labelText: Constants.labelTelefono,
-                            ),
+                            decoration:  InputDecoration(
+                                labelText: Constants.labelTelefono,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelTelefono,
+                                icon: Icon(Icons.phone)),
                             keyboardType: TextInputType.phone,
                             maxLength: 12,
+                            initialValue: usuario.telfono,
                             validator: validateMobile,
                             onSaved: (String value) {
-                              _tecnico.telefono = value;
-                            },
-                            style: TextStyle(fontSize: 18.0),
-                          ),
-                          TextFormField(
-                            decoration: new InputDecoration(
-                              labelText: Constants.tipoUsuario,
-                            ),
-                            keyboardType: TextInputType.number,
-                            maxLength: 1,
-                            onSaved: (String value) {
-                              _tecnico.telefono = value;
+                              usuario.telfono = value;
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
@@ -170,24 +177,14 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             ),
                             height: 50.0,
                             minWidth: 150.0,
-                            color: Color(0xFFE1F5FE),
-                            splashColor: Colors.blueAccent,
-                            textColor: Colors.black,
-                            child: Text(Constants.btnRegistar),
+                            color: Color(0xFF42a5f5),
+                            splashColor: Colors.blue,
+                            textColor: Colors.white,
+                            child: Text(Constants.btnModificar),
                             onPressed: _handleSubmitted,
                           ),
-                          MaterialButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
-                            ),
-                            height: 50.0,
-                            minWidth: 150.0,
-                            color: Color(0xFFE1F5FE),
-                            splashColor: Colors.blueAccent,
-                            textColor: Colors.black,
-                            child: Text(Constants.btnEliminar),
-                            onPressed: _handleSubmitted,
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10.0),
                           ),
                         ],
                       ),
@@ -204,8 +201,8 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
 
   String validateName(String value) {
     String pattern = Constants.patternNombre;
-    RegExp regExp = new RegExp(pattern);
-    if (value.length == 0) {
+    RegExp regExp = RegExp(pattern);
+    if (value.isEmpty) {
       return Constants.validateName;
     } else if (!regExp.hasMatch(value)) {
       return Constants.nameStructure;
@@ -215,8 +212,8 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
 
   String validateLastName(String value) {
     String pattern = Constants.patternNombre;
-    RegExp regExp = new RegExp(pattern);
-    if (value.length == 0) {
+    RegExp regExp = RegExp(pattern);
+    if (value.isEmpty) {
       return Constants.validateLastName;
     } else if (!regExp.hasMatch(value)) {
       return Constants.lastNameStructure;
@@ -226,8 +223,8 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
 
   String validateEmail(String value) {
     String pattern = Constants.pattern;
-    RegExp regExp = new RegExp(pattern);
-    if (value.length == 0) {
+    RegExp regExp = RegExp(pattern);
+    if (value.isEmpty) {
       return Constants.validateEmail;
     } else if (!regExp.hasMatch(value)) {
       return Constants.emailStructure;
@@ -246,7 +243,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
   }
 
   String validateMobile(String value) {
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateMobile;
     } else if (value.length != 10) {
       return Constants.mobileStructure;

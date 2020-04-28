@@ -1,37 +1,48 @@
 import 'dart:core';
 
+import 'package:tenic_api/modelo/municipio_model.dart';
+
 class Torre {
-  String nombreTorre;
-  String identificacionTorre;
-  String direccionTorre;
+  int idTorre;
+  String nombre;
+  String identificacion;
+  String direccion;
   String coordenadas;
   String altura;
   String tecnologia;
+  Municipio municipio;
+  
   Torre(
-      {this.nombreTorre,
-      this.identificacionTorre,
-      this.direccionTorre,
+      {this.idTorre,
+      this.nombre,
+      this.identificacion,
+      this.direccion,
       this.coordenadas,
       this.altura,
-      this.tecnologia});
+      this.tecnologia,
+      this.municipio});
 
   factory Torre.fromJson(Map<String, dynamic> parsedJson) {
     return Torre(
-      nombreTorre: parsedJson['nombre Torre'],
-      identificacionTorre: parsedJson['indentificacion de torre'],
-      direccionTorre: parsedJson['direccion Torre'],
+      idTorre: parsedJson['idTorre'],
+      nombre: parsedJson['nombre'],
+      identificacion: parsedJson['identificacion'],
+      direccion: parsedJson['direccion'],
       coordenadas: parsedJson['coordenadas'],
-      altura: parsedJson['altura Torre'],
-      tecnologia: parsedJson['tecnologia Torre'],
+      altura: parsedJson['altura'],
+      tecnologia: parsedJson['tecnologia'],
+      municipio: Municipio.fromJson(parsedJson['municipio'])
     );
   }
 
   Map<String, dynamic> toJson() => {
-        'nombre Torre': nombreTorre,
-        'indentificacion de torre': identificacionTorre,
-        'direccion Torre': direccionTorre,
+        'idTorre': idTorre,
+        'nombre': nombre,
+        'identificacion': identificacion,
+        'direccion': direccion,
         'coordenadas': coordenadas,
-        'altura Torre': altura,
-        'tecnologia Torre': tecnologia,
+        'altura': altura,
+        'tecnologia': tecnologia,
+        'municipio': municipio.toJson()
       };
 }

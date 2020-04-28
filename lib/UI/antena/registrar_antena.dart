@@ -1,7 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tenic_api/UI/dialog.dart';
 import 'package:tenic_api/bloc/antena_bloc.dart';
+import 'package:tenic_api/bloc/torre_bloc.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
+import 'package:tenic_api/modelo/departamento_model.dart';
+import 'package:tenic_api/modelo/estado_model.dart';
+import 'package:tenic_api/modelo/municipio_model.dart';
+import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class RegistrarAntena extends StatefulWidget {
@@ -9,24 +15,36 @@ class RegistrarAntena extends StatefulWidget {
   RegistrarAntenaState createState() => RegistrarAntenaState();
 }
 
-class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProviderStateMixin {
+class RegistrarAntenaState extends State<RegistrarAntena>
+  with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  AntenaBloc antenaBloc;
+  final TorreBloc torreBloc = TorreBloc();
+  List<Torre> listaTorre = List();
+  int currentTorre;
+  final AntenaBloc antenaBloc = AntenaBloc();
   Antena _antena = Antena(
-    nombre:"",
-    referencia:"",
-    altura:"",
-    orientacion:"",
-    inclinacion:"",
-    //torre:'TORRE_',
-  );
-
+      nombre: '',
+      referencia: '',
+      altura: '',
+      orientacion: '',
+      inclinacion: '',
+      state: Estado(id: 0),
+      torre: Torre(
+          idTorre: 0,
+          municipio:
+              Municipio(idMunicipio: 0, departament: Departamento(idDpto: 0))));
 
   @override
   void initState() {
+
+    TorreBloc();
+    torreBloc.listarTorre().then((apiResponse) {
+      setState(() {
+        listaTorre = apiResponse.listTorre;
+      });
+    });
     super.initState();
-    antenaBloc = AntenaBloc(context);
+    AntenaBloc();
   }
 
   void showInSnackBar(String value) {
@@ -39,7 +57,6 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-
   void _handleSubmitted() {
     final FormState form = _formKey.currentState;
     if (!form.validate()) {
@@ -47,6 +64,7 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
     } else {
       form.save();
       antenaBloc.createAntena(_antena);
+      Message().showRegisterDialog(context);
     }
   }
 
@@ -58,14 +76,6 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
         title: const Text(Constants.tittleAntena),
       ),
       body: Stack(fit: StackFit.expand, children: <Widget>[
-        Container(
-          child: Image(
-          image: AssetImage(Constants.registroImage),
-          fit: BoxFit.cover,
-          colorBlendMode: BlendMode.difference,
-          color: Colors.black12,
-          ),
-        ),
         Center(
           child: Container(
             child: Theme(
@@ -90,11 +100,15 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                           Padding(
                             padding: const EdgeInsets.only(top: 40.0),
                           ),
+
                           const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
-                              labelText: Constants.labelNombre,
-                            ),
+                            decoration: InputDecoration(
+                                labelText: Constants.labelNombre,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelNombre,
+                                icon: Icon(Icons.account_circle)),
                             validator: validateName,
                             keyboardType: TextInputType.text,
                             onSaved: (String value) {
@@ -104,9 +118,12 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
-                              labelText: Constants.labelReferencia,
-                            ),
+                            decoration: InputDecoration(
+                                labelText: Constants.labelReferencia,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelReferencia,
+                                icon: Icon(Icons.receipt)),
                             keyboardType: TextInputType.number,
                             validator: validateReferencia,
                             onSaved: (String value) {
@@ -114,10 +131,14 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
+                          const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration: new InputDecoration(
-                              labelText: Constants.labelAltura,
-                            ),
+                            decoration: InputDecoration(
+                                labelText: Constants.labelAltura,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelAltura,
+                                icon: Icon(Icons.show_chart)),
                             keyboardType: TextInputType.number,
                             maxLength: 2,
                             validator: validateAltura,
@@ -127,11 +148,12 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                             style: TextStyle(fontSize: 18.0),
                           ),
                           TextFormField(
-                            obscureText: true,
-                            autocorrect: false,
-                            decoration: new InputDecoration(
-                              labelText: Constants.labelOrientacion,
-                            ),
+                            decoration: InputDecoration(
+                                labelText: Constants.labelOrientacion,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelOrientacion,
+                                icon: Icon(Icons.call_missed_outgoing)),
                             keyboardType: TextInputType.number,
                             maxLength: 3,
                             validator: validateGrados,
@@ -141,9 +163,12 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                             style: TextStyle(fontSize: 18.0),
                           ),
                           TextFormField(
-                            decoration: new InputDecoration(
-                              labelText: Constants.labelInclinacion,
-                            ),
+                            decoration: InputDecoration(
+                                labelText: Constants.labelInclinacion,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelInclinacion,
+                                icon: Icon(Icons.call_split)),
                             keyboardType: TextInputType.number,
                             maxLength: 3,
                             validator: validateGrados,
@@ -153,19 +178,47 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                             style: TextStyle(fontSize: 18.0),
                           ),
                           TextFormField(
-                            decoration: new InputDecoration(
-                              labelText: Constants.labelTorre,
-                            ),
-                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                                labelText: ('estado'),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelestado,
+                                icon: Icon(Icons.graphic_eq)),
+                            keyboardType: TextInputType.number,
                             maxLength: 12,
-                            validator: validateName,
                             onSaved: (String value) {
-                              //_antena.torre = value;
+                              _antena.state.id = int.parse(value);
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 60.0),
+                            padding: const EdgeInsets.only(top: 20.0),
+                          ),
+                          DropdownButtonHideUnderline(
+                            child:  DropdownButton<int>(
+                              hint: Text("Seleccionar"),
+                              value: currentTorre,
+                              isDense: true,
+                              onChanged: (int newValue) {
+                                currentTorre = newValue;
+                                setState(() {
+                                  currentTorre = newValue;
+                                });
+                                print(currentTorre);
+                                _antena.torre.idTorre = newValue;
+                              },
+                              items: listaTorre.map((Torre map) {
+                                return  DropdownMenuItem<int>(
+                                  value: map.idTorre,
+                                  child:  Text(map.nombre,
+                                      style:  TextStyle(color: Colors.black)),
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                               
+                          Padding(
+                            padding: const EdgeInsets.only(top: 40.0),
                           ),
                           MaterialButton(
                             shape: RoundedRectangleBorder(
@@ -174,10 +227,10 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
                             ),
                             height: 50.0,
                             minWidth: 150.0,
-                            color: Color(0xFFE1F5FE),
-                            splashColor: Colors.blueAccent,
+                            color: Color(0xFF42a5f5),
+                            splashColor: Colors.blue,
                             textColor: Colors.black,
-                            child: Text(Constants.btnModificar),
+                            child: Text(Constants.btnRegistar),
                             onPressed: _handleSubmitted,
                           ),
                         ],
@@ -193,35 +246,37 @@ class RegistrarAntenaState extends State<RegistrarAntena> with SingleTickerProvi
     );
   }
 
-
   String validateName(String value) {
     String pattern = Constants.patternNombre;
-    RegExp regExp = new RegExp(pattern);
-    if (value.length == 0) {
+    RegExp regExp = RegExp(pattern);
+    if (value.isEmpty) {
       return Constants.validateName;
     } else if (!regExp.hasMatch(value)) {
       return Constants.nameStructure;
     }
     return null;
   }
+
   String validateReferencia(String value) {
-    if (value.length == 0) {
+    if (value.isEmpty) {
       return Constants.validateReferencia;
     } else if (value.length != 10) {
       return Constants.referenciaStructure;
     }
     return null;
   }
-    String validateAltura(String value) {
-    if (value.length == 0) {
+
+  String validateAltura(String value) {
+    if (value.isEmpty) {
       return Constants.validateAltura;
     } else if (value.length != 2) {
       return Constants.alturaStructure;
     }
     return null;
   }
-    String validateGrados(String value) {
-    if (value.length == 0) {
+
+  String validateGrados(String value) {
+    if (value.isEmpty) {
       return Constants.validateOrientacion;
     } else if (value.length != 3) {
       return Constants.orientacionStructure;

@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/repository/repository.dart';
@@ -10,62 +10,65 @@ class DptoBloc {
 
   ApiResponse get apiResponse => _apiResponse;
 
-  DptoBloc(BuildContext context);
   Future<ApiResponse> createDepartamento(Departamento departamento) async {
+    String token = await _repository.getLocalAccessToken();
     ApiResponse apiResponse =
-        await _repository.registrarDepartamento(departamento);
+        await _repository.registrarDepartamento(departamento, token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
     } else {
-      print("el código del error" +
+      print(Constants.errorCode +
           apiResponse.statusResponse.toString() +
-          " El mensaje de error es: " +
+          Constants.errorMessage +
           apiResponse.message);
     }
     return apiResponse;
   }
 
   Future<ApiResponse> updateDepartamento(Departamento departamento) async {
+    String token = await _repository.getLocalAccessToken();
     ApiResponse apiResponse =
-        await _repository.actualizarDepartamento(departamento);
+        await _repository.actualizarDepartamento(departamento, token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
     } else {
-      print("el código del error" +
+      print(Constants.errorCode +
           apiResponse.statusResponse.toString() +
-          " El mensaje de error es: " +
+          Constants.errorMessage +
           apiResponse.message);
     }
     return apiResponse;
   }
 
   Future<ApiResponse> deleteDepartamento(Departamento departamento) async {
+    String token = await _repository.getLocalAccessToken();
     ApiResponse apiResponse =
-        await _repository.eliminarDepartamento(departamento);
+        await _repository.eliminarDepartamento(departamento, token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
     } else {
-      print("el código del error" +
+      print(Constants.errorCode +
           apiResponse.statusResponse.toString() +
-          " El mensaje de error es: " +
+          Constants.errorMessage +
           apiResponse.message);
     }
     return apiResponse;
   }
 
   Future<ApiResponse> listarDepartamento() async {
-    ApiResponse apiResponse = await _repository.listaDepartamento();
+    String token = await _repository.getLocalAccessToken();
+    ApiResponse apiResponse = await _repository.listaDepartamento(token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
       return apiResponse;
     } else {
-      print("el código del error" +
+      print(Constants.errorCode +
           apiResponse.statusResponse.toString() +
-          " El mensaje de error es: " +
+          Constants.errorMessage +
           apiResponse.message);
       return apiResponse;
     }
