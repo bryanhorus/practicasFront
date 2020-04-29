@@ -64,7 +64,7 @@ class ListaObservationState extends State<ListaObservation>
                     children: <Widget>[
                       ListTile(
                         title: Text(
-                          listObservation[indice].fecha,
+                          listObservation[indice].antena.nombre,
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.black,
