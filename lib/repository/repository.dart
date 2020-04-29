@@ -16,7 +16,6 @@ import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
 import '../modelo/municipio_model.dart';
 
-
 class Repository {
 
   final UsuarioApiService usuarioApiService = UsuarioApiService();
@@ -28,11 +27,12 @@ class Repository {
   final SessionStorage _session = SessionStorage();
   final ObservacionApiService observacionApiService = ObservacionApiService();
 
-
   //promesa de invocacion al usuarioApiService metodo insertar usuario
   Future<Session> iniciar( Login login) => loginApiService.iniciarSesion(login);
-
   Future<String> getLocalAccessToken() => _session.getToken();
+  Future deleteAll() => _session.deleteAllValues(); 
+  Future<String> getLocalRol() => _session.getRol();
+  
   //Usuario
   Future<ApiResponse> registrarUsuario(Usuario usuario) => usuarioApiService.insertUsuario(usuario);
   Future<ApiResponse> actualizarUsuario(Usuario usuario, String token) => usuarioApiService.updateUsuario(usuario, token);

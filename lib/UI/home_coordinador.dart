@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tenic_api/bloc/inicio_sesion_bloc.dart';
 import 'package:tenic_api/navigator.dart';
+import 'package:tenic_api/navigator_tecnico.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class HomeCoordinador extends StatefulWidget {
@@ -8,6 +10,15 @@ class HomeCoordinador extends StatefulWidget {
 }
 
 class HomeCoordinadorState extends State<HomeCoordinador> {
+
+  final InicioSesionBloc inicioSesionBloc = InicioSesionBloc();
+
+  void _handleSubmitted() async {
+  
+       await inicioSesionBloc.cerrarSesion();
+       TecniNavigator.goToHome(context);
+      
+  }
   @override
   Widget build(BuildContext context) {
     var perfil = ListTile(
@@ -86,7 +97,7 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
         Constants.cerrarSesion,
         style: TextStyle(color: Colors.black),
       ),
-      onTap: () => {TecniNavigator.goToHome(context)},
+      onTap: _handleSubmitted,
     );
 
     var menu = Drawer(
