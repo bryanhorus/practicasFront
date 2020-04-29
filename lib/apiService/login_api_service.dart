@@ -23,6 +23,7 @@ class LoginApiService {
 
     if (res.statusCode == 200) {
       print("token " + _session.accessToken);
+
       return _session;
     }
     return _session;
