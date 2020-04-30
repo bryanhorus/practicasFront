@@ -62,7 +62,6 @@ class LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-        //key: _scaffoldKey,
         appBar: AppBar(
           title: const Text(Constants.tittleLogin),
         ),
@@ -130,8 +129,6 @@ class LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
                               ),
                               Column(
                                 children: <Widget>[
-                                  /////----
-                                  ///
                                   Center(
                                     child: SingleChildScrollView(
                                       child: SafeArea(
@@ -161,10 +158,14 @@ class LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
                                                         color: Colors.grey),
                                                     labelText:
                                                         Constants.labelCorreo,
+                                                    border: OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    20.0)),
                                                   ),
                                                   keyboardType: TextInputType
                                                       .emailAddress,
-                                                  maxLength: 32,
                                                   validator: validateEmail,
                                                   controller:
                                                       _userNameController,
@@ -174,17 +175,23 @@ class LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
                                                   style:
                                                       TextStyle(fontSize: 18.0),
                                                 ),
+                                                const SizedBox(height: 12.0),
                                                 TextFormField(
                                                   obscureText: true,
                                                   autocorrect: false,
                                                   decoration: InputDecoration(
-                                                      hintText: Constants
-                                                          .labelPassword,
-                                                      icon: Icon(Icons.lock,
-                                                          color: Colors.grey),
-                                                      labelText: Constants
-                                                          .labelPassword),
-                                                  maxLength: 12,
+                                                    hintText:
+                                                        Constants.labelPassword,
+                                                    icon: Icon(Icons.lock,
+                                                        color: Colors.grey),
+                                                    labelText:
+                                                        Constants.labelPassword,
+                                                    border: OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    20.0)),
+                                                  ),
                                                   validator: validatePassword,
                                                   controller:
                                                       _passwordController,
@@ -197,7 +204,7 @@ class LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
                                                 Padding(
                                                   padding:
                                                       const EdgeInsets.only(
-                                                          top: 60.0),
+                                                          top: 40.0),
                                                 ),
                                                 MaterialButton(
                                                     shape:

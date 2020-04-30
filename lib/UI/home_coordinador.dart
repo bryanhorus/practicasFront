@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/inicio_sesion_bloc.dart';
 import 'package:tenic_api/navigator.dart';
-import 'package:tenic_api/navigator_tecnico.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class HomeCoordinador extends StatefulWidget {
@@ -10,15 +9,13 @@ class HomeCoordinador extends StatefulWidget {
 }
 
 class HomeCoordinadorState extends State<HomeCoordinador> {
-
   final InicioSesionBloc inicioSesionBloc = InicioSesionBloc();
 
   void _handleSubmitted() async {
-  
-       await inicioSesionBloc.cerrarSesion();
-       TecniNavigator.goToHome(context);
-      
+    await inicioSesionBloc.cerrarSesion();
+    TecniNavigator.goToHome(context);
   }
+
   @override
   Widget build(BuildContext context) {
     var perfil = ListTile(
@@ -74,14 +71,14 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
       onTap: () => {TecniNavigator.goToListaMuncipio(context)},
     );
 
-    var asignar = ListTile(
+    /*var asignar = ListTile(
       leading: Icon(Icons.fiber_new),
       title: Text(
         Constants.tittleAsignarAntena,
         style: TextStyle(color: Colors.black),
       ),
       onTap: () => {TecniNavigator.goToAsignarAntena(context)},
-    );
+    );*/
 
     var observacion = ListTile(
       leading: Icon(Icons.pin_drop),
@@ -125,7 +122,6 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
           municipio,
           usuarios,
           antena,
-          asignar,
           observacion,
           cerrar
         ],
@@ -148,7 +144,6 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
                         'donde puedes estar mas cerca de tu familia '),
               ),
             ),
-            //
             Card(
               elevation: 24,
               child: ListTile(
@@ -158,8 +153,6 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
                     "Generamos valor a la sociedad, clientes y accionistas, y  todos los grupos de interés, con una gestión innovadora, eficiente, neutral y de calidad en la prestación de servicios de redes compartidas e infraestructuras de telecomunicaciones, a través de la ilusión y el desarrollo de nuestro equipo de colaboradores."),
               ),
             ),
-
-            //
             Card(
               elevation: 25,
               child: ListTile(
@@ -172,8 +165,5 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
           ],
         ));
 
-    // Center(
-    //  child: Text(
-    //    "Aqui podemos hacer como una introducción a la empresa o la app, algo asi, como un texto y una imagen")));
   }
 }

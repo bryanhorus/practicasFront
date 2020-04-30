@@ -39,7 +39,7 @@ class Constants{
   //validacion de campos
   static const String estructura = "La estructura no coincide con la solicitada";
   static const String validateName = "El nombre es necesario";
-  static const String nameStructure = "El nombre puede contener a-z y A-Z";
+  static const String nameStructure = "El campo solo puede contener a-z y A-Z";
   static const String validateLastName = "El nombre es necesario";
   static const String lastNameStructure = "El nombre puede contener a-z y A-Z";
   static const String validateEmail = "El correo es necesario";
@@ -59,6 +59,7 @@ class Constants{
   static const String pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
   static const String patternNombre = r'(^[a-zA-Z ]*$)';
   static const String patterTelefono = r'(^[3][0-9]*$)';
+  static const String patterNumero = r'(^[0-9]*$)';
   //Botones
   static const String btnCerrar = "Cerrar";
   static const String btnIngresar = "Ingresar";
@@ -184,6 +185,8 @@ class Constants{
   static const String registroExitoso = "¡Registro exitoso!";
   static const String tittleDialog = "Información";
   static const String actualizacion = "  ¡Actualizado!";
+  static const String eliminado = "  ¡Eliminado";
+
 
 
 }

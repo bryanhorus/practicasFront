@@ -38,11 +38,6 @@ class _ListaDptoState extends State<ListaDpto>
     });
   }
 
-  void _delete(Departamento departamento) {
-    dptoBloc.deleteDepartamento(departamento);
-    TecniNavigator.goToHomeCoordinador(context);
-  }
-
   @override
   void initState() {
     super.initState();
@@ -93,20 +88,6 @@ class _ListaDptoState extends State<ListaDpto>
                                       departamento: departamento,
                                     )));
                       },
-                    ),
-                    // ignore: deprecated_member_use
-                    ButtonTheme.bar(
-                      child: ButtonBar(
-                        children: <Widget>[
-                          IconButton(
-                            icon: Icon(Icons.delete),
-                            onPressed: () {
-                              departamento = listDepartamento[indice];
-                              _delete(departamento);
-                            },
-                          ),
-                        ],
-                      ),
                     ),
                   ],
                 ),
