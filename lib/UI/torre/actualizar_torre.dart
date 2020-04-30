@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tenic_api/UI/dialog.dart';
 import 'package:tenic_api/bloc/torre_bloc.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/municipio_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
+import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
-
 
 class ActualizarTorre extends StatefulWidget {
   final Torre torre;
@@ -19,7 +18,8 @@ class ActualizarTorre extends StatefulWidget {
 class ActualizarTorreState extends State<ActualizarTorre>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
+  bool _autovalidate = false;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   ActualizarTorreState({this.torre});
   final TorreBloc torreBloc = TorreBloc();
 
@@ -39,26 +39,43 @@ class ActualizarTorreState extends State<ActualizarTorre>
     TorreBloc();
   }
 
-  void showInSnackBar(String value) {
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text(value),
-    ));
+  showUpdateDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (buildcontext) {
+          return AlertDialog(
+            title:
+                Row(children: [Icon(Icons.info), Text(Constants.tittleDialog)]),
+            content: Text(Constants.actualizacion),
+            actions: <Widget>[
+              RaisedButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                ),
+                child: Text(
+                  Constants.btnCerrar,
+                  style: TextStyle(color: Colors.black),
+                ),
+                color: Color(0xFF42a5f5),
+                padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
+                onPressed: () {
+                  TecniNavigator.goToListaTorre(context);
+                },
+              )
+            ],
+          );
+        });
   }
 
-  bool _autovalidate = false;
-
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   void _handleSubmitted() {
-   final FormState form = _formKey.currentState;
+    final FormState form = _formKey.currentState;
     if (!form.validate()) {
       _autovalidate = true;
     } else {
       form.save();
       torreBloc.updateTorre(torre);
-      Message().showUpdateDialog(context);
+      showUpdateDialog(context);
     }
-    //TecniNavigator.goTocord(context);
   }
 
   @override
@@ -117,38 +134,10 @@ class ActualizarTorreState extends State<ActualizarTorre>
                                 icon: Icon(Icons.perm_identity)),
                             initialValue: torre.identificacion,
                             keyboardType: TextInputType.number,
-                            //validator: validateName,
+                            validator: validateNumeros,
+                            maxLength: 10,
                             onSaved: (String value) {
                               torre.identificacion = value;
-                            },
-                            style: TextStyle(fontSize: 18.0),
-                          ),
-                          const SizedBox(height: 12.0),
-                          TextFormField(
-                            decoration:  InputDecoration(
-                                labelText: Constants.labelDireccion,
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0)),
-                                hintText: Constants.labelDireccion,
-                                icon: Icon(Icons.directions)),
-                            initialValue: torre.direccion,
-                            keyboardType: TextInputType.emailAddress,
-                            onSaved: (String value) {
-                              torre.direccion = value;
-                            },
-                            style: TextStyle(fontSize: 18.0),
-                          ),
-                          const SizedBox(height: 12.0),
-                          TextFormField(
-                            decoration:  InputDecoration(
-                                labelText: Constants.labelCoordenadas,
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0)),
-                                hintText: Constants.labelCoordenadas,
-                                icon: Icon(Icons.map)),
-                            initialValue: torre.coordenadas,
-                            onSaved: (String value) {
-                              torre.coordenadas = value;
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
@@ -163,29 +152,14 @@ class ActualizarTorreState extends State<ActualizarTorre>
                             initialValue: torre.altura,
                             keyboardType: TextInputType.number,
                             maxLength: 2,
-                            //validator: validateAltura,
+                            validator: validateNumeros,
                             onSaved: (String value) {
                               torre.altura = value;
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
-                          TextFormField(
-                            decoration: InputDecoration(
-                                labelText: Constants.labelTecnologia,
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0)),
-                                hintText: Constants.labelTecnologia,
-                                icon: Icon(Icons.computer)),
-                            initialValue: torre.tecnologia,
-                            keyboardType: TextInputType.number,
-                            maxLength: 10,
-                            onSaved: (String value) {
-                              torre.tecnologia = value;
-                            },
-                            style: TextStyle(fontSize: 18.0),
-                          ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 60.0),
+                            padding: const EdgeInsets.only(top: 40.0),
                           ),
                           MaterialButton(
                             shape: RoundedRectangleBorder(
@@ -224,20 +198,13 @@ class ActualizarTorreState extends State<ActualizarTorre>
     return null;
   }
 
-  String validateAltura(String value) {
+  String validateNumeros(String value) {
+    String pattern = Constants.patterNumero;
+    RegExp regExp = RegExp(pattern);
     if (value.isEmpty) {
       return Constants.validateAltura;
-    } else if (value.length != 2) {
-      return Constants.alturaStructure;
-    }
-    return null;
-  }
-
-  String validateGrados(String value) {
-    if (value.isEmpty) {
-      return Constants.validateOrientacion;
-    } else if (value.length != 3) {
-      return Constants.orientacionStructure;
+    } else if (!regExp.hasMatch(value)){
+      return Constants.estructura;
     }
     return null;
   }

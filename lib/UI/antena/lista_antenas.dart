@@ -19,16 +19,37 @@ class ListaAntenasState extends State<ListaAntenas>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final AntenaBloc  antenaBloc = AntenaBloc();
+  List<Antena> listAntena = List();
   ApiResponse apiResponse;
   Antena antena;
 
-  void showInSnackBar(String value) {
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text(value),
-    ));
+  showDeleteDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (buildcontext) {
+          return AlertDialog(
+            title:
+                Row(children: [Icon(Icons.info), Text(Constants.tittleDialog)]),
+            content: Text(Constants.eliminado),
+            actions: <Widget>[
+              RaisedButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                ),
+                child: Text(
+                  Constants.btnCerrar,
+                  style: TextStyle(color: Colors.black),
+                ),
+                color: Color(0xFF42a5f5),
+                padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
+                onPressed: () {
+                  TecniNavigator.goToListaAntena(context);
+                },
+              )
+            ],
+          );
+        });
   }
-
-  List<Antena> listAntena = List();
 
   _handleSubmitted() {
     antenaBloc.listarAntena().then((apiResponse) {
@@ -40,7 +61,7 @@ class ListaAntenasState extends State<ListaAntenas>
 
   void _delete(Antena antena) {
     antenaBloc.deleteAntena(antena);
-    TecniNavigator.goToHomeCoordinador(context);
+    showDeleteDialog(context);
   }
 
   @override
@@ -70,20 +91,15 @@ class ListaAntenasState extends State<ListaAntenas>
           child: ListView.builder(
             shrinkWrap: true,
             padding: const EdgeInsets.all(20.0),
-            // tamaño de la lista
             itemCount: listAntena.length,
-            // Constructor de widget para cada elemento de la lista
             itemBuilder: (BuildContext context, int indice) {
               return Card(
-                  //le damos un color de la lista de primarios
                   color: Colors.blueAccent[indice],
-                  //agregamos un contenedor de 100 de alto
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       ListTile(
                         title: Text(listAntena[indice].nombre,
-                            //le damos estilo a cada texto
                             style:
                                 TextStyle(fontSize: 20, color: Colors.black87,fontWeight: FontWeight.bold)),
                         subtitle: Text(listAntena[indice].referencia),

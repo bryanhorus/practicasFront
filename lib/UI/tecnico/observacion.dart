@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tenic_api/UI/dialog.dart';
 import 'package:tenic_api/bloc/antena_bloc.dart';
 import 'package:tenic_api/bloc/observacion_bloc.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
@@ -9,6 +8,7 @@ import 'package:tenic_api/modelo/estado_model.dart';
 import 'package:tenic_api/modelo/municipio_model.dart';
 import 'package:tenic_api/modelo/observacion_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
+import 'package:tenic_api/navigator_tecnico.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class CrearObservacion extends StatefulWidget {
@@ -33,8 +33,13 @@ class CrearObservacionState extends State<CrearObservacion>
       fecha: '',
       orientacion: '',
       inclinacion: '',
-      antena:
-          Antena(idAntena: 0, state: Estado(id: 0), torre: Torre(idTorre: 0, municipio: Municipio(idMunicipio: 0, departament: Departamento(idDpto: 0)))));
+      antena: Antena(
+          idAntena: 0,
+          state: Estado(id: 0),
+          torre: Torre(
+              idTorre: 0,
+              municipio: Municipio(
+                  idMunicipio: 0, departament: Departamento(idDpto: 0)))));
   @override
   void initState() {
     AntenaBloc();
@@ -58,11 +63,38 @@ class CrearObservacionState extends State<CrearObservacion>
     );
     if (picked != null) {
       setState(() {
-        //redibujar
         _observacion.fecha = picked.toIso8601String() + "Z";
         _inputDate.text = _observacion.fecha;
       });
     }
+  }
+
+  showRegisterDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (buildcontext) {
+          return AlertDialog(
+            title:
+                Row(children: [Icon(Icons.info), Text(Constants.tittleDialog)]),
+            content: Text(Constants.registroExitoso),
+            actions: <Widget>[
+              RaisedButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                ),
+                child: Text(
+                  Constants.btnCerrar,
+                  style: TextStyle(color: Colors.black),
+                ),
+                color: Color(0xFF42a5f5),
+                padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
+                onPressed: () {
+                  TecnicoNavigator.goToRegistrarObservacion(context);
+                },
+              )
+            ],
+          );
+        });
   }
 
   void _handleSubmitted() {
@@ -72,7 +104,7 @@ class CrearObservacionState extends State<CrearObservacion>
     } else {
       form.save();
       observacionBloc.createObservacion(_observacion);
-      Message().showRegisterDialog(context);
+      showRegisterDialog(context);
     }
   }
 
@@ -132,7 +164,8 @@ class CrearObservacionState extends State<CrearObservacion>
                                 hintText: Constants.labelOrientacion,
                                 icon: Icon(Icons.brightness_4)),
                             keyboardType: TextInputType.number,
-                            //validator: validateName,
+                            validator: validateNumeros,
+                            maxLength: 3,
                             onSaved: (String value) {
                               _observacion.orientacion = value;
                             },
@@ -147,6 +180,7 @@ class CrearObservacionState extends State<CrearObservacion>
                                 hintText: Constants.labelInclinacion,
                                 icon: Icon(Icons.brightness_1)),
                             keyboardType: TextInputType.number,
+                            validator: validateNumeros,
                             maxLength: 3,
                             onSaved: (String value) {
                               _observacion.inclinacion = value;
@@ -155,24 +189,23 @@ class CrearObservacionState extends State<CrearObservacion>
                           ),
                           const SizedBox(height: 12.0),
                           DropdownButtonHideUnderline(
-                            child:  DropdownButton<int>(
+                            child: DropdownButton<int>(
                               hint: Text("Seleccionar"),
                               value: currentAntena,
                               isDense: true,
-                              onChanged:  (int newValue) {
+                              onChanged: (int newValue) {
                                 currentAntena = newValue;
                                 setState(() {
                                   currentAntena = newValue;
                                 });
                                 print(currentAntena);
                                 _observacion.antena.idAntena = newValue;
-                                
                               },
                               items: listaAntena.map((Antena map) {
-                                return  DropdownMenuItem<int>(
+                                return DropdownMenuItem<int>(
                                   value: map.idAntena,
-                                  child:  Text(map.nombre,
-                                      style:  TextStyle(color: Colors.black)),
+                                  child: Text(map.nombre,
+                                      style: TextStyle(color: Colors.black)),
                                 );
                               }).toList(),
                             ),
@@ -217,20 +250,13 @@ class CrearObservacionState extends State<CrearObservacion>
     return null;
   }
 
-  String validateAltura(String value) {
+  String validateNumeros(String value) {
+    String pattern = Constants.patterNumero;
+    RegExp regExp = RegExp(pattern);
     if (value.isEmpty) {
       return Constants.validateAltura;
-    } else if (value.length != 2) {
-      return Constants.alturaStructure;
-    }
-    return null;
-  }
-
-  String validateGrados(String value) {
-    if (value.isEmpty) {
-      return Constants.validateOrientacion;
-    } else if (value.length != 3) {
-      return Constants.orientacionStructure;
+    } else if (!regExp.hasMatch(value)) {
+      return Constants.estructura;
     }
     return null;
   }

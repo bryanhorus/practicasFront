@@ -21,10 +21,32 @@ class ListaUsuariosState extends State<ListaUsuarios>
   ApiResponse apiResponse;
   Usuario usuario;
 
-  void showInSnackBar(String value) {
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text(value),
-    ));
+  showDeleteDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (buildcontext) {
+          return AlertDialog(
+            title:
+                Row(children: [Icon(Icons.info), Text(Constants.tittleDialog)]),
+            content: Text(Constants.eliminado),
+            actions: <Widget>[
+              RaisedButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                ),
+                child: Text(
+                  Constants.btnCerrar,
+                  style: TextStyle(color: Colors.black),
+                ),
+                color: Color(0xFF42a5f5),
+                padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
+                onPressed: () {
+                  TecniNavigator.goToListaUsuarios(context);
+                },
+              )
+            ],
+          );
+        });
   }
 
   List<Usuario> listUsuario = List();
@@ -39,7 +61,7 @@ class ListaUsuariosState extends State<ListaUsuarios>
 
   void _delete(Usuario usuario) {
     userBloc.deleteUsuario(usuario);
-    TecniNavigator.goToHomeCoordinador(context);
+    showDeleteDialog(context);
   }
 
   @override

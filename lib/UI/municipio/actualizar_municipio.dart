@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tenic_api/UI/dialog.dart';
 import 'package:tenic_api/bloc/municipio_bloc.dart';
 import 'package:tenic_api/modelo/municipio_model.dart';
+import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class ActualizarMunicipio extends StatefulWidget {
@@ -18,6 +18,8 @@ class ActualizarMunicipioState extends State<ActualizarMunicipio>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+    bool _autovalidate = false;
+    
   ActualizarMunicipioState({this.municipio});
   MunicipioBloc municipioBloc;
 
@@ -28,10 +30,33 @@ class ActualizarMunicipioState extends State<ActualizarMunicipio>
     super.initState();
   }
 
-  bool _autovalidate = false;
-
-
-
+  showUpdateDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (buildcontext) {
+          return AlertDialog(
+            title:
+                Row(children: [Icon(Icons.info), Text(Constants.tittleDialog)]),
+            content: Text(Constants.actualizacion),
+            actions: <Widget>[
+              RaisedButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                ),
+                child: Text(
+                  Constants.btnCerrar,
+                  style: TextStyle(color: Colors.black),
+                ),
+                color: Color(0xFF42a5f5),
+                padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
+                onPressed: () {
+                  TecniNavigator.goToListaMuncipio(context);
+                },
+              )
+            ],
+          );
+        });
+  }
   void _handleSubmitted() {
     final FormState form = _formKey.currentState;
     if (!form.validate()) {
@@ -39,7 +64,7 @@ class ActualizarMunicipioState extends State<ActualizarMunicipio>
     } else {
       form.save();
       municipioBloc.updateMunicipio(municipio);
-      Message().showUpdateDialog(context);
+      showUpdateDialog(context);
     }
   }
 
@@ -82,9 +107,10 @@ class ActualizarMunicipioState extends State<ActualizarMunicipio>
                                 icon: Icon(Icons.flag)),
                             validator: validateName,
                             initialValue: municipio.nombre,
+                            textCapitalization: TextCapitalization.sentences,
                             keyboardType: TextInputType.text,
                             onSaved: (String value) {
-                              municipio.nombre = value;
+                              municipio.nombre = value.trim();
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),

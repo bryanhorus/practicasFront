@@ -8,14 +8,11 @@ class Login {
     return Login(
       correo: parsedJson['correo'],
       password: parsedJson['password'],
-
     );
   }
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         'correo': correo,
         'password': password,
       };
 }
-

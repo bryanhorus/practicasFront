@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tenic_api/UI/dialog.dart';
 import 'package:tenic_api/bloc/departamento_bloc.dart';
+import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 import '../../bloc/municipio_bloc.dart';
 import '../../modelo/departamento_model.dart';
@@ -17,7 +17,7 @@ class CrearMunicipio extends StatefulWidget {
 class CrearMunicipioState extends State<CrearMunicipio>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
+  bool _autovalidate = false;
   final MunicipioBloc municipioBloc = MunicipioBloc();
   Municipio _municipio =
       Municipio(nombre: '', departament: Departamento(idDpto: 0));
@@ -28,7 +28,6 @@ class CrearMunicipioState extends State<CrearMunicipio>
 
   @override
   void initState() {
-    
     DptoBloc();
     dptoBloc.listarDepartamento().then((apiResponse) {
       setState(() {
@@ -39,9 +38,34 @@ class CrearMunicipioState extends State<CrearMunicipio>
     MunicipioBloc();
   }
 
-  bool _autovalidate = false;
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  showRegisterDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (buildcontext) {
+          return AlertDialog(
+            title:
+                Row(children: [Icon(Icons.info), Text(Constants.tittleDialog)]),
+            content: Text(Constants.registroExitoso),
+            actions: <Widget>[
+              RaisedButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                ),
+                child: Text(
+                  Constants.btnCerrar,
+                  style: TextStyle(color: Colors.black),
+                ),
+                color: Color(0xFF42a5f5),
+                padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
+                onPressed: () {
+                  TecniNavigator.goToListaMuncipio(context);
+                },
+              )
+            ],
+          );
+        });
+  }
 
   void _handleSubmitted() {
     final FormState form = _formKey.currentState;
@@ -50,10 +74,9 @@ class CrearMunicipioState extends State<CrearMunicipio>
     } else {
       form.save();
       municipioBloc.createMunicipio(_municipio);
-      Message().showRegisterDialog(context);
+      showRegisterDialog(context);
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -85,27 +108,25 @@ class CrearMunicipioState extends State<CrearMunicipio>
                           Padding(
                             padding: const EdgeInsets.only(top: 40.0),
                           ),
-                          
                           const SizedBox(height: 12.0),
                           DropdownButtonHideUnderline(
-                            child:  DropdownButton<int>(
+                            child: DropdownButton<int>(
                               hint: Text("Seleccionar"),
                               value: currentDpto,
                               isDense: true,
-                              onChanged:  (int newValue) {
+                              onChanged: (int newValue) {
                                 currentDpto = newValue;
                                 setState(() {
                                   currentDpto = newValue;
                                 });
                                 print(currentDpto);
                                 _municipio.departament.idDpto = newValue;
-                                
                               },
                               items: listaDpto.map((Departamento map) {
-                                return  DropdownMenuItem<int>(
+                                return DropdownMenuItem<int>(
                                   value: map.idDpto,
-                                  child:  Text(map.nombre,
-                                      style:  TextStyle(color: Colors.black)),
+                                  child: Text(map.nombre,
+                                      style: TextStyle(color: Colors.black)),
                                 );
                               }).toList(),
                             ),
@@ -120,10 +141,11 @@ class CrearMunicipioState extends State<CrearMunicipio>
                                     borderRadius: BorderRadius.circular(20.0)),
                                 hintText: Constants.labelMunicipio,
                                 icon: Icon(Icons.image)),
+                            textCapitalization: TextCapitalization.sentences,
                             validator: validateName,
                             keyboardType: TextInputType.text,
                             onSaved: (String value) {
-                              _municipio.nombre = value;
+                              _municipio.nombre = value.trim();
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),

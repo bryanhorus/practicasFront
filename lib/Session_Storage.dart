@@ -2,7 +2,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'modelo/session_local.dart';
 
 class SessionStorage {
-
   static final _storage = FlutterSecureStorage();
   final Session session = Session();
 
@@ -29,15 +28,16 @@ class SessionStorage {
   Future saveSessionStorage(Session session) async {
     await _storage.write(key: 'accessToken', value: session.accessToken);
     await _storage.write(key: 'rol', value: session.rol);
-
   }
+
   Future<String> getToken() async {
-    final String token = await _storage.read(key:'accessToken');
+    final String token = await _storage.read(key: 'accessToken');
     print(token);
     return token;
   }
+
   Future<String> getRol() async {
-    final String rol = await _storage.read(key:'rol');
+    final String rol = await _storage.read(key: 'rol');
     print("****" + rol);
     return rol;
   }

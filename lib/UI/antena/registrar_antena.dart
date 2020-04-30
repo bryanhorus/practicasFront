@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tenic_api/UI/dialog.dart';
 import 'package:tenic_api/bloc/antena_bloc.dart';
 import 'package:tenic_api/bloc/torre_bloc.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
@@ -8,6 +7,7 @@ import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/estado_model.dart';
 import 'package:tenic_api/modelo/municipio_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
+import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class RegistrarAntena extends StatefulWidget {
@@ -18,11 +18,11 @@ class RegistrarAntena extends StatefulWidget {
 class RegistrarAntenaState extends State<RegistrarAntena>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
   final TorreBloc torreBloc = TorreBloc();
+    bool _autovalidate = false;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   List<Torre> listaTorre = List();
   int currentTorre;
-
 
   final AntenaBloc antenaBloc = AntenaBloc();
   Antena _antena = Antena(
@@ -39,7 +39,6 @@ class RegistrarAntenaState extends State<RegistrarAntena>
 
   @override
   void initState() {
-
     TorreBloc();
     torreBloc.listarTorre().then((apiResponse) {
       setState(() {
@@ -50,15 +49,33 @@ class RegistrarAntenaState extends State<RegistrarAntena>
     AntenaBloc();
   }
 
-  void showInSnackBar(String value) {
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text(value),
-    ));
+  showRegisterDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (buildcontext) {
+          return AlertDialog(
+            title:
+                Row(children: [Icon(Icons.info), Text(Constants.tittleDialog)]),
+            content: Text(Constants.registroExitoso),
+            actions: <Widget>[
+              RaisedButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                ),
+                child: Text(
+                  Constants.btnCerrar,
+                  style: TextStyle(color: Colors.black),
+                ),
+                color: Color(0xFF42a5f5),
+                padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
+                onPressed: () {
+                  TecniNavigator.goToListaAntena(context);
+                },
+              )
+            ],
+          );
+        });
   }
-
-  bool _autovalidate = false;
-
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   void _handleSubmitted() {
     final FormState form = _formKey.currentState;
@@ -67,7 +84,7 @@ class RegistrarAntenaState extends State<RegistrarAntena>
     } else {
       form.save();
       antenaBloc.createAntena(_antena);
-      Message().showRegisterDialog(context);
+      showRegisterDialog(context);
     }
   }
 
@@ -103,7 +120,6 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                           Padding(
                             padding: const EdgeInsets.only(top: 40.0),
                           ),
-
                           const SizedBox(height: 12.0),
                           TextFormField(
                             textCapitalization: TextCapitalization.sentences,
@@ -113,10 +129,11 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                                     borderRadius: BorderRadius.circular(20.0)),
                                 hintText: Constants.labelNombre,
                                 icon: Icon(Icons.account_circle)),
+                            textCapitalization: TextCapitalization.sentences,
                             validator: validateName,
                             keyboardType: TextInputType.text,
                             onSaved: (String value) {
-                              _antena.nombre = value;
+                              _antena.nombre = value.trim();
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
@@ -128,10 +145,11 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                                     borderRadius: BorderRadius.circular(20.0)),
                                 hintText: Constants.labelReferencia,
                                 icon: Icon(Icons.receipt)),
+                            maxLength: 10,
                             keyboardType: TextInputType.number,
-                            validator: validateReferencia,
+                            validator: validateNumeros,
                             onSaved: (String value) {
-                              _antena.referencia = value;
+                              _antena.referencia = value.trim();
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
@@ -145,9 +163,9 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                                 icon: Icon(Icons.show_chart)),
                             keyboardType: TextInputType.number,
                             maxLength: 2,
-                            validator: validateAltura,
+                            validator: validateNumeros,
                             onSaved: (String value) {
-                              _antena.altura = value;
+                              _antena.altura = value.trim();
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
@@ -160,7 +178,7 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                                 icon: Icon(Icons.call_missed_outgoing)),
                             keyboardType: TextInputType.number,
                             maxLength: 3,
-                            validator: validateGrados,
+                            validator: validateNumeros,
                             onSaved: (String value) {
                               _antena.orientacion = value;
                             },
@@ -175,9 +193,9 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                                 icon: Icon(Icons.call_split)),
                             keyboardType: TextInputType.number,
                             maxLength: 3,
-                            validator: validateGrados,
+                            validator: validateNumeros,
                             onSaved: (String value) {
-                              _antena.inclinacion = value;
+                              _antena.inclinacion = value.trim();
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
@@ -189,7 +207,8 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                                 hintText: Constants.labelestado,
                                 icon: Icon(Icons.graphic_eq)),
                             keyboardType: TextInputType.number,
-                            maxLength: 12,
+                            validator: validateNumeros,
+                            maxLength: 1,
                             onSaved: (String value) {
                               _antena.state.id = int.parse(value);
                             },
@@ -199,7 +218,7 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                             padding: const EdgeInsets.only(top: 20.0),
                           ),
                           DropdownButtonHideUnderline(
-                            child:  DropdownButton<int>(
+                            child: DropdownButton<int>(
                               hint: Text("Seleccionar"),
                               value: currentTorre,
                               isDense: true,
@@ -212,16 +231,14 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                                 _antena.torre.idTorre = newValue;
                               },
                               items: listaTorre.map((Torre map) {
-                                return  DropdownMenuItem<int>(
+                                return DropdownMenuItem<int>(
                                   value: map.idTorre,
-                                  child:  Text(map.nombre,
-                                      style:  TextStyle(color: Colors.black)),
+                                  child: Text(map.nombre,
+                                      style: TextStyle(color: Colors.black)),
                                 );
                               }).toList(),
                             ),
                           ),
-                          
-                          
                           Padding(
                             padding: const EdgeInsets.only(top: 40.0),
                           ),
@@ -262,29 +279,13 @@ class RegistrarAntenaState extends State<RegistrarAntena>
     return null;
   }
 
-  String validateReferencia(String value) {
-    if (value.isEmpty) {
-      return Constants.validateReferencia;
-    } else if (value.length != 10) {
-      return Constants.referenciaStructure;
-    }
-    return null;
-  }
-
-  String validateAltura(String value) {
+  String validateNumeros(String value) {
+    String pattern = Constants.patterNumero;
+    RegExp regExp = RegExp(pattern);
     if (value.isEmpty) {
       return Constants.validateAltura;
-    } else if (value.length != 2) {
-      return Constants.alturaStructure;
-    }
-    return null;
-  }
-
-  String validateGrados(String value) {
-    if (value.isEmpty) {
-      return Constants.validateOrientacion;
-    } else if (value.length != 3) {
-      return Constants.orientacionStructure;
+    } else if (!regExp.hasMatch(value)) {
+      return Constants.estructura;
     }
     return null;
   }

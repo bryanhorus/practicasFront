@@ -15,18 +15,12 @@ class ListaObservation extends StatefulWidget{
 class ListaObservationState extends State<ListaObservation>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
+  List<Observacion> listObservation = List();
   ObservationBloc observationBloc;
   ApiResponse apiResponse;
   Observacion observation;
 
-  void showInSnackBar(String value) {
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text(value),
-    ));
-  }
 
-  List<Observacion> listObservation = List();
 
     _handleSubmitted() {
     observationBloc.listarObservation().then((apiResponse) {

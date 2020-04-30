@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tenic_api/UI/dialog.dart';
-import 'package:tenic_api/bloc/municipio_bloc.dart';
 import 'package:tenic_api/bloc/torre_bloc.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/municipio_model.dart';
@@ -45,19 +43,6 @@ class CrearTorreState extends State<Mapa>
     _scaffoldKey.currentState.showSnackBar(SnackBar(
       content: Text(value),
     ));
-  }
-
-  bool _autovalidate = false;
-
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  void _handleSubmitted() {
-    final FormState form = _formKey.currentState;
-    if (!form.validate()) {
-      _autovalidate = true;
-    } else {
-      form.save();
-    }
   }
 
   @override

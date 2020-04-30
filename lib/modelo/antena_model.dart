@@ -10,7 +10,6 @@ class Antena {
   String inclinacion;
   Estado state;
   Torre torre;
-  //Estado state;
 
   Antena(
       {this.idAntena,
