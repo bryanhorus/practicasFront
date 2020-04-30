@@ -4,16 +4,14 @@ class Municipio {
   int idMunicipio;
   String nombre;
   Departamento departament;
-  
 
-  Municipio({this.idMunicipio,this.nombre, this.departament});
+  Municipio({this.idMunicipio, this.nombre, this.departament});
 
   factory Municipio.fromJson(Map<String, dynamic> parsedJson) {
     return Municipio(
-      idMunicipio: parsedJson['idMunicipio'],
-      nombre: parsedJson['nombre'],
-      departament: Departamento.fromJson(parsedJson['departament'])
-    );
+        idMunicipio: parsedJson['idMunicipio'],
+        nombre: parsedJson['nombre'],
+        departament: Departamento.fromJson(parsedJson['departament']));
   }
 
   Map<String, dynamic> toJson() => {

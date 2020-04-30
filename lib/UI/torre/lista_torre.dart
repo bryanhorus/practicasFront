@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tenic_api/UI/torre/actualizar_torre.dart';
@@ -20,18 +19,10 @@ class ListaTorre extends StatefulWidget {
 class _ListaTorreState extends State<ListaTorre>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
   Torre torre;
   final TorreBloc torreBloc = TorreBloc();
   ApiResponse apiResponse;
 
-  void showInSnackBar(String value) {
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text(value),
-    ));
-  }
-
-  final List<String> ciudad = [];
   List<Torre> listTorre = List();
 
   _handleSubmitted() {

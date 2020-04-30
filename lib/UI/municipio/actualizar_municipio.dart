@@ -30,9 +30,6 @@ class ActualizarMunicipioState extends State<ActualizarMunicipio>
     super.initState();
   }
 
-
-
-
   showUpdateDialog(BuildContext context) {
     showDialog(
         context: context,

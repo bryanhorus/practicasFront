@@ -12,12 +12,6 @@ class ApiResponse {
   String message;
   Object object;
 
-  List<Usuario> listUsuario = List();
-  List<Municipio> listMunicipio = List();
-  List<Observacion> listObservation = List();
-  List<Departamento> listDepartamento = List();
-  List<Antena> listAntena = List();
-  List<Torre> listTorre = List();
   ApiResponse({this.statusResponse, this.object, this.message});
 
   factory ApiResponse.fromJson(Map<String, dynamic> json) {
@@ -27,4 +21,11 @@ class ApiResponse {
 
   Map<String, dynamic> toJson() =>
       {'statusResponse': statusResponse, 'object': object};
+
+  List<Usuario> listUsuario = List();
+  List<Municipio> listMunicipio = List();
+  List<Observacion> listObservation = List();
+  List<Departamento> listDepartamento = List();
+  List<Antena> listAntena = List();
+  List<Torre> listTorre = List();
 }

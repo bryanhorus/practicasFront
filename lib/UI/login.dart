@@ -40,8 +40,6 @@ class LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
 
   void _handleSubmitted() async {
     final Repository _repository = Repository();
-
-    //session
     final FormState form = _formKey.currentState;
     if (!form.validate()) {
       _autovalidate = true;

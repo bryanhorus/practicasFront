@@ -90,7 +90,6 @@ class HomeTecnicoState extends State<HomeTecnico> {
                         'donde puedes estar mas cerca de tu familia '),
               ),
             ),
-            //
             Card(
               elevation: 24,
               child: ListTile(
@@ -100,8 +99,6 @@ class HomeTecnicoState extends State<HomeTecnico> {
                     "Generamos valor a la sociedad, clientes y accionistas, y  todos los grupos de interés, con una gestión innovadora, eficiente, neutral y de calidad en la prestación de servicios de redes compartidas e infraestructuras de telecomunicaciones, a través de la ilusión y el desarrollo de nuestro equipo de colaboradores."),
               ),
             ),
-
-            //
             Card(
               elevation: 25,
               child: ListTile(

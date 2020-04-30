@@ -6,7 +6,6 @@ import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/municipio_model.dart';
 import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
-
 import 'actualizar_municipio.dart';
 
 class ListaMunicipio extends StatefulWidget {
@@ -22,15 +21,6 @@ class ListaMunicipioState extends State<ListaMunicipio>
   final MunicipioBloc municipioBloc = MunicipioBloc();
   ApiResponse apiResponse;
   Municipio municipio;
-
-  void showInSnackBar(String value) {
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text(value),
-    ));
-  }
-
-  final List<String> nombres = [];
-  final List<String> ciudad = [];
   List<Municipio> listMunicipio = List();
 
   _handleSubmitted() {
@@ -66,24 +56,18 @@ class ListaMunicipioState extends State<ListaMunicipio>
           child: ListView.builder(
             shrinkWrap: true,
             padding: const EdgeInsets.all(20.0),
-            // tamaño de la lista
             itemCount: listMunicipio.length,
-            // Constructor de widget para cada elemento de la lista
             itemBuilder: (BuildContext context, int indice) {
               return Card(
-                //le damos un color de la lista de primarios
                 color: Colors.blue[indice],
-                //agregamos un contenedor de 100 de alto
                 child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 ListTile(
                   title: Text(
                     listMunicipio[indice].nombre,
-                    //le damos estilo a cada texto
                     style: TextStyle(fontSize: 20, color: Colors.black87,fontWeight: FontWeight.bold)),
                     leading: Icon(Icons.map),
-                    //subtitle: Text(listMunicipio[indice].nombre),
                   onTap: (){
                     print(listMunicipio[indice].nombre);
                     municipio = listMunicipio[indice];

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tenic_api/modelo/usuario_model.dart';
 import 'package:tenic_api/navigator.dart';
 import 'dart:math' as math;
 import 'package:tenic_api/resource/constants.dart';
 
 
 class ProfilePageDesign extends StatefulWidget {
-  final Usuario usuario;
-    const ProfilePageDesign({this.usuario, key}) : super(key: key);
+    const ProfilePageDesign({ key}) : super(key: key);
 
   @override
   ProfilePageDesignState createState() => ProfilePageDesignState();
@@ -43,12 +41,9 @@ with SingleTickerProviderStateMixin{
   }
 }
 
-
 class CustomAppBar extends StatelessWidget
   with PreferredSizeWidget{
-CustomAppBar({this.usuario});
 
-Usuario usuario = Usuario(nombre: '', correo: '', telfono: '');
   @override
   Size get preferredSize => Size(double.infinity, 320);
 

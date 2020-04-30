@@ -1,43 +1,49 @@
-class Constants{
-
+class Constants {
   //App
-  static const String appName = "TecniApp"; 
+  static const String appName = "TecniApp";
   //Url
-  static const String urlAuthority = "ec2-3-15-37-85.us-east-2.compute.amazonaws.com:8090";
+  static const String urlAuthority =
+      "ec2-3-15-37-85.us-east-2.compute.amazonaws.com:8090";
   static const String contenTypeHeader = "application/json";
   //servicio
-  static const String pathServiceUsuario ="/api/tecni/auth/new";
-  static const String pathServiceListUsuario ="/api/tecni/user/get/all";
-  static const String pathServiceDeleteU ="/api/tecni/user/delete/id";
-  static const String pathServiceListAntena ="";
-  static const String pathServiceinsertDpto ="/api/tecni/departament/insert";
-  static const String pathServiceinsertMunicipio ="/api/tecni/municipio/insert";
-  static const String pathServiceMunicipioUpdate ="/api/tecni/municipio/update";
-  static const String pathServiceMunicipioDelete ="/api/tecni/municipio/delete/id";
-  static const String pathServiceMinicipiosLista ="/api/tecni/municipio/get/all";
-  static const String pathServiceObsLista ="/api/tecni/observacion/get/all";
-  static const String pathServiceUsuarioUpdate ="/api/tecni/user/update";
-  static const String pathServiceDepartamentoUpdate ="/api/tecni/departament/update";
+  static const String pathServiceUsuario = "/api/tecni/auth/new";
+  static const String pathServiceListUsuario = "/api/tecni/user/get/all";
+  static const String pathServiceDeleteU = "/api/tecni/user/delete/id";
+  static const String pathServiceListAntena = "";
+  static const String pathServiceinsertDpto = "/api/tecni/departament/insert";
+  static const String pathServiceinsertMunicipio =
+      "/api/tecni/municipio/insert";
+  static const String pathServiceMunicipioUpdate =
+      "/api/tecni/municipio/update";
+  static const String pathServiceMunicipioDelete =
+      "/api/tecni/municipio/delete/id";
+  static const String pathServiceMinicipiosLista =
+      "/api/tecni/municipio/get/all";
+  static const String pathServiceObsLista = "/api/tecni/observacion/get/all";
+  static const String pathServiceUsuarioUpdate = "/api/tecni/user/update";
+  static const String pathServiceDepartamentoUpdate =
+      "/api/tecni/departament/update";
   static const String pathServiceTorreUpdate = "/api/tecni/torre/update";
   static const String pathServiceinsertTorre = "/api/tecni/torre/insert";
   static const String pathServiceDeleteTorre = "/api/tecni/torre/delete/id";
   static const String pathServiceTorre = "/api/tecni/torre/get/all";
-  static const String pathServiceDepartamentoDelete ="/api/tecni/departament/delete/id";
-  static const String pathServiceDepartamento = "/api/tecni/departament/get/all";
-  static const String pathServiceAntenaInsert ="/api/tecni/antenna/insert";
-  static const String pathServiceObservacionInsert ="/api/tecni/observacion/insert";
-  static const String pathServiceAntenaUpdate ="/api/tecni/antenna/update";
-  static const String pathServiceAntenaDelete ="/api/tecni/antenna/delete/id";
-  static const String pathServiceAntenasLista ="/api/tecni/antenna/get/all";
-  static const String pathServiceTorreInsert ="/api/tecni/torre/insert";
-  //static const String pathServiceTorreUpdate ="/api/tecni/torre/update";
-  static const String pathServiceTorreDelete ="/api/tecni/torre/delete/id";
-  static const String pathServiceTorreLista ="/api/tecni/torre/get/all";
-  //static const String pathServiceDeleteU="/api/tecni/user/delete/id";
-  static const String pathServiceLogin ="/api/tecni/auth";
-
+  static const String pathServiceDepartamentoDelete =
+      "/api/tecni/departament/delete/id";
+  static const String pathServiceDepartamento =
+      "/api/tecni/departament/get/all";
+  static const String pathServiceAntenaInsert = "/api/tecni/antenna/insert";
+  static const String pathServiceObservacionInsert =
+      "/api/tecni/observacion/insert";
+  static const String pathServiceAntenaUpdate = "/api/tecni/antenna/update";
+  static const String pathServiceAntenaDelete = "/api/tecni/antenna/delete/id";
+  static const String pathServiceAntenasLista = "/api/tecni/antenna/get/all";
+  static const String pathServiceTorreInsert = "/api/tecni/torre/insert";
+  static const String pathServiceTorreDelete = "/api/tecni/torre/delete/id";
+  static const String pathServiceTorreLista = "/api/tecni/torre/get/all";
+  static const String pathServiceLogin = "/api/tecni/auth";
   //validacion de campos
-  static const String estructura = "La estructura no coincide con la solicitada";
+  static const String estructura =
+      "La estructura no coincide con la solicitada";
   static const String validateName = "El nombre es necesario";
   static const String nameStructure = "El campo solo puede contener a-z y A-Z";
   static const String validateLastName = "El nombre es necesario";
@@ -45,18 +51,24 @@ class Constants{
   static const String validateEmail = "El correo es necesario";
   static const String emailStructure = "Correo invalido";
   static const String validateMobile = "El telefono es necesario";
-  static const String validateReferencia = "La referencia de antena es necesaria";
+  static const String validateReferencia =
+      "La referencia de antena es necesaria";
   static const String mobileStructure = "Debe tener 10 digitos";
   static const String validateAltura = "La altura de antena es necesaria";
-  static const String validateOrientacion = "La orientacion de antena es necesaria";
-  static const String validateInclinacion = "La inclinacion de antena es necesaria";
+  static const String validateOrientacion =
+      "La orientacion de antena es necesaria";
+  static const String validateInclinacion =
+      "La inclinacion de antena es necesaria";
   static const String validateTorre = "La torre de antena es necesaria";
-  static const String referenciaStructure = "La referencia debe tener 10 digitos";
+  static const String referenciaStructure =
+      "La referencia debe tener 10 digitos";
   static const String alturaStructure = "la altura debe tener 2 numeros";
   static const String orientacionStructure = "es en grados";
   static const String validatePassword = "La contraseña es necesaria";
-  static const String passwordStructure = "El tamaño de la contraseña debe ser más de 8 carácteres";
-  static const String pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+  static const String passwordStructure =
+      "El tamaño de la contraseña debe ser más de 8 carácteres";
+  static const String pattern =
+      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
   static const String patternNombre = r'(^[a-zA-Z ]*$)';
   static const String patterTelefono = r'(^[3][0-9]*$)';
   static const String patterNumero = r'(^[0-9]*$)';
@@ -147,44 +159,42 @@ class Constants{
   static const String asignarImage = 'assets/asignarAntena.jpg';
   static const String image = 'assets/images.png';
   //labels
-  static const String labelPassword ="Contraseña";
-  static const String labelCorreo ="Correo";
-  static const String labelTelefono ="Telefono";
-  static const String labelNombre ="Nombre";
-  static const String labelNombreTecnico ="Nombre del tecnico";
-  static const String labelApellido ="Apellido";
-  static const String tipoUsuario ="Cargo";
-  static const String perfil ="Perfil";
-  static const String trabajador ="Trabajador";
-  static const String labelReferencia ="Referencia";
-  static const String labelAltura ="Altura";
-  static const String labelOrientacion ="Orientacion";
-  static const String labelInclinacion ="Inclinacion";
-  static const String labelIdentificacion ="Identificacion";
-  static const String labelDireccion ="Direccion";
-  static const String labelCoordenadas ="Coordenadas";
-  static const String labelTorre ="Torre";
-  static const String labelMunicipio ="Municipio";
-  static const String labelTecnologia ="Tecnologia";
-  static const String labelNombreAntena ="Antena";
-  static const String labelDepartamento ="Departamento";
-    static const String labelestado ="Estado";
+  static const String labelPassword = "Contraseña";
+  static const String labelCorreo = "Correo";
+  static const String labelTelefono = "Telefono";
+  static const String labelNombre = "Nombre";
+  static const String labelNombreTecnico = "Nombre del tecnico";
+  static const String labelApellido = "Apellido";
+  static const String tipoUsuario = "Cargo";
+  static const String perfil = "Perfil";
+  static const String trabajador = "Trabajador";
+  static const String labelReferencia = "Referencia";
+  static const String labelAltura = "Altura";
+  static const String labelOrientacion = "Orientacion";
+  static const String labelInclinacion = "Inclinacion";
+  static const String labelIdentificacion = "Identificacion";
+  static const String labelDireccion = "Direccion";
+  static const String labelCoordenadas = "Coordenadas";
+  static const String labelTorre = "Torre";
+  static const String labelMunicipio = "Municipio";
+  static const String labelTecnologia = "Tecnologia";
+  static const String labelNombreAntena = "Antena";
+  static const String labelDepartamento = "Departamento";
+  static const String labelestado = "Estado";
 
-  static const String labelNombreTorre ="Nombre de la Torre";
-  static const String labelDirTorre ="Dirección de la Torre";
-  static const String labelCoorTorre ="Coordenadas de la Torre";
-  static const String labelAlturaTorre ="Altura de la Torre";
-  static const String labelTechTorre ="Tecnología de la Torre";
+  static const String labelNombreTorre = "Nombre de la Torre";
+  static const String labelDirTorre = "Dirección de la Torre";
+  static const String labelCoorTorre = "Coordenadas de la Torre";
+  static const String labelAlturaTorre = "Altura de la Torre";
+  static const String labelTechTorre = "Tecnología de la Torre";
 
   //mensajes
-  static const String agradecimiento = "¡Gracias por ser parte de esta gran familia,nos sentimos orgullosos de que cada día ponga todo su esfuerzo y dedicación para lograr el éxito que deseamos!";
+  static const String agradecimiento =
+      "¡Gracias por ser parte de esta gran familia,nos sentimos orgullosos de que cada día ponga todo su esfuerzo y dedicación para lograr el éxito que deseamos!";
   static const String mensajePerfil = "Mensaje del dia";
   static const String createMessage = "Creación exitosa";
   static const String registroExitoso = "¡Registro exitoso!";
   static const String tittleDialog = "Información";
   static const String actualizacion = "  ¡Actualizado!";
   static const String eliminado = "  ¡Eliminado";
-
-
-
 }
