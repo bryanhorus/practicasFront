@@ -7,6 +7,7 @@ import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/resource/constants.dart';
 import '../../navigator.dart';
+import 'map.dart';
 
 class ListaTorre extends StatefulWidget {
   final Torre torre;
@@ -91,6 +92,26 @@ class _ListaTorreState extends State<ListaTorre>
                                       torre: torre,
                                     )));
                       },
+                    ),
+                    // ignore: deprecated_member_use
+                    ButtonTheme.bar(
+                      child: ButtonBar(
+                        children: <Widget>[
+                          IconButton(
+                            icon: Icon(Icons.map),
+                            onPressed: () {
+                              torre = listTorre[indice];
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          Mapa(
+                                            torre: torre,
+                                          )));
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

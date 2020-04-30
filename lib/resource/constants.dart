@@ -88,6 +88,7 @@ class Constants{
   static const String tittleRegistroDepartamento = "Registrar Departamento";
   static const String tittleRegistroMunicipio = "Registrar Municipio";
   static const String tittleRegistroTorre = "Registrar Torre";
+  static const String tittleMapaTorre = "Ubicacion de la Torre";
   static const String tittleObservacion = "Observación de Antena";
   static const String tittleTorreactualizar = "Actualizar Torre";
   static const String tittleListaTorre = "Lista Torres";
