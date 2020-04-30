@@ -50,7 +50,7 @@ class AntenaApiService {
   Future<ApiResponse> deleteAntena(Antena antena, String token) async {
     var queryParameters = {
       'id': antena.idAntena
-          .toString(), //query del id que permite identificr en el servicion el acceso
+          .toString(),
     };
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
 
