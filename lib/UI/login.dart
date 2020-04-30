@@ -52,7 +52,6 @@ class LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
       String rol = await _repository.getLocalRol();
       if (_validate && rol == "[ROLE_ADMIN]") {
         TecniNavigator.goToHomeCoordinador(context);
-        await _repository.deleteAll();
       } else if (rol == "[ROLE_TECNICO]") {
         TecnicoNavigator.goToHomeTecnico(context);
       }
