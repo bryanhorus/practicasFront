@@ -12,6 +12,7 @@ class TextFormFieldDemo extends StatefulWidget {
   @override
   TextFormFieldDemoState createState() => TextFormFieldDemoState();
 }
+
 final String data =
     '[{"idTipo": 1, "descripcion": "ADMIN"}, {"idTipo": 2, "descripcion": "TECNICO"}]';
 List<Role> _rol = [];
@@ -59,7 +60,6 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
 
   @override
   Widget build(BuildContext context) {
-
     final json = JsonDecoder().convert(data);
     _rol = (json).map<Role>((item) => Role.fromJson(item)).toList();
 
@@ -91,10 +91,9 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                           Padding(
                             padding: const EdgeInsets.only(top: 40.0),
                           ),
-                          
                           const SizedBox(height: 12.0),
                           TextFormField(
-                            decoration:  InputDecoration(
+                            decoration: InputDecoration(
                                 labelText: Constants.labelNombre,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -103,7 +102,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                             validator: validateName,
                             keyboardType: TextInputType.emailAddress,
                             onSaved: (String value) {
-                              _tecnico.nombre = value;
+                              _tecnico.nombre = value.trim();
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
@@ -118,7 +117,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                                 ),
                             validator: validateName,
                             onSaved: (String value) {
-                              _tecnico.apellido = value;
+                              _tecnico.apellido = value.trim();
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
@@ -134,14 +133,14 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                             maxLength: 32,
                             validator: validateEmail,
                             onSaved: (String value) {
-                              _tecnico.correo = value;
+                              _tecnico.correo = value.trim();
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
                           TextFormField(
                             obscureText: true,
                             autocorrect: false,
-                            decoration:  InputDecoration(
+                            decoration: InputDecoration(
                                 labelText: Constants.labelPassword,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
@@ -150,19 +149,19 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                             maxLength: 12,
                             validator: validatePassword,
                             onSaved: (String value) {
-                              _tecnico.password = value;
+                              _tecnico.password = value.trim();
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
                           TextFormField(
-                            decoration:  InputDecoration(
+                            decoration: InputDecoration(
                                 labelText: Constants.labelTelefono,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
                                 hintText: Constants.labelTelefono,
                                 icon: Icon(Icons.phone)),
                             keyboardType: TextInputType.phone,
-                            maxLength: 12,
+                            maxLength: 10,
                             validator: validateMobile,
                             onSaved: (String value) {
                               _tecnico.telfono = value;
@@ -221,7 +220,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
 
   String validateName(String value) {
     String pattern = Constants.patternNombre;
-    RegExp regExp =  RegExp(pattern);
+    RegExp regExp = RegExp(pattern);
     if (value.isEmpty) {
       return Constants.validateName;
     } else if (!regExp.hasMatch(value)) {
@@ -232,7 +231,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
 
   String validateLastName(String value) {
     String pattern = Constants.patternNombre;
-    RegExp regExp =  RegExp(pattern);
+    RegExp regExp = RegExp(pattern);
     if (value.isEmpty) {
       return Constants.validateLastName;
     } else if (!regExp.hasMatch(value)) {
@@ -243,7 +242,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
 
   String validateEmail(String value) {
     String pattern = Constants.pattern;
-    RegExp regExp =  RegExp(pattern);
+    RegExp regExp = RegExp(pattern);
     if (value.isEmpty) {
       return Constants.validateEmail;
     } else if (!regExp.hasMatch(value)) {
@@ -261,15 +260,17 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
     }
     return null;
   }
-
+//metodo trim para validar espacios
   String validateMobile(String value) {
+    String patttern = Constants.patterTelefono;
+    RegExp regExp =  RegExp(patttern);
     if (value.isEmpty) {
       return Constants.validateMobile;
     } else if (value.length != 10) {
       return Constants.mobileStructure;
+    } else if (!regExp.hasMatch(value)) {
+      return Constants.estructura;
     }
     return null;
   }
 }
-
-

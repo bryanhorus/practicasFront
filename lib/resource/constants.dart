@@ -37,6 +37,7 @@ class Constants{
   static const String pathServiceLogin ="/api/tecni/auth";
 
   //validacion de campos
+  static const String estructura = "La estructura no coincide con la solicitada";
   static const String validateName = "El nombre es necesario";
   static const String nameStructure = "El nombre puede contener a-z y A-Z";
   static const String validateLastName = "El nombre es necesario";
@@ -45,7 +46,7 @@ class Constants{
   static const String emailStructure = "Correo invalido";
   static const String validateMobile = "El telefono es necesario";
   static const String validateReferencia = "La referencia de antena es necesaria";
-  static const String mobileStructure = "El numero debe tener 10 digitos";
+  static const String mobileStructure = "Debe tener 10 digitos";
   static const String validateAltura = "La altura de antena es necesaria";
   static const String validateOrientacion = "La orientacion de antena es necesaria";
   static const String validateInclinacion = "La inclinacion de antena es necesaria";
@@ -57,6 +58,7 @@ class Constants{
   static const String passwordStructure = "El tamaño de la contraseña debe ser más de 8 carácteres";
   static const String pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
   static const String patternNombre = r'(^[a-zA-Z ]*$)';
+  static const String patterTelefono = r'(^[3][0-9]*$)';
   //Botones
   static const String btnCerrar = "Cerrar";
   static const String btnIngresar = "Ingresar";
