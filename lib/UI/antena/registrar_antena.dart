@@ -106,6 +106,7 @@ class RegistrarAntenaState extends State<RegistrarAntena>
 
                           const SizedBox(height: 12.0),
                           TextFormField(
+                            textCapitalization: TextCapitalization.sentences,
                             decoration: InputDecoration(
                                 labelText: Constants.labelNombre,
                                 border: OutlineInputBorder(
