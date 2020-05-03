@@ -1,5 +1,6 @@
 import 'package:tenic_api/Session_Storage.dart';
 import 'package:tenic_api/apiService/antena_api_service.dart';
+import 'package:tenic_api/apiService/asignar_api_service.dart';
 import 'package:tenic_api/apiService/dpto_api_service.dart';
 import 'package:tenic_api/apiService/login_api_service.dart';
 import 'package:tenic_api/apiService/municipio_api_service.dart';
@@ -9,6 +10,7 @@ import 'package:tenic_api/apiService/usuario_api_service.dart';
 import 'package:tenic_api/modelo/LoginUser.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
+import 'package:tenic_api/modelo/asignar_antena.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/observacion_model.dart';
 import 'package:tenic_api/modelo/session_local.dart';
@@ -24,6 +26,7 @@ class Repository {
   final MunicipioApiService municipioApiService = MunicipioApiService();
   final DepartamentoApiService departamentoApiService =
       DepartamentoApiService();
+  final AsignarApiService asignarApiService = AsignarApiService();
   final SessionStorage _session = SessionStorage();
   final ObservacionApiService observacionApiService = ObservacionApiService();
 
@@ -86,4 +89,7 @@ class Repository {
       observacionApiService.insertObservacion(observacion, token);
   Future<ApiResponse> listaObservation(String token) =>
       observacionApiService.listarObservation(token);
+  //Asignar antena
+  Future<ApiResponse> registrarAsignacion(AsignarAntena asignarAntena, String token) =>
+      asignarApiService.insertAsignacion(asignarAntena, token);
 }

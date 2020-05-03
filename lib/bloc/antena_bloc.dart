@@ -1,5 +1,3 @@
-
-
 import 'package:tenic_api/modelo/antena_model.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/repository/repository.dart';

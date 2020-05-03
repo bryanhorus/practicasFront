@@ -41,6 +41,7 @@ class Constants {
   static const String pathServiceTorreDelete = "/api/tecni/torre/delete/id";
   static const String pathServiceTorreLista = "/api/tecni/torre/get/all";
   static const String pathServiceLogin = "/api/tecni/auth";
+  static const String pathServiceAsignar = "/api/tecni/asignar/antena/insert";
   //validacion de campos
   static const String estructura =
       "La estructura no coincide con la solicitada";

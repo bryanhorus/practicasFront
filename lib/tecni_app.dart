@@ -40,7 +40,7 @@ class App extends StatelessWidget {
         Constants.registrarantenaRoute: (context) => RegistrarAntena(),
         Constants.actualizarAntenaRoute: (context) => ActualizarAntena(),
         Constants.listaAntenasRoute:(context) => ListaAntenas(),
-        Constants.asignarAntenaRoute:(context) => AsignarAntena(),
+        Constants.asignarAntenaRoute:(context) => AsignarAntenaPage(),
         //usuario
         Constants.registroRoute: (context) => TextFormFieldDemo(),
         Constants.actualizarUsuarioRoute: (context) => ActualizarUsuario(),
