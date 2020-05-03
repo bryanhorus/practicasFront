@@ -1,17 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tenic_api/UI/antena/actualizar_antena.dart';
-import 'package:tenic_api/bloc/antena_bloc.dart';
+import 'package:tenic_api/UI/antena/actualizar_asignar.dart';
 import 'package:tenic_api/bloc/asignar_antena.dart';
-import 'package:tenic_api/modelo/antena_model.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/asignar_antena.dart';
-import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class ListaAntenasAsignadas extends StatefulWidget {
-  final Antena antena;
-  const ListaAntenasAsignadas({Key key, this.antena}) : super(key: key);
+  final AsignarAntena asignarantena;
+  const ListaAntenasAsignadas({Key key, this.asignarantena}) : super(key: key);
 
   @override
   ListaAntenasAsignadasState createState() => ListaAntenasAsignadasState();
@@ -72,8 +69,8 @@ class ListaAntenasAsignadasState extends State<ListaAntenasAsignadas>
                               context,
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      ActualizarAntena(
-                                        //asignarAntena: asignarAntena,
+                                      ActualizarAsignarAntena(
+                                        asignarAntena: asignarAntena,
                                       )));
                         },
                       ),

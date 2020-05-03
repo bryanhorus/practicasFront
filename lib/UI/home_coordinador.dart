@@ -81,7 +81,7 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
     );
 
     var lista = ListTile(
-      leading: Icon(Icons.fiber_new),
+      leading: Icon(Icons.list),
       title: Text(
         Constants.tittleListaAntenasAsignadas,
         style: TextStyle(color: Colors.black),

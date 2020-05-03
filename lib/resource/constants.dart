@@ -112,6 +112,7 @@ class Constants {
   static const String tittleRegistroAntena = "Registrar Antena";
   static const String tittleDepartamentoactualizar = "Actualizar Departamento";
   static const String tittleMunicipioactualizar = "Actualizar Municipio";
+  static const String tittleActualizarAsignarAntena = "Actualizar Asignación";
   static const String tittleActualizarAntena = "Actualizar Antena";
   static const String tittleListaAntenas = "Antenas Registrados";
   static const String tittleListaAntenasAsignadas = "Antenas Asignadas";
