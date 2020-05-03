@@ -92,4 +92,8 @@ class Repository {
   //Asignar antena
   Future<ApiResponse> registrarAsignacion(AsignarAntena asignarAntena, String token) =>
       asignarApiService.insertAsignacion(asignarAntena, token);
+  Future<ApiResponse> actualizarAsignarAntena(AsignarAntena asignarAntena, String token) =>
+      asignarApiService.updateAsignarAntena(asignarAntena, token);
+  Future<ApiResponse> listaAsignarAntena(String token) =>
+      asignarApiService.listarAsignarAntena(token);
 }

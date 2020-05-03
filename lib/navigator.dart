@@ -67,6 +67,10 @@ class TecniNavigator {
     Navigator.pushNamed(context, Constants.asignarAntenaRoute);
   }
 
+  static void goToListaAsignarAntena(BuildContext context) {
+    Navigator.pushNamed(context, Constants.listaAsignarAntenaRoute);
+  }
+
   //Torres
   static void goToRegistrarTorre(BuildContext context) {
     Navigator.pushNamed(context, Constants.registrarTorreRoute);

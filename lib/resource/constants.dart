@@ -42,6 +42,8 @@ class Constants {
   static const String pathServiceTorreLista = "/api/tecni/torre/get/all";
   static const String pathServiceLogin = "/api/tecni/auth";
   static const String pathServiceAsignar = "/api/tecni/asignar/antena/insert";
+  static const String pathServiceAsignarLista = "/api/tecni/asignar/antena/get/all";
+  static const String pathServiceAsignarUpdate = "/api/tecni/asignar/antena/update";
   //validacion de campos
   static const String estructura =
       "La estructura no coincide con la solicitada";
@@ -112,6 +114,7 @@ class Constants {
   static const String tittleMunicipioactualizar = "Actualizar Municipio";
   static const String tittleActualizarAntena = "Actualizar Antena";
   static const String tittleListaAntenas = "Antenas Registrados";
+  static const String tittleListaAntenasAsignadas = "Antenas Asignadas";
   static const String tittleListaDepartamentos = "Lista Departamentos";
   static const String tittleListaUsuarios = "Usuarios Registrados";
   static const String tittleListaObs = "Observaciones";
@@ -136,6 +139,7 @@ class Constants {
   static const String userRoute = "/usuario";
   static const String asignarTorresRoute = "/torre";
   static const String asignarAntenaRoute = "/asignar_antena";
+  static const String listaAsignarAntenaRoute = "/lista_asignar_antena";
   static const String registrarTorreRoute = "/registrar_torre";
   static const String registrarantenaRoute = "/registrar_antena";
   static const String actualizarAntenaRoute = "/actualizar_antena";
