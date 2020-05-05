@@ -75,9 +75,6 @@ class _ListaTorreState extends State<ListaTorre>
 
   @override
   Widget build(BuildContext context) {
-    Container(
-      
-    );
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -93,7 +90,7 @@ class _ListaTorreState extends State<ListaTorre>
 
         Container(
 
-          child: ListView.builder(
+          child:  ListView.builder(
             shrinkWrap: true,
             padding: const EdgeInsets.all(15.0),
             itemCount: listTorre.length,
@@ -126,17 +123,19 @@ class _ListaTorreState extends State<ListaTorre>
                     ButtonTheme.bar(
                       child: ButtonBar(
                         children: <Widget>[
+                          nominatimButton(Colors.blue, 'Mapa'),
                           IconButton(
                             icon: Icon(Icons.map),
                             onPressed: () {
-                              torre = listTorre[indice];
+                              nominatimButton(Colors.blue, 'Mapa');
+                             /* torre = listTorre[indice];
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (BuildContext context) =>
                                           Mapa(
                                             torre: torre,
-                                          )));
+                                          )));*/
                             },
                           ),
                         ],
@@ -147,6 +146,7 @@ class _ListaTorreState extends State<ListaTorre>
               );
             },
           ),
+
         ),
       ]),
     );

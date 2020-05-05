@@ -62,8 +62,8 @@ class _NominatimLocationPickerState extends State<NominatimLocationPicker> {
       Marker(
         width: 50.0,
         height: 50.0,
-        point: new LatLng(0.0, 0.0),
-        builder: (ctx) => new Container(
+        point: LatLng(0.0, 0.0),
+        builder: (ctx) => Container(
             child: widget.customMarkerIcon == null
                 ? Icon(
                     Icons.location_on,
@@ -113,7 +113,7 @@ class _NominatimLocationPickerState extends State<NominatimLocationPicker> {
         width: 80.0,
         height: 80.0,
         point: LatLng(_currentPosition.latitude, _currentPosition.longitude),
-        builder: (ctx) => new Container(
+        builder: (ctx) => Container(
             child: widget.customMarkerIcon == null
                 ? Icon(
                     Icons.location_on,
@@ -158,7 +158,7 @@ class _NominatimLocationPickerState extends State<NominatimLocationPicker> {
     /*
     --- Widget responsável constução da appbar customizada . 
   */
-    return new AppBar(
+    return AppBar(
       elevation: 0,
       backgroundColor: Colors.transparent,
       primary: true,
@@ -235,12 +235,12 @@ class _NominatimLocationPickerState extends State<NominatimLocationPicker> {
     --- Widget responsável pela representação cartográfica da região, assim como seu ponto no espaço. 
   */
     while (_currentPosition == null) {
-      return new Center(
+      return Center(
         child: Loading(),
       );
     }
 
-    return new MapPage(
+    return MapPage(
       lat: _lat,
       lng: _lng,
       mapController: _mapController,
@@ -253,11 +253,10 @@ class _NominatimLocationPickerState extends State<NominatimLocationPicker> {
     /*
     --- Widget responsável constução da página como um todo. 
   */
-    return new Stack(
+    return Stack(
       children: <Widget>[
         mapContext(context),
         _isSearching ? Container() : _buildDescriptionCard(),
-        _isSearching ? Container() : floatingActionButton(),
         _isSearching ? searchOptions() : Text(''),
       ],
     );
@@ -267,7 +266,7 @@ class _NominatimLocationPickerState extends State<NominatimLocationPicker> {
     /*
     --- Widget responsável constução das descrições de um determinado local. 
   */
-    return new Positioned(
+    return Positioned(
       bottom: MediaQuery.of(context).size.width * 0.05,
       right: MediaQuery.of(context).size.width * 0.05,
       child: Row(
@@ -288,7 +287,7 @@ class _NominatimLocationPickerState extends State<NominatimLocationPicker> {
                         padding: EdgeInsets.all(15),
                         child: Center(
                             child: Scrollbar(
-                                child: new SingleChildScrollView(
+                                child: SingleChildScrollView(
                           scrollDirection: Axis.vertical,
                           reverse: false,
                           child: AutoSizeText(
@@ -305,14 +304,14 @@ class _NominatimLocationPickerState extends State<NominatimLocationPicker> {
     );
   }
 
-  floatingActionButton() {
+ /* floatingActionButton() {
     /*
     --- Widget responsável pelo envio das coordenadas LatLong para serem utilizadas por terceiros . 
   */
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
 
-    return new Positioned(
+    return Positioned(
       bottom: -width * 0.025 + height * 0.075,
       right: width * 0.1,
       child: Container(
@@ -320,13 +319,13 @@ class _NominatimLocationPickerState extends State<NominatimLocationPicker> {
         width: width * 0.15
       ),
     );
-  }
+  }*/
 
   Widget searchOptions() {
     /*
     --- Widget responsável pela exibição tela de exibição de um conjunto de resultados da pesquisa. 
   */
-    return new WillPopScope(
+    return WillPopScope(
       onWillPop: () async => onWillpop(), //Bloquear o retorno
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -361,7 +360,7 @@ class _NominatimLocationPickerState extends State<NominatimLocationPicker> {
                       height: 80.0,
                       point: LatLng(double.parse(_addresses[index]['lat']),
                           double.parse(_addresses[index]['lng'])),
-                      builder: (ctx) => new Container(
+                      builder: (ctx) => Container(
                           child: widget.customMarkerIcon == null
                               ? Icon(
                                   Icons.location_on,
@@ -383,7 +382,7 @@ class _NominatimLocationPickerState extends State<NominatimLocationPicker> {
     /*
     --- Widget responsável constução individual dos resultados de uma pesquisa . 
   */
-    return new Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         SizedBox(

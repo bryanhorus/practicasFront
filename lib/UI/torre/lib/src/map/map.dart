@@ -27,21 +27,21 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   Widget body(BuildContext context) {
-    return new FlutterMap(
+    return FlutterMap(
       mapController: widget.mapController,
       options: MapOptions(
-          center: LatLng(widget.lat, widget.lng), zoom: 17.0, maxZoom: 18),
+          center: LatLng(widget.lat, widget.lng), zoom: 17, maxZoom: 18),
       layers: [
         widget.isNominatim
             ? widget.customMapLayer == null
-                ? new TileLayerOptions(
+                ? TileLayerOptions(
                     urlTemplate:
                         'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
                     subdomains: ['a', 'b', 'c'],
                     tileProvider: CachedNetworkTileProvider())
                 : widget.customMapLayer
             : widget.customMapLayer == null
-                ? new TileLayerOptions(
+                ? TileLayerOptions(
                     urlTemplate: "https://api.tiles.mapbox.com/v4/"
                         "{id}/{z}/{x}/{y}@2x.png?access_token={accessToken}",
                     additionalOptions: {
