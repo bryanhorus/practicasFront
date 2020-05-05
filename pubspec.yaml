@@ -32,6 +32,7 @@ dependencies:
   flutter_secure_storage: ^3.2.1+1
   pedantic: ^1.8.0
   jaguar_jwt: ^2.1.6
+  flappy_search_bar: ^1.7.2
 
 dev_dependencies:
   flutter_test:

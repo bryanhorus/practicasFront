@@ -54,4 +54,30 @@ class ObservacionApiService {
     }
     return apiResponse;
   }
+
+  Future<ApiResponse> buscarObservacion(Observacion observacion,String token) async {
+    var queryParameters = {
+      'idAntena': observacion.antena.idAntena.toString()
+    };
+    ApiResponse apiResponse = ApiResponse(statusResponse: 0);
+    Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceBuscarObservacion,
+        queryParameters);
+    var res = await http.get(uri,
+        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, 
+        HttpHeaders.authorizationHeader: token});
+
+    var resBody = json.decode(res.body);
+    apiResponse.statusResponse = res.statusCode;
+
+
+    if (apiResponse.statusResponse == 200) {
+      resBody.forEach((i) {
+        apiResponse.listbusqueda.add(Observacion.fromJson(i));
+        return i;
+      });
+
+      return apiResponse;
+    }
+    return apiResponse;
+  }
 }

@@ -26,6 +26,7 @@ class ApiResponse {
   List<Usuario> listUsuario = List();
   List<Municipio> listMunicipio = List();
   List<Observacion> listObservation = List();
+  List<Observacion> listbusqueda = List();
   List<Departamento> listDepartamento = List();
   List<Antena> listAntena = List();
   List<Torre> listTorre = List();

@@ -9,7 +9,7 @@ class Constants {
   static const String pathServiceUsuario = "/api/tecni/auth/new";
   static const String pathServiceListUsuario = "/api/tecni/user/get/all";
   static const String pathServiceDeleteU = "/api/tecni/user/delete/id";
-  static const String pathServiceListAntena = "";
+  static const String pathServiceBuscarObservacion = "/api/tecni/observacion/find/observacion/antena";
   static const String pathServiceinsertDpto = "/api/tecni/departament/insert";
   static const String pathServiceinsertMunicipio =
       "/api/tecni/municipio/insert";
@@ -21,6 +21,7 @@ class Constants {
       "/api/tecni/municipio/get/all";
   static const String pathServiceObsLista = "/api/tecni/observacion/get/all";
   static const String pathServiceUsuarioUpdate = "/api/tecni/user/update";
+  static const String pathServiceContrasenaUpdate = "/api/tecni/auth/update/credentials";
   static const String pathServiceDepartamentoUpdate =
       "/api/tecni/departament/update";
   static const String pathServiceTorreUpdate = "/api/tecni/torre/update";
@@ -158,6 +159,10 @@ class Constants {
   static const String registrarobservacionRoute = "/observacion";
   static const String observacionesRoute = "/lista_observation";
   static const String homeTecnicoRoute = "/home_tecnico";
+  static const String buscarObservacionRoute = "/buscar_observacion";
+  static const String listaBusquedaRoute = "/lista_busqueda";
+  static const String recuperarContrasenaRoute = "/recuperar_contrasena";
+
   //Ruter imagenes
   static const String loginImage = 'assets/imgLogin.jpg';
   static const String registroImage = 'assets/imgRegistro.png';
