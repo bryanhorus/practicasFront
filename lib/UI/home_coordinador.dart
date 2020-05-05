@@ -80,6 +80,15 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
       onTap: () => {TecniNavigator.goToAsignarAntena(context)},
     );
 
+    var lista = ListTile(
+      leading: Icon(Icons.list),
+      title: Text(
+        Constants.tittleListaAntenasAsignadas,
+        style: TextStyle(color: Colors.black),
+      ),
+      onTap: () => {TecniNavigator.goToListaAsignarAntena(context)},
+    );
+
     var observacion = ListTile(
       leading: Icon(Icons.pin_drop),
       title: Text(
@@ -123,6 +132,7 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
           usuarios,
           antena,
           asignar,
+          lista,
           observacion,
           cerrar
         ],

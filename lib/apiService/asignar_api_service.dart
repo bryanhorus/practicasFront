@@ -30,4 +30,50 @@ class AsignarApiService {
     }
     return apiResponse;
   }
+  Future<ApiResponse> updateAsignarAntena(AsignarAntena asignarAntena, String token) async {
+    ApiResponse apiResponse = ApiResponse(statusResponse: 0);
+    var body2 = json.encode(asignarAntena.toJson());
+    Uri uri =
+        Uri.http(Constants.urlAuthority, Constants.pathServiceAsignarUpdate);
+    var res = await http.put(uri,
+        headers: {
+          HttpHeaders.contentTypeHeader: Constants.contenTypeHeader,
+          HttpHeaders.authorizationHeader: token
+        },
+        body: body2);
+
+    var resBody = json.decode(res.body);
+    apiResponse.statusResponse = res.statusCode;
+
+    if (apiResponse.statusResponse == 200) {
+      _asignarAntena = AsignarAntena.fromJson(resBody);
+      apiResponse.object = _asignarAntena;
+    }
+    return apiResponse;
+  }
+
+  Future<ApiResponse> listarAsignarAntena(String token) async {
+    ApiResponse apiResponse = ApiResponse(statusResponse: 0);
+    Uri uri =
+        Uri.http(Constants.urlAuthority, Constants.pathServiceAsignarLista);
+
+    var res = await http.get(uri, headers: {
+      HttpHeaders.contentTypeHeader: Constants.contenTypeHeader,
+      HttpHeaders.authorizationHeader: token
+    });
+
+    var resBody = json.decode(res.body);
+    apiResponse.statusResponse = res.statusCode;
+    apiResponse.listAsignarAntena = List();
+
+    if (apiResponse.statusResponse == 200) {
+      resBody.forEach((i) {
+        apiResponse.listAsignarAntena.add(AsignarAntena.fromJson(i));
+        return i;
+      });
+
+      return apiResponse;
+    }
+    return apiResponse;
+  }
 }
