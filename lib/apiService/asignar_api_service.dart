@@ -1,19 +1,19 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:tenic_api/modelo/antena_model.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
+import 'package:tenic_api/modelo/asignar_antena.dart';
 import 'package:tenic_api/resource/constants.dart';
 
-class AntenaApiService {
+class AsignarApiService {
+  AsignarAntena _asignarAntena;
 
-  Antena _antena;
-
-  Future<ApiResponse> insertAntena(Antena antena, String token) async {
+  Future<ApiResponse> insertAsignacion(
+      AsignarAntena asignarAntena, String token) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
-    var body2 = json.encode(antena.toJson());
+    var body2 = json.encode(asignarAntena.toJson());
     Uri uri =
-        Uri.http(Constants.urlAuthority, Constants.pathServiceAntenaInsert);
+        Uri.http(Constants.urlAuthority, Constants.pathServiceAsignar);
     var res = await http.post(uri,
         headers: {
           HttpHeaders.contentTypeHeader: Constants.contenTypeHeader,
@@ -25,17 +25,16 @@ class AntenaApiService {
     apiResponse.statusResponse = res.statusCode;
 
     if (apiResponse.statusResponse == 200) {
-      _antena = Antena.fromJson(resBody);
-      apiResponse.object = _antena;
+      _asignarAntena = AsignarAntena.fromJson(resBody);
+      apiResponse.object = _asignarAntena;
     }
     return apiResponse;
   }
-
-  Future<ApiResponse> updateAntena(Antena antena, String token) async {
+  Future<ApiResponse> updateAsignarAntena(AsignarAntena asignarAntena, String token) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
-    var body2 = json.encode(antena.toJson());
+    var body2 = json.encode(asignarAntena.toJson());
     Uri uri =
-        Uri.http(Constants.urlAuthority, Constants.pathServiceAntenaUpdate);
+        Uri.http(Constants.urlAuthority, Constants.pathServiceAsignarUpdate);
     var res = await http.put(uri,
         headers: {
           HttpHeaders.contentTypeHeader: Constants.contenTypeHeader,
@@ -47,34 +46,16 @@ class AntenaApiService {
     apiResponse.statusResponse = res.statusCode;
 
     if (apiResponse.statusResponse == 200) {
-      _antena = Antena.fromJson(resBody);
-      apiResponse.object = _antena;
+      _asignarAntena = AsignarAntena.fromJson(resBody);
+      apiResponse.object = _asignarAntena;
     }
     return apiResponse;
   }
 
-  Future<ApiResponse> deleteAntena(Antena antena, String token) async {
-    var queryParameters = {
-      'id': antena.idAntena.toString(),
-    };
-    ApiResponse apiResponse = ApiResponse(statusResponse: 0);
-
-    Uri uri = Uri.http(Constants.urlAuthority,
-        Constants.pathServiceAntenaDelete, queryParameters);
-    var res = await http.delete(uri, headers: {
-      HttpHeaders.contentTypeHeader: Constants.contenTypeHeader,
-      HttpHeaders.authorizationHeader: token
-    });
-
-    apiResponse.statusResponse = res.statusCode;
-
-    return apiResponse;
-  }
-
-  Future<ApiResponse> listarAntena(String token) async {
+  Future<ApiResponse> listarAsignarAntena(String token) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     Uri uri =
-        Uri.http(Constants.urlAuthority, Constants.pathServiceAntenasLista);
+        Uri.http(Constants.urlAuthority, Constants.pathServiceAsignarLista);
 
     var res = await http.get(uri, headers: {
       HttpHeaders.contentTypeHeader: Constants.contenTypeHeader,
@@ -83,11 +64,11 @@ class AntenaApiService {
 
     var resBody = json.decode(res.body);
     apiResponse.statusResponse = res.statusCode;
-    apiResponse.listAntena = List();
+    apiResponse.listAsignarAntena = List();
 
     if (apiResponse.statusResponse == 200) {
       resBody.forEach((i) {
-        apiResponse.listAntena.add(Antena.fromJson(i));
+        apiResponse.listAsignarAntena.add(AsignarAntena.fromJson(i));
         return i;
       });
 

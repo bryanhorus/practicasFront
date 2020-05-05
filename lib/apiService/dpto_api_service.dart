@@ -9,13 +9,16 @@ import 'package:tenic_api/resource/constants.dart';
 class DepartamentoApiService {
   Departamento _departamento;
 
-  Future<ApiResponse> insertDepartamento(Departamento departamento, String token) async {
+  Future<ApiResponse> insertDepartamento(
+      Departamento departamento, String token) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var body2 = json.encode(departamento.toJson());
     Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceinsertDpto);
     var res = await http.post(uri,
-        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, 
-        HttpHeaders.authorizationHeader: token},
+        headers: {
+          HttpHeaders.contentTypeHeader: Constants.contenTypeHeader,
+          HttpHeaders.authorizationHeader: token
+        },
         body: body2);
 
     var resBody = json.decode(res.body);
@@ -28,14 +31,17 @@ class DepartamentoApiService {
     return apiResponse;
   }
 
-  Future<ApiResponse> updateDepartamento(Departamento departamento, String token) async {
+  Future<ApiResponse> updateDepartamento(
+      Departamento departamento, String token) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var body2 = json.encode(departamento.toJson());
     Uri uri = Uri.http(
         Constants.urlAuthority, Constants.pathServiceDepartamentoUpdate);
     var res = await http.put(uri,
-        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader,
-        HttpHeaders.authorizationHeader: token},
+        headers: {
+          HttpHeaders.contentTypeHeader: Constants.contenTypeHeader,
+          HttpHeaders.authorizationHeader: token
+        },
         body: body2);
 
     var resBody = json.decode(res.body);
@@ -48,18 +54,20 @@ class DepartamentoApiService {
     return apiResponse;
   }
 
-  Future<ApiResponse> deleteDepartamento(Departamento departamento, String token) async {
+  Future<ApiResponse> deleteDepartamento(
+      Departamento departamento, String token) async {
     var queryParameters = {
       'id': departamento.idDpto
-          .toString(), //query del id que permite identificr en el servicion el acceso
+          .toString(),
     };
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
 
     Uri uri = Uri.http(Constants.urlAuthority,
         Constants.pathServiceDepartamentoDelete, queryParameters);
-    var res = await http.delete(uri,
-        headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, 
-        HttpHeaders.authorizationHeader: token});
+    var res = await http.delete(uri, headers: {
+      HttpHeaders.contentTypeHeader: Constants.contenTypeHeader,
+      HttpHeaders.authorizationHeader: token
+    });
 
     apiResponse.statusResponse = res.statusCode;
 
@@ -72,8 +80,10 @@ class DepartamentoApiService {
         Uri.http(Constants.urlAuthority, Constants.pathServiceDepartamento);
     var res = await http.get(
       uri,
-      headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader , 
-      HttpHeaders.authorizationHeader: token},
+      headers: {
+        HttpHeaders.contentTypeHeader: Constants.contenTypeHeader,
+        HttpHeaders.authorizationHeader: token
+      },
     );
 
     var resBody = json.decode(res.body);

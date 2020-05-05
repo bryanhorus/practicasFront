@@ -3,7 +3,6 @@ import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/navigator_tecnico.dart';
 import 'package:tenic_api/resource/constants.dart';
 
-
 class HomeTecnico extends StatefulWidget {
   @override
   HomeTecnicoState createState() => HomeTecnicoState();
@@ -85,29 +84,26 @@ class HomeTecnicoState extends State<HomeTecnico> {
               elevation: 25,
               child: ListTile(
                 leading: Icon(Icons.center_focus_strong),
-                title: Text(Constants.antenaTittle),
+                title: Text("ANTENA GLOBAL"),
                 subtitle: Text(
                     'Nuestra Compañia ofrece los mejores servicios, para la comunidad' +
                         'donde puedes estar mas cerca de tu familia '),
               ),
             ),
-            //
             Card(
               elevation: 24,
               child: ListTile(
                 leading: Icon(Icons.center_focus_strong),
-                title: Text(Constants.misionTittle),
-                subtitle: Text( Constants.misionMessage
-                    ),
+                title: Text("Mision"),
+                subtitle: Text(
+                    "Generamos valor a la sociedad, clientes y accionistas, y  todos los grupos de interés, con una gestión innovadora, eficiente, neutral y de calidad en la prestación de servicios de redes compartidas e infraestructuras de telecomunicaciones, a través de la ilusión y el desarrollo de nuestro equipo de colaboradores."),
               ),
             ),
-
-            //
             Card(
               elevation: 25,
               child: ListTile(
                 leading: Icon(Icons.center_focus_strong),
-                title: Text(Constants.visionTittle),
+                title: Text("Vision"),
                 subtitle: Text(
                     'Líder en Colombia en soluciones de infraestructuras de telecomunicaciones. '),
               ),

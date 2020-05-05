@@ -17,9 +17,9 @@ class ObservationBloc {
       print(apiResponse.message);
       return apiResponse;
     } else {
-      print(Constants.errorCode +
+      print("el código del error" +
           apiResponse.statusResponse.toString() +
-          Constants.errorMessage +
+          " El mensaje de error es: " +
           apiResponse.message);
       return apiResponse;
     }

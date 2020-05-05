@@ -1,21 +1,18 @@
-
 import 'package:tenic_api/modelo/api_response_model.dart';
+import 'package:tenic_api/modelo/asignar_antena.dart';
 import 'package:tenic_api/repository/repository.dart';
 import 'package:tenic_api/resource/constants.dart';
 
-import '../modelo/municipio_model.dart';
-
-
-class MunicipioBloc {
+class AsignarAntenaBloc {
   final Repository _repository = Repository();
   var _apiResponse = ApiResponse();
 
   ApiResponse get apiResponse => _apiResponse;
 
-  Future<ApiResponse> createMunicipio(Municipio municipio) async {
+  Future<ApiResponse> asignarAntenna(AsignarAntena asignarAntena) async {
     String token = await _repository.getLocalAccessToken();
     ApiResponse apiResponse =
-        await _repository.registrarMunicipio(municipio, token);
+        await _repository.registrarAsignacion(asignarAntena, token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
@@ -27,9 +24,10 @@ class MunicipioBloc {
     }
     return apiResponse;
   }
-    Future<ApiResponse> updateMunicipio(Municipio municipio) async {
-      String token = await _repository.getLocalAccessToken();
-    ApiResponse apiResponse = await _repository.actualizarMunicipio(municipio, token);
+  Future<ApiResponse> updateAsignarAntena(AsignarAntena asignarAntena) async {
+    String token = await _repository.getLocalAccessToken();
+    ApiResponse apiResponse =
+        await _repository.actualizarAsignarAntena(asignarAntena, token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
@@ -42,9 +40,9 @@ class MunicipioBloc {
     return apiResponse;
   }
 
-  Future<ApiResponse> listarMunicipio() async {
+  Future<ApiResponse> listarAsignarAntena() async {
     String token = await _repository.getLocalAccessToken();
-    ApiResponse apiResponse = await _repository.listaMunicipio(token);
+    ApiResponse apiResponse = await _repository.listaAsignarAntena(token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
@@ -58,4 +56,3 @@ class MunicipioBloc {
     }
   }
 }
-

@@ -4,6 +4,7 @@ import 'package:tenic_api/UI/dialog.dart';
 import 'package:tenic_api/bloc/usuario_bloc.dart';
 import 'package:tenic_api/modelo/tipo_usuario_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
+import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class ActualizarUsuario extends StatefulWidget {
@@ -18,7 +19,8 @@ class ActualizarUsuario extends StatefulWidget {
 class ActualizarUsuarioState extends State<ActualizarUsuario>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
+  bool _autovalidate = false;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   ActualizarUsuarioState({this.usuario});
   final UsuarioBloc userBloc = UsuarioBloc();
 
@@ -26,7 +28,6 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
       nombre: "",
       apellido: "",
       correo: "",
-      password: "",
       telfono: "",
       roles: [Role(idTipo: 0)]);
 
@@ -36,15 +37,33 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
     UsuarioBloc();
   }
 
-  void showInSnackBar(String value) {
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text(value),
-    ));
+  showUpdateDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (buildcontext) {
+          return AlertDialog(
+            title:
+                Row(children: [Icon(Icons.info), Text(Constants.tittleDialog)]),
+            content: Text(Constants.actualizacion),
+            actions: <Widget>[
+              RaisedButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                ),
+                child: Text(
+                  Constants.btnCerrar,
+                  style: TextStyle(color: Colors.black),
+                ),
+                color: Color(0xFF42a5f5),
+                padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
+                onPressed: () {
+                  TecniNavigator.goToListaUsuarios(context);
+                },
+              )
+            ],
+          );
+        });
   }
-
-  bool _autovalidate = false;
-
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   void _handleSubmitted() {
     final FormState form = _formKey.currentState;
@@ -53,6 +72,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
     } else {
       form.save();
       userBloc.updateUsuario(usuario);
+      showUpdateDialog(context);
     }
     Message().showUpdateDialog(context);
   }
@@ -94,11 +114,12 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                                     borderRadius: BorderRadius.circular(20.0)),
                                 hintText: Constants.labelNombre,
                                 icon: Icon(Icons.account_circle)),
+                            textCapitalization: TextCapitalization.sentences,
                             initialValue: usuario.nombre,
                             validator: validateName,
-                            keyboardType: TextInputType.emailAddress,
+                            keyboardType: TextInputType.text,
                             onSaved: (String value) {
-                              usuario.nombre = value;
+                              usuario.nombre = value.trim();
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
@@ -111,9 +132,11 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                                 hintText: Constants.labelApellido,
                                 icon: Icon(Icons.account_circle)),
                             initialValue: usuario.apellido,
+                            textCapitalization: TextCapitalization.sentences,
                             validator: validateName,
+                            keyboardType: TextInputType.text,
                             onSaved: (String value) {
-                              usuario.apellido = value;
+                              usuario.apellido = value.trim();
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
@@ -130,24 +153,7 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             initialValue: usuario.correo,
                             validator: validateEmail,
                             onSaved: (String value) {
-                              usuario.correo = value;
-                            },
-                            style: TextStyle(fontSize: 18.0),
-                          ),
-                          TextFormField(
-                            obscureText: true,
-                            autocorrect: false,
-                            decoration:  InputDecoration(
-                                labelText: Constants.labelPassword,
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0)),
-                                hintText: Constants.labelPassword,
-                                icon: Icon(Icons.security)),
-                            maxLength: 12,
-                            initialValue: usuario.password,
-                            validator: validatePassword,
-                            onSaved: (String value) {
-                              usuario.password = value;
+                              usuario.correo = value.trim();
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
@@ -163,12 +169,12 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
                             initialValue: usuario.telfono,
                             validator: validateMobile,
                             onSaved: (String value) {
-                              usuario.telfono = value;
+                              usuario.telfono = value.trim();
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 60.0),
+                            padding: const EdgeInsets.only(top: 40.0),
                           ),
                           MaterialButton(
                             shape: RoundedRectangleBorder(
@@ -243,10 +249,14 @@ class ActualizarUsuarioState extends State<ActualizarUsuario>
   }
 
   String validateMobile(String value) {
+    String patttern = Constants.patterTelefono;
+    RegExp regExp =  RegExp(patttern);
     if (value.isEmpty) {
       return Constants.validateMobile;
     } else if (value.length != 10) {
       return Constants.mobileStructure;
+    } else if (!regExp.hasMatch(value)) {
+      return Constants.estructura;
     }
     return null;
   }

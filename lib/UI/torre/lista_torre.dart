@@ -6,6 +6,7 @@ import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/resource/constants.dart';
 import '../../navigator.dart';
+import 'map.dart';
 
 class ListaTorre extends StatefulWidget {
   final Torre torre;
@@ -18,17 +19,11 @@ class ListaTorre extends StatefulWidget {
 class _ListaTorreState extends State<ListaTorre>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  final List<String> ciudad = [];
-  final TorreBloc torreBloc = TorreBloc();
-  List<Torre> listTorre = List();
   Torre torre;
+  final TorreBloc torreBloc = TorreBloc();
   ApiResponse apiResponse;
 
-  void showInSnackBar(String value) {
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text(value),
-    ));
-  }
+  List<Torre> listTorre = List();
 
   _handleSubmitted() {
     torreBloc.listarTorre().then((apiResponse) {
@@ -52,13 +47,11 @@ class _ListaTorreState extends State<ListaTorre>
       appBar: AppBar(
         title: const Text(Constants.tittleListaTorre),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.add_circle),
-            onPressed: () {
-              TecniNavigator.goToRegistrarTorre(context);
-            },
-          ),
-        ],
+            IconButton(
+              icon: Icon(Icons.add_circle),
+              onPressed: () {TecniNavigator.goToRegistrarTorre(context);},
+            ),
+          ],
       ),
       body: Stack(fit: StackFit.expand, children: <Widget>[
         Container(
@@ -73,11 +66,10 @@ class _ListaTorreState extends State<ListaTorre>
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     ListTile(
-                      title: Text(listTorre[indice].nombre,
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black87,
-                              fontWeight: FontWeight.bold)),
+                      title: Text(
+                        listTorre[indice].nombre,
+                          style: TextStyle(fontSize: 20, color: Colors.black87,fontWeight: FontWeight.bold)
+                          ),
                       subtitle: Text(listTorre[indice].identificacion),
                       leading: Icon(Icons.place),
                       onTap: () {
@@ -91,6 +83,26 @@ class _ListaTorreState extends State<ListaTorre>
                                       torre: torre,
                                     )));
                       },
+                    ),
+                    // ignore: deprecated_member_use
+                    ButtonTheme.bar(
+                      child: ButtonBar(
+                        children: <Widget>[
+                          IconButton(
+                            icon: Icon(Icons.map),
+                            onPressed: () {
+                              torre = listTorre[indice];
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          Mapa(
+                                            torre: torre,
+                                          )));
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

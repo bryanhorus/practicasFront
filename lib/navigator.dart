@@ -6,7 +6,6 @@ class TecniNavigator {
     Navigator.of(context).pushNamedAndRemoveUntil(
         Constants.homeRoute, (Route<dynamic> route) => false);
   }
-  
   //Usuarios
   static void goToRegistrarUsuario(BuildContext context) {
     Navigator.pushNamed(context, Constants.registroRoute);
@@ -65,6 +64,10 @@ class TecniNavigator {
 
   static void goToAsignarAntena(BuildContext context) {
     Navigator.pushNamed(context, Constants.asignarAntenaRoute);
+  }
+
+  static void goToListaAsignarAntena(BuildContext context) {
+    Navigator.pushNamed(context, Constants.listaAsignarAntenaRoute);
   }
 
   //Torres

@@ -15,11 +15,17 @@ class InicioSesionBloc {
   bool get access => _access;
 
   Future<bool> iniciarSesion(Login login) async {
+
     session = await _repository.iniciar(login);
-    if (session.accessToken != null) {
+    if (session.accessToken != null && session.rol != null) {
       await sessionStorage.saveSessionStorage(session);
       _access = true;
     }
-      return _access;
+    return _access;
+  }
+
+  Future cerrarSesion()async{
+    await _repository.deleteAll();
+    
   }
 }

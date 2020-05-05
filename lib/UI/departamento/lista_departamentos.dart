@@ -15,9 +15,9 @@ class ListaDpto extends StatefulWidget {
 }
 
 class _ListaDptoState extends State<ListaDpto>
-  with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  List<Departamento> listDepartamento = List();
+
   Departamento departamento;
   final DptoBloc dptoBloc = DptoBloc();
   ApiResponse apiResponse;
@@ -26,6 +26,8 @@ class _ListaDptoState extends State<ListaDpto>
       content: Text(value),
     ));
   }
+
+  List<Departamento> listDepartamento = List();
 
   _handleSubmitted() {
     dptoBloc.listarDepartamento().then((apiResponse) {
@@ -90,20 +92,6 @@ class _ListaDptoState extends State<ListaDpto>
                                       departamento: departamento,
                                     )));
                       },
-                    ),
-                    // ignore: deprecated_member_use
-                    ButtonTheme.bar(
-                      child: ButtonBar(
-                        children: <Widget>[
-                          IconButton(
-                            icon: Icon(Icons.delete),
-                            onPressed: () {
-                              departamento = listDepartamento[indice];
-                              _delete(departamento);
-                            },
-                          ),
-                        ],
-                      ),
                     ),
                   ],
                 ),

@@ -73,7 +73,7 @@ class UsuarioApiService {
 
   Future<ApiResponse> deleteUsuario(Usuario usuario, String token) async {
     var queryParameters = {
-      'id': usuario.idUsuario.toString(),//query del id que permite identificr en el servicion el acceso
+      'id': usuario.idUsuario.toString(),
     };
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceDeleteU,

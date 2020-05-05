@@ -1,5 +1,3 @@
-
-
 import 'package:tenic_api/modelo/antena_model.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/repository/repository.dart';
@@ -19,9 +17,9 @@ class AntenaBloc {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
     } else {
-      print(Constants.errorCode +
+      print("el código del error" +
           apiResponse.statusResponse.toString() +
-          Constants.errorMessage +
+          " El mensaje de error es: " +
           apiResponse.message);
     }
     return apiResponse;
@@ -35,9 +33,9 @@ class AntenaBloc {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
     } else {
-      print(Constants.errorCode +
+      print("el código del error" +
           apiResponse.statusResponse.toString() +
-          Constants.errorMessage +
+          " El mensaje de error es: " +
           apiResponse.message);
     }
     return apiResponse;
@@ -51,9 +49,9 @@ class AntenaBloc {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);
     } else {
-      print(Constants.errorCode +
+      print("el código del error" +
           apiResponse.statusResponse.toString() +
-          Constants.errorMessage +
+          " El mensaje de error es: " +
           apiResponse.message);
     }
     return apiResponse;
@@ -67,9 +65,9 @@ class AntenaBloc {
       print(apiResponse.message);
       return apiResponse;
     } else {
-      print(Constants.errorCode +
+      print("el código del error" +
           apiResponse.statusResponse.toString() +
-          Constants.errorMessage +
+          " El mensaje de error es: " +
           apiResponse.message);
       return apiResponse;
     }

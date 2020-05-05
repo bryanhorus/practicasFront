@@ -11,7 +11,6 @@ class Torre {
   String altura;
   String tecnologia;
   Municipio municipio;
-  
   Torre(
       {this.idTorre,
       this.nombre,
@@ -24,15 +23,14 @@ class Torre {
 
   factory Torre.fromJson(Map<String, dynamic> parsedJson) {
     return Torre(
-      idTorre: parsedJson['idTorre'],
-      nombre: parsedJson['nombre'],
-      identificacion: parsedJson['identificacion'],
-      direccion: parsedJson['direccion'],
-      coordenadas: parsedJson['coordenadas'],
-      altura: parsedJson['altura'],
-      tecnologia: parsedJson['tecnologia'],
-      municipio: Municipio.fromJson(parsedJson['municipio'])
-    );
+        idTorre: parsedJson['idTorre'],
+        nombre: parsedJson['nombre'],
+        identificacion: parsedJson['identificacion'],
+        direccion: parsedJson['direccion'],
+        coordenadas: parsedJson['coordenadas'],
+        altura: parsedJson['altura'],
+        tecnologia: parsedJson['tecnologia'],
+        municipio: Municipio.fromJson(parsedJson['municipio']));
   }
 
   Map<String, dynamic> toJson() => {

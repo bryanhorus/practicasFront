@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/antena_bloc.dart';
 import 'package:tenic_api/bloc/asignar_antena.dart';
@@ -10,29 +11,29 @@ import 'package:tenic_api/modelo/municipio_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
 import 'package:tenic_api/navigator.dart';
-
 import 'package:tenic_api/resource/constants.dart';
 
-class AsignarAntenaPage extends StatefulWidget {
-  const AsignarAntenaPage({Key key}) : super(key: key);
+class ActualizarAsignarAntena extends StatefulWidget {
+  final AsignarAntena asignarAntena;
+
+  const ActualizarAsignarAntena({Key key, this.asignarAntena}) : super(key: key);
 
   @override
-  AsignarAntenaPageState createState() => AsignarAntenaPageState();
+  ActualizarAsignarAntenaState createState() => ActualizarAsignarAntenaState(asignarAntena: asignarAntena);
 }
 
-class AsignarAntenaPageState extends State<AsignarAntenaPage>
+class ActualizarAsignarAntenaState extends State<ActualizarAsignarAntena>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _autovalidate = false;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  ActualizarAsignarAntenaState({this.asignarAntena});
   final UsuarioBloc usuarioBloc = UsuarioBloc();
   final AntenaBloc antenaBloc = AntenaBloc();
   List<Usuario> listUsuario = List();
   List<Antena> listAntena = List();
-  int currenUsuario;
-  int currenAntena;
   AsignarAntenaBloc asignarAntenaBloc = AsignarAntenaBloc();
-  AsignarAntena _asignarAntena = AsignarAntena(antena: Antena(
+  AsignarAntena asignarAntena = AsignarAntena(antena: Antena(
           idAntena: 0,
           state: Estado(id: 0),
           torre: Torre(
@@ -41,7 +42,6 @@ class AsignarAntenaPageState extends State<AsignarAntenaPage>
                   idMunicipio: 0, 
                   departament: Departamento(idDpto: 0)))),
                   usuario: Usuario(idUsuario: 0));
-
   @override
   void initState() {
     UsuarioBloc();
@@ -57,16 +57,17 @@ class AsignarAntenaPageState extends State<AsignarAntenaPage>
       });
     });
     super.initState();
+    AsignarAntenaBloc();
   }
 
-  showRegisterDialog(BuildContext context) {
+  showUpdateDialog(BuildContext context) {
     showDialog(
         context: context,
         builder: (buildcontext) {
           return AlertDialog(
             title:
                 Row(children: [Icon(Icons.info), Text(Constants.tittleDialog)]),
-            content: Text(Constants.registroExitoso),
+            content: Text(Constants.actualizacion),
             actions: <Widget>[
               RaisedButton(
                 shape: RoundedRectangleBorder(
@@ -79,7 +80,7 @@ class AsignarAntenaPageState extends State<AsignarAntenaPage>
                 color: Color(0xFF42a5f5),
                 padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
                 onPressed: () {
-                  TecniNavigator.goToHomeCoordinador(context);
+                  TecniNavigator.goToListaAsignarAntena(context);
                 },
               )
             ],
@@ -93,8 +94,8 @@ class AsignarAntenaPageState extends State<AsignarAntenaPage>
       _autovalidate = true;
     } else {
       form.save();
-      asignarAntenaBloc.asignarAntenna(_asignarAntena);
-      showRegisterDialog(context);
+      asignarAntenaBloc.updateAsignarAntena(asignarAntena);
+      showUpdateDialog(context);
     }
   }
 
@@ -102,7 +103,9 @@ class AsignarAntenaPageState extends State<AsignarAntenaPage>
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(title: const Text(Constants.tittleAsignarAntena)),
+      appBar: AppBar(
+        title: const Text(Constants.tittleActualizarAsignarAntena),
+      ),
       body: Stack(fit: StackFit.expand, children: <Widget>[
         Center(
           child: Container(
@@ -110,7 +113,7 @@ class AsignarAntenaPageState extends State<AsignarAntenaPage>
               data: ThemeData(
                   brightness: Brightness.light,
                   inputDecorationTheme: InputDecorationTheme(
-                    labelStyle: TextStyle(color: Colors.black, fontSize: 10.0),
+                    labelStyle: TextStyle(color: Colors.black, fontSize: 18.0),
                   )),
               isMaterialAppTheme: true,
               child: SingleChildScrollView(
@@ -121,22 +124,19 @@ class AsignarAntenaPageState extends State<AsignarAntenaPage>
                     key: _formKey,
                     autovalidate: _autovalidate,
                     child: SingleChildScrollView(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 18.0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           Center(
                             child: Card(
-                              
                               child: Column(
-                                
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
-                                  
                                   const ListTile(
                                     leading: Icon(Icons.album),
                                     title: Text('Selecciona'),
-                                    subtitle: Text('Asigna un técnico a la antena que desee.'),
+                                    subtitle: Text('Modifica un técnico o una antena que ya ha sido asignada.'),
                                     
                                   )])
                                   ),
@@ -148,15 +148,15 @@ class AsignarAntenaPageState extends State<AsignarAntenaPage>
                           DropdownButtonHideUnderline(
                             child: DropdownButton<int>(
                               hint: Text("Técnico"),
-                              value: currenUsuario,
+                              value: asignarAntena.usuario.idUsuario,
                               isDense: true,
                               onChanged: (int newValue) {
-                                currenUsuario = newValue;
+                                asignarAntena.usuario.idUsuario = newValue;
                                 setState(() {
-                                  currenUsuario = newValue;
+                                  asignarAntena.usuario.idUsuario = newValue;
                                 });
-                                print(currenUsuario);
-                                _asignarAntena.usuario.idUsuario = newValue;
+                                print(asignarAntena.usuario.idUsuario);
+                                asignarAntena.usuario.idUsuario = newValue;
                               },
                               items: listUsuario.map((Usuario map) {
                                 return DropdownMenuItem<int>(
@@ -173,15 +173,15 @@ class AsignarAntenaPageState extends State<AsignarAntenaPage>
                           DropdownButtonHideUnderline(
                             child: DropdownButton<int>(
                               hint: Text("Antena"),
-                              value: currenAntena,
+                              value: asignarAntena.antena.idAntena,
                               isDense: true,
                               onChanged: (int newValue) {
-                                currenAntena = newValue;
+                                asignarAntena.antena.idAntena = newValue;
                                 setState(() {
-                                  currenAntena = newValue;
+                                  asignarAntena.antena.idAntena = newValue;
                                 });
-                                print(currenAntena);
-                                _asignarAntena.antena.idAntena = newValue;
+                                print(asignarAntena.antena.idAntena);
+                                asignarAntena.antena.idAntena = newValue;
                               },
                               items: listAntena.map((Antena map) {
                                 return DropdownMenuItem<int>(
@@ -195,22 +195,17 @@ class AsignarAntenaPageState extends State<AsignarAntenaPage>
                           Padding(
                             padding: const EdgeInsets.only(top: 60.0),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 60.0),
-                          ),
                           MaterialButton(
                             shape: RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20.0)),
-                                  
                             ),
-                               
                             height: 50.0,
                             minWidth: 150.0,
                             color: Color(0xFF42a5f5),
                             splashColor: Colors.blue,
                             textColor: Colors.black,
-                            child: Text(Constants.btnAsignar),
+                            child: Text(Constants.btnModificar),
                             onPressed: _handleSubmitted,
                           ),
                         ],
@@ -233,6 +228,17 @@ class AsignarAntenaPageState extends State<AsignarAntenaPage>
       return Constants.validateName;
     } else if (!regExp.hasMatch(value)) {
       return Constants.nameStructure;
+    }
+    return null;
+  }
+
+  String validateNumeros(String value) {
+    String pattern = Constants.patterNumero;
+    RegExp regExp = RegExp(pattern);
+    if (value.isEmpty) {
+      return Constants.validateAltura;
+    } else if (!regExp.hasMatch(value)) {
+      return Constants.estructura;
     }
     return null;
   }

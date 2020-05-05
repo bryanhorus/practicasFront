@@ -1,41 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:tenic_api/modelo/usuario_model.dart';
 import 'package:tenic_api/navigator.dart';
 import 'dart:math' as math;
 import 'package:tenic_api/resource/constants.dart';
-import 'dialog.dart';
+
 
 class ProfilePageDesign extends StatefulWidget {
-  final Usuario usuario;
-  const ProfilePageDesign({this.usuario, key}) : super(key: key);
+    const ProfilePageDesign({ key}) : super(key: key);
 
   @override
-  ProfilePageDesignState createState() => ProfilePageDesignState(usuario: usuario);
+  ProfilePageDesignState createState() => ProfilePageDesignState();
 }
 
 class ProfilePageDesignState extends State<ProfilePageDesign> 
 with SingleTickerProviderStateMixin{
-    ProfilePageDesignState({this.usuario});
-    Usuario usuario = Usuario(nombre: '', correo:'', telfono:'');
+
   TextStyle _style(){
     return TextStyle(
       fontWeight: FontWeight.bold
     );
   }
-
-onExit(){
-Dialogs.confirm(context, title: Constants.exitTittle,
- message: Constants.exitMessage,
- onCancel: (){
-   Navigator.pop(context);
- },
-onConfirm: (){
-  Navigator.pop(context);
-  Navigator.pushNamedAndRemoveUntil(context, '/', (_)=>false);
-}
-);
-}
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,24 +28,11 @@ onConfirm: (){
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-                        PopupMenuButton(
-              icon: Icon(Icons.more_vert),
-              onSelected: (String value){
-                if(value=="salir"){
-                  onExit();
-                }
-              },
-              itemBuilder: (context)=>[
-                PopupMenuItem(
-                  value: "salir",
-                  child: Text("Exit app"),
-                )
-              ],
-              ),
             Text(Constants.mensajePerfil, style: _style(),),
             SizedBox(height: 4,),
             Text(Constants.agradecimiento),
-            SizedBox(height: 20,),   
+            SizedBox(height: 20,),
+            
             Divider(color: Colors.lightBlue,)
           ],
         ),
@@ -73,8 +43,6 @@ onConfirm: (){
 
 class CustomAppBar extends StatelessWidget
   with PreferredSizeWidget{
-CustomAppBar({this.usuario});
-Usuario usuario = Usuario(nombre: '', correo: '', telfono: '');
 
   @override
   Size get preferredSize => Size(double.infinity, 320);
@@ -98,6 +66,7 @@ Usuario usuario = Usuario(nombre: '', correo: '', telfono: '');
                   onPressed: (){
                     TecniNavigator.goToHomeCoordinador(context);},
                 ),
+
                 Text(Constants.perfil, style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
@@ -168,7 +137,7 @@ Usuario usuario = Usuario(nombre: '', correo: '', telfono: '');
                     child: Container(
                       width: 110,
                       height: 32,
-                      child: Center(child: Text(Constants.editText),),
+                      child: Center(child: Text("Editar"),),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -196,10 +165,14 @@ class MyClipper extends CustomClipper<Path>{
   @override
   Path getClip(Size size) {
     Path p = Path();
+
     p.lineTo(0, size.height-70);
     p.lineTo(size.width, size.height);
+
     p.lineTo(size.width, 0);
+
     p.close();
+
     return p;
   }
 

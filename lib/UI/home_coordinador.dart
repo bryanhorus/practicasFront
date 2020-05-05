@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tenic_api/bloc/inicio_sesion_bloc.dart';
 import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
@@ -9,7 +10,13 @@ class HomeCoordinador extends StatefulWidget {
 }
 
 class HomeCoordinadorState extends State<HomeCoordinador> {
-  
+  final InicioSesionBloc inicioSesionBloc = InicioSesionBloc();
+
+  void _handleSubmitted() async {
+    await inicioSesionBloc.cerrarSesion();
+    TecniNavigator.goToHome(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     var perfil = ListTile(
@@ -74,6 +81,15 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
       onTap: () => {TecniNavigator.goToAsignarAntena(context)},
     );
 
+    var lista = ListTile(
+      leading: Icon(Icons.list),
+      title: Text(
+        Constants.tittleListaAntenasAsignadas,
+        style: TextStyle(color: Colors.black),
+      ),
+      onTap: () => {TecniNavigator.goToListaAsignarAntena(context)},
+    );
+
     var observacion = ListTile(
       leading: Icon(Icons.pin_drop),
       title: Text(
@@ -88,7 +104,7 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
         Constants.cerrarSesion,
         style: TextStyle(color: Colors.black),
       ),
-      onTap: () => {TecniNavigator.goToHome(context)},
+      onTap: _handleSubmitted,
     );
 
     var menu = Drawer(
@@ -117,6 +133,7 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
           usuarios,
           antena,
           asignar,
+          lista,
           observacion,
           cerrar
         ],
@@ -133,29 +150,26 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
               elevation: 25,
               child: ListTile(
                 leading: Icon(Icons.center_focus_strong),
-                title: Text(Constants.antenaTittle),
+                title: Text("ANTENA GLOBAL"),
                 subtitle: Text(
                     'Nuestra Compañia ofrece los mejores servicios, para la comunidad' +
                         'donde puedes estar mas cerca de tu familia '),
               ),
             ),
-            //
             Card(
               elevation: 24,
               child: ListTile(
                 leading: Icon(Icons.center_focus_strong),
-                title: Text(Constants.misionTittle),
+                title: Text("Mision"),
                 subtitle: Text(
-                    Constants.misionMessage),
+                    "Generamos valor a la sociedad, clientes y accionistas, y  todos los grupos de interés, con una gestión innovadora, eficiente, neutral y de calidad en la prestación de servicios de redes compartidas e infraestructuras de telecomunicaciones, a través de la ilusión y el desarrollo de nuestro equipo de colaboradores."),
               ),
             ),
-
-            //
             Card(
               elevation: 25,
               child: ListTile(
                 leading: Icon(Icons.center_focus_strong),
-                title: Text(Constants.visionTittle),
+                title: Text("Vision"),
                 subtitle: Text(
                     'Líder en Colombia en soluciones de infraestructuras de telecomunicaciones. '),
               ),
@@ -163,8 +177,5 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
           ],
         ));
 
-    // Center(
-    //  child: Text(
-    //    "Aqui podemos hacer como una introducción a la empresa o la app, algo asi, como un texto y una imagen")));
   }
 }

@@ -1,29 +1,26 @@
 import 'package:tenic_api/modelo/antena_model.dart';
 
-class Observacion{
+class Observacion {
   int idObservacion;
   String fecha;
   String orientacion;
   String inclinacion;
   Antena antena;
-  
 
-  Observacion({
-    this.idObservacion,
-    this.fecha,
-    this.orientacion,
-    this.inclinacion,
-    this.antena
-  });
+  Observacion(
+      {this.idObservacion,
+      this.fecha,
+      this.orientacion,
+      this.inclinacion,
+      this.antena});
 
   factory Observacion.fromJson(Map<String, dynamic> parsedJson) {
     return Observacion(
-      idObservacion: parsedJson['id'],
-      fecha: parsedJson['fecha'],
-      orientacion: parsedJson['orientacion'],
-      inclinacion: parsedJson['inclinacion'],
-      antena: Antena.fromJson(parsedJson['antenna'])
-    );
+        idObservacion: parsedJson['id'],
+        fecha: parsedJson['fecha'],
+        orientacion: parsedJson['orientacion'],
+        inclinacion: parsedJson['inclinacion'],
+        antena: Antena.fromJson(parsedJson['antenna']));
   }
 
   Map<String, dynamic> toJson() => {

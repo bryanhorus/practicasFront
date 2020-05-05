@@ -4,8 +4,8 @@ import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/observacion_model.dart';
 import 'package:tenic_api/resource/constants.dart';
 
-
 class ListaObservation extends StatefulWidget{
+  
   const ListaObservation({Key key}) : super(key: key);
 
   @override
@@ -15,16 +15,12 @@ class ListaObservation extends StatefulWidget{
 class ListaObservationState extends State<ListaObservation>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  List<Observacion> listObservation = List();
   ObservationBloc observationBloc;
   ApiResponse apiResponse;
   Observacion observation;
-  List<Observacion> listObservation = List();
 
-  void showInSnackBar(String value) {
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text(value),
-    ));
-  }
+
 
     _handleSubmitted() {
     observationBloc.listarObservation().then((apiResponse) {
@@ -62,7 +58,7 @@ class ListaObservationState extends State<ListaObservation>
                     children: <Widget>[
                       ListTile(
                         title: Text(
-                          listObservation[indice].fecha,
+                          listObservation[indice].antena.nombre,
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.black,

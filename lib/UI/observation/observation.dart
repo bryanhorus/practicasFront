@@ -14,7 +14,6 @@ class ObservationUi extends StatelessWidget {
         ));
   }
 }
-
 class MyStatelessObservation extends StatelessWidget {
   MyStatelessObservation({Key key}) : super(key: key);
 

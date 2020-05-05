@@ -17,6 +17,7 @@ environment:
   sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
+  flutter_map: any
   flutter:
     sdk: flutter
 
@@ -30,7 +31,7 @@ dependencies:
   generic_bloc_provider: ^1.0.9
   flutter_secure_storage: ^3.2.1+1
   pedantic: ^1.8.0
-
+  jaguar_jwt: ^2.1.6
 
 dev_dependencies:
   flutter_test:

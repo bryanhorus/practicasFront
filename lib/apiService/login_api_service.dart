@@ -1,5 +1,5 @@
-import 'dart:io';
 import 'dart:convert';
+import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:tenic_api/modelo/LoginUser.dart';
 import 'package:tenic_api/modelo/session_local.dart';
@@ -20,9 +20,10 @@ class LoginApiService {
 
     var resBody = json.decode(res.body);
     _session = Session.fromJson(resBody);
-
     if (res.statusCode == 200) {
-      print(Constants.token + _session.accessToken);
+      print("token " + _session.accessToken);
+      print("rol " + _session.rol);
+
       return _session;
     }
     return _session;

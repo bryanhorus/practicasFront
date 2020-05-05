@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tenic_api/UI/dialog.dart';
 import 'package:tenic_api/bloc/departamento_bloc.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
+import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class CrearDepartamento extends StatefulWidget {
@@ -15,6 +16,8 @@ class CrearDepartamento extends StatefulWidget {
 class CrearDepartamentoState extends State<CrearDepartamento>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  bool _autovalidate = false;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final DptoBloc departamentoBloc = DptoBloc();
   Departamento _departamento = Departamento(nombre: '');
 
@@ -24,15 +27,33 @@ class CrearDepartamentoState extends State<CrearDepartamento>
     DptoBloc();
   }
 
-  void showInSnackBar(String value) {
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text(value),
-    ));
+  showRegisterDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (buildcontext) {
+          return AlertDialog(
+            title:
+                Row(children: [Icon(Icons.info), Text(Constants.tittleDialog)]),
+            content: Text(Constants.registroExitoso),
+            actions: <Widget>[
+              RaisedButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                ),
+                child: Text(
+                  Constants.btnCerrar,
+                  style: TextStyle(color: Colors.black),
+                ),
+                color: Color(0xFF42a5f5),
+                padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
+                onPressed: () {
+                  TecniNavigator.goToListaDepartamento(context);
+                },
+              )
+            ],
+          );
+        });
   }
-
-  bool _autovalidate = false;
-
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   void _handleSubmitted() {
     final FormState form = _formKey.currentState;
@@ -41,7 +62,7 @@ class CrearDepartamentoState extends State<CrearDepartamento>
     } else {
       form.save();
       departamentoBloc.createDepartamento(_departamento);
-      Message().showRegisterDialog(context);
+      showRegisterDialog(context);
     }
   }
 
@@ -84,10 +105,11 @@ class CrearDepartamentoState extends State<CrearDepartamento>
                                 hintText: Constants.labelDepartamento,
                                 icon: Icon(Icons.assistant_photo) 
                                 ),
+                            textCapitalization: TextCapitalization.sentences,
                             validator: validateName,
                             keyboardType: TextInputType.text,
                             onSaved: (String value) {
-                              _departamento.nombre = value;
+                              _departamento.nombre = value.trim();
                             },
                             style: TextStyle(fontSize: 18.0),
                           ),
