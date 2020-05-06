@@ -110,6 +110,9 @@ class TecniNavigator {
     Navigator.pushNamed(context, Constants.buscarObservacionRoute);
     
   }
+  static void gotoactualizar(BuildContext context){
+    Navigator.pushNamed(context, Constants.actualuzarContra);
+  }
   static void goToListaBusqueda(BuildContext context) {
     Navigator.pushNamed(context, Constants.listaBusquedaRoute);
   }

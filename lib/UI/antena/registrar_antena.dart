@@ -129,7 +129,7 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                                     borderRadius: BorderRadius.circular(20.0)),
                                 hintText: Constants.labelNombre,
                                 icon: Icon(Icons.account_circle)),
-                            textCapitalization: TextCapitalization.sentences,
+                           // textCapitalization: TextCapitalization.sentences,
                             validator: validateName,
                             keyboardType: TextInputType.text,
                             onSaved: (String value) {

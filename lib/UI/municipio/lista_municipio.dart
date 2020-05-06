@@ -21,17 +21,6 @@ class ListaMunicipioState extends State<ListaMunicipio>
   final MunicipioBloc municipioBloc = MunicipioBloc();
   ApiResponse apiResponse;
   Municipio municipio;
-<<<<<<< HEAD
-
-  void showInSnackBar(String value) {
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text(value),
-    ));
-  }
-
-
-=======
->>>>>>> a5087f627a962ac6285ad9dc3322cfc48b04a820
   List<Municipio> listMunicipio = List();
 
   _handleSubmitted() {
