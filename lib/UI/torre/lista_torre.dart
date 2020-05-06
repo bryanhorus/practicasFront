@@ -7,7 +7,6 @@ import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/resource/constants.dart';
 import 'package:nominatim_location_picker/nominatim_location_picker.dart';
 import '../../navigator.dart';
-import 'map.dart';
 
 class ListaTorre extends StatefulWidget {
   final Torre torre;

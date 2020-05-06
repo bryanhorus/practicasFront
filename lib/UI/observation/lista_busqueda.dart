@@ -24,11 +24,11 @@ class ListaBusquedaPageState extends State<ListaBusquedaPage>
 
 
     _handleSubmitted() {
-    observationBloc.listarObservation().then((apiResponse) {
+    //observationBloc.listarObservation().then((apiResponse) {
       setState(() {
         listBusqueda = apiResponse.listbusqueda;
       });
-    });
+    
   }
 
   @override

@@ -17,6 +17,7 @@ class LoginApiService {
         body: body2);
 
     var resBody = json.decode(res.body);
+    print(resBody);
     _session = Session.fromJson(resBody);
     if (res.statusCode == 200) {
       print("token " + _session.accessToken);
