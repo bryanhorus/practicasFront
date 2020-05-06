@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/inicio_sesion_bloc.dart';
+import 'package:tenic_api/bloc/usuario_bloc.dart';
 import 'package:tenic_api/modelo/LoginUser.dart';
 import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/navigator_tecnico.dart';
@@ -15,7 +16,7 @@ class LoginPage extends StatefulWidget {
 
 Login _login = Login(
   correo: "",
-  password: "",
+  password: ""
 );
 
 class LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
@@ -26,6 +27,7 @@ class LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
   bool _validate;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final InicioSesionBloc inicioSesionBloc = InicioSesionBloc();
+    final UsuarioBloc userBloc = UsuarioBloc();
   @override
   void initState() {
     super.initState();
@@ -55,6 +57,7 @@ class LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
       }
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -221,6 +224,13 @@ class LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
                                                         Constants.btnIngresar),
                                                     onPressed:
                                                         _handleSubmitted),
+                                                FlatButton(
+                                                  onPressed: (){TecniNavigator.goToRecuperarContrasena(context);},
+                                                  child: Text(
+                                                    "Recuperar Contraseña", 
+                                                    style: TextStyle(color: Colors.blue, decoration: TextDecoration.underline)),
+                                                ),
+
                                               ],
                                             ),
                                           ),

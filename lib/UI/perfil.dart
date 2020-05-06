@@ -33,6 +33,11 @@ with SingleTickerProviderStateMixin{
       fontWeight: FontWeight.bold
     );
   }
+    @override
+  void initState() {
+    super.initState();
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,14 +60,25 @@ with SingleTickerProviderStateMixin{
   }
 }
 
-class CustomAppBar extends StatelessWidget
+class CustomAppBar extends StatefulWidget
   with PreferredSizeWidget{
 
   @override
   Size get preferredSize => Size(double.infinity, 320);
 
+
+  void _handleSubmitted() async {
+    final Repository _repository = Repository();
+    String nombre = await _repository.getLocalNombre();
+    String apellido = await _repository.getLocalApellido();
+    
+      }
+
+
+
   @override
   Widget build(BuildContext context) {
+    
     return ClipPath(
       clipper: MyClipper(),
       child: Container(
@@ -109,7 +125,11 @@ class CustomAppBar extends StatelessWidget
                       ),
                     ),
                     SizedBox(height: 16,),
+<<<<<<< HEAD
                     Text(_login.correo, style: TextStyle(
+=======
+                    Text("", style: TextStyle(
+>>>>>>> d5cb5e30a1729185a3469c91c6b84cd92aec422b
                       color: Colors.white,
                       fontSize: 15
                     ),),
@@ -171,6 +191,11 @@ class CustomAppBar extends StatelessWidget
         ),
       ),
     );
+  }
+
+  @override
+  State<StatefulWidget> createState() {
+    return null;
   }
 }
 

@@ -8,6 +8,10 @@ class TecniNavigator {
   }
 
   //Usuarios
+  static void goToRecuperarContrasena(BuildContext context) {
+    Navigator.pushNamed(context, Constants.recuperarContrasenaRoute);
+  }
+
   static void goToRegistrarUsuario(BuildContext context) {
     Navigator.pushNamed(context, Constants.registroRoute);
   }
@@ -101,5 +105,15 @@ class TecniNavigator {
   //Observacion
   static void goToObservaciones(BuildContext context) {
     Navigator.pushNamed(context, Constants.observacionesRoute);
+  }
+  static void goToBuscarObservacion(BuildContext context) {
+    Navigator.pushNamed(context, Constants.buscarObservacionRoute);
+    
+  }
+  static void gotoactualizar(BuildContext context){
+    Navigator.pushNamed(context, Constants.actualuzarContra);
+  }
+  static void goToListaBusqueda(BuildContext context) {
+    Navigator.pushNamed(context, Constants.listaBusquedaRoute);
   }
 }

@@ -17,7 +17,7 @@ environment:
   sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
-  flutter_map: any
+
   flutter:
     sdk: flutter
 
@@ -32,12 +32,18 @@ dependencies:
   flutter_secure_storage: ^3.2.1+1
   pedantic: ^1.8.0
   jaguar_jwt: ^2.1.6
+  flutter_map: ^0.9.0
+  geolocator: ^5.3.1
+  latlong: ^0.6.1
+  auto_size_text: ^2.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   curved_navigation_bar: ^0.3.2
   bottom_navy_bar: ^5.3.2
+  nominatim_location_picker: any
+
 
 
 # For information on the generic Dart part of this file, see the
