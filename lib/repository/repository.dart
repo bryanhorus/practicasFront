@@ -35,6 +35,11 @@ class Repository {
   Future<String> getLocalAccessToken() => _session.getToken();
   Future deleteAll() => _session.deleteAllValues();
   Future<String> getLocalRol() => _session.getRol();
+  Future<String> getLocalNombre()=> _session.getNombre();
+  Future<String> getLocalApellido()=> _session.getApellido();
+  Future<String> getLocalCorreo()=> _session.getCorreo();
+  Future<String> getLocalTelefono()=> _session.getTelefono();
+
 
   //Usuario
   Future<ApiResponse> registrarUsuario(Usuario usuario) =>

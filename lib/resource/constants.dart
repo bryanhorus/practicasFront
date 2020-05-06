@@ -49,6 +49,7 @@ class Constants {
   static const String estructura =
       "La estructura no coincide con la solicitada";
   static const String validateName = "El nombre es necesario";
+static const String validatePass = "la contraseña es necesario!!";  
   static const String nameStructure = "El campo solo puede contener a-z y A-Z";
   static const String validateLastName = "El nombre es necesario";
   static const String lastNameStructure = "El nombre puede contener a-z y A-Z";
@@ -80,6 +81,7 @@ class Constants {
   static const String btnCerrar = "Cerrar";
   static const String btnIngresar = "Ingresar";
   static const String btnRegistar = "Registrar ";
+  static const String btnCambiar2 = "Cambiar contraseña ";
   static const String btnSiguiente = "Siguiente ";
   static const String btnModificar = "Editar ";
   static const String btnLista = "Lista ";
@@ -110,11 +112,13 @@ class Constants {
   static const String tittleTorreactualizar = "Actualizar Torre";
   static const String tittleListaTorre = "Lista Torres";
   static const String tittleListaObservaciones = "Observaciones realizadas ";
+  static const String titleactualizarcontra="Actualizacion de la Contraseña";
   static const String tittleRegistroAntena = "Registrar Antena";
   static const String tittleDepartamentoactualizar = "Actualizar Departamento";
   static const String tittleMunicipioactualizar = "Actualizar Municipio";
   static const String tittleActualizarAsignarAntena = "Actualizar Asignación";
   static const String tittleActualizarAntena = "Actualizar Antena";
+  static const String tittleObsDetail = "Kevin Roldán";
   static const String tittleListaAntenas = "Antenas Registrados";
   static const String tittleListaAntenasAsignadas = "Antenas Asignadas";
   static const String tittleListaDepartamentos = "Lista Departamentos";
@@ -123,6 +127,7 @@ class Constants {
   static const String tittleActualizar = "Actualizar Usuarios";
   static const String tittleUsuario = "Usuario";
   static const String tittleMunicipio = "Municipio";
+  static const String titleActu = "Actualiza tu contraseña";
   static const String tittleObs = "Observation";
   static const String tittleDepartamento = "Departamento";
   static const String tittleAntena = "Antena";
@@ -162,6 +167,7 @@ class Constants {
   static const String buscarObservacionRoute = "/buscar_observacion";
   static const String listaBusquedaRoute = "/lista_busqueda";
   static const String recuperarContrasenaRoute = "/recuperar_contrasena";
+  static const String actualuzarContra="/actualiza_contra";
 
   //Ruter imagenes
   static const String loginImage = 'assets/imgLogin.jpg';
@@ -171,9 +177,12 @@ class Constants {
   static const String image = 'assets/images.png';
   //labels
   static const String labelPassword = "Contraseña";
+  static const String labelPassword2 = "Vieja Contraseña";
+  static const String labelPassword3 = "Nueva Contraseña";
   static const String labelCorreo = "Correo";
   static const String labelTelefono = "Telefono";
   static const String labelNombre = "Nombre";
+  static const String labelDate = "Date";
   static const String labelNombreTecnico = "Nombre del tecnico";
   static const String labelApellido = "Apellido";
   static const String tipoUsuario = "Cargo";

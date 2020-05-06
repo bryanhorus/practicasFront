@@ -122,13 +122,14 @@ class RegistrarAntenaState extends State<RegistrarAntena>
                           ),
                           const SizedBox(height: 12.0),
                           TextFormField(
+                            textCapitalization: TextCapitalization.sentences,
                             decoration: InputDecoration(
                                 labelText: Constants.labelNombre,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
                                 hintText: Constants.labelNombre,
                                 icon: Icon(Icons.account_circle)),
-                            textCapitalization: TextCapitalization.sentences,
+                           // textCapitalization: TextCapitalization.sentences,
                             validator: validateName,
                             keyboardType: TextInputType.text,
                             onSaved: (String value) {

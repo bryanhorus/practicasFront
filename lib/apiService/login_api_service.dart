@@ -17,11 +17,15 @@ class LoginApiService {
         body: body2);
 
     var resBody = json.decode(res.body);
+    print(resBody);
     _session = Session.fromJson(resBody);
     if (res.statusCode == 200) {
       print("token " + _session.accessToken);
       print("rol " + _session.rol);
-
+      print("nombre "+ _session.nombre);
+      print("apellido " + _session.apellido);
+      print("correo " + _session.correo);
+      print("telefono " + _session.telefono);
       return _session;
     }
     return _session;

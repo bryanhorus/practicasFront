@@ -28,6 +28,8 @@ import 'UI/home_coordinador.dart';
 import 'UI/municipio/registrar_municipio.dart';
 import 'UI/torre/actualizar_torre.dart';
 import 'UI/torre/lista_torre.dart';
+import 'UI/actualiazarc.dart';
+import 'resource/constants.dart';
 
 class App extends StatelessWidget {
   @override
@@ -68,7 +70,9 @@ class App extends StatelessWidget {
         Constants.registrarobservacionRoute: (context) => CrearObservacion(),
         Constants.observacionesRoute: (context) => ListaObservation(),
         Constants.buscarObservacionRoute: (context) => BuscarObservacionPage(), 
-        Constants.listaBusquedaRoute: (context) => ListaBusquedaPage(),  
+        Constants.listaBusquedaRoute: (context) => ListaBusquedaPage(),
+        //actualizar
+        Constants.actualuzarContra: (context)=>  Actualizar(),
       },
     );
   }

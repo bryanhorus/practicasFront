@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tenic_api/navigator.dart';
+import 'package:tenic_api/repository/repository.dart';
 import 'dart:math' as math;
 import 'package:tenic_api/resource/constants.dart';
 
@@ -18,6 +19,11 @@ with SingleTickerProviderStateMixin{
     return TextStyle(
       fontWeight: FontWeight.bold
     );
+  }
+    @override
+  void initState() {
+    super.initState();
+
   }
   @override
   Widget build(BuildContext context) {
@@ -41,14 +47,25 @@ with SingleTickerProviderStateMixin{
   }
 }
 
-class CustomAppBar extends StatelessWidget
+class CustomAppBar extends StatefulWidget
   with PreferredSizeWidget{
 
   @override
   Size get preferredSize => Size(double.infinity, 320);
 
+
+  void _handleSubmitted() async {
+    final Repository _repository = Repository();
+    String nombre = await _repository.getLocalNombre();
+    String apellido = await _repository.getLocalApellido();
+    
+      }
+
+
+
   @override
   Widget build(BuildContext context) {
+    
     return ClipPath(
       clipper: MyClipper(),
       child: Container(
@@ -95,7 +112,7 @@ class CustomAppBar extends StatelessWidget
                       ),
                     ),
                     SizedBox(height: 16,),
-                    Text('bryan@gmail.com', style: TextStyle(
+                    Text("", style: TextStyle(
                       color: Colors.white,
                       fontSize: 15
                     ),),
@@ -157,6 +174,11 @@ class CustomAppBar extends StatelessWidget
         ),
       ),
     );
+  }
+
+  @override
+  State<StatefulWidget> createState() {
+    return null;
   }
 }
 

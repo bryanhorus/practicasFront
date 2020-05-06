@@ -97,6 +97,17 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
       ),
       onTap: () => {TecniNavigator.goToObservaciones(context)},
     );
+
+    var actualizar = ListTile(
+      leading: Icon(Icons.pin_drop),
+      title: Text(
+        Constants.titleactualizarcontra,
+        style: TextStyle(color: Colors.black),
+      ),
+      onTap: () => {TecniNavigator.gotoactualizar(context)},
+    );
+
+
     var cerrar = ListTile(
       leading: Icon(Icons.exit_to_app),
       title: Text(
@@ -134,6 +145,7 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
           asignar,
           lista,
           observacion,
+          actualizar,
           cerrar
         ],
       ),
