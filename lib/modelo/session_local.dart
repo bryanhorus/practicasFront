@@ -7,6 +7,7 @@ class Session {
   String correo;
   String id;
 
+
   Session({this.accessToken, this.rol, this.nombre, this.apellido, this.telefono, this.correo, this.id});
 
   factory Session.fromJson(Map<String, dynamic> json) {
