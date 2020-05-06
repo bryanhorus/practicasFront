@@ -79,7 +79,7 @@ class AsignarAntenaPageState extends State<AsignarAntenaPage>
                 color: Color(0xFF42a5f5),
                 padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
                 onPressed: () {
-                  TecniNavigator.goToHomeCoordinador(context);
+                  TecniNavigator.goToListaAsignarAntena(context);
                 },
               )
             ],
@@ -224,16 +224,5 @@ class AsignarAntenaPageState extends State<AsignarAntenaPage>
         ),
       ]),
     );
-  }
-
-  String validateName(String value) {
-    String pattern = Constants.patternNombre;
-    RegExp regExp = RegExp(pattern);
-    if (value.isEmpty) {
-      return Constants.validateName;
-    } else if (!regExp.hasMatch(value)) {
-      return Constants.nameStructure;
-    }
-    return null;
   }
 }

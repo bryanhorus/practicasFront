@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/inicio_sesion_bloc.dart';
 import 'package:tenic_api/navigator.dart';
+import 'package:tenic_api/repository/repository.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class HomeCoordinador extends StatefulWidget {
@@ -11,6 +12,20 @@ class HomeCoordinador extends StatefulWidget {
 
 class HomeCoordinadorState extends State<HomeCoordinador> {
   final InicioSesionBloc inicioSesionBloc = InicioSesionBloc();
+   final Repository _repository = Repository();
+   String nombre = "";
+   String correo = "";
+
+   @override
+initState() {
+  super.initState();
+  _submitted();
+}
+
+void _submitted() async {
+  nombre = await _repository.getLocalNombre();
+ correo = await _repository.getLocalCorreo();
+  }
 
   void _handleSubmitted() async {
     await inicioSesionBloc.cerrarSesion();
@@ -98,6 +113,17 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
       ),
       onTap: () => {TecniNavigator.goToObservaciones(context)},
     );
+
+    var actualizar = ListTile(
+      leading: Icon(Icons.pin_drop),
+      title: Text(
+        Constants.titleactualizarcontra,
+        style: TextStyle(color: Colors.black),
+      ),
+      onTap: () => {TecniNavigator.gotoactualizar(context)},
+    );
+
+
     var cerrar = ListTile(
       leading: Icon(Icons.exit_to_app),
       title: Text(
@@ -113,12 +139,12 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
         children: <Widget>[
           UserAccountsDrawerHeader(
             accountName: Text(
-              "Bryan Alvarado",
+              nombre ,
               style:
                   TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
             ),
             accountEmail: Text(
-              "Bryan@hotmail.com",
+              correo,
               style: TextStyle(color: Colors.black),
             ),
             decoration: BoxDecoration(
@@ -135,6 +161,7 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
           asignar,
           lista,
           observacion,
+          actualizar,
           cerrar
         ],
       ),

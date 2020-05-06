@@ -4,6 +4,7 @@ import 'package:tenic_api/UI/dialog.dart';
 import 'package:tenic_api/bloc/usuario_bloc.dart';
 import 'package:tenic_api/modelo/tipo_usuario_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
+import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class TextFormFieldDemo extends StatefulWidget {
@@ -57,7 +58,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo>
                 ),
                 color: Color(0xFF42a5f5),
                 padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
-                onPressed: () {},
+                onPressed: () {TecniNavigator.goToListaUsuarios(context);},
               )
             ],
           );
