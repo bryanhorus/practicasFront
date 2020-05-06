@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tenic_api/Session_Storage.dart';
 import 'package:tenic_api/bloc/inicio_sesion_bloc.dart';
 import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/repository/repository.dart';
@@ -12,7 +13,7 @@ class HomeCoordinador extends StatefulWidget {
 class HomeCoordinadorState extends State<HomeCoordinador> {
   final InicioSesionBloc inicioSesionBloc = InicioSesionBloc();
 
-  Repository repository = Repository();
+  final Repository _repository = Repository();
 
   String nombre = "";
   String correo = "";
@@ -21,7 +22,8 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
   @override
   initState() {
     super.initState();
-    _Carga();
+    SessionStorage();
+    Carga();
   }
 
   void _handleSubmitted() async {
@@ -29,14 +31,19 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
     TecniNavigator.goToHome(context);
   }
 
-  void _Carga() async{
-  nombre = await repository.getLocalNombre();
-  apellido = await repository.getLocalApellido();
-  correo = await repository.getLocalCorreo();
+  void Carga() async {
+    nombre = await _repository.getLocalNombre();
+    apellido = await _repository.getLocalApellido();
+    correo = await _repository.getLocalCorreo();
+    setState(() {
+      nombre;
+      apellido;
+      correo;
+    });
   }
 
   @override
-  Widget build (BuildContext context) {
+  Widget build(BuildContext context) {
     var perfil = ListTile(
       leading: Icon(Icons.person_pin),
       title: Text(
@@ -126,7 +133,6 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
       onTap: () => {TecniNavigator.gotoactualizar(context)},
     );
 
-
     var cerrar = ListTile(
       leading: Icon(Icons.exit_to_app),
       title: Text(
@@ -206,6 +212,5 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
             ),
           ],
         ));
-
   }
 }
