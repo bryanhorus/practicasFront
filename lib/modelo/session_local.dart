@@ -6,6 +6,10 @@ class Session {
   String telefono;
   String correo;
 
+
+  Session.name(this.accessToken, this.rol, this.nombre, this.apellido,
+      this.telefono, this.correo);
+
   Session({this.accessToken, this.rol, this.nombre, this.apellido, this.telefono, this.correo});
 
   factory Session.fromJson(Map<String, dynamic> json) {

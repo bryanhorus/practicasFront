@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/inicio_sesion_bloc.dart';
 import 'package:tenic_api/navigator.dart';
+import 'package:tenic_api/repository/repository.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class HomeCoordinador extends StatefulWidget {
@@ -11,13 +12,35 @@ class HomeCoordinador extends StatefulWidget {
 class HomeCoordinadorState extends State<HomeCoordinador> {
   final InicioSesionBloc inicioSesionBloc = InicioSesionBloc();
 
+  Repository repository = Repository();
+
+  String nombre = "";
+  String correo = "";
+  String apellido = "";
+
+  @override
+  initState() {
+    super.initState();
+    _Carga();
+  }
+
   void _handleSubmitted() async {
     await inicioSesionBloc.cerrarSesion();
     TecniNavigator.goToHome(context);
   }
 
+  void _Carga() async{
+
+  nombre = await repository.getLocalNombre();
+  apellido = await repository.getLocalApellido();
+  correo = await repository.getLocalCorreo();
+
+  }
+
+
+
   @override
-  Widget build(BuildContext context) {
+  Widget build (BuildContext context) {
     var perfil = ListTile(
       leading: Icon(Icons.person_pin),
       title: Text(
@@ -123,12 +146,12 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
         children: <Widget>[
           UserAccountsDrawerHeader(
             accountName: Text(
-              "Bryan Alvarado",
+              nombre +' '+ apellido,
               style:
                   TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
             ),
             accountEmail: Text(
-              "Bryan@hotmail.com",
+              correo,
               style: TextStyle(color: Colors.black),
             ),
             decoration: BoxDecoration(

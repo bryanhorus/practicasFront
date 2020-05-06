@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tenic_api/Session_Storage.dart';
+import 'package:tenic_api/modelo/session_local.dart';
 import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/repository/repository.dart';
 import 'dart:math' as math;
@@ -20,11 +22,14 @@ with SingleTickerProviderStateMixin{
       fontWeight: FontWeight.bold
     );
   }
-    @override
-  void initState() {
-    super.initState();
 
+  @override
+  initState() {
+    super.initState();
+    SessionStorage;
   }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,20 +55,13 @@ with SingleTickerProviderStateMixin{
 class CustomAppBar extends StatefulWidget
   with PreferredSizeWidget{
 
+  final SessionStorage _storage = SessionStorage();
+  final String nom = SessionStorage().session.nombre;
+
+
   @override
   Size get preferredSize => Size(double.infinity, 320);
 
-
-  void _handleSubmitted() async {
-    final Repository _repository = Repository();
-    String nombre = await _repository.getLocalNombre();
-    String apellido = await _repository.getLocalApellido();
-    
-      }
-
-
-
-  @override
   Widget build(BuildContext context) {
     
     return ClipPath(
@@ -112,11 +110,11 @@ class CustomAppBar extends StatefulWidget
                       ),
                     ),
                     SizedBox(height: 16,),
-                    Text("", style: TextStyle(
+                    Text("br", style: TextStyle(
                       color: Colors.white,
                       fontSize: 15
                     ),),
-                    Text('3196399117', style: TextStyle(
+                    Text( "333333", style: TextStyle(
                       color: Colors.white,
                       fontSize: 15
                     ),)
@@ -133,11 +131,6 @@ class CustomAppBar extends StatefulWidget
                     ),)
                   ],
                 ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
               ],
             ),
             SizedBox(height: 8,),
