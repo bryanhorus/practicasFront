@@ -30,6 +30,7 @@ class SessionStorage {
     await _storage.write(key: 'rol', value: session.rol);
     await _storage.write(key: 'nombre', value: session.nombre);
     await _storage.write(key: 'telefono', value: session.telefono);
+    await _storage.write(key: 'apellido', value: session.apellido);
   }
 
   Future<String> getToken() async {
@@ -54,5 +55,17 @@ class SessionStorage {
     final String telefono = await _storage.read(key: 'telefono');
     print("****" + telefono);
     return telefono;
+  }
+
+  Future<String> getApellido() async {
+    final String apellido = await _storage.read(key: 'apellido');
+    print("****" + apellido);
+    return apellido;
+  }
+
+  Future<String> getCorreo() async {
+    final String correo = await _storage.read(key: 'correo');
+    print("****" + correo);
+    return correo;
   }
 }

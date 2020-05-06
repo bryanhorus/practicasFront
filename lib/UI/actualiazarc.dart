@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tenic_api/bloc/departamento_bloc.dart';
 import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
-
 
 class Actualizar extends StatefulWidget {
   const Actualizar({Key key}) : super(key: key);
@@ -16,27 +14,21 @@ class ActualizarState extends State<Actualizar>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _autovalidate = false;
-  
- 
-
-  
 
   @override
   void initState() {
- 
     super.initState();
-    
   }
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  showRegisterDialog(BuildContext context) {
+  showUpdateDialog(BuildContext context) {
     showDialog(
         context: context,
         builder: (buildcontext) {
           return AlertDialog(
             title:
                 Row(children: [Icon(Icons.info), Text(Constants.tittleDialog)]),
-            content: Text(Constants.registroExitoso),
+            content: Text(Constants.actualizacion),
             actions: <Widget>[
               RaisedButton(
                 shape: RoundedRectangleBorder(
@@ -49,7 +41,6 @@ class ActualizarState extends State<Actualizar>
                 color: Color(0xFF42a5f5),
                 padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
                 onPressed: () {
-                  TecniNavigator.goToListaMuncipio(context);
                 },
               )
             ],
@@ -63,8 +54,8 @@ class ActualizarState extends State<Actualizar>
       _autovalidate = true;
     } else {
       form.save();
-     
-      showRegisterDialog(context);
+
+      showUpdateDialog(context);
     }
   }
 
@@ -98,7 +89,6 @@ class ActualizarState extends State<Actualizar>
                           Padding(
                             padding: const EdgeInsets.only(top: 40.0),
                           ),
-                         
                           TextFormField(
                             obscureText: true,
                             autocorrect: false,
@@ -110,9 +100,7 @@ class ActualizarState extends State<Actualizar>
                                 icon: Icon(Icons.security)),
                             maxLength: 12,
                             validator: validatePassword,
-                            onSaved: (String value) {
-                             
-                            },
+                            onSaved: (String value) {},
                             style: TextStyle(fontSize: 18.0),
                           ),
                           Padding(
@@ -129,12 +117,10 @@ class ActualizarState extends State<Actualizar>
                                 icon: Icon(Icons.security)),
                             maxLength: 12,
                             validator: validatePassword,
-                            onSaved: (String value) {
-                             
-                            },
+                            onSaved: (String value) {},
                             style: TextStyle(fontSize: 18.0),
                           ),
-                           Padding(
+                          Padding(
                             padding: const EdgeInsets.only(top: 60.0),
                           ),
                           MaterialButton(
@@ -163,7 +149,7 @@ class ActualizarState extends State<Actualizar>
     );
   }
 
-String validatePassword(String value) {
+  String validatePassword(String value) {
     if (value.isEmpty) {
       return Constants.validatePassword;
     } else if (value.length < 8) {

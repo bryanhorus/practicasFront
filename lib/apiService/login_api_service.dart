@@ -23,7 +23,9 @@ class LoginApiService {
       print("token " + _session.accessToken);
       print("rol " + _session.rol);
       print("nombre "+ _session.nombre);
-      print("telefono" + _session.telefono);
+      print("apellido " + _session.apellido);
+      print("correo " + _session.correo);
+      print("telefono " + _session.telefono);
       return _session;
     }
     return _session;

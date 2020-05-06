@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tenic_api/UI/observation/observation_detail.dart';
 import 'package:tenic_api/bloc/observation_bloc.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/observacion_model.dart';
@@ -74,7 +75,13 @@ class ListaObservationState extends State<ListaObservation>
                                 ),
                                 subtitle: Text(listObservation[indice].fecha),
                       leading: Icon(Icons.featured_play_list),
-                                onTap: (){ print(listObservation[indice].idObservacion);
+                                onTap: (){Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      ObservationDetail(
+                                        observation: observation,
+                                      ))); print(listObservation[indice].idObservacion);
                     observation = listObservation[indice];},
                       )
                     ],

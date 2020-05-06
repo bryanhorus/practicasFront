@@ -38,6 +38,14 @@ class HomeTecnicoState extends State<HomeTecnico> {
       onTap: () => {},
     );
 
+    var actualizar = ListTile(
+      leading: Icon(Icons.pin_drop),
+      title: Text(
+        Constants.titleactualizarcontra,
+        style: TextStyle(color: Colors.black),
+      ),
+      onTap: () => {TecniNavigator.gotoactualizar(context)},
+    );
     var cerrar = ListTile(
       leading: Icon(Icons.exit_to_app),
       title: Text(
@@ -69,6 +77,7 @@ class HomeTecnicoState extends State<HomeTecnico> {
           Ink(color: Colors.blue, child: perfil),
           observacion,
           antenasAsignadas,
+          actualizar,
           cerrar
         ],
       ),

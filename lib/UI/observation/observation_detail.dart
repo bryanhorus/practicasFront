@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/observation_bloc.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
 import 'package:tenic_api/modelo/observacion_model.dart';
-import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class ObservationDetail extends StatefulWidget {
@@ -80,7 +79,7 @@ class ActualizarObsState extends State<ObservationDetail>
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: const Text(Constants.tittleObsDetail),
+        title: const Text("Detalles"),
       ),
       body: Stack(fit: StackFit.expand, children: <Widget>[
         Center(
