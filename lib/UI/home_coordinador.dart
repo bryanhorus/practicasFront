@@ -20,6 +20,7 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
 
   @override
   initState() {
+    
     super.initState();
     _Carga();
   }
@@ -34,6 +35,11 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
   nombre = await repository.getLocalNombre();
   apellido = await repository.getLocalApellido();
   correo = await repository.getLocalCorreo();
+  setState(() {
+          nombre;
+          correo;
+          apellido;
+        });
 
   }
 
@@ -159,11 +165,10 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
                     image: AssetImage(Constants.perfilImage),
                     fit: BoxFit.cover)),
           ),
-          Ink(color: Colors.blue, child: perfil),
+          Ink(color: Colors.blue, child: usuarios),
           torre,
           departamento,
           municipio,
-          usuarios,
           antena,
           asignar,
           lista,
