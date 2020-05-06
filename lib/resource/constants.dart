@@ -9,7 +9,7 @@ class Constants {
   static const String pathServiceUsuario = "/api/tecni/auth/new";
   static const String pathServiceListUsuario = "/api/tecni/user/get/all";
   static const String pathServiceDeleteU = "/api/tecni/user/delete/id";
-  static const String pathServiceListAntena = "";
+  static const String pathServiceBuscarObservacion = "/api/tecni/observacion/find/observacion/antena";
   static const String pathServiceinsertDpto = "/api/tecni/departament/insert";
   static const String pathServiceinsertMunicipio =
       "/api/tecni/municipio/insert";
@@ -21,6 +21,7 @@ class Constants {
       "/api/tecni/municipio/get/all";
   static const String pathServiceObsLista = "/api/tecni/observacion/get/all";
   static const String pathServiceUsuarioUpdate = "/api/tecni/user/update";
+  static const String pathServiceContrasenaUpdate = "/api/tecni/auth/update/credentials";
   static const String pathServiceDepartamentoUpdate =
       "/api/tecni/departament/update";
   static const String pathServiceTorreUpdate = "/api/tecni/torre/update";
@@ -41,6 +42,9 @@ class Constants {
   static const String pathServiceTorreDelete = "/api/tecni/torre/delete/id";
   static const String pathServiceTorreLista = "/api/tecni/torre/get/all";
   static const String pathServiceLogin = "/api/tecni/auth";
+  static const String pathServiceAsignar = "/api/tecni/asignar/antena/insert";
+  static const String pathServiceAsignarLista = "/api/tecni/asignar/antena/get/all";
+  static const String pathServiceAsignarUpdate = "/api/tecni/asignar/antena/update";
   //validacion de campos
   static const String estructura =
       "La estructura no coincide con la solicitada";
@@ -109,8 +113,10 @@ class Constants {
   static const String tittleRegistroAntena = "Registrar Antena";
   static const String tittleDepartamentoactualizar = "Actualizar Departamento";
   static const String tittleMunicipioactualizar = "Actualizar Municipio";
+  static const String tittleActualizarAsignarAntena = "Actualizar Asignación";
   static const String tittleActualizarAntena = "Actualizar Antena";
   static const String tittleListaAntenas = "Antenas Registrados";
+  static const String tittleListaAntenasAsignadas = "Antenas Asignadas";
   static const String tittleListaDepartamentos = "Lista Departamentos";
   static const String tittleListaUsuarios = "Usuarios Registrados";
   static const String tittleListaObs = "Observaciones";
@@ -135,6 +141,7 @@ class Constants {
   static const String userRoute = "/usuario";
   static const String asignarTorresRoute = "/torre";
   static const String asignarAntenaRoute = "/asignar_antena";
+  static const String listaAsignarAntenaRoute = "/lista_asignar_antena";
   static const String registrarTorreRoute = "/registrar_torre";
   static const String registrarantenaRoute = "/registrar_antena";
   static const String actualizarAntenaRoute = "/actualizar_antena";
@@ -152,6 +159,10 @@ class Constants {
   static const String registrarobservacionRoute = "/observacion";
   static const String observacionesRoute = "/lista_observation";
   static const String homeTecnicoRoute = "/home_tecnico";
+  static const String buscarObservacionRoute = "/buscar_observacion";
+  static const String listaBusquedaRoute = "/lista_busqueda";
+  static const String recuperarContrasenaRoute = "/recuperar_contrasena";
+
   //Ruter imagenes
   static const String loginImage = 'assets/imgLogin.jpg';
   static const String registroImage = 'assets/imgRegistro.png';

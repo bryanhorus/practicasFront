@@ -1,5 +1,6 @@
 import 'package:tenic_api/Session_Storage.dart';
 import 'package:tenic_api/apiService/antena_api_service.dart';
+import 'package:tenic_api/apiService/asignar_api_service.dart';
 import 'package:tenic_api/apiService/dpto_api_service.dart';
 import 'package:tenic_api/apiService/login_api_service.dart';
 import 'package:tenic_api/apiService/municipio_api_service.dart';
@@ -9,8 +10,10 @@ import 'package:tenic_api/apiService/usuario_api_service.dart';
 import 'package:tenic_api/modelo/LoginUser.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
+import 'package:tenic_api/modelo/asignar_antena.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/observacion_model.dart';
+import 'package:tenic_api/modelo/recuperar.dart';
 import 'package:tenic_api/modelo/session_local.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
@@ -24,6 +27,7 @@ class Repository {
   final MunicipioApiService municipioApiService = MunicipioApiService();
   final DepartamentoApiService departamentoApiService =
       DepartamentoApiService();
+  final AsignarApiService asignarApiService = AsignarApiService();
   final SessionStorage _session = SessionStorage();
   final ObservacionApiService observacionApiService = ObservacionApiService();
 
@@ -41,6 +45,8 @@ class Repository {
       usuarioApiService.listarUsuario(token);
   Future<ApiResponse> eliminarUsuario(Usuario usuario, String token) =>
       usuarioApiService.deleteUsuario(usuario, token);
+  Future<ApiResponse> actualizarContrasena(Recuperar usuario) =>
+      usuarioApiService.updateContrasena(usuario);
   //Municipio
   Future<ApiResponse> listaMunicipio(String token) =>
       municipioApiService.listarMunicipio(token);
@@ -86,4 +92,14 @@ class Repository {
       observacionApiService.insertObservacion(observacion, token);
   Future<ApiResponse> listaObservation(String token) =>
       observacionApiService.listarObservation(token);
+  Future<ApiResponse> buscaObservacion(Observacion observacion,String token) =>
+      observacionApiService.buscarObservacion(observacion,token);
+  //Asignar antena
+  Future<ApiResponse> registrarAsignacion(AsignarAntena asignarAntena, String token) =>
+      asignarApiService.insertAsignacion(asignarAntena, token);
+  Future<ApiResponse> actualizarAsignarAntena(AsignarAntena asignarAntena, String token) =>
+      asignarApiService.updateAsignarAntena(asignarAntena, token);
+  Future<ApiResponse> listaAsignarAntena(String token) =>
+      asignarApiService.listarAsignarAntena(token);
+
 }

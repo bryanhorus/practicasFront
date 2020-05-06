@@ -1,4 +1,5 @@
 import 'package:tenic_api/modelo/antena_model.dart';
+import 'package:tenic_api/modelo/asignar_antena.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/municipio_model.dart';
 import 'package:tenic_api/modelo/observacion_model.dart';
@@ -25,7 +26,9 @@ class ApiResponse {
   List<Usuario> listUsuario = List();
   List<Municipio> listMunicipio = List();
   List<Observacion> listObservation = List();
+  List<Observacion> listbusqueda = List();
   List<Departamento> listDepartamento = List();
   List<Antena> listAntena = List();
   List<Torre> listTorre = List();
+  List<AsignarAntena> listAsignarAntena = List();
 }

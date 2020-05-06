@@ -71,14 +71,23 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
       onTap: () => {TecniNavigator.goToListaMuncipio(context)},
     );
 
-    /*var asignar = ListTile(
+    var asignar = ListTile(
       leading: Icon(Icons.fiber_new),
       title: Text(
         Constants.tittleAsignarAntena,
         style: TextStyle(color: Colors.black),
       ),
       onTap: () => {TecniNavigator.goToAsignarAntena(context)},
-    );*/
+    );
+
+    var lista = ListTile(
+      leading: Icon(Icons.list),
+      title: Text(
+        Constants.tittleListaAntenasAsignadas,
+        style: TextStyle(color: Colors.black),
+      ),
+      onTap: () => {TecniNavigator.goToListaAsignarAntena(context)},
+    );
 
     var observacion = ListTile(
       leading: Icon(Icons.pin_drop),
@@ -122,6 +131,8 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
           municipio,
           usuarios,
           antena,
+          asignar,
+          lista,
           observacion,
           cerrar
         ],
