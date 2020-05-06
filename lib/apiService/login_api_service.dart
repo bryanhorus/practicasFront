@@ -22,7 +22,8 @@ class LoginApiService {
     if (res.statusCode == 200) {
       print("token " + _session.accessToken);
       print("rol " + _session.rol);
-
+      print("nombre "+ _session.nombre);
+      print("telefono" + _session.telefono);
       return _session;
     }
     return _session;
