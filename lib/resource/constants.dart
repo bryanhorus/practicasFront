@@ -114,6 +114,7 @@ class Constants {
   static const String tittleMunicipioactualizar = "Actualizar Municipio";
   static const String tittleActualizarAsignarAntena = "Actualizar Asignación";
   static const String tittleActualizarAntena = "Actualizar Antena";
+  static const String tittleObsDetail = "Kevin Roldán";
   static const String tittleListaAntenas = "Antenas Registrados";
   static const String tittleListaAntenasAsignadas = "Antenas Asignadas";
   static const String tittleListaDepartamentos = "Lista Departamentos";
@@ -169,6 +170,7 @@ class Constants {
   static const String labelCorreo = "Correo";
   static const String labelTelefono = "Telefono";
   static const String labelNombre = "Nombre";
+  static const String labelDate = "Date";
   static const String labelNombreTecnico = "Nombre del tecnico";
   static const String labelApellido = "Apellido";
   static const String tipoUsuario = "Cargo";
