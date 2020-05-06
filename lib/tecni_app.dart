@@ -9,7 +9,7 @@ import 'package:tenic_api/UI/login.dart';
 import 'package:tenic_api/UI/municipio/actualizar_municipio.dart';
 import 'package:tenic_api/UI/municipio/lista_municipio.dart';
 import 'package:tenic_api/UI/observation/lista_observation.dart';
-import 'package:tenic_api/UI/perfil.dart';
+
 import 'package:tenic_api/UI/tecnico/menu_tecnico.dart';
 import 'package:tenic_api/UI/tecnico/observacion.dart';
 import 'package:tenic_api/UI/torre/registrar_torre.dart';
@@ -25,6 +25,7 @@ import 'UI/home_coordinador.dart';
 import 'UI/municipio/registrar_municipio.dart';
 import 'UI/torre/actualizar_torre.dart';
 import 'UI/torre/lista_torre.dart';
+import 'UI/usuario/perfil.dart';
 
 class App extends StatelessWidget {
   @override

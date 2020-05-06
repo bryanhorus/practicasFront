@@ -3,7 +3,7 @@ class Constants {
   static const String appName = "TecniApp";
   //Url
   static const String urlAuthority =
-      "ec2-3-15-37-85.us-east-2.compute.amazonaws.com:8090";
+      "ec2-3-15-37-85.us-east-2.compute.amazonaws.com:8084";
   static const String contenTypeHeader = "application/json";
   //servicio
   static const String pathServiceUsuario = "/api/tecni/auth/new";

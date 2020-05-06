@@ -3,6 +3,8 @@ import 'package:tenic_api/navigator.dart';
 import 'dart:math' as math;
 import 'package:tenic_api/resource/constants.dart';
 
+import 'editar_perfil.dart';
+
 
 class ProfilePageDesign extends StatefulWidget {
     const ProfilePageDesign({ key}) : super(key: key);
@@ -95,11 +97,11 @@ class CustomAppBar extends StatelessWidget
                       ),
                     ),
                     SizedBox(height: 16,),
-                    Text('bryan@gmail.com', style: TextStyle(
+                    Text("bryan@gmail.com", style: TextStyle(
                       color: Colors.white,
                       fontSize: 15
                     ),),
-                    Text('3196399117', style: TextStyle(
+                    Text("3196399117", style: TextStyle(
                       color: Colors.white,
                       fontSize: 15
                     ),)
@@ -110,7 +112,7 @@ class CustomAppBar extends StatelessWidget
                     Text(Constants.trabajador, style: TextStyle(
                         color: Colors.white
                     ),),
-                    Text('Bryan alvarado', style: TextStyle(
+                    Text("Bryan Alvarado", style: TextStyle(
                         fontSize: 26,
                         color: Colors.white
                     ),)
@@ -129,6 +131,12 @@ class CustomAppBar extends StatelessWidget
               child: GestureDetector(
                 onTap: (){
                   print("//TODO: button clicked");
+
+                  Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                EditarPerfil( )));
                 },
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(0, 24, 16, 0),

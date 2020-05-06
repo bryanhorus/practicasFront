@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tenic_api/UI/dialog.dart';
 import 'package:tenic_api/bloc/departamento_bloc.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/navigator.dart';

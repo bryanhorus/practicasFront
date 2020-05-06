@@ -125,8 +125,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-<<<<<<< HEAD
-=======
   flutter_cache_manager:
     dependency: transitive
     description:
@@ -148,7 +146,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.9.0"
->>>>>>> 1778221c8f2aac5cd4a3f050453ff93e3bb037d1
   flutter_secure_storage:
     dependency: "direct main"
     description:
@@ -252,13 +249,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.6.4"
-<<<<<<< HEAD
-  pedantic:
-    dependency: "direct main"
-=======
   path_provider:
     dependency: transitive
->>>>>>> 1778221c8f2aac5cd4a3f050453ff93e3bb037d1
     description:
       name: path_provider
       url: "https://pub.dartlang.org"
@@ -327,8 +319,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.5"
-<<<<<<< HEAD
-=======
   rxdart:
     dependency: transitive
     description:
@@ -336,7 +326,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.24.0"
->>>>>>> 1778221c8f2aac5cd4a3f050453ff93e3bb037d1
   scoped_model:
     dependency: "direct main"
     description:
