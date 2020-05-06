@@ -22,6 +22,7 @@ class Constants {
   static const String pathServiceObsLista = "/api/tecni/observacion/get/all";
   static const String pathServiceUsuarioUpdate = "/api/tecni/user/update";
   static const String pathServiceContrasenaUpdate = "/api/tecni/auth/update/credentials";
+  static const String pathServiceContrasenaaUpdate = "/api/tecni/auth/update/credentials/new";
   static const String pathServiceDepartamentoUpdate =
       "/api/tecni/departament/update";
   static const String pathServiceTorreUpdate = "/api/tecni/torre/update";

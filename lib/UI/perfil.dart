@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tenic_api/Session_Storage.dart';
+import 'package:tenic_api/modelo/session_local.dart';
 import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/repository/repository.dart';
 import 'dart:math' as math;
@@ -14,17 +16,27 @@ class ProfilePageDesign extends StatefulWidget {
 
 class ProfilePageDesignState extends State<ProfilePageDesign> 
 with SingleTickerProviderStateMixin{
+  @override
+  void initState() {
+    super.initState();
+    _handleSubmitted();
 
+  }
+
+  void _handleSubmitted() async {
+    final Repository _repository = Repository();
+    String nombre = await _repository.getLocalNombre();
+    String apellido = await _repository.getLocalApellido();
+    
+      }
   TextStyle _style(){
     return TextStyle(
       fontWeight: FontWeight.bold
     );
   }
-    @override
-  void initState() {
-    super.initState();
 
-  }
+  Session _session = Session(nombre: '', apellido: '', correo: '', telefono: '');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +46,7 @@ with SingleTickerProviderStateMixin{
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(Constants.mensajePerfil, style: _style(),),
+            Text(_session.nombre, style: _style(),),
             SizedBox(height: 4,),
             Text(Constants.agradecimiento),
             SizedBox(height: 20,),
@@ -54,12 +66,9 @@ class CustomAppBar extends StatefulWidget
   Size get preferredSize => Size(double.infinity, 320);
 
 
-  void _handleSubmitted() async {
-    final Repository _repository = Repository();
-    String nombre = await _repository.getLocalNombre();
-    String apellido = await _repository.getLocalApellido();
-    
-      }
+
+
+
 
 
 

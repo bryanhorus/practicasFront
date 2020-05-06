@@ -39,6 +39,7 @@ class Repository {
   Future<String> getLocalApellido()=> _session.getApellido();
   Future<String> getLocalCorreo()=> _session.getCorreo();
   Future<String> getLocalTelefono()=> _session.getTelefono();
+  Future<String> getLocalId()=> _session.getId();
 
 
   //Usuario
@@ -52,6 +53,9 @@ class Repository {
       usuarioApiService.deleteUsuario(usuario, token);
   Future<ApiResponse> actualizarContrasena(Recuperar usuario) =>
       usuarioApiService.updateContrasena(usuario);
+  Future<ApiResponse> actualizarContrasenaa(Usuario usuario) =>
+      usuarioApiService.updateContrasenaa(usuario);
+
   //Municipio
   Future<ApiResponse> listaMunicipio(String token) =>
       municipioApiService.listarMunicipio(token);

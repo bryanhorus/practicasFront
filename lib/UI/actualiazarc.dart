@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tenic_api/navigator.dart';
+import 'package:tenic_api/bloc/usuario_bloc.dart';
+import 'package:tenic_api/modelo/usuario_model.dart';
+import 'package:tenic_api/repository/repository.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class Actualizar extends StatefulWidget {
@@ -14,10 +16,19 @@ class ActualizarState extends State<Actualizar>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _autovalidate = false;
+  UsuarioBloc usuarioBloc = UsuarioBloc();
+  Repository _repository;
+  String id;
+
+    Usuario _tecnico = Usuario(
+      idUsuario: 0 ,
+      password: '',
+);
 
   @override
   void initState() {
     super.initState();
+    traer();
   }
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -48,13 +59,19 @@ class ActualizarState extends State<Actualizar>
         });
   }
 
+
+  void traer()async{
+    id = await _repository.getLocalRol();
+    print("******" + id);
+  }
+
   void _handleSubmitted() {
     final FormState form = _formKey.currentState;
     if (!form.validate()) {
       _autovalidate = true;
     } else {
       form.save();
-
+      usuarioBloc.updateContrasenaa(_tecnico);
       showUpdateDialog(context);
     }
   }
@@ -87,23 +104,6 @@ class ActualizarState extends State<Actualizar>
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(top: 40.0),
-                          ),
-                          TextFormField(
-                            obscureText: true,
-                            autocorrect: false,
-                            decoration: InputDecoration(
-                                labelText: Constants.labelPassword2,
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0)),
-                                hintText: Constants.labelPassword2,
-                                icon: Icon(Icons.security)),
-                            maxLength: 12,
-                            validator: validatePassword,
-                            onSaved: (String value) {},
-                            style: TextStyle(fontSize: 18.0),
-                          ),
-                          Padding(
                             padding: const EdgeInsets.only(top: 60.0),
                           ),
                           TextFormField(
@@ -117,11 +117,27 @@ class ActualizarState extends State<Actualizar>
                                 icon: Icon(Icons.security)),
                             maxLength: 12,
                             validator: validatePassword,
-                            onSaved: (String value) {},
+                            onSaved: (String value) {
+                              _tecnico.password = value.trim();
+                            },
                             style: TextStyle(fontSize: 18.0),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 60.0),
+                          ),
+                          TextFormField(
+                            enabled: false,
+                            decoration: InputDecoration(
+                                labelText: Constants.labelPassword,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                hintText: Constants.labelPassword,
+                                icon: Icon(Icons.security)),
+                                initialValue: id,
+                            onSaved: (String value) {
+                              _tecnico.idUsuario = int.parse(value);
+                            },
+                            style: TextStyle(fontSize: 18.0),
                           ),
                           MaterialButton(
                             shape: RoundedRectangleBorder(
