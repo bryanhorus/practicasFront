@@ -1,5 +1,7 @@
 
+import 'package:tenic_api/modelo/LoginUser.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
+import 'package:tenic_api/modelo/crear_contrasena.dart';
 import 'package:tenic_api/modelo/recuperar.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
 import 'package:tenic_api/repository/repository.dart';
@@ -85,7 +87,7 @@ class UsuarioBloc {
     return apiResponse;
   }
 
-    Future<ApiResponse> updateContrasenaa(Usuario usuario) async {
+    Future<ApiResponse> updateContrasenaa(Contrasena usuario) async {
     ApiResponse apiResponse = await _repository.actualizarContrasenaa(usuario);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;

@@ -11,6 +11,7 @@ import 'package:tenic_api/modelo/LoginUser.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/asignar_antena.dart';
+import 'package:tenic_api/modelo/crear_contrasena.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/observacion_model.dart';
 import 'package:tenic_api/modelo/recuperar.dart';
@@ -53,7 +54,7 @@ class Repository {
       usuarioApiService.deleteUsuario(usuario, token);
   Future<ApiResponse> actualizarContrasena(Recuperar usuario) =>
       usuarioApiService.updateContrasena(usuario);
-  Future<ApiResponse> actualizarContrasenaa(Usuario usuario) =>
+  Future<ApiResponse> actualizarContrasenaa(Contrasena usuario) =>
       usuarioApiService.updateContrasenaa(usuario);
 
   //Municipio
