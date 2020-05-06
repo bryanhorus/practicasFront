@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tenic_api/modelo/LoginUser.dart';
 import 'package:tenic_api/navigator.dart';
+import 'package:tenic_api/repository/repository.dart';
 import 'dart:math' as math;
 import 'package:tenic_api/resource/constants.dart';
 
@@ -11,8 +13,20 @@ class ProfilePageDesign extends StatefulWidget {
   ProfilePageDesignState createState() => ProfilePageDesignState();
 }
 
+Login _login = Login(
+  correo: ""
+);
+
 class ProfilePageDesignState extends State<ProfilePageDesign> 
 with SingleTickerProviderStateMixin{
+
+   @override
+  void initState() {
+    super.initState();
+    //InicioSesionBloc();
+    final Repository _repository = Repository();
+  }
+
 
   TextStyle _style(){
     return TextStyle(
@@ -95,7 +109,7 @@ class CustomAppBar extends StatelessWidget
                       ),
                     ),
                     SizedBox(height: 16,),
-                    Text('bryan@gmail.com', style: TextStyle(
+                    Text(_login.correo, style: TextStyle(
                       color: Colors.white,
                       fontSize: 15
                     ),),
