@@ -30,14 +30,10 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
   }
 
   void _Carga() async{
-
   nombre = await repository.getLocalNombre();
   apellido = await repository.getLocalApellido();
   correo = await repository.getLocalCorreo();
-
   }
-
-
 
   @override
   Widget build (BuildContext context) {

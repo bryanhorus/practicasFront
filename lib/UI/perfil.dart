@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tenic_api/Session_Storage.dart';
-import 'package:tenic_api/modelo/session_local.dart';
 import 'package:tenic_api/navigator.dart';
-import 'package:tenic_api/repository/repository.dart';
 import 'dart:math' as math;
 import 'package:tenic_api/resource/constants.dart';
 
@@ -29,7 +27,6 @@ with SingleTickerProviderStateMixin{
     SessionStorage;
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,10 +51,6 @@ with SingleTickerProviderStateMixin{
 
 class CustomAppBar extends StatefulWidget
   with PreferredSizeWidget{
-
-  final SessionStorage _storage = SessionStorage();
-  final String nom = SessionStorage().session.nombre;
-
 
   @override
   Size get preferredSize => Size(double.infinity, 320);
