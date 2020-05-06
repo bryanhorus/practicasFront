@@ -13,6 +13,7 @@ import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/asignar_antena.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
 import 'package:tenic_api/modelo/observacion_model.dart';
+import 'package:tenic_api/modelo/recuperar.dart';
 import 'package:tenic_api/modelo/session_local.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
@@ -44,6 +45,8 @@ class Repository {
       usuarioApiService.listarUsuario(token);
   Future<ApiResponse> eliminarUsuario(Usuario usuario, String token) =>
       usuarioApiService.deleteUsuario(usuario, token);
+  Future<ApiResponse> actualizarContrasena(Recuperar usuario) =>
+      usuarioApiService.updateContrasena(usuario);
   //Municipio
   Future<ApiResponse> listaMunicipio(String token) =>
       municipioApiService.listarMunicipio(token);
@@ -89,6 +92,8 @@ class Repository {
       observacionApiService.insertObservacion(observacion, token);
   Future<ApiResponse> listaObservation(String token) =>
       observacionApiService.listarObservation(token);
+  Future<ApiResponse> buscaObservacion(Observacion observacion,String token) =>
+      observacionApiService.buscarObservacion(observacion,token);
   //Asignar antena
   Future<ApiResponse> registrarAsignacion(AsignarAntena asignarAntena, String token) =>
       asignarApiService.insertAsignacion(asignarAntena, token);
@@ -96,4 +101,5 @@ class Repository {
       asignarApiService.updateAsignarAntena(asignarAntena, token);
   Future<ApiResponse> listaAsignarAntena(String token) =>
       asignarApiService.listarAsignarAntena(token);
+
 }

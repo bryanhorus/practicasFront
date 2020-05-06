@@ -9,7 +9,6 @@ class LoginApiService {
   LoginApiService();
 
   Session _session;
-
   Future<Session> iniciarSesion(Login login) async {
     var body2 = json.encode(login.toJson());
     Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceLogin);
@@ -27,4 +26,5 @@ class LoginApiService {
     }
     return _session;
   }
+
 }

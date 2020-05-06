@@ -29,7 +29,7 @@ class Usuario {
         apellido: parsedJson['apellido'],
         correo: parsedJson['correo'],
         password: parsedJson['password'],
-        telfono: parsedJson['telfono'],
+        telfono: parsedJson['telefono'],
         roles: imagesList);
   }
 
@@ -39,7 +39,7 @@ class Usuario {
         'apellido': apellido,
         'correo': correo,
         'password': password,
-        'telfono': telfono,
+        'telefono': telfono,
         'roles': roles != null ? roles.map((i) => i.toJson()).toList() : null
       };
 }

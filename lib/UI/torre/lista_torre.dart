@@ -80,7 +80,7 @@ class _ListaTorreState extends State<ListaTorre>
       appBar: AppBar(
         title: const Text(Constants.tittleListaTorre),
         actions: <Widget>[
-          nominatimButton(Colors.indigo, 'Mapa'),
+          nominatimButton(Colors.blue, 'MAPA'),
             IconButton(
               icon: Icon(Icons.add_circle),
               onPressed: () {TecniNavigator.goToRegistrarTorre(context);},
