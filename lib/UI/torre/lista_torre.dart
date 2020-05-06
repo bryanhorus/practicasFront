@@ -5,6 +5,7 @@ import 'package:tenic_api/bloc/torre_bloc.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/torre_model.dart';
 import 'package:tenic_api/resource/constants.dart';
+import 'package:nominatim_location_picker/nominatim_location_picker.dart';
 import '../../navigator.dart';
 import 'map.dart';
 
@@ -39,6 +40,38 @@ class _ListaTorreState extends State<ListaTorre>
     TorreBloc();
     _handleSubmitted();
   }
+  Map _pickedLocation;
+  var _pickedLocationText;
+
+  Future getLocationWithNominatim() async {
+    Map result = await showDialog(
+        context: context,
+        builder: (BuildContext ctx) {
+          return NominatimLocationPicker(
+            searchHint: 'Buscar',
+            awaitingForLocation: "Esperando su localizacion",
+          );
+        });
+    if (result != null) {
+      setState(() => _pickedLocation = result);
+    } else {
+      return;
+    }
+  }
+
+  RaisedButton nominatimButton(Color color, String name) {
+    return RaisedButton(
+      color: color,
+      onPressed: () async {
+        await getLocationWithNominatim();
+      },
+      textColor: Colors.white,
+      child: Center(
+        child: Text(name),
+      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +80,7 @@ class _ListaTorreState extends State<ListaTorre>
       appBar: AppBar(
         title: const Text(Constants.tittleListaTorre),
         actions: <Widget>[
+          nominatimButton(Colors.indigo, 'Mapa'),
             IconButton(
               icon: Icon(Icons.add_circle),
               onPressed: () {TecniNavigator.goToRegistrarTorre(context);},
@@ -54,8 +88,10 @@ class _ListaTorreState extends State<ListaTorre>
           ],
       ),
       body: Stack(fit: StackFit.expand, children: <Widget>[
+
         Container(
-          child: ListView.builder(
+
+          child:  ListView.builder(
             shrinkWrap: true,
             padding: const EdgeInsets.all(15.0),
             itemCount: listTorre.length,
@@ -88,17 +124,19 @@ class _ListaTorreState extends State<ListaTorre>
                     ButtonTheme.bar(
                       child: ButtonBar(
                         children: <Widget>[
+
                           IconButton(
                             icon: Icon(Icons.map),
                             onPressed: () {
-                              torre = listTorre[indice];
+                              nominatimButton(Colors.blue, 'Mapa');
+                             /* torre = listTorre[indice];
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (BuildContext context) =>
                                           Mapa(
                                             torre: torre,
-                                          )));
+                                          )));*/
                             },
                           ),
                         ],
@@ -109,6 +147,7 @@ class _ListaTorreState extends State<ListaTorre>
               );
             },
           ),
+
         ),
       ]),
     );

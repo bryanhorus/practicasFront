@@ -7,12 +7,12 @@ class Login {
   factory Login.fromJson(Map<String, dynamic> parsedJson) {
     return Login(
       correo: parsedJson['correo'],
-      password: parsedJson['password'],
+      password: parsedJson['password']
     );
   }
 
   Map<String, dynamic> toJson() => {
         'correo': correo,
-        'password': password,
+        'password': password
       };
 }

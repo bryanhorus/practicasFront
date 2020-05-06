@@ -16,7 +16,7 @@ class LoginPage extends StatefulWidget {
 
 Login _login = Login(
   correo: "",
-  password: "",
+  password: ""
 );
 
 class LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
