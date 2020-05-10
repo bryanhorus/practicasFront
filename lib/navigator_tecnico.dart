@@ -15,4 +15,7 @@ class TecnicoNavigator {
   static void goToRegistrarObservacion(BuildContext context) {
     Navigator.pushNamed(context, Constants.registrarobservacionRoute);
   }
+   static void goTolistarobservacion(BuildContext context) {
+    Navigator.pushNamed(context, Constants.listaratenas);
+  }
 }

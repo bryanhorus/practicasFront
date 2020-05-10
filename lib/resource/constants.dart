@@ -45,6 +45,7 @@ class Constants {
   static const String pathServiceLogin = "/api/tecni/auth";
   static const String pathServiceAsignar = "/api/tecni/asignar/antena/insert";
   static const String pathServiceAsignarLista = "/api/tecni/asignar/antena/get/all";
+  static const String pathServiceAsignarListatecnico ="/api/tecni/antena/find/user";
   static const String pathServiceAsignarUpdate = "/api/tecni/asignar/antena/update";
   //validacion de campos
   static const String estructura =
@@ -163,6 +164,7 @@ static const String validatePass = "la contraseña es necesario!!";
   static const String actualizarMunicipioRoute = "/actualizar_Municipio";
   static const String actualizarDepartamentosRoute = "/actualizar_Departamento";
   static const String registrarobservacionRoute = "/observacion";
+   static const String listaratenas = "/antenas_asignadas";
   static const String observacionesRoute = "/lista_observation";
   static const String homeTecnicoRoute = "/home_tecnico";
   static const String buscarObservacionRoute = "/buscar_observacion";

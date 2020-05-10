@@ -76,4 +76,35 @@ class AsignarApiService {
     }
     return apiResponse;
   }
+  
+
+   Future<ApiResponse> listarAsignarAntena1(AsignarAntena asignarAntena, String token) async {
+   
+    ApiResponse apiResponse = ApiResponse(statusResponse: 0);
+        
+        Uri uri =
+            Uri.http(Constants.urlAuthority, Constants.pathServiceAsignarListatecnico
+            );
+        
+    var res = await http.get(uri, headers: {
+      HttpHeaders.contentTypeHeader: Constants.contenTypeHeader,
+      HttpHeaders.authorizationHeader: token
+    });
+        
+    var resBody = json.decode(res.body);
+    apiResponse.statusResponse = res.statusCode;
+    apiResponse.listAsignarAntena1 = List();
+        
+    if (apiResponse.statusResponse == 200) {
+      resBody.forEach((i) {
+        apiResponse.listAsignarAntena1.add(AsignarAntena.fromJson(i));
+        return i;
+      });
+    
+      return apiResponse;
+    }
+    return apiResponse;
+  }
+   
+
 }

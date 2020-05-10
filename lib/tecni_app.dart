@@ -25,6 +25,7 @@ import 'UI/antena/lista_antenas.dart';
 import 'UI/departamento/lista_departamentos.dart';
 import 'UI/home_coordinador.dart';
 import 'UI/municipio/registrar_municipio.dart';
+import 'UI/tecnico/listar.dart';
 import 'UI/torre/actualizar_torre.dart';
 import 'UI/torre/lista_torre.dart';
 import 'UI/actualiazarc.dart';
@@ -46,6 +47,7 @@ class App extends StatelessWidget {
         Constants.listaAntenasRoute:(context) => ListaAntenas(),
         Constants.asignarAntenaRoute:(context) => AsignarAntenaPage(),
         Constants.listaAsignarAntenaRoute:(context) => ListaAntenasAsignadas(),
+        Constants.listaratenas:(context) => Asignadastecnico(),
         //usuario
         Constants.registroRoute: (context) => TextFormFieldDemo(),
         Constants.actualizarUsuarioRoute: (context) => ActualizarUsuario(),

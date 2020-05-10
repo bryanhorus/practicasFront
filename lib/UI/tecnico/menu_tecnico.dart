@@ -60,7 +60,7 @@ class HomeTecnicoState extends State<HomeTecnico> {
         Constants.tittleAntenaAsignadas,
         style: TextStyle(color: Colors.black),
       ),
-      onTap: () => {},
+      onTap: () => {TecnicoNavigator.goTolistarobservacion(context)},
     );
 
     var actualizar = ListTile(

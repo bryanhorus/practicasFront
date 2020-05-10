@@ -112,4 +112,8 @@ class Repository {
   Future<ApiResponse> listaAsignarAntena(String token) =>
       asignarApiService.listarAsignarAntena(token);
 
+Future<ApiResponse> listarAsignarAntenatecnico(AsignarAntena asignarAntena,String token) =>
+      asignarApiService.listarAsignarAntena1(asignarAntena,token);
+      
+
 }
