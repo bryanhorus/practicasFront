@@ -1,18 +1,15 @@
 import 'dart:io';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:tenic_api/modelo/LoginUser.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/crear_contrasena.dart';
 import 'package:tenic_api/modelo/recuperar.dart';
 import 'package:tenic_api/modelo/usuario_model.dart';
-import 'package:tenic_api/repository/repository.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 
 class UsuarioApiService {
   Usuario _usuario;
-  Repository _repository;
 
   Future<ApiResponse> insertUsuario(Usuario usuario) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);

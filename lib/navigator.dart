@@ -100,7 +100,7 @@ class TecniNavigator {
   }
 
   //Perfil
-  static void goToPerfilCoordinador(BuildContext context) {
+  static void goToPerfil(BuildContext context) {
     Navigator.pushNamed(context, Constants.perfilCoordinadorRoute);
   }
 

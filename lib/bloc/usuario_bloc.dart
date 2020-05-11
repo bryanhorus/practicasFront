@@ -1,5 +1,4 @@
 
-import 'package:tenic_api/modelo/LoginUser.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/crear_contrasena.dart';
 import 'package:tenic_api/modelo/recuperar.dart';

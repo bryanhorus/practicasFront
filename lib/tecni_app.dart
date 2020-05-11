@@ -11,6 +11,7 @@ import 'package:tenic_api/UI/municipio/lista_municipio.dart';
 import 'package:tenic_api/UI/observation/buscar_observacion.dart';
 import 'package:tenic_api/UI/observation/lista_busqueda.dart';
 import 'package:tenic_api/UI/observation/lista_observation.dart';
+import 'package:tenic_api/UI/perfil.dart';
 import 'package:tenic_api/UI/tecnico/menu_tecnico.dart';
 import 'package:tenic_api/UI/tecnico/observacion.dart';
 import 'package:tenic_api/UI/torre/registrar_torre.dart';
@@ -53,6 +54,7 @@ class App extends StatelessWidget {
         Constants.actualizarUsuarioRoute: (context) => ActualizarUsuario(),
         Constants.listaUsuariosRoute: (context) => ListaUsuarios(),
         Constants.recuperarContrasenaRoute: (context) => RecuperarContrasena(),
+        Constants.perfilCoordinadorRoute: (context) => PerfilPage(),
         //departamento
         Constants.registrarDepartamentosRoute: (context) => CrearDepartamento(),
         Constants.actualizarDepartamentosRoute: (context) => ActualizarDepartamento(),

@@ -20,7 +20,6 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
 
   @override
   initState() {
-    
     super.initState();
     _Carga();
   }
@@ -53,7 +52,7 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
         Constants.appBarPerfil,
         style: TextStyle(color: Colors.black),
       ),
-      onTap: () => {TecniNavigator.goToPerfilCoordinador(context)},
+      onTap: () => {TecniNavigator.goToPerfil(context)},
     );
 
     var torre = ListTile(
@@ -166,6 +165,7 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
                     fit: BoxFit.cover)),
           ),
           Ink(color: Colors.blue, child: usuarios),
+          perfil,
           torre,
           departamento,
           municipio,

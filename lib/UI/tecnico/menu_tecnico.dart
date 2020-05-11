@@ -63,6 +63,15 @@ class HomeTecnicoState extends State<HomeTecnico> {
       onTap: () => {TecnicoNavigator.goTolistarobservacion(context)},
     );
 
+    var perfil = ListTile(
+      leading: Icon(Icons.person),
+      title: Text(
+        Constants.perfil,
+        style: TextStyle(color: Colors.black),
+      ),
+      onTap: () => {TecnicoNavigator.goToPerfil(context)},
+    );
+
     var actualizar = ListTile(
       leading: Icon(Icons.pin_drop),
       title: Text(
@@ -100,6 +109,7 @@ class HomeTecnicoState extends State<HomeTecnico> {
                     fit: BoxFit.cover)),
           ),
           Ink(color: Colors.blue, child: observacion),
+          perfil,
           antenasAsignadas,
           actualizar,
           cerrar

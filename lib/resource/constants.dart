@@ -143,7 +143,7 @@ static const String validatePass = "la contraseña es necesario!!";
   //Rutas
   static const String homeRoute = "/";
   static const String homeCoordinadorRoute = "/home_coordinador";
-  static const String perfilCoordinadorRoute = "/perfil_coordinador";
+  static const String perfilCoordinadorRoute = "/perfil";
   static const String registroRoute = "/registro_usuarios";
   static const String userRoute = "/usuario";
   static const String asignarTorresRoute = "/torre";
