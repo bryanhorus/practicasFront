@@ -56,9 +56,9 @@ class AsignarAntenaBloc {
     }
   }
 
-   Future<ApiResponse> listarAsignarAntenatecnico(AsignarAntena asignarAntena) async {
+   Future<ApiResponse> listarAsignarAntenatecnico() async {
     String token = await _repository.getLocalAccessToken();
-    ApiResponse apiResponse = await _repository.listarAsignarAntenatecnico(asignarAntena, token);
+    ApiResponse apiResponse = await _repository.listarAsignarAntenatecnico(token);
     if (apiResponse.statusResponse == 200) {
       apiResponse.message = Constants.createMessage;
       print(apiResponse.message);

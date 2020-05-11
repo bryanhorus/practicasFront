@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/asignar_antena.dart';
+import 'package:tenic_api/repository/repository.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class AsignarApiService {
@@ -12,8 +13,7 @@ class AsignarApiService {
       AsignarAntena asignarAntena, String token) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var body2 = json.encode(asignarAntena.toJson());
-    Uri uri =
-        Uri.http(Constants.urlAuthority, Constants.pathServiceAsignar);
+    Uri uri = Uri.http(Constants.urlAuthority, Constants.pathServiceAsignar);
     var res = await http.post(uri,
         headers: {
           HttpHeaders.contentTypeHeader: Constants.contenTypeHeader,
@@ -30,7 +30,9 @@ class AsignarApiService {
     }
     return apiResponse;
   }
-  Future<ApiResponse> updateAsignarAntena(AsignarAntena asignarAntena, String token) async {
+
+  Future<ApiResponse> updateAsignarAntena(
+      AsignarAntena asignarAntena, String token) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
     var body2 = json.encode(asignarAntena.toJson());
     Uri uri =
@@ -76,35 +78,36 @@ class AsignarApiService {
     }
     return apiResponse;
   }
-  
 
-   Future<ApiResponse> listarAsignarAntena1(AsignarAntena asignarAntena, String token) async {
-   
+  Future<ApiResponse> listarAntenasAsignadas(String token) async {
     ApiResponse apiResponse = ApiResponse(statusResponse: 0);
-        
-        Uri uri =
-            Uri.http(Constants.urlAuthority, Constants.pathServiceAsignarListatecnico
-            );
-        
+    final Repository _repository = Repository();
+    var id = await _repository.getLocalId();
+
+    var queryParameters = {
+      'idUser': id
+    };
+
+    Uri uri = Uri.http(
+        Constants.urlAuthority, Constants.pathServiceAsignarListatecnico, queryParameters );
+
     var res = await http.get(uri, headers: {
       HttpHeaders.contentTypeHeader: Constants.contenTypeHeader,
       HttpHeaders.authorizationHeader: token
     });
-        
+
     var resBody = json.decode(res.body);
     apiResponse.statusResponse = res.statusCode;
     apiResponse.listAsignarAntena1 = List();
-        
+
     if (apiResponse.statusResponse == 200) {
       resBody.forEach((i) {
         apiResponse.listAsignarAntena1.add(AsignarAntena.fromJson(i));
         return i;
       });
-    
+
       return apiResponse;
     }
     return apiResponse;
   }
-   
-
 }

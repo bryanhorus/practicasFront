@@ -45,7 +45,7 @@ class Constants {
   static const String pathServiceLogin = "/api/tecni/auth";
   static const String pathServiceAsignar = "/api/tecni/asignar/antena/insert";
   static const String pathServiceAsignarLista = "/api/tecni/asignar/antena/get/all";
-  static const String pathServiceAsignarListatecnico ="/api/tecni/antena/find/user";
+  static const String pathServiceAsignarListatecnico ="/api/tecni/asignar/antena/find/user";
   static const String pathServiceAsignarUpdate = "/api/tecni/asignar/antena/update";
   //validacion de campos
   static const String estructura =
