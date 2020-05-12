@@ -127,7 +127,7 @@ class BuscarObservacionPageState extends State<BuscarObservacionPage>
                             splashColor: Colors.blue,
                             textColor: Colors.black,
                             child: Text(Constants.btnSiguiente),
-                            onPressed: _handleSubmitted,
+                            onPressed: (){TecniNavigator.goToListaBusqueda(context);},
                           ),
                         ],
                       ),

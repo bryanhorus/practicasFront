@@ -80,9 +80,9 @@ class _ListaTorreState extends State<ListaTorre>
         title: const Text(Constants.tittleListaTorre),
         actions: <Widget>[
           nominatimButton(Colors.blue, 'MAPA'),
-            IconButton(
-              icon: Icon(Icons.add_circle),
-              onPressed: () {TecniNavigator.goToRegistrarTorre(context);},
+          IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {TecniNavigator.goToListaBusquedaTorre(context);},
             ),
           ],
       ),

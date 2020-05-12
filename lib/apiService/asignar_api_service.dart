@@ -79,17 +79,13 @@ class AsignarApiService {
     return apiResponse;
   }
 
-  Future<ApiResponse> listarAntenasAsignadas(String token) async {
-    ApiResponse apiResponse = ApiResponse(statusResponse: 0);
-    final Repository _repository = Repository();
-    var id = await _repository.getLocalId();
-
+  Future<ApiResponse> listaBusquedaAsignar(AsignarAntena antena,String token) async {
     var queryParameters = {
-      'idUser': id
+      'idUser': antena.usuario.idUsuario.toString()
     };
-
-    Uri uri = Uri.http(
-        Constants.urlAuthority, Constants.pathServiceAsignarListatecnico, queryParameters );
+    ApiResponse apiResponse = ApiResponse(statusResponse: 0);
+    Uri uri =
+        Uri.http(Constants.urlAuthority, Constants.pathServiceAsignarListatecnico, queryParameters);
 
     var res = await http.get(uri, headers: {
       HttpHeaders.contentTypeHeader: Constants.contenTypeHeader,
@@ -98,14 +94,39 @@ class AsignarApiService {
 
     var resBody = json.decode(res.body);
     apiResponse.statusResponse = res.statusCode;
-    apiResponse.listAsignarAntena1 = List();
+    apiResponse.listAsignarAntena = List();
 
+    if (apiResponse.statusResponse == 200) {
+      resBody.forEach((i) {
+        apiResponse.listAsignarAntena.add(AsignarAntena.fromJson(i));
+        return i;
+      });
+
+      return apiResponse;
+    }
+    return apiResponse;
+  }
+  Future<ApiResponse> listarAntenasAsignadas(String token) async {
+    ApiResponse apiResponse = ApiResponse(statusResponse: 0);
+    final Repository _repository = Repository();
+    var id = await _repository.getLocalId();
+    var queryParameters = {
+      'idUser': id
+    };
+    Uri uri = Uri.http(
+        Constants.urlAuthority, Constants.pathServiceAsignarListatecnico, queryParameters );
+    var res = await http.get(uri, headers: {
+      HttpHeaders.contentTypeHeader: Constants.contenTypeHeader,
+      HttpHeaders.authorizationHeader: token
+    });
+    var resBody = json.decode(res.body);
+    apiResponse.statusResponse = res.statusCode;
+    apiResponse.listAsignarAntena1 = List();
     if (apiResponse.statusResponse == 200) {
       resBody.forEach((i) {
         apiResponse.listAsignarAntena1.add(AsignarAntena.fromJson(i));
         return i;
       });
-
       return apiResponse;
     }
     return apiResponse;

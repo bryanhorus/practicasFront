@@ -49,7 +49,7 @@ class ListaObservationState extends State<ListaObservation>
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () {
-              TecniNavigator.goToBuscarObservacion(context);
+              TecniNavigator.goToListaBusqueda(context);
             },
           ),
         ],),

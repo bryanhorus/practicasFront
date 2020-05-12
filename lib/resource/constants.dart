@@ -29,11 +29,12 @@ class Constants {
   static const String pathServiceinsertTorre = "/api/tecni/torre/insert";
   static const String pathServiceDeleteTorre = "/api/tecni/torre/delete/id";
   static const String pathServiceTorre = "/api/tecni/torre/get/all";
+  static const String pathServiceCorreo = "/api/tecni/auth/send/email";
   static const String pathServiceDepartamentoDelete =
       "/api/tecni/departament/delete/id";
   static const String pathServiceDepartamento =
       "/api/tecni/departament/get/all";
-  static const String pathServiceAntenaInsert = "/api/tecni/antenna/insert";
+  static const String pathServiceAntenaInsert = "/api/tecni/antenna/insert"; 
   static const String pathServiceObservacionInsert =
       "/api/tecni/observacion/insert";
   static const String pathServiceAntenaUpdate = "/api/tecni/antenna/update";
@@ -42,6 +43,7 @@ class Constants {
   static const String pathServiceTorreInsert = "/api/tecni/torre/insert";
   static const String pathServiceTorreDelete = "/api/tecni/torre/delete/id";
   static const String pathServiceTorreLista = "/api/tecni/torre/get/all";
+  static const String pathServiceBuscarTorreLista = "/api/tecni/torre/find/municipio";
   static const String pathServiceLogin = "/api/tecni/auth";
   static const String pathServiceAsignar = "/api/tecni/asignar/antena/insert";
   static const String pathServiceAsignarLista = "/api/tecni/asignar/antena/get/all";
@@ -81,6 +83,7 @@ static const String validatePass = "la contraseña es necesario!!";
   static const String patterNumero = r'(^[0-9]*$)';
   //Botones
   static const String btnCerrar = "Cerrar";
+  static const String btnEnviar = "Enviar";
   static const String btnIngresar = "Ingresar";
   static const String btnRegistar = "Registrar ";
   static const String btnCambiar2 = "Cambiar contraseña ";
@@ -104,6 +107,7 @@ static const String validatePass = "la contraseña es necesario!!";
   static const String btnAsignarTorres = "Asignar Torres";
   //AppBar
   static const String appBarPerfil = "Perfil";
+  static const String appBarCorreo = "Enviar Correo Electrónico";
   static const String appBarTorre = "Torres Registradas";
   static const String tittleRegistroUsuario = "Registrar Usuarios";
   static const String tittleRegistroDepartamento = "Registrar Departamento";
@@ -140,6 +144,7 @@ static const String validatePass = "la contraseña es necesario!!";
   static const String tittleLogin = "TecniApp";
   static const String tittleHomeCoordinador = "Bienvenido Coordinador";
   static const String cerrarSesion = "Cerrar Sesión";
+  static const String enviarCorreo = "Enviar Correo";
   //Rutas
   static const String homeRoute = "/";
   static const String homeCoordinadorRoute = "/home_coordinador";
@@ -164,13 +169,16 @@ static const String validatePass = "la contraseña es necesario!!";
   static const String actualizarMunicipioRoute = "/actualizar_Municipio";
   static const String actualizarDepartamentosRoute = "/actualizar_Departamento";
   static const String registrarobservacionRoute = "/observacion";
-   static const String listaratenas = "/antenas_asignadas";
+  static const String listaratenas = "/antenas_asignadas";
   static const String observacionesRoute = "/lista_observation";
   static const String homeTecnicoRoute = "/home_tecnico";
   static const String buscarObservacionRoute = "/buscar_observacion";
   static const String listaBusquedaRoute = "/lista_busqueda";
   static const String recuperarContrasenaRoute = "/recuperar_contrasena";
   static const String actualuzarContra="/actualiza_contra";
+  static const String enviarcorreoRoute="/enviar_correo";
+  static const String buscarTorreRoute="/buscar_torre";
+  static const String buscarAsignacionRoute="/buscar_asignacion";
 
   //Ruter imagenes
   static const String loginImage = 'assets/imgLogin.jpg';
@@ -217,6 +225,8 @@ static const String validatePass = "la contraseña es necesario!!";
   static const String mensajePerfil = "Mensaje del dia";
   static const String createMessage = "Creación exitosa";
   static const String registroExitoso = "¡Registro exitoso!";
+  static const String correo = "¡Mensaje Enviado!";
+  static const String correoNoEnviado = "¡ERROR Mensaje NO Enviado!";
   static const String tittleDialog = "Información";
   static const String actualizacion = "  ¡Actualizado!";
   static const String eliminado = "  ¡Eliminado";

@@ -64,6 +64,15 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
       onTap: () => {TecniNavigator.goToListaTorre(context)},
     );
 
+      var correoo = ListTile(
+      leading: Icon(Icons.email),
+      title: Text(
+        Constants.enviarCorreo,
+        style: TextStyle(color: Colors.black),
+      ),
+      onTap: () => {TecniNavigator.goToEnviarCorreo(context)},
+    );
+
     var antena = ListTile(
       leading: Icon(Icons.settings_input_antenna),
       title: Text(
@@ -166,6 +175,7 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
           ),
           Ink(color: Colors.blue, child: usuarios),
           perfil,
+          correoo,
           torre,
           departamento,
           municipio,
