@@ -139,8 +139,9 @@ class EnviarEmailPageState extends State<EnviarEmailPage>
                                                                 .circular(
                                                                     20.0)),
                                                   ),
+                                                  textCapitalization: TextCapitalization.sentences,
                                                   onSaved: (String value) {
-                                                    _correo.asunto = value;
+                                                    _correo.asunto = value.trim();
                                                   },
                                                   style:
                                                       TextStyle(fontSize: 18.0),
@@ -149,30 +150,33 @@ class EnviarEmailPageState extends State<EnviarEmailPage>
                                                 padding: const EdgeInsets.only(
                                                     top: 20.0),
                                               ),
+                                              Container(              
+                                                width: 1000.0,
+                                                child: 
                                               TextFormField(
                                                   decoration: InputDecoration(
+                                                    contentPadding: const EdgeInsets.symmetric(vertical: 40.0),
                                                     hintText:
                                                         'Mensaje',
                                                     icon: Icon(Icons.email,
                                                         color: Colors.grey),
-                                                    labelText:
-                                                        'Mensaje',
                                                     border: OutlineInputBorder(
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(
                                                                     20.0)),
                                                   ),
+                                                  textCapitalization: TextCapitalization.sentences,
                                                   onSaved: (String value) {
-                                                    _correo.body = value;
+                                                    _correo.body = value.trim();
                                                   },
                                                   style:
-                                                      TextStyle(fontSize: 18.0),
-                                                ),
+                                                      TextStyle(fontSize: 18.0, height: 2.0),
+                                            ),),
                                                 Padding(
                                                   padding:
                                                       const EdgeInsets.only(
-                                                          top: 40.0),
+                                                          top: 20.0),
                                                 ),
                                               MaterialButton(
                                                 shape: RoundedRectangleBorder(
