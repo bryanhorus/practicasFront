@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tenic_api/bloc/inicio_sesion_bloc.dart';
 import 'package:tenic_api/modelo/LoginUser.dart';
 import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/repository/repository.dart';
@@ -20,11 +21,14 @@ Login _login = Login(
 class ProfilePageDesignState extends State<ProfilePageDesign> 
 with SingleTickerProviderStateMixin{
 
+  String rol;
+
    @override
-  void initState() {
+  void initState() async {
     super.initState();
-    //InicioSesionBloc();
+    InicioSesionBloc();
     final Repository _repository = Repository();
+    rol = await _repository.getLocalNombre();
   }
 
 
@@ -33,11 +37,13 @@ with SingleTickerProviderStateMixin{
       fontWeight: FontWeight.bold
     );
   }
-    @override
+    /*@override
   void initState() {
     super.initState();
 
-  }
+  }*/
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,12 +73,12 @@ class CustomAppBar extends StatefulWidget
   Size get preferredSize => Size(double.infinity, 320);
 
 
-  void _handleSubmitted() async {
+  /*void _handleSubmitted() async {
     final Repository _repository = Repository();
     String nombre = await _repository.getLocalNombre();
     String apellido = await _repository.getLocalApellido();
     
-      }
+      }*/
 
 
 
@@ -125,11 +131,7 @@ class CustomAppBar extends StatefulWidget
                       ),
                     ),
                     SizedBox(height: 16,),
-<<<<<<< HEAD
-                    Text(_login.correo, style: TextStyle(
-=======
-                    Text("", style: TextStyle(
->>>>>>> d5cb5e30a1729185a3469c91c6b84cd92aec422b
+                    Text("AQUÍ", style: TextStyle(
                       color: Colors.white,
                       fontSize: 15
                     ),),
