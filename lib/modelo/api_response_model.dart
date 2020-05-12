@@ -31,4 +31,5 @@ class ApiResponse {
   List<Antena> listAntena = List();
   List<Torre> listTorre = List();
   List<AsignarAntena> listAsignarAntena = List();
+  List<AsignarAntena> listAsignarAntena1 = List();
 }

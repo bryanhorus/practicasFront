@@ -22,6 +22,7 @@ class Constants {
   static const String pathServiceObsLista = "/api/tecni/observacion/get/all";
   static const String pathServiceUsuarioUpdate = "/api/tecni/user/update";
   static const String pathServiceContrasenaUpdate = "/api/tecni/auth/update/credentials";
+  static const String pathServiceContrasenaaUpdate = "/api/tecni/auth/update/credentials/new";
   static const String pathServiceDepartamentoUpdate =
       "/api/tecni/departament/update";
   static const String pathServiceTorreUpdate = "/api/tecni/torre/update";
@@ -44,6 +45,7 @@ class Constants {
   static const String pathServiceLogin = "/api/tecni/auth";
   static const String pathServiceAsignar = "/api/tecni/asignar/antena/insert";
   static const String pathServiceAsignarLista = "/api/tecni/asignar/antena/get/all";
+  static const String pathServiceAsignarListatecnico ="/api/tecni/asignar/antena/find/user";
   static const String pathServiceAsignarUpdate = "/api/tecni/asignar/antena/update";
   //validacion de campos
   static const String estructura =
@@ -141,7 +143,7 @@ static const String validatePass = "la contraseña es necesario!!";
   //Rutas
   static const String homeRoute = "/";
   static const String homeCoordinadorRoute = "/home_coordinador";
-  static const String perfilCoordinadorRoute = "/perfil_coordinador";
+  static const String perfilCoordinadorRoute = "/perfil";
   static const String registroRoute = "/registro_usuarios";
   static const String userRoute = "/usuario";
   static const String asignarTorresRoute = "/torre";
@@ -162,6 +164,7 @@ static const String validatePass = "la contraseña es necesario!!";
   static const String actualizarMunicipioRoute = "/actualizar_Municipio";
   static const String actualizarDepartamentosRoute = "/actualizar_Departamento";
   static const String registrarobservacionRoute = "/observacion";
+   static const String listaratenas = "/antenas_asignadas";
   static const String observacionesRoute = "/lista_observation";
   static const String homeTecnicoRoute = "/home_tecnico";
   static const String buscarObservacionRoute = "/buscar_observacion";

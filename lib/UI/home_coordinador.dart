@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tenic_api/Session_Storage.dart';
 import 'package:tenic_api/bloc/inicio_sesion_bloc.dart';
 import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/repository/repository.dart';
@@ -13,7 +12,7 @@ class HomeCoordinador extends StatefulWidget {
 class HomeCoordinadorState extends State<HomeCoordinador> {
   final InicioSesionBloc inicioSesionBloc = InicioSesionBloc();
 
-  final Repository _repository = Repository();
+  Repository repository = Repository();
 
   String nombre = "";
   String correo = "";
@@ -22,8 +21,7 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
   @override
   initState() {
     super.initState();
-    SessionStorage();
-    Carga();
+    _Carga();
   }
 
   void _handleSubmitted() async {
@@ -31,26 +29,30 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
     TecniNavigator.goToHome(context);
   }
 
-  void Carga() async {
-    nombre = await _repository.getLocalNombre();
-    apellido = await _repository.getLocalApellido();
-    correo = await _repository.getLocalCorreo();
-    setState(() {
-      nombre;
-      apellido;
-      correo;
-    });
+  void _Carga() async{
+
+  nombre = await repository.getLocalNombre();
+  apellido = await repository.getLocalApellido();
+  correo = await repository.getLocalCorreo();
+  setState(() {
+          nombre;
+          correo;
+          apellido;
+        });
+
   }
 
+
+
   @override
-  Widget build(BuildContext context) {
+  Widget build (BuildContext context) {
     var perfil = ListTile(
       leading: Icon(Icons.person_pin),
       title: Text(
         Constants.appBarPerfil,
         style: TextStyle(color: Colors.black),
       ),
-      onTap: () => {TecniNavigator.goToPerfilCoordinador(context)},
+      onTap: () => {TecniNavigator.goToPerfil(context)},
     );
 
     var torre = ListTile(
@@ -133,6 +135,7 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
       onTap: () => {TecniNavigator.gotoactualizar(context)},
     );
 
+
     var cerrar = ListTile(
       leading: Icon(Icons.exit_to_app),
       title: Text(
@@ -161,11 +164,11 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
                     image: AssetImage(Constants.perfilImage),
                     fit: BoxFit.cover)),
           ),
-          Ink(color: Colors.blue, child: perfil),
+          Ink(color: Colors.blue, child: usuarios),
+          perfil,
           torre,
           departamento,
           municipio,
-          usuarios,
           antena,
           asignar,
           lista,
@@ -212,5 +215,6 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
             ),
           ],
         ));
+
   }
 }

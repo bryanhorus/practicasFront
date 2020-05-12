@@ -37,11 +37,40 @@ class _MapPageState extends State<MapPage> {
   }
 
   Widget body(BuildContext context) {
+    var markers = tappedPoints.map((latlng) {
+      return Marker(
+        // dimensao dos marcadores
+        width: 80.0,
+        height: 80.0,
+        // coordenadas do marcadores.
+        point: latlng,
+        builder: (ctx) => GestureDetector(
+          onTap: () {
+            // Mostrar uma SnackBar quando clicar em um marcador
+            Scaffold.of(ctx).showSnackBar(SnackBar(
+                content: Text("Latitude =" +
+                    latlng.latitude.toString() +
+                    " :: Longitude = " +
+                    latlng.longitude.toString())));
+          },
+          child: Container(
+            child: Icon(
+              // Icone do marcador
+              Icons.pin_drop,
+              color: Colors.red,
+            ),
+          ),
+        ),
+      );
+    }).toList();
+
     return FlutterMap(
       mapController: widget.mapController,
       options: MapOptions(
           onTap: _handleTap,
-          center: LatLng(widget.lat, widget.lng), zoom: 17, maxZoom: 18),
+          center: LatLng(widget.lat, widget.lng),
+          zoom: 17,
+          maxZoom: 18),
       layers: [
         widget.isNominatim
             ? widget.customMapLayer == null
@@ -62,7 +91,7 @@ class _MapPageState extends State<MapPage> {
                   )
                 : widget.customMapLayer,
         MarkerLayerOptions(
-          markers: widget.markers,
+          markers: markers,
         ),
       ],
     );
@@ -70,6 +99,7 @@ class _MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       child: body(context),
     );

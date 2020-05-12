@@ -145,8 +145,8 @@ class _MapBoxLocationPickerState extends State<MapBoxLocationPicker>
       Marker(
         width: 50.0,
         height: 50.0,
-        point: new LatLng(0.0, 0.0),
-        builder: (ctx) => new Container(
+        point: LatLng(0.0, 0.0),
+        builder: (ctx) => Container(
             child: widget.customMarkerIcon == null
                 ? Icon(
                     Icons.location_on,
@@ -188,7 +188,7 @@ class _MapBoxLocationPickerState extends State<MapBoxLocationPicker>
         width: 80.0,
         height: 80.0,
         point: LatLng(_lat, _lng),
-        builder: (ctx) => new Container(
+        builder: (ctx) => Container(
             child: widget.customMarkerIcon == null
                 ? Icon(
                     Icons.location_on,
@@ -253,7 +253,7 @@ class _MapBoxLocationPickerState extends State<MapBoxLocationPicker>
     /*
     --- Widget responsável constução da appbar customizada . 
   */
-    return new AppBar(
+    return AppBar(
       elevation: 0,
       backgroundColor: Colors.transparent,
       primary: true,
@@ -329,7 +329,7 @@ class _MapBoxLocationPickerState extends State<MapBoxLocationPicker>
     /*
     --- Widget responsável constução das descrições de um determinado local. 
   */
-    return new Positioned(
+    return Positioned(
       bottom: MediaQuery.of(context).size.width * 0.05,
       right: MediaQuery.of(context).size.width * 0.05,
       child: Row(
@@ -350,7 +350,7 @@ class _MapBoxLocationPickerState extends State<MapBoxLocationPicker>
                         padding: EdgeInsets.all(15),
                         child: Center(
                             child: Scrollbar(
-                                child: new SingleChildScrollView(
+                                child: SingleChildScrollView(
                           scrollDirection: Axis.vertical,
                           reverse: false,
                           child: Text(
@@ -374,7 +374,7 @@ class _MapBoxLocationPickerState extends State<MapBoxLocationPicker>
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
 
-    return new Positioned(
+    return Positioned(
       bottom: -width * 0.025 + height * 0.075,
       right: width * 0.1,
       child: Container(
@@ -443,7 +443,7 @@ class _MapBoxLocationPickerState extends State<MapBoxLocationPicker>
     /// Will be called when the input changes. Making callbacks to the Places
     /// Api and giving the user Place options
     ///
-    if (input.length > 0) {
+    if (input.isNotEmpty) {
       var placesSearch = PlacesSearch(
         apiKey: widget.apiKey,
         country: widget.country,
@@ -503,7 +503,7 @@ class _MapBoxLocationPickerState extends State<MapBoxLocationPicker>
         width: 80.0,
         height: 80.0,
         point: LatLng(_lat, _lng),
-        builder: (ctx) => new Container(
+        builder: (ctx) => Container(
             child: widget.customMarkerIcon == null
                 ? Icon(
                     Icons.location_on,
@@ -520,12 +520,12 @@ class _MapBoxLocationPickerState extends State<MapBoxLocationPicker>
   */
 
     while (_currentPosition == null) {
-      return new Center(
+      return  Center(
         child: Loading(),
       );
     }
 
-    return new MapPage(
+    return  MapPage(
         lat: _lat,
         lng: _lng,
         mapController: _mapController,

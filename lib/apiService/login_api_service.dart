@@ -26,6 +26,7 @@ class LoginApiService {
       print("apellido " + _session.apellido);
       print("correo " + _session.correo);
       print("telefono " + _session.telefono);
+      print("id " + _session.id);
       return _session;
     }
     return _session;

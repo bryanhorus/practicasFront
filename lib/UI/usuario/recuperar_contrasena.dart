@@ -1,8 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/usuario_bloc.dart';
 import 'package:tenic_api/modelo/recuperar.dart';
-import 'package:tenic_api/modelo/usuario_model.dart';
 import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
