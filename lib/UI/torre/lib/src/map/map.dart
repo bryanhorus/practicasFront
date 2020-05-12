@@ -38,6 +38,7 @@ class _MapPageState extends State<MapPage> {
   }
 
   Widget body(BuildContext context) {
+
     var markers = tappedPoints.map((latlng) {
       return Marker(
         // dimensao dos marcadores
