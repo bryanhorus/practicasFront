@@ -26,10 +26,21 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
+  List<LatLng> tappedPoints = [];
+
+// funcao que atualiza o estado do mapa e salva a coordenada na lista tappedPoints.
+  void _handleTap(LatLng latlng) {
+    setState(() {
+      print(latlng);
+      tappedPoints.add(latlng);
+    });
+  }
+
   Widget body(BuildContext context) {
     return FlutterMap(
       mapController: widget.mapController,
       options: MapOptions(
+          onTap: _handleTap,
           center: LatLng(widget.lat, widget.lng), zoom: 17, maxZoom: 18),
       layers: [
         widget.isNominatim
