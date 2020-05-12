@@ -1,49 +1,49 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tenic_api/bloc/antena_bloc.dart';
-import 'package:tenic_api/bloc/observacion_bloc.dart';
-import 'package:tenic_api/modelo/antena_model.dart';
+import 'package:tenic_api/bloc/municipio_bloc.dart';
+import 'package:tenic_api/bloc/torre_bloc.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
-import 'package:tenic_api/modelo/observacion_model.dart';
+import 'package:tenic_api/modelo/municipio_model.dart';
+import 'package:tenic_api/modelo/torre_model.dart';
+import 'package:tenic_api/navigator.dart';
 
-class ListaBusquedaPage extends StatefulWidget{
+class ListaBuscarTorrePage extends StatefulWidget{
   
-  const ListaBusquedaPage({Key key}) : super(key: key);
+  const ListaBuscarTorrePage({Key key}) : super(key: key);
 
   @override
-  ListaBusquedaPageState createState() => ListaBusquedaPageState();
+  ListaBuscarTorrePageState createState() => ListaBuscarTorrePageState();
   }
 
-class ListaBusquedaPageState extends State<ListaBusquedaPage>
+class ListaBuscarTorrePageState extends State<ListaBuscarTorrePage>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
     bool _autovalidate = false;
-  List<Observacion> listBusqueda = List();
-  final AntenaBloc antenaBloc = AntenaBloc();
-  List<Antena> listAntena = List();
-  ObservacionBloc observationBloc;
+  List<Torre> listBusqueda = List();
+  final MunicipioBloc municipioBloc = MunicipioBloc();
+  TorreBloc torreBloc = TorreBloc();
+  List<Municipio> listMunicipio = List();
   ApiResponse apiResponse;
-  int currenAntena;
-  Observacion observacion= Observacion(antena: Antena(idAntena: 0));
+  int currenMunicipio;
+  Torre torre = Torre(municipio: Municipio(idMunicipio: 0));
 
   @override
   void initState() {
-      AntenaBloc();
-    antenaBloc.listarAntena().then((apiresponse) {
+      MunicipioBloc();
+    municipioBloc.listarMunicipio().then((apiresponse) {
       setState(() {
-        listAntena = apiresponse.listAntena;
+        listMunicipio = apiresponse.listMunicipio;
       });
     });
     super.initState();
-    observationBloc = ObservacionBloc();
-    //_handleSubmitted();
+    torreBloc = TorreBloc();
   }
 
     void _handleSubmitted() {
-    observationBloc.buscarObservacion(observacion).then((apiResponse) {
+    torreBloc.listarBusqueda(torre).then((apiResponse) {
       setState(() {
-        listBusqueda = apiResponse.listbusqueda;
+        listBusqueda = apiResponse.listTorre;
       });
     });
   }
@@ -55,7 +55,13 @@ class ListaBusquedaPageState extends State<ListaBusquedaPage>
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: const Text("Observaciones por Antena")),
+        title: const Text("Torres Por Municipio"),
+        actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.add_circle),
+              onPressed: () {TecniNavigator.goToRegistrarTorre(context);},
+            ),
+          ],),
       body: Stack(fit: StackFit.expand, children: <Widget>[
         Center(
           child: Container(
@@ -81,22 +87,22 @@ class ListaBusquedaPageState extends State<ListaBusquedaPage>
                         children: <Widget>[
                           DropdownButtonHideUnderline(
                             child: DropdownButton<int>(
-                              hint: Text("Antena"),
-                              value: currenAntena,
+                              hint: Text("Municipio"),
+                              value: currenMunicipio,
                               isDense: true,
                               onChanged: (int newValue) {
-                                currenAntena = newValue;
+                                currenMunicipio = newValue;
                                 setState(() {
-                                  currenAntena = newValue;
+                                  currenMunicipio = newValue;
                                 });
-                                print(currenAntena);
-                                observacion.antena.idAntena = newValue;
+                                print(currenMunicipio);
+                                torre.municipio.idMunicipio = newValue;
                               _handleSubmitted();
                               },
                               
-                              items: listAntena.map((Antena map) {
+                              items: listMunicipio.map((Municipio map) {
                                 return DropdownMenuItem<int>(
-                                  value: map.idAntena,
+                                  value: map.idMunicipio,
                                   child: Text(map.nombre,
                                       style: TextStyle(color: Colors.blue)),
                                 );
@@ -129,16 +135,16 @@ class ListaBusquedaPageState extends State<ListaBusquedaPage>
                     children: <Widget>[
                       ListTile(
                         title: Text(
-                          listBusqueda[indice].antena.nombre,
+                          listBusqueda[indice].nombre,
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold)
                                 ),
-                                subtitle: Text(listBusqueda[indice].fecha),
-                      leading: Icon(Icons.featured_play_list),
-                                onTap: (){ print(listBusqueda[indice].idObservacion);
-                    observacion = listBusqueda[indice];},
+                                subtitle: Text(listBusqueda[indice].direccion),
+                      leading: Icon(Icons.settings_input_antenna),
+                                onTap: (){
+                      torre = listBusqueda[indice];},
                       )
                     ],
                   ));

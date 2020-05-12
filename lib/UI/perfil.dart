@@ -129,6 +129,7 @@ class PerfilPageState extends State<PerfilPage>
                                                   decoration: InputDecoration(
                                                     icon: Icon(Icons.email,
                                                         color: Colors.blue),
+                                                        
                                                     labelText: correo,
                                                   ),
                                                   style:

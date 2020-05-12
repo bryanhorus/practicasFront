@@ -93,6 +93,34 @@ class TorreApiService {
     return apiResponse;
   }
 
+    Future<ApiResponse> listaBusqueda(Torre torre ,String token ) async {
+      var queryParameters = {
+      'idMunicipio': torre.municipio.idMunicipio.toString()
+    };
+    ApiResponse apiResponse = ApiResponse(statusResponse: 0);
+    Uri uri =
+        Uri.http(Constants.urlAuthority, Constants.pathServiceBuscarTorreLista, queryParameters);
+    var res = await http.get(
+      uri,
+      headers: {HttpHeaders.contentTypeHeader: Constants.contenTypeHeader, 
+      HttpHeaders.authorizationHeader: token},
+    );
+
+    var resBody = json.decode(res.body);
+    apiResponse.statusResponse = res.statusCode;
+    apiResponse.listTorre = List();
+
+    if (apiResponse.statusResponse == 200) {
+      resBody.forEach((i) {
+        apiResponse.listTorre.add(Torre.fromJson(i));
+        return i;
+      });
+
+      return apiResponse;
+    }
+    return apiResponse;
+  }
+
 
 
 }

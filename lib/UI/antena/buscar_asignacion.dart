@@ -1,49 +1,49 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tenic_api/bloc/antena_bloc.dart';
-import 'package:tenic_api/bloc/observacion_bloc.dart';
-import 'package:tenic_api/modelo/antena_model.dart';
+import 'package:tenic_api/bloc/asignar_antena.dart';
+import 'package:tenic_api/bloc/torre_bloc.dart';
+import 'package:tenic_api/bloc/usuario_bloc.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
-import 'package:tenic_api/modelo/observacion_model.dart';
+import 'package:tenic_api/modelo/asignar_antena.dart';
+import 'package:tenic_api/modelo/usuario_model.dart';
 
-class ListaBusquedaPage extends StatefulWidget{
+class ListaBuscarAsignacionPage extends StatefulWidget{
   
-  const ListaBusquedaPage({Key key}) : super(key: key);
+  const ListaBuscarAsignacionPage({Key key}) : super(key: key);
 
   @override
-  ListaBusquedaPageState createState() => ListaBusquedaPageState();
+  ListaBuscarAsignacionPageState createState() => ListaBuscarAsignacionPageState();
   }
 
-class ListaBusquedaPageState extends State<ListaBusquedaPage>
+class ListaBuscarAsignacionPageState extends State<ListaBuscarAsignacionPage>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
     bool _autovalidate = false;
-  List<Observacion> listBusqueda = List();
-  final AntenaBloc antenaBloc = AntenaBloc();
-  List<Antena> listAntena = List();
-  ObservacionBloc observationBloc;
+  List<AsignarAntena> listBusqueda = List();
+  final UsuarioBloc usuarioBloc = UsuarioBloc();
+  AsignarAntenaBloc asignarBloc = AsignarAntenaBloc();
+  List<Usuario> listUser = List();
   ApiResponse apiResponse;
-  int currenAntena;
-  Observacion observacion= Observacion(antena: Antena(idAntena: 0));
+  int currenUser;
+  AsignarAntena asignar = AsignarAntena(usuario: Usuario(idUsuario: 0));
 
   @override
   void initState() {
-      AntenaBloc();
-    antenaBloc.listarAntena().then((apiresponse) {
+      UsuarioBloc();
+    usuarioBloc.listarUsuario().then((apiresponse) {
       setState(() {
-        listAntena = apiresponse.listAntena;
+        listUser = apiresponse.listUsuario;
       });
     });
     super.initState();
-    observationBloc = ObservacionBloc();
-    //_handleSubmitted();
+    asignarBloc = AsignarAntenaBloc();
   }
 
     void _handleSubmitted() {
-    observationBloc.buscarObservacion(observacion).then((apiResponse) {
+    asignarBloc.listaBusquedaAsignar(asignar).then((apiResponse) {
       setState(() {
-        listBusqueda = apiResponse.listbusqueda;
+        listBusqueda = apiResponse.listAsignarAntena;
       });
     });
   }
@@ -55,7 +55,7 @@ class ListaBusquedaPageState extends State<ListaBusquedaPage>
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: const Text("Observaciones por Antena")),
+        title: const Text("Asignaciones por Usuario")),
       body: Stack(fit: StackFit.expand, children: <Widget>[
         Center(
           child: Container(
@@ -81,22 +81,22 @@ class ListaBusquedaPageState extends State<ListaBusquedaPage>
                         children: <Widget>[
                           DropdownButtonHideUnderline(
                             child: DropdownButton<int>(
-                              hint: Text("Antena"),
-                              value: currenAntena,
+                              hint: Text("Técnico"),
+                              value: currenUser,
                               isDense: true,
                               onChanged: (int newValue) {
-                                currenAntena = newValue;
+                                currenUser = newValue;
                                 setState(() {
-                                  currenAntena = newValue;
+                                  currenUser = newValue;
                                 });
-                                print(currenAntena);
-                                observacion.antena.idAntena = newValue;
+                                print(currenUser);
+                                asignar.usuario.idUsuario = newValue;
                               _handleSubmitted();
                               },
                               
-                              items: listAntena.map((Antena map) {
+                              items: listUser.map((Usuario map) {
                                 return DropdownMenuItem<int>(
-                                  value: map.idAntena,
+                                  value: map.idUsuario,
                                   child: Text(map.nombre,
                                       style: TextStyle(color: Colors.blue)),
                                 );
@@ -135,10 +135,10 @@ class ListaBusquedaPageState extends State<ListaBusquedaPage>
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold)
                                 ),
-                                subtitle: Text(listBusqueda[indice].fecha),
-                      leading: Icon(Icons.featured_play_list),
-                                onTap: (){ print(listBusqueda[indice].idObservacion);
-                    observacion = listBusqueda[indice];},
+                                subtitle: Text(listBusqueda[indice].antena.torre.municipio.nombre),
+                      leading: Icon(Icons.person_pin),
+                                onTap: (){
+                      asignar = listBusqueda[indice];},
                       )
                     ],
                   ));
