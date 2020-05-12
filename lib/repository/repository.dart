@@ -1,6 +1,7 @@
 import 'package:tenic_api/Session_Storage.dart';
 import 'package:tenic_api/apiService/antena_api_service.dart';
 import 'package:tenic_api/apiService/asignar_api_service.dart';
+import 'package:tenic_api/apiService/correo_api_service.dart';
 import 'package:tenic_api/apiService/dpto_api_service.dart';
 import 'package:tenic_api/apiService/login_api_service.dart';
 import 'package:tenic_api/apiService/municipio_api_service.dart';
@@ -11,7 +12,9 @@ import 'package:tenic_api/modelo/LoginUser.dart';
 import 'package:tenic_api/modelo/antena_model.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/asignar_antena.dart';
+import 'package:tenic_api/modelo/crear_contrasena.dart';
 import 'package:tenic_api/modelo/departamento_model.dart';
+import 'package:tenic_api/modelo/enviar_model.dart';
 import 'package:tenic_api/modelo/observacion_model.dart';
 import 'package:tenic_api/modelo/recuperar.dart';
 import 'package:tenic_api/modelo/session_local.dart';
@@ -30,6 +33,7 @@ class Repository {
   final AsignarApiService asignarApiService = AsignarApiService();
   final SessionStorage _session = SessionStorage();
   final ObservacionApiService observacionApiService = ObservacionApiService();
+  final CorreoApiService correoApiService = CorreoApiService();
 
   Future<Session> iniciar(Login login) => loginApiService.iniciarSesion(login);
   Future<String> getLocalAccessToken() => _session.getToken();
@@ -39,8 +43,10 @@ class Repository {
   Future<String> getLocalApellido()=> _session.getApellido();
   Future<String> getLocalCorreo()=> _session.getCorreo();
   Future<String> getLocalTelefono()=> _session.getTelefono();
+  Future<String> getLocalId()=> _session.getId();
 
-
+  Future<ApiResponse> enviarCorreo(Correo correo, String token) =>
+      correoApiService.enviaCorreo(correo, token);
   //Usuario
   Future<ApiResponse> registrarUsuario(Usuario usuario) =>
       usuarioApiService.insertUsuario(usuario);
@@ -52,6 +58,9 @@ class Repository {
       usuarioApiService.deleteUsuario(usuario, token);
   Future<ApiResponse> actualizarContrasena(Recuperar usuario) =>
       usuarioApiService.updateContrasena(usuario);
+  Future<ApiResponse> actualizarContrasenaa(Contrasena usuario) =>
+      usuarioApiService.updateContrasenaa(usuario);
+
   //Municipio
   Future<ApiResponse> listaMunicipio(String token) =>
       municipioApiService.listarMunicipio(token);
@@ -91,6 +100,8 @@ class Repository {
       torreApiService.deleteTorre(torre, token);
   Future<ApiResponse> listaTorre(String token) =>
       torreApiService.listarTorre(token);
+  Future<ApiResponse> listarBusqueda(Torre torre,String token) =>
+      torreApiService.listaBusqueda(torre,token);
   //Observacion
   Future<ApiResponse> registrarObservacion(
           Observacion observacion, String token) =>
@@ -106,5 +117,10 @@ class Repository {
       asignarApiService.updateAsignarAntena(asignarAntena, token);
   Future<ApiResponse> listaAsignarAntena(String token) =>
       asignarApiService.listarAsignarAntena(token);
+Future<ApiResponse> listarAsignarAntenatecnico(String token) =>
+      asignarApiService.listarAntenasAsignadas(token);
+Future<ApiResponse> listarBusquedaAsignar(AsignarAntena antena,String token) =>
+      asignarApiService.listaBusquedaAsignar(antena,token);
+      
 
 }

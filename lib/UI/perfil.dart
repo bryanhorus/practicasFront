@@ -1,19 +1,20 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:tenic_api/bloc/inicio_sesion_bloc.dart';
 import 'package:tenic_api/modelo/LoginUser.dart';
 import 'package:tenic_api/navigator.dart';
+=======
+>>>>>>> d27eb01bee6777e452aa97d90c507e5dec672ce0
 import 'package:tenic_api/repository/repository.dart';
-import 'dart:math' as math;
 import 'package:tenic_api/resource/constants.dart';
 
-
-class ProfilePageDesign extends StatefulWidget {
-    const ProfilePageDesign({ key}) : super(key: key);
-
+class PerfilPage extends StatefulWidget {
   @override
-  ProfilePageDesignState createState() => ProfilePageDesignState();
+  PerfilPageState createState() => PerfilPageState();
 }
 
+<<<<<<< HEAD
 Login _login = Login(
   correo: ""
 );
@@ -44,35 +45,28 @@ with SingleTickerProviderStateMixin{
   }*/
 
 
+=======
+class PerfilPageState extends State<PerfilPage>
+    with SingleTickerProviderStateMixin {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  bool _autovalidate = false;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final Repository repository = Repository();
+
+  String nombre = '';
+  String apellido = '';
+  String correo = '';
+  String telefono = '';
+  String rol = '';
+
+>>>>>>> d27eb01bee6777e452aa97d90c507e5dec672ce0
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(),
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 36),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(Constants.mensajePerfil, style: _style(),),
-            SizedBox(height: 4,),
-            Text(Constants.agradecimiento),
-            SizedBox(height: 20,),
-            
-            Divider(color: Colors.lightBlue,)
-          ],
-        ),
-      ),
-    );
+  void initState() {
+    super.initState();
+    _handleSubmitted();
   }
-}
 
-class CustomAppBar extends StatefulWidget
-  with PreferredSizeWidget{
-
-  @override
-  Size get preferredSize => Size(double.infinity, 320);
-
-
+<<<<<<< HEAD
   /*void _handleSubmitted() async {
     final Repository _repository = Repository();
     String nombre = await _repository.getLocalNombre();
@@ -81,17 +75,32 @@ class CustomAppBar extends StatefulWidget
       }*/
 
 
+=======
+  void _handleSubmitted() async {
+    nombre = await repository.getLocalNombre();
+    apellido = await repository.getLocalApellido();
+    correo = await repository.getLocalCorreo();
+    telefono = await repository.getLocalTelefono();
+    rol = await repository.getLocalRol();
+    setState(() {
+      nombre;
+      apellido;
+      correo;
+      telefono;
+      rol;
+    });
+  }
+>>>>>>> d27eb01bee6777e452aa97d90c507e5dec672ce0
 
   @override
   Widget build(BuildContext context) {
-    
-    return ClipPath(
-      clipper: MyClipper(),
-      child: Container(
-        padding: EdgeInsets.only(top: 4),
-        decoration: BoxDecoration(
-          color: Colors.lightBlue
+    final size = MediaQuery.of(context).size;
+    return Scaffold(
+        key: _scaffoldKey,
+        appBar: AppBar(
+          title: const Text(Constants.perfil),
         ),
+<<<<<<< HEAD
         child: Column(
           children: <Widget>[
             Row(
@@ -156,69 +165,120 @@ class CustomAppBar extends StatefulWidget
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
+=======
+        body: Container(
+            width: size.width,
+            height: size.height,
+            child: Stack(
+>>>>>>> d27eb01bee6777e452aa97d90c507e5dec672ce0
               children: <Widget>[
+                SingleChildScrollView(
+                  child: SafeArea(
+                      child: Container(
+                          width: size.width,
+                          child: Column(
+                            children: <Widget>[
+                              Column(
+                                children: <Widget>[
+                                  Container(
+                                    width: 90,
+                                    margin:
+                                        EdgeInsets.only(top: size.width * 0.2),
+                                    height: 90,
+                                    decoration: BoxDecoration(
+                                        image: const DecorationImage(
+                                          image:
+                                              AssetImage(Constants.perfilImage),
+                                        ),
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(15),
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: Colors.black,
+                                              blurRadius: 25)
+                                        ]),
+                                  ),
+                                  SizedBox(height: 30),
+                                  Text('Usuario', textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.black87,
+                                        fontWeight: FontWeight.normal),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5.0),
+                                  ),
+                                  Text(
+                                    nombre + ' ' + apellido,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.black87,
+                                        fontWeight: FontWeight.bold),
+                                  )
+                                ],
+                              ),
+                              Column(
+                                children: <Widget>[
+                                  Center(
+                                    child: SingleChildScrollView(
+                                      child: SafeArea(
+                                        top: false,
+                                        bottom: false,
+                                        child: Form(
+                                          key: _formKey,
+                                          autovalidate: _autovalidate,
+                                          child: SingleChildScrollView(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 18.0),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              children: <Widget>[
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 40.0),
+                                                ),
+                                                const SizedBox(height: 12.0),
+                                                TextFormField(
+                                                  enabled: false,
+                                                  decoration: InputDecoration(
+                                                    icon: Icon(Icons.email,
+                                                        color: Colors.blue),
+                                                        
+                                                    labelText: correo,
+                                                  ),
+                                                  style:
+                                                      TextStyle(fontSize: 18.0),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 5.0),
+                                                ),
+                                                TextFormField(
+                                                  enabled: false,
+                                                  decoration: InputDecoration(
+                                                      icon: Icon(Icons.call,
+                                                          color: Colors.blue),
+                                                      labelText: telefono),
+                                                  style:
+                                                      TextStyle(fontSize: 18.0),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              )
+                            ],
+                          ))),
+                )
               ],
-            ),
-            SizedBox(height: 8,),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: GestureDetector(
-                onTap: (){
-                  print("//TODO: button clicked");
-                },
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 24, 16, 0),
-                  child: Transform.rotate(
-                    angle: (math.pi * 0.05),
-                    child: Container(
-                      width: 110,
-                      height: 32,
-                      child: Center(child: Text("Editar"),),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(16)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 20
-                          )
-                        ]
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  @override
-  State<StatefulWidget> createState() {
-    return null;
-  }
-}
-
-class MyClipper extends CustomClipper<Path>{
-
-  @override
-  Path getClip(Size size) {
-    Path p = Path();
-
-    p.lineTo(0, size.height-70);
-    p.lineTo(size.width, size.height);
-
-    p.lineTo(size.width, 0);
-
-    p.close();
-
-    return p;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return true;
+            )));
   }
 }

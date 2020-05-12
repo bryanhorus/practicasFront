@@ -6,7 +6,9 @@ class TecniNavigator {
     Navigator.of(context).pushNamedAndRemoveUntil(
         Constants.homeRoute, (Route<dynamic> route) => false);
   }
-
+  static void goToEnviarCorreo(BuildContext context) {
+    Navigator.pushNamed(context, Constants.enviarcorreoRoute);
+  }
   //Usuarios
   static void goToRecuperarContrasena(BuildContext context) {
     Navigator.pushNamed(context, Constants.recuperarContrasenaRoute);
@@ -75,6 +77,13 @@ class TecniNavigator {
     Navigator.pushNamed(context, Constants.listaAsignarAntenaRoute);
   }
 
+  static void goToListaAsignarBusqueda(BuildContext context) {
+    Navigator.pushNamed(context, Constants.buscarAsignacionRoute);
+  }
+
+  static void goToRegistrarObservacion2(BuildContext context) {
+    Navigator.pushNamed(context, Constants.listaratenas);
+  }
   //Torres
   static void goToRegistrarTorre(BuildContext context) {
     Navigator.pushNamed(context, Constants.registrarTorreRoute);
@@ -88,6 +97,10 @@ class TecniNavigator {
     Navigator.pushNamed(context, Constants.listaTorresRoute);
   }
 
+  static void goToListaBusquedaTorre(BuildContext context) {
+    Navigator.pushNamed(context, Constants.buscarTorreRoute);
+  }
+
   static void goToAsignarTorre(BuildContext context) {
     Navigator.pushNamed(context, Constants.asignarTorresRoute);
   }
@@ -98,7 +111,7 @@ class TecniNavigator {
   }
 
   //Perfil
-  static void goToPerfilCoordinador(BuildContext context) {
+  static void goToPerfil(BuildContext context) {
     Navigator.pushNamed(context, Constants.perfilCoordinadorRoute);
   }
 

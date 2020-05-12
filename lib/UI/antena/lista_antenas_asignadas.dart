@@ -4,6 +4,7 @@ import 'package:tenic_api/UI/antena/actualizar_asignar.dart';
 import 'package:tenic_api/bloc/asignar_antena.dart';
 import 'package:tenic_api/modelo/api_response_model.dart';
 import 'package:tenic_api/modelo/asignar_antena.dart';
+import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class ListaAntenasAsignadas extends StatefulWidget {
@@ -42,7 +43,15 @@ class ListaAntenasAsignadasState extends State<ListaAntenasAsignadas>
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: const Text(Constants.tittleListaAntenasAsignadas)
+        title: const Text(Constants.tittleListaAntenasAsignadas),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              TecniNavigator.goToListaAsignarBusqueda(context);
+            },
+          ),
+        ],
       ),
       body: Stack(fit: StackFit.expand, children: <Widget>[
         Container(
@@ -61,7 +70,7 @@ class ListaAntenasAsignadasState extends State<ListaAntenasAsignadas>
                             style:
                                 TextStyle(fontSize: 20, color: Colors.black87,fontWeight: FontWeight.bold)),
                         subtitle: Text(listAsignarAntena[indice].usuario.nombre),
-                        leading: Icon(Icons.flag),
+                        leading: Icon(Icons.person_pin),
                         onTap: () {
                           print(listAsignarAntena[indice].antena.nombre);
                           asignarAntena = listAsignarAntena[indice];

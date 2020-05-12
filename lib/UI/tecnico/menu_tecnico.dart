@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tenic_api/bloc/inicio_sesion_bloc.dart';
 import 'package:tenic_api/navigator.dart';
 import 'package:tenic_api/navigator_tecnico.dart';
+import 'package:tenic_api/repository/repository.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class HomeTecnico extends StatefulWidget {
@@ -9,16 +11,39 @@ class HomeTecnico extends StatefulWidget {
 }
 
 class HomeTecnicoState extends State<HomeTecnico> {
+
+    final InicioSesionBloc inicioSesionBloc = InicioSesionBloc();
+
+  Repository repository = Repository();
+
+  String nombre = "";
+  String correo = "";
+  String apellido = "";
+
+  @override
+  initState() {
+    super.initState();
+    _Carga();
+  }
+
+  void _handleSubmitted() async {
+    await inicioSesionBloc.cerrarSesion();
+    TecniNavigator.goToHome(context);
+  }
+
+  void _Carga() async{
+
+  nombre = await repository.getLocalNombre();
+  apellido = await repository.getLocalApellido();
+  correo = await repository.getLocalCorreo();
+  setState(() {
+        nombre;
+        correo;
+        apellido;
+      });
+  }
   @override
   Widget build(BuildContext context) {
-    var perfil = ListTile(
-      leading: Icon(Icons.person_pin),
-      title: Text(
-        Constants.appBarPerfil,
-        style: TextStyle(color: Colors.black),
-      ),
-      onTap: () => {TecniNavigator.goToPerfilCoordinador(context)},
-    );
 
     var observacion = ListTile(
       leading: Icon(Icons.create),
@@ -35,7 +60,16 @@ class HomeTecnicoState extends State<HomeTecnico> {
         Constants.tittleAntenaAsignadas,
         style: TextStyle(color: Colors.black),
       ),
-      onTap: () => {},
+      onTap: () => {TecnicoNavigator.goTolistarobservacion(context)},
+    );
+
+    var perfil = ListTile(
+      leading: Icon(Icons.person),
+      title: Text(
+        Constants.perfil,
+        style: TextStyle(color: Colors.black),
+      ),
+      onTap: () => {TecnicoNavigator.goToPerfil(context)},
     );
 
     var actualizar = ListTile(
@@ -52,7 +86,7 @@ class HomeTecnicoState extends State<HomeTecnico> {
         Constants.cerrarSesion,
         style: TextStyle(color: Colors.black),
       ),
-      onTap: () => {TecnicoNavigator.goToHome(context)},
+      onTap: _handleSubmitted,
     );
 
     var menu = Drawer(
@@ -61,12 +95,12 @@ class HomeTecnicoState extends State<HomeTecnico> {
         children: <Widget>[
           UserAccountsDrawerHeader(
             accountName: Text(
-              "Bryan Alvarado",
+              nombre +' '+ apellido,
               style:
                   TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
             ),
             accountEmail: Text(
-              "Bryan@hotmail.com",
+              correo,
               style: TextStyle(color: Colors.black),
             ),
             decoration: BoxDecoration(
@@ -74,8 +108,8 @@ class HomeTecnicoState extends State<HomeTecnico> {
                     image: AssetImage(Constants.perfilImage),
                     fit: BoxFit.cover)),
           ),
-          Ink(color: Colors.blue, child: perfil),
-          observacion,
+          Ink(color: Colors.blue, child: observacion),
+          perfil,
           antenasAsignadas,
           actualizar,
           cerrar

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tenic_api/bloc/inicio_sesion_bloc.dart';
 import 'package:tenic_api/navigator.dart';
+import 'package:tenic_api/repository/repository.dart';
 import 'package:tenic_api/resource/constants.dart';
 
 class HomeCoordinador extends StatefulWidget {
@@ -11,20 +12,47 @@ class HomeCoordinador extends StatefulWidget {
 class HomeCoordinadorState extends State<HomeCoordinador> {
   final InicioSesionBloc inicioSesionBloc = InicioSesionBloc();
 
+  Repository repository = Repository();
+
+  String nombre = "";
+  String correo = "";
+  String apellido = "";
+
+  @override
+  initState() {
+    super.initState();
+    _Carga();
+  }
+
   void _handleSubmitted() async {
     await inicioSesionBloc.cerrarSesion();
     TecniNavigator.goToHome(context);
   }
 
+  void _Carga() async{
+
+  nombre = await repository.getLocalNombre();
+  apellido = await repository.getLocalApellido();
+  correo = await repository.getLocalCorreo();
+  setState(() {
+          nombre;
+          correo;
+          apellido;
+        });
+
+  }
+
+
+
   @override
-  Widget build(BuildContext context) {
+  Widget build (BuildContext context) {
     var perfil = ListTile(
       leading: Icon(Icons.person_pin),
       title: Text(
         Constants.appBarPerfil,
         style: TextStyle(color: Colors.black),
       ),
-      onTap: () => {TecniNavigator.goToPerfilCoordinador(context)},
+      onTap: () => {TecniNavigator.goToPerfil(context)},
     );
 
     var torre = ListTile(
@@ -34,6 +62,15 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
         style: TextStyle(color: Colors.black),
       ),
       onTap: () => {TecniNavigator.goToListaTorre(context)},
+    );
+
+      var correoo = ListTile(
+      leading: Icon(Icons.email),
+      title: Text(
+        Constants.enviarCorreo,
+        style: TextStyle(color: Colors.black),
+      ),
+      onTap: () => {TecniNavigator.goToEnviarCorreo(context)},
     );
 
     var antena = ListTile(
@@ -123,12 +160,12 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
         children: <Widget>[
           UserAccountsDrawerHeader(
             accountName: Text(
-              "Bryan Alvarado",
+              nombre +' '+ apellido,
               style:
                   TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
             ),
             accountEmail: Text(
-              "Bryan@hotmail.com",
+              correo,
               style: TextStyle(color: Colors.black),
             ),
             decoration: BoxDecoration(
@@ -136,11 +173,12 @@ class HomeCoordinadorState extends State<HomeCoordinador> {
                     image: AssetImage(Constants.perfilImage),
                     fit: BoxFit.cover)),
           ),
-          Ink(color: Colors.blue, child: perfil),
+          Ink(color: Colors.blue, child: usuarios),
+          perfil,
+          correoo,
           torre,
           departamento,
           municipio,
-          usuarios,
           antena,
           asignar,
           lista,
