@@ -9,10 +9,12 @@ import 'package:auto_size_text/auto_size_text.dart';
 
 class NominatimLocationPicker extends StatefulWidget {
   NominatimLocationPicker({
+
     this.searchHint = 'Buscar',
     this.awaitingForLocation = "Esperando su localizacion",
     this.customMarkerIcon,
-    this.customMapLayer,
+    this.customMapLayer
+
   });
 
   final String searchHint;
@@ -88,6 +90,7 @@ class _NominatimLocationPickerState extends State<NominatimLocationPicker> {
     --- Função responsável por receber a localização atual do usuário
   */
     final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+    print(geolocator);
     geolocator
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
         .then((Position position) {
@@ -251,7 +254,7 @@ class _NominatimLocationPickerState extends State<NominatimLocationPicker> {
 
   Widget _buildBody(BuildContext context) {
     /*
-    --- Widget responsável constução da página como um todo. 
+    --- Widget responsável constução da página como um
   */
     return Stack(
       children: <Widget>[
